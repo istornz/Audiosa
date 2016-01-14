@@ -2,19 +2,22 @@
 
 Site web permettant de gérer sa musique facilement.
 
-### Pré-requis
+## Pré-requis
 
 - WAMP Server
 
-### Installation
+## Installation
+
+## Tests
 
 
 
-### License et auteurs
+## License et auteurs
 
 - Dessus Dimitri
 - Mohamed Ben-Ali Rayane
 - Tridon Quentin
+- Chanson Kevin
 
 Copyright:: 2016, Audiosa, Inc
 

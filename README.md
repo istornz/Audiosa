@@ -1,6 +1,7 @@
 # Audiosa
 
 Site web permettant de gérer sa musique facilement depuis sa tablette.
+Une application iOS native sera elle aussi disponible.
 
 ## Pré-requis
 

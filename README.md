@@ -1,10 +1,19 @@
 # Audiosa
 
-Site web permettant de gérer sa musique facilement.
+Site web permettant de gérer sa musique facilement depuis sa tablette.
 
 ## Pré-requis
 
-- WAMP Server
+### Serveur
+- Apache
+- MySQL
+- PHP
+
+### Matériel
+
+- Un serveur sous Windows 7
+- Une Tablette sous iOS, Android ou Windows
+- Java JDK 7
 
 ## Installation
 

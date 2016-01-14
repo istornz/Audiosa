@@ -11,15 +11,15 @@ Une application iOS native sera elle aussi disponible.
 - PHP
 
 ### Matériel
-
 - Un serveur sous Windows 7
 - Une Tablette sous iOS, Android ou Windows
+- Un appareil sous iOS (optionnel)
 - Java JDK 7
 
 ## Installation
 
-## Tests
 
+## Tests
 
 
 ## License et auteurs

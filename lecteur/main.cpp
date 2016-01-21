@@ -26,7 +26,7 @@ int main(int argc, const char** argv)
   std::cin >> i;                                                           //Attend que l'utilisateur appuie sur une touche
   engine->setSoundVolume(1);                                               //Met le volume a 1
 
-  // Test Mise en Route et Play
+  // Test Mise en Pause et Play
   std::cin >> i;                                                           //Attend que l'utilisateur appuie sur une touche
   engine->setAllSoundsPaused(true);                                        //Met la musique en pause
   

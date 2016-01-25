@@ -9,16 +9,17 @@
 	background: -webkit-linear-gradient(top,  rgba(43,43,43,1) 32%,rgba(43,43,43,1) 47%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 102%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  rgba(43,43,43,1) 32%,rgba(43,43,43,1) 47%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 102%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2b2b', endColorstr='#4a4a4a',GradientType=0 ); /* IE6-9 */
-
+	
+	-moz-box-shadow: 26px 51px 130px -1px #000000;
+	-webkit-box-shadow: 26px 51px 130px -1px #000000;
+	-o-box-shadow: 26px 51px 130px -1px #000000;
+	box-shadow: 26px 51px 130px -1px #000000;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=152, Strength=130);
 }
 
 #list_musique
 {
--moz-box-shadow: -10px 85px 100px -1px #000000;
--webkit-box-shadow: -10px 85px 100px -1px #000000;
--o-box-shadow: -10px 85px 100px -1px #000000;
-box-shadow: -10px 85px 100px -1px #000000;
-filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=263, Strength=100);
+
 	float: right;
     height: 92%;
     width: 100%;

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: audiosa;
+    src: url("../font/big_noodle_titling.ttf");
+}
+
 html {
 	margin: 0;
 	border: 0;
@@ -17,11 +22,31 @@ body {
 	background-size: cover; /* version standardisée */
 }
 
+h3  {
+	font-family: audiosa;
+	font-size: 32px;
+    margin: 0;
+    padding-top: 11px;
+    letter-spacing: 3px;
+	color: white;
+}
+
 #menu {
-	background-color: transparent;
 	float: left;
 	height: 100%;
 	width: 30%;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#190f0f+19,4179c1+94 */
+background: rgb(25,15,15); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(25,15,15,1) 19%, rgba(65,121,193,1) 94%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(25,15,15,1) 19%,rgba(65,121,193,1) 94%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(25,15,15,1) 19%,rgba(65,121,193,1) 94%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#190f0f', endColorstr='#4179c1',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+#content_menu_title {
+	min-height: 60px;
 }
 
 #content {
@@ -29,21 +54,44 @@ body {
 	float: right;
 	height: 100%;
 	width: 70%;
+	
+	background: rgb(43,43,43); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(43,43,43,1) 32%, rgba(43,43,43,1) 47%, rgba(74,74,74,1) 100%, rgba(74,74,74,1) 100%, rgba(74,74,74,1) 102%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(43,43,43,1) 32%,rgba(43,43,43,1) 47%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 102%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(43,43,43,1) 32%,rgba(43,43,43,1) 47%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 100%,rgba(74,74,74,1) 102%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2b2b', endColorstr='#4a4a4a',GradientType=0 ); /* IE6-9 */
+
+}
+
+#list_musique
+{
+	-moz-box-shadow: -1px 0px 100px -10px #000000;
+	-webkit-box-shadow: -1px 0px 100px -10px #000000;
+	-o-box-shadow: -1px 0px 100px -10px #000000;
+	box-shadow: -1px 0px 100px -10px #000000;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=180, Strength=100);
+	float: right;
+    height: 92%;
+    width: 100%;
+    background-color: transparent;
 }
 
 #content_title {
 	width: 100%;
-	background-color: black;
+	background-color: transparent;
 	float: left;
+	text-align: center;
+	min-height: 8%;
+	border-bottom: 1px solid #616161;
 }
 
 #audiosa_title {
     float: left;
-    width: 70%;
-	min-height: 60px;
+    width: 100%;
+	min-height: 8%;
     text-align: center;
     color: white;
-    background-color: black;
+    background-color: #e74c3c;
 }
 
 #utilisateur {
@@ -51,10 +99,9 @@ body {
     text-align: center;
 	background-color: transparent;
     float: right;
-	min-height: 60px;
+	min-height: 8%;
 }
 
 #icon_utilisateur {
-	margin-top: 13px;
     width: 33px;
 }

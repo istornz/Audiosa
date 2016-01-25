@@ -4469,7 +4469,7 @@ $.widget( "mobile.page", {
 
 		this.element
 			.attr( "tabindex", "0" )
-			.addClass( "ui-page ui-page-theme-" + this.options.theme );
+			.addClass( "ui-page ui-page-theme-" + "b" );
 
 		// Manipulation of content os Deprecated as of 1.4 remove in 1.5
 		this.element.find( "[" + attrPrefix + "role='content']" ).each( function() {

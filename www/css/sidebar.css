@@ -49,10 +49,10 @@ h3  {
 
 
 #audiosa_title {
-    float: left;
+	line-height:50%;
     width: 100%;
 	min-height: 8%;
-    text-align: center;
+    /*text-align: center;*/
     color: white;
     background-color: #e74c3c;
 }
@@ -66,6 +66,32 @@ h3  {
 }
 
 #icon_utilisateur {
+	vertical-align: middle;
+	margin-right: 3%;
+	float: right;
     width: 33px;
 }
 
+#icon_logo {
+	vertical-align: middle;
+    width: 33px;
+}
+
+
+#icon_sidebar_cell {
+    width: 33px;
+}
+
+.cellSideBar
+{
+	font-family: oswald;
+	font-size: 23px;
+	height: 43px;
+	line-height: 43px;
+}
+
+.cellSideBar a
+{
+	color: white;
+	text-decoration: none;
+}

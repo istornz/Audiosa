@@ -3,6 +3,11 @@
     src: url("../font/big_noodle_titling.ttf");
 }
 
+@font-face {
+    font-family: oswald;
+    src: url("../font/Oswald-Regular.ttf");
+}
+
 html {
 	margin: 0;
 	border: 0;

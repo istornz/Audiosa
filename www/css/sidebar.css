@@ -35,14 +35,7 @@ h3  {
 	float: left;
 	height: 100%;
 	width: 30%;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#190f0f+19,4179c1+94 */
-background: rgb(25,15,15); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(25,15,15,1) 19%, rgba(65,121,193,1) 94%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(25,15,15,1) 19%,rgba(65,121,193,1) 94%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(25,15,15,1) 19%,rgba(65,121,193,1) 94%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#190f0f', endColorstr='#4179c1',GradientType=0 ); /* IE6-9 */
-
-
+	background: #34495e;
 }
 
 #content_menu_title {

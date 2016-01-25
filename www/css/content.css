@@ -14,11 +14,11 @@
 
 #list_musique
 {
-	-moz-box-shadow: -1px 0px 100px -10px #000000;
-	-webkit-box-shadow: -1px 0px 100px -10px #000000;
-	-o-box-shadow: -1px 0px 100px -10px #000000;
-	box-shadow: -1px 0px 100px -10px #000000;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=180, Strength=100);
+-moz-box-shadow: -10px 85px 100px -1px #000000;
+-webkit-box-shadow: -10px 85px 100px -1px #000000;
+-o-box-shadow: -10px 85px 100px -1px #000000;
+box-shadow: -10px 85px 100px -1px #000000;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=263, Strength=100);
 	float: right;
     height: 92%;
     width: 100%;

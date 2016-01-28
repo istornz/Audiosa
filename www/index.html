@@ -5,8 +5,10 @@
 	<link href="css/jquery.mobile-1.4.5.css" rel="stylesheet"/>
 	<link href="css/content.css" rel="stylesheet"/>
 	<link href="css/sidebar.css" rel="stylesheet"/>
+	<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"/>
 	<script src="js/jquery.js" type="text/javascript"></script>
 	<script src="js/jquery.mobile-1.4.5.js" type="text/javascript"></script>
+	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 	<meta name="viewport" content="maximum-scale=1">
 </head>
 <body>
@@ -38,28 +40,40 @@
 			</h3>
 		</div>
 			<div id="list_musique">
-			<ul data-role="listview" data-autodividers="true" data-filter-placeholder="Rechercher..." data-filter="true" data-inset="true">
-				<li><a href="index.html">Adam Kinkaid</a></li>
-				<li><a href="index.html">Alex Wickerham</a></li>
-				<li><a href="index.html">Avery Johnson</a></li>
-				<li><a href="index.html">Bob Cabot</a></li>
-				<li><a href="index.html">Caleb Booth</a></li>
-				<li><a href="index.html">Christopher Adams</a></li>
-				<li><a href="index.html">Culver James</a></li>				<li><a href="index.html">Adam Kinkaid</a></li>
-				<li><a href="index.html">Alex Wickerham</a></li>
-				<li><a href="index.html">Avery Johnson</a></li>
-				<li><a href="index.html">Bob Cabot</a></li>
-				<li><a href="index.html">Caleb Booth</a></li>
-				<li><a href="index.html">Christopher Adams</a></li>
-				<li><a href="index.html">Culver James</a></li>				<li><a href="index.html">Adam Kinkaid</a></li>
-				<li><a href="index.html">Alex Wickerham</a></li>
-				<li><a href="index.html">Avery Johnson</a></li>
-				<li><a href="index.html">Bob Cabot</a></li>
-				<li><a href="index.html">Caleb Booth</a></li>
-				<li><a href="index.html">Christopher Adams</a></li>
-				<li><a href="index.html">Culver James</a></li>
+			<ul id="list_scroll" data-role="listview" data-autodividers="true" data-filter-placeholder="Rechercher..." data-filter="true" data-inset="true">
+				<li><a class="no-margin" href="index.html">Adam Kinkaid</a></li>
+				<li><a class="no-margin" href="index.html">Alex Wickerham</a></li>
+				<li><a class="no-margin" href="index.html">Avery Johnson</a></li>
+				<li><a class="no-margin" href="index.html">Bob Cabot</a></li>
+				<li><a class="no-margin" href="index.html">Caleb Booth</a></li>
+				<li><a class="no-margin" href="index.html">Christopher Adams</a></li>
+				<li><a class="no-margin" href="index.html">Culver James</a></li>				<li><a class="no-margin" href="index.html">Adam Kinkaid</a></li>
+				<li><a class="no-margin" href="index.html">Alex Wickerham</a></li>
+				<li><a class="no-margin" href="index.html">Avery Johnson</a></li>
+				<li><a class="no-margin" href="index.html">Bob Cabot</a></li>
+				<li><a class="no-margin" href="index.html">Caleb Booth</a></li>
+				<li><a class="no-margin" href="index.html">Christopher Adams</a></li>
+				<li><a class="no-margin" href="index.html">Culver James</a></li>				<li><a class="no-margin" href="index.html">Adam Kinkaid</a></li>
+				<li><a class="no-margin" href="index.html">Alex Wickerham</a></li>
+				<li><a class="no-margin" href="index.html">Avery Johnson</a></li>
+				<li><a class="no-margin" href="index.html">Bob Cabot</a></li>
+				<li><a class="no-margin" href="index.html">Caleb Booth</a></li>
+				<li><a class="no-margin" href="index.html">Christopher Adams</a></li>
+				<li><a class="no-margin" href="index.html">Culver James</a></li>
 			</ul>
 		</div>
 	</div>
+		
+		<!-- custom scrollbar plugin -->
+		<script>
+		(function($){
+			$(window).load(function(){
+				$("#list_scroll").mCustomScrollbar({
+					theme:"minimal"
+				});
+				
+			});
+		})(jQuery);
+	</script>
 </body>
 </html>

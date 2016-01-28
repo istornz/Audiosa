@@ -17,8 +17,7 @@
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=152, Strength=130);
 }
 
-#list_musique
-{
+#list_musique {
 
 	float: right;
     height: 92%;
@@ -31,5 +30,18 @@
 	background-color: transparent;
 	float: left;
 	text-align: center;
-	min-height: 8%;
+	height: 60px;
+	background-color: #2D5B79;
+}
+
+#background_content_title {
+    background-color: #2D5B79;
+}
+
+#import_button {
+    width: 90px;
+    font-size: 14px;
+    float: right;
+    margin: 0;
+    margin-right: 3%;
 }

@@ -49,9 +49,8 @@ h3  {
 
 
 #audiosa_title {
-	line-height:50%;
     width: 100%;
-	min-height: 8%;
+	height: 60px;
     /*text-align: center;*/
     color: white;
     background-color: #e74c3c;
@@ -70,6 +69,12 @@ h3  {
 	margin-right: 3%;
 	float: right;
     width: 33px;
+}
+
+#image_utilisateur
+{
+	width:33px;
+	margin-top: 3px;
 }
 
 #icon_logo {

@@ -6,8 +6,9 @@
 	<link href="css/content.css" rel="stylesheet"/>
 	<link href="css/sidebar.css" rel="stylesheet"/>
 	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/StackBlur.js" type="text/javascript"></script>
 	<script src="js/jquery.mobile-1.4.5.js" type="text/javascript"></script>
-	<script src="js/global.js" type="text/javascript"></script>
+	
 </head>
 <body>
 	<div id="menu" >
@@ -25,7 +26,9 @@
 		</div>
 	</div>
 	
-	<div id="content" >
+	<canvas id="canvas" style="position: absolute;"></canvas>
+	
+	<div id="content">
 		<div id="content_title">
 			<h3>Ma musique</h3>
 		</div>
@@ -44,19 +47,18 @@
 	
 	<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
 		<div data-role="header" data-theme="a">
-			
+			<a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 			<h1>Connexion</h1>
 		</div>
 		<div role="main" class="ui-content">
 			<form id="formConnexionPopup">
 				<img src="img/logo.png" alt="logo" height="100px" width="100px" />
 				<br/><br/>
-				
-				<input placeholder="Pseudo" name="pseudo-text" id="pseudo-text" value="" type="text" autocomplete="off" type="text">
+				<input placeholder="Pseudo" data-theme="a" name="pseudo-text" id="pseudo-text" value="" type="text" autocomplete="off" type="text">
 				<input placeholder="Mot de passe" data-theme="a" name="password-text" id="password-text" value="" type="text" autocomplete="off" type="password">
 				<a href="" id="motDePasseOublie"><u><b>Mot de passe oublié ?</u></b></a>
 				<br/><br/>
-				<a href="#" class="ui-btn ui-corner-all">Se connecter</a>
+				<a href="#" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</a>
 			</form>
 		</div>
 	</div>

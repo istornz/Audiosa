@@ -10944,7 +10944,22 @@ $.widget( "mobile.popup", {
 		this._currentTransition = openOptions.transition;
 		this._applyTransition( openOptions.transition );
 
-		this._ui.screen.removeClass( "ui-screen-hidden" );
+		
+		
+		/////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////
+		canvas = document.getElementById("canvas");
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+		
+		
+		StackBlur.canvasRGB(canvas, 0, 0, canvas.width, canvas.height, 30);
+		//this._ui.screen.removeClass( "ui-screen-hidden" );
 		this._ui.container.removeClass( "ui-popup-truncate" );
 
 		// Give applications a chance to modify the contents of the container before it appears
@@ -11117,6 +11132,7 @@ $.widget( "mobile.popup", {
 	// TODO no clear deliniation of what should be here and
 	// what should be in _open. Seems to be "visual" vs "history" for now
 	open: function( options ) {
+		
 		var url, hashkey, activePage, currentIsDialog, hasHash, urlHistory,
 			self = this,
 			currentOptions = this.options;
@@ -11176,7 +11192,7 @@ $.widget( "mobile.popup", {
 			self._open( options );
 			self._bindContainerClose();
 		});
-
+		
 		this.urlAltered = true;
 		$.mobile.navigate( url, { role: "dialog" } );
 

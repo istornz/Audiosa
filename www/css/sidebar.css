@@ -8,6 +8,11 @@
     src: url("../font/Oswald-Regular.ttf");
 }
 
+@font-face {
+    font-family: roboto;
+    src: url("../font/Roboto-Thin.ttf");
+}
+
 html {
 	margin: 0;
 	border: 0;

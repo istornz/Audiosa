@@ -62,7 +62,7 @@ font-size: 14px;
 	border-radius: 0 !important;
 	margin: 0 !important;
 	overflow: scroll !important;
-    max-height: 88%;
+    max-height: 82%;
 }
 
 .ui-filterable {
@@ -93,4 +93,27 @@ font-size: 14px;
 
 .ui-li-divider {
 	padding-left: 10px !important;
+}
+
+.txt-left {
+	text-align: left;
+}
+
+.txt-center {
+	text-align: center;
+}
+
+#footer_bar {
+	float: left;
+	width: 100%;
+}
+
+.paging {
+	height: 9px;
+    padding-bottom: 9.75;
+    padding-top: 6.75;
+}
+
+.ui-controlgroup-controls {
+	margin-top: 4px;
 }

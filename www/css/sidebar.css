@@ -87,9 +87,15 @@ h3  {
     width: 33px;
 }
 
-
-#icon_sidebar_cell {
+.first_icon_sidebar_cell {
     width: 33px;
+	margin-top: 0px;
+}
+
+.icon_sidebar_cell {
+    width: 33px;
+	margin-top: 4px;
+    float: left;
 }
 
 .cellSideBar

@@ -9,3 +9,8 @@ function blurAction(state, div)
 		div.className = "";
 	}
 }
+
+function uploadAction()
+{
+		$('.Upload').ElasticProgress({/*options*/});
+}

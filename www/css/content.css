@@ -118,6 +118,15 @@ font-size: 14px;
 	margin-top: 4px;
 }
 
+.fullPageBlurred
+{
+	-webkit-filter: blur(20px);
+	-moz-filter: blur(20px);
+	-o-filter: blur(20px);
+	-ms-filter: blur(20px);
+	filter: blur(20px);
+	background-color: #ccc;
+}
 .list-central-morceaux {
 	height: 58px;
 }

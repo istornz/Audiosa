@@ -9,6 +9,7 @@
 *
 */
 
+profileClicked = 0;
 
 (function ( root, doc, factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -10953,12 +10954,16 @@ $.widget( "mobile.popup", {
 		/////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////
-		canvas = document.getElementById("canvas");
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
 		
 		
-		StackBlur.canvasRGB(canvas, 0, 0, canvas.width, canvas.height, 30);
+		// 1 to blur
+		// 0 to remove
+		var fullPage = document.getElementById("fullPage");
+		blurAction(1, fullPage);
+		
+		
+		
+		
 		//this._ui.screen.removeClass( "ui-screen-hidden" );
 		this._ui.container.removeClass( "ui-popup-truncate" );
 

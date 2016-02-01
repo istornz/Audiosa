@@ -5,12 +5,14 @@
 	<link href="css/jquery.mobile-1.4.5.css" rel="stylesheet"/>
 	<link href="css/content.css" rel="stylesheet"/>
 	<link href="css/sidebar.css" rel="stylesheet"/>
+	<script src="js/global.js" type="text/javascript"></script>
 	<script src="js/jquery.js" type="text/javascript"></script>
-	<script src="js/StackBlur.js" type="text/javascript"></script>
+	<script src="js/Blur.js" type="text/javascript"></script>
 	<script src="js/jquery.mobile-1.4.5.js" type="text/javascript"></script>
 	
 </head>
 <body>
+<div id="fullPage">
 	<div id="menu" >
 		<div id="content_menu_title">
 			<div id="audiosa_title" >
@@ -26,28 +28,26 @@
 		</div>
 	</div>
 	
-	<canvas id="canvas" style="position: absolute;"></canvas>
-	
 	<div id="content">
 		<div id="content_title">
 			<h3>Ma musique</h3>
 		</div>
 			<div id="list_musique">
-			<ul data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
-				<li><a href="index.html">Adam Kinkaid</a></li>
-				<li><a href="index.html">Alex Wickerham</a></li>
-				<li><a href="index.html">Avery Johnson</a></li>
-				<li><a href="index.html">Bob Cabot</a></li>
-				<li><a href="index.html">Caleb Booth</a></li>
-				<li><a href="index.html">Christopher Adams</a></li>
-				<li><a href="index.html">Culver James</a></li>
-			</ul>
-		</div>
+				<ul data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+					<li><a href="index.html">Adam Kinkaid</a></li>
+					<li><a href="index.html">Alex Wickerham</a></li>
+					<li><a href="index.html">Avery Johnson</a></li>
+					<li><a href="index.html">Bob Cabot</a></li>
+					<li><a href="index.html">Caleb Booth</a></li>
+					<li><a href="index.html">Christopher Adams</a></li>
+					<li><a href="index.html">Culver James</a></li>
+				</ul>
+			</div>
 	</div>
-	
+</div>	
 	<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
 		<div data-role="header" data-theme="a">
-			<a href="#" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 			<h1>Connexion</h1>
 		</div>
 		<div role="main" class="ui-content">
@@ -62,5 +62,6 @@
 			</form>
 		</div>
 	</div>
+
 </body>
 </html>

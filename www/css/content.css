@@ -117,3 +117,29 @@ font-size: 14px;
 .ui-controlgroup-controls {
 	margin-top: 4px;
 }
+
+.list-central-morceaux {
+	height: 58px;
+}
+
+.default-cover-morceaux {
+	width: 60px;
+}
+
+.cover {
+	float: left;
+	width: 60px;"
+}
+
+.morceaux-artist {
+    margin-top: 11px;
+    margin-left: 20px;
+    float: left;
+}
+
+.morceaux-artist-album {
+    font-size: 12px;
+    float: left;
+    display: block;
+    margin-top: 6px;
+}

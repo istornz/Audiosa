@@ -2,10 +2,10 @@ function blurAction(state, div)
 {
 	if(state == 1)
 	{
-		fullPage.className = "fullPageBlurred";
+		div.className = "fullPageBlurred";
 	}
 	else
 	{
-		fullPage.className = "";
+		div.className = "";
 	}
 }

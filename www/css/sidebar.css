@@ -48,8 +48,14 @@ h3  {
 	background: #34495e;
 }
 
+#menu_content {
+    min-height: 42%;
+    max-height: 43%;
+}
+
 #content_menu_title {
-	min-height: 60px;
+    min-height: 7%;
+    max-height: 8%;
 }
 
 
@@ -118,3 +124,21 @@ html .ui-body-b a:visited,
 html body .ui-group-theme-b a:visited {
     color: white/*{b-link-visited}*/;
 }
+
+
+#view_more {
+    text-align: center;
+    background: #E74C3C;
+	min-height: 2%;
+    max-height: 3%;
+}
+
+#web-player {
+    width: 100%;
+    height: 48%;
+    background-image: url("../img/cover/nn.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+	background-size: 174%;
+}
+

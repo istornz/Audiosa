@@ -106,6 +106,7 @@ font-size: 14px;
 #footer_bar {
 	float: left;
 	width: 100%;
+	background-color: #484848;
 }
 
 .paging {
@@ -124,6 +125,7 @@ font-size: 14px;
 	text-align: center;
 }
 
+<<<<<<< HEAD
 .fullPageBlurred
 {
 	-webkit-filter: blur(20px);
@@ -144,6 +146,8 @@ font-size: 14px;
 	background-color: #ccc;
 }
 
+=======
+>>>>>>> fe45f1a7e93896471d5cd35145c9a93ad584aec1
 .list-central-morceaux {
 	height: 58px;
 }

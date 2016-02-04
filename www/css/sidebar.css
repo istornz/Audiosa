@@ -49,13 +49,15 @@ h3  {
 }
 
 #menu_content {
-    min-height: 42%;
-    max-height: 43%;
+    height: 35%;
+}
+
+#menu_scroll {
+	overflow: hidden !important;
 }
 
 #content_menu_title {
-    min-height: 7%;
-    max-height: 8%;
+
 }
 
 
@@ -129,16 +131,102 @@ html body .ui-group-theme-b a:visited {
 #view_more {
     text-align: center;
     background: #E74C3C;
-	min-height: 2%;
-    max-height: 3%;
+    height: 3%;
 }
 
 #web-player {
+	position: relative;
     width: 100%;
-    height: 48%;
+    height: 46%;
+    overflow: hidden;
     background-image: url("../img/cover/nn.jpg");
     background-repeat: no-repeat;
     background-position: center;
 	background-size: 174%;
+	-webkit-filter: blur(13px);
+	-moz-filter: blur(13px);
+	-o-filter: blur(13px);
+	-ms-filter: blur(13px);
+	filter: blur(13px);
+	background-color: #ccc;
 }
 
+#web-player-img {
+    width: 65%;
+    margin-left: 17.5%;
+    margin-top: 5%;
+}
+
+#web-player-onblur {
+	position: absolute;
+    width: 30%;
+	height: 54%;
+    overflow: hidden;
+}
+
+#web-player-shuffle {
+	float: left;
+    width: 23px;
+    margin-top: 5px;
+    margin-left: 5%;
+}
+
+#web-player-sound {
+	float: right;
+    width: 23px;
+    margin-top: 5px;
+    margin-right: 5%;
+}
+
+#web-player-previous {
+	float: left;
+    width: 29px;
+    margin-top: 5px;
+    margin-left: 5%;
+}
+
+#web-player-play {
+    width: 29px;
+    margin-top: 5px;
+}
+
+#web-player-next {
+	float: right;
+    width: 29px;
+    margin-top: 5px;
+    margin-right: 5%;
+}
+
+#web-player-cmd {
+	height: 54%;
+	background-color: #484848;
+	border-top: 1px solid white;
+    margin-top: 7%;
+}
+
+/* Hide the number input */
+.full-width-slider input {
+	display: none;
+}
+.full-width-slider .ui-slider-track {
+	margin-left: 15px;
+}
+
+.ui-slider-track .ui-btn.ui-slider-handle
+{
+	border-color: transparent;
+	width: 1px;
+	margin: -9px 0 0 0px;
+	height: 15px;
+	background-color: white;
+}
+
+.ui-slider-track {
+	height: 0px;
+    background-color: white !important;
+    border-color: white !important;
+}
+
+div.ui-slider {
+	margin: 0 !important;
+}

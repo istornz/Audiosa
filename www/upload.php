@@ -22,6 +22,7 @@ if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 		echo '{"status":"error: file already exist"}';
 		exit;
 	}
+	
 	/*
 	if($tailleFichier > $MAX_FILESIZE)
 	{
@@ -29,6 +30,7 @@ if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 		exit;
 	}
 	*/
+	
 	if($mimetype != "audio/flac")
 	{
 		echo '{"status":"error: file is not a valid flac file"}';

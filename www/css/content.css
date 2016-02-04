@@ -119,13 +119,6 @@ font-size: 14px;
 	margin-top: 4px;
 }
 
-#uploadLabel
-{
-	font-family: Roboto;
-	text-align: center;
-}
-
-<<<<<<< HEAD
 .fullPageBlurred
 {
 	-webkit-filter: blur(20px);
@@ -136,18 +129,6 @@ font-size: 14px;
 	background-color: #ccc;
 }
 
-.cover
-{
-	-webkit-filter: blur(20px);
-	-moz-filter: blur(20px);
-	-o-filter: blur(20px);
-	-ms-filter: blur(20px);
-	filter: blur(20px);
-	background-color: #ccc;
-}
-
-=======
->>>>>>> fe45f1a7e93896471d5cd35145c9a93ad584aec1
 .list-central-morceaux {
 	height: 58px;
 }

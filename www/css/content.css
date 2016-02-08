@@ -53,7 +53,8 @@ font-size: 14px;
 
 #uploadLabel
 {
-		text-align: center;
+	margin-top: 22px;
+	text-align: center;
 }
 
 .ui-input-search {
@@ -158,4 +159,31 @@ font-size: 14px;
     float: left;
     display: block;
     margin-top: 6px;
+}
+
+/* EDIT SONG */
+
+.default-cover-edit {
+	width: 85px;
+    margin-top: 10px;
+    margin-left: 18px;
+}
+
+.info_song-edit {
+	display: block;
+    margin-top: -84px;
+    margin-left: 132px;
+    line-height: 28px;
+}
+
+.title_song-edit {
+    font-size: 20px;
+}
+
+.artist-edit {
+    font-size: 13px;
+}
+
+.album-edit {
+    font-size: 13px;
 }

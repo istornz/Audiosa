@@ -60,30 +60,45 @@ $(document).ready(function()
 			processData: false,
 
 			success:function(data){
-				elementProgress.fail();
 				var JSONParsed = JSON.parse(data);
 				if(JSONParsed.status == "error")
 				{
+					
+					  
 					if(JSONParsed.errorDescribe == "extension not authorized")
 					{
-						
+						elementLabel.innerHTML = "Extension non autorisée";
 					}
 					else if(JSONParsed.errorDescribe == "file already exist")
 					{
-						
+						elementLabel.innerHTML = "Fichier déjà présent";
 					}
 					else if(JSONParsed.errorDescribe == "file too big")
 					{
-						
+						elementLabel.innerHTML = "Fichier trop volumineux";
 					}
 					else if(JSONParsed.errorDescribe == "file is not a valid flac file")
 					{
-						
+						elementLabel.innerHTML = "Fichier Flac non valide";
 					}
 					else
 					{
-						
+						elementLabel.innerHTML = "Erreur, veuillez réessayer";
 					}
+					
+					elementProgress.fail();
+					
+					var timer = setInterval(function() {
+					   
+					   elementLabel.innerHTML = "Mettre en ligne";
+					   clearInterval(timer);
+					   
+					  }, 2700);
+					
+				}
+				else
+				{
+					elementLabel.innerHTML = "Mettre en ligne";
 				}
 			},
 

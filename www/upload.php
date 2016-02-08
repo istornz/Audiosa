@@ -1,47 +1,45 @@
 <?php
 
-// Extenion autorisé : .FLAC uniquement
-$extensionAutorise = 'flac';
-$MAX_FILESIZE = 6920600;
+$ALLOWED_EXTENSION 	= 'flac';
+$MAX_FILESIZE 		= 536870912; // 512Mb max
 
 if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 {
-	$extensionFichier 	= htmlentities($_FILES['file']['name']);
+	$extensionFichier 	= pathinfo(htmlentities($_FILES['file']['name']), PATHINFO_EXTENSION);
 	$tailleFichier		= htmlentities($_FILES['file']['size']);
 	$mimetypeFichier	= htmlentities($_FILES['file']['type']);
-	$fullPath			= htmlentities('uploaded/' + $_FILES['file']['name']);
+	$fullPath			= htmlentities('uploaded/' . $_FILES['file']['name']);
 	
-	if($extensionFichier != $extensionAutorise)
+	if($extensionFichier != $ALLOWED_EXTENSION)
 	{
-		echo '{"status":"error: extension not authorized"}';
-		exit;
+		die('{"status":"error", "errorDescribe":"extension not authorized"}');
 	}
 	
 	if(file_exists($fullPath))
 	{
-		echo '{"status":"error: file already exist"}';
-		exit;
+		die('{"status":"error", "errorDescribe":"file already exist"}');
 	}
 	
-	/*
 	if($tailleFichier > $MAX_FILESIZE)
 	{
-		echo '{"status":"error: file too big"}';
+		echo '{"status":"error", "errorDescribe":"file too big"}';
 		exit;
 	}
-	*/
 	
-	if($mimetype != "audio/flac")
+	if($mimetypeFichier != "audio/flac")
 	{
-		echo '{"status":"error: file is not a valid flac file"}';
-		exit;
+		die('{"status":"error", "errorDescribe":"file is not a valid flac file"}');
 	}
 	
-	if(move_uploaded_file($_FILES['file']['tmp_name'], $fullPath)){
-		echo '{"status":"success"}';
-		exit;
+	if(move_uploaded_file($_FILES['file']['tmp_name'], $fullPath))
+	{
+		die('{"status":"success"}');
 	}
+	
+}
+else
+{
+	die('{"status":"error", "errorDescribe":"upload error"}');
 }
 
-echo '{"status":"error: upload error"}';
-exit;
+?>

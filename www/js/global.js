@@ -1,3 +1,5 @@
+elementProgress = null;
+
 function blurAction(state, div)
 {
 	if(state == 1)
@@ -9,8 +11,8 @@ function blurAction(state, div)
 		div.className = "";
 	}
 }
-$(document).ready(function() {
-	
+$(document).ready(function()
+{
 	var fileInput  	= document.querySelector( "#uploadForm" );
 	var fileData	= $('#fileUpload').prop('files');
 	var elementLabel = document.getElementById("uploadLabel");
@@ -19,7 +21,7 @@ $(document).ready(function() {
 		//the_return.innerHTML = this.value;  
 	});
 	
-	var e = new ElasticProgress(document.querySelectorAll('.uploadAnimation')[0], {
+	elementProgress = new ElasticProgress(document.querySelectorAll('.uploadAnimation')[0], {
 		align: "center",
 		fontFamily: "roboto",
 		colorFg: "#FFFFFF",
@@ -31,24 +33,13 @@ $(document).ready(function() {
 		arrowDirection: "up"
 	});
 	
-	e.onClick(function() {
-		/*
-		var fileName 	= fileData[0].name;
-		var fileSize 	= fileData[0].size;
-		var type 		= fileData[0].type;
-		*/
-		//var jqXHR = fileData.submit();
-		
-		
-		
-		
-		
+	elementProgress.onClick(function() {
 		
 		elementLabel.style.display = 'none';
-		e.open();
+		elementProgress.open();
 	})
 	
-	e.onOpen(function() {
+	elementProgress.onOpen(function() {
 		
 		var formData = new FormData();
 		formData.append('file', $('input[type=file]')[0].files[0]);
@@ -69,42 +60,65 @@ $(document).ready(function() {
 			processData: false,
 
 			success:function(data){
-				console.log(data);
-
-			  alert('data returned successfully');
-
+				elementProgress.fail();
+				var JSONParsed = JSON.parse(data);
+				if(JSONParsed.status == "error")
+				{
+					if(JSONParsed.errorDescribe == "extension not authorized")
+					{
+						
+					}
+					else if(JSONParsed.errorDescribe == "file already exist")
+					{
+						
+					}
+					else if(JSONParsed.errorDescribe == "file too big")
+					{
+						
+					}
+					else if(JSONParsed.errorDescribe == "file is not a valid flac file")
+					{
+						
+					}
+					else
+					{
+						
+					}
+				}
 			},
 
 			error: function(data){
 				console.log(data);
+				elementProgress.close();
 			}
 		});
 
-		e.preventDefault();
+		elementProgress.preventDefault();
 		
 		
-		//fakeLoading(e, 2, 0.5);
+		//fakeLoading(elementProgress, 2, 0.5);
 	});
 	
-	e.onComplete(function() {
-		e.close();
+	elementProgress.onComplete(function() {
+		elementProgress.close();
+		elementLabel.style.display = '';
 	})
 	
-	e.onFail(function() {
-		e.close();
+	elementProgress.onFail(function() {
+		elementProgress.close();
 		elementLabel.style.display = '';
 	})
 });
 
 function progress(e)
 {
-    if(e.lengthComputable){
+    if(e.lengthComputable && elementProgress)
+	{
         var max = e.total;
         var current = e.loaded;
-
         var Percentage = (current * 100)/max;
-        console.log(Percentage);
-
+		elementProgress.setValue(Percentage);
+		
         if(Percentage >= 100)
         {
            // process completed  

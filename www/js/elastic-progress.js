@@ -6482,9 +6482,9 @@ var defaultOptions={
   arrowHangOnFail:true,
   arrowHangOnCancel:true,
 
-  textComplete:"Done",
-  textFail:"Failed",
-  textCancel:"Canceled",
+  textComplete:"Terminé",
+  textFail:"Erreur",
+  textCancel:"Annulé",
 
   onClick:function(event){},
   onOpen:function(event){},

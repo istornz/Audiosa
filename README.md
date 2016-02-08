@@ -3,8 +3,6 @@
 Site web permettant de gérer sa musique facilement depuis sa tablette.
 Une application iOS native sera elle aussi disponible.
 
-## Pré-requis
-
 ### Serveur
 - Apache
 - MySQL
@@ -14,7 +12,6 @@ Une application iOS native sera elle aussi disponible.
 - Un serveur sous Windows 7
 - Une Tablette sous iOS, Android ou Windows
 - Un appareil sous iOS (optionnel)
-- Java JDK 7
 
 ## Installation
 
@@ -23,13 +20,12 @@ Une application iOS native sera elle aussi disponible.
 
 
 ## License et auteurs
-
 - Dessus Dimitri
 - Mohamed Ben-Ali Rayane
 - Tridon Quentin
 - Chanson Kevin
 
-Copyright:: 2016, Audiosa, Inc
+Copyright: 2016, Audiosa, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

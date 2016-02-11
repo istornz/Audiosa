@@ -148,10 +148,20 @@
 			</div>
 		</div>
 		<div role="main" style="height: 350px;" class="ui-content">
-			<ul id="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
-				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Andrea Clark<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
-				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Beverly Graham<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
-			</ul>
+			<form>
+				<fieldset style="text-align: center;" data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<input name="radio-choice-h-6" id="radio-choice-h-detail" value="on" checked="checked" type="radio">
+					<label id="radio_label_detail" for="radio-choice-h-detail">Détails</label>
+					<input name="radio-choice-h-6" id="radio-choice-h-pochette" value="off" type="radio">
+					<label id="radio_label_pochette" for="radio-choice-h-pochette">Pochette</label>
+				</fieldset>
+				
+				<div id="list_edit">
+					<ul id="list_scroll" data-role="listview">
+						<li><span>Titre</span><input value="PLS"/></li>
+					</ul>
+				</div>
+			</form>
 		</div>
 	</div>
 		

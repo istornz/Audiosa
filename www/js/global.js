@@ -63,8 +63,6 @@ $(document).ready(function()
 				var JSONParsed = JSON.parse(data);
 				if(JSONParsed.status == "error")
 				{
-					
-					  
 					if(JSONParsed.errorDescribe == "extension not authorized")
 					{
 						elementLabel.innerHTML = "Extension non autorisée";
@@ -108,7 +106,7 @@ $(document).ready(function()
 			}
 		});
 
-		elementProgress.preventDefault();
+		//elementProgress.preventDefault();
 		
 		
 		//fakeLoading(elementProgress, 2, 0.5);

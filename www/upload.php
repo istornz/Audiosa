@@ -26,7 +26,7 @@ if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 		exit;
 	}
 	
-	if($mimetypeFichier != "audio/flac")
+	if(!($mimetypeFichier == "audio/flac") && !($mimetypeFichier == "audio/x-flac"))
 	{
 		die('{"status":"error", "errorDescribe":"file is not a valid flac file"}');
 	}

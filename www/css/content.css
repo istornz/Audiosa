@@ -171,9 +171,9 @@ font-size: 14px;
 
 .info_song-edit {
 	display: block;
-    margin-top: -84px;
+    margin-top: -78px;
     margin-left: 132px;
-    line-height: 28px;
+    line-height: 24px;
 }
 
 .title_song-edit {
@@ -186,4 +186,22 @@ font-size: 14px;
 
 .album-edit {
     font-size: 13px;
+}
+
+#radio_label_detail {
+	width: 100px; 
+	text-align: center; 
+	height: 10px; 
+	line-height: 10px;
+}
+
+#radio_label_pochette {
+	width: 100px; 
+	text-align: center;
+	height: 10px;
+	line-height: 10px;
+}
+
+#list_edit {
+	height: 350px;
 }

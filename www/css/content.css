@@ -17,7 +17,7 @@
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=152, Strength=130);
 }
 
-#list_musique {
+.list_musique {
 	float: right;
     width: 100%;
     background-color: transparent;
@@ -93,7 +93,7 @@ font-size: 14px;
 	margin: 0 !important;
 }
 
-#list_scroll {
+.list_scroll {
 	overflow: hidden !important;
 }
 

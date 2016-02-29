@@ -9,7 +9,17 @@
 			}
 			else
 			{
-				$("#mCSB_1_container").html("");
+				$("#list_morceaux").css("display","block");
+
+				if(page_actuel == 2) {
+					$("#list_artiste").css("display","none");
+				}
+				else {
+					$("#list_album").css("display","none");
+				}
+				
+				
+				page_actuel = 1;
 			}
 		});
 		
@@ -20,7 +30,17 @@
 			}
 			else
 			{
-				$("#mCSB_1_container").html("");
+				$("#list_artiste").css("display","block");
+
+				if(page_actuel == 1) {
+					$("#list_morceaux").css("display","none");
+				}
+				else {
+					$("#list_album").css("display","none");
+				}
+								
+				page_actuel = 2;
+
 			}
 		});
 		
@@ -31,7 +51,18 @@
 			}
 			else
 			{
-				$("#mCSB_1_container").html("");
+			
+				$("#list_album").css("display","block");
+
+				if(page_actuel == 1) {
+					$("#list_morceaux").css("display","none");
+				}
+				else {
+					$("#list_artiste").css("display","none");
+				}
+				
+				
+				page_actuel = 3;
 			}
 		});
 	});

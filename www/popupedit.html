@@ -6,11 +6,20 @@
 	<link href="css/content.css" rel="stylesheet"/>
 	<link href="css/sidebar.css" rel="stylesheet"/>
 	<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="css/transit/default.css" />
+	<link rel="stylesheet" type="text/css" href="css/transit/multilevelmenu.css" />
+	<link rel="stylesheet" type="text/css" href="css/transit/component.css" />
+	<link rel="stylesheet" type="text/css" href="css/transit/animations.css" />
+	
+	<script src="js/modernizr.custom.js"></script>
+
 	<meta name="viewport" content="maximum-scale=1">
 </head>
 <body>
 <div id="fullPage">
 	<!----------- MENU --------->
+	
+	
 	<div id="menu">
 		<div id="content_menu_title">
 			<div id="audiosa_title" >
@@ -19,11 +28,11 @@
 		</div>
 		<div id="menu_content">
 			<ul id="menu_scroll" data-role="listview" style="max-height: 100%;">
-				<li><a href="#" class="no-margin"><div class="cellSideBar"><img style="float: left;" class="first_icon_sidebar_cell" src="img/music_library.png" alt="Nouvelle playlist" >&nbsp;&nbsp;Ma musique</div></a></li>
-				<li><a href="#" class="no-margin"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/add_playlist_green.png" alt="Nouvelle playlist" >&nbsp;&nbsp;Nouvelle playlist</div></a></li>
-				<li><a href="#" class="no-margin"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;Playlist 1</div></a></li>
-				<li><a href="#" class="no-margin"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;Playlist 2</div></a></li>
-				<li><a href="#" class="no-margin"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;Playlist 3</div></a></li>
+				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img style="float: left;" class="first_icon_sidebar_cell" src="img/music_library.png" alt="Nouvelle playlist" >&nbsp;&nbsp;&nbsp;&nbsp;Ma musique</div></a></li>
+				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/add_playlist_green.png" alt="Nouvelle playlist" >&nbsp;&nbsp;&nbsp;&nbsp;Nouvelle playlist</div></a></li>
+				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 1</div></a></li>
+				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 2</div></a></li>
+				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 3</div></a></li>
 			</ul>
 		</div>
 		<div id="view_more">
@@ -64,12 +73,16 @@
 		<div id="content_title">
 			<h3>
 				Ma musique
-				<a id="import_button" href="#popupEdit" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>
+				<a id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>
 			</h3>
 		</div>
-		
-		<div id="list_musique">
-			<ul id="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+			<div class="pt-triggers">
+				<button id="iterateEffects" class="pt-touch-button">Show next page transition</button>
+			</div>
+<div id="pt-main" class="pt-perspective">
+	<div class="pt-page pt-page-1">
+		<div id="list_morceaux" class="list_musique">
+			<ul class="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
 				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Andrea Clark<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
 				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Beverly Graham<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
 				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Christina Morales<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
@@ -89,15 +102,64 @@
 				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">#BEWEMONAMI<br><span class="morceaux-artist-album">Niro - Si j'me souviens</span></div></a></li>		
 			</ul>
 		</div>
+	</div>
+	<div class="pt-page pt-page-2">
+		<div id="list_artiste" class="list_musique" style="display: block;">
+			<ul class="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Andrea Clark<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Beverly Graham<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Christina Morales<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Denise Patterson<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Deborah Curtis<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Edward Barnett<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Hannah Carpenter<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Jane Carter<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Jane Gray<br><span class="morceaux-artist-album">3 Albums - 36 Morceaux</span></div></a></li>		
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">John Welch<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Laura Burke<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Michelle May<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Melissa Mendez<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Temps mort 2.0<br><span class="morceaux-artist-album">Booba - D.U.C</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Virginia Kim<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">William Fisher<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">#BEWEMONAMI<br><span class="morceaux-artist-album">Niro - Si j'me souviens</span></div></a></li>		
+			</ul>
+		</div>
+	</div>
+	<div class="pt-page pt-page-3">
+		<div id="list_album" class="list_musique" style="display: block;">
+			<ul class="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Andrea Clark<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Beverly Graham<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Christina Morales<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Denise Patterson<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Deborah Curtis<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Edward Barnett<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Hannah Carpenter<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Jane Carter<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Jane Gray<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>		
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">John Welch<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Laura Burke<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Michelle May<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Melissa Mendez<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Temps mort 2.0<br><span class="morceaux-artist-album">Booba - D.U.C</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">Virginia Kim<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">William Fisher<br><span class="morceaux-artist-album">Artist - Album</span></div></a></li>
+				<li><a class="no-margin txt-left list-central-morceaux" href="index.html"><div class="cover"><img class="default-cover-morceaux" src="img/cover/default.jpg" alt="Default cover" /></div><div class="morceaux-artist">#BEWEMONAMI<br><span class="morceaux-artist-album">Niro - Si j'me souviens</span></div></a></li>		
+			</ul>
+		</div>
+	</div>
+</div>
+	
 		<div id="footer_bar">
 			<form class="no-margin">
 				<fieldset class="txt-center" data-role="controlgroup" data-type="horizontal" data-mini="true">
-					<input class="menu_morceaux" type="radio" name="radio-choice-h-6" id="radio-choice-h-6a" value="on" checked="checked">
-					<label class="paging" for="radio-choice-h-6a">Morceaux</label>
-					<input class="menu_artist" type="radio" name="radio-choice-h-6" id="radio-choice-h-6b" value="off">
-					<label class="paging" for="radio-choice-h-6b">Artistes</label>
-					<input class="menu_album" type="radio" name="radio-choice-h-6" id="radio-choice-h-6c" value="other">
-					<label class="paging" for="radio-choice-h-6c">Albums</label>
+					<input class="menu_morceaux" type="radio" name="radio-choice-h-6" id="radio-choice-morceaux" value="on" checked="checked">
+					<label class="paging" for="radio-choice-morceaux">Morceaux</label>
+					<input class="menu_artist" type="radio" name="radio-choice-h-6" id="radio-choice-artist" value="off">
+					<label class="paging" for="radio-choice-artist">Artistes</label>
+					<input class="menu_album" type="radio" name="radio-choice-h-6" id="radio-choice-album" value="other">
+					<label class="paging" for="radio-choice-album">Albums</label>
 				</fieldset>
 			</form>
 		</div>
@@ -135,35 +197,6 @@
 			<h2 id="uploadLabel">Mettre en ligne</h2>
 		</div>
 	</div>
-	
-	<div data-role="popup" id="popupEdit" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:500px;">
-		<div data-role="header" data-theme="a" style="height:150px;">
-			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
-			<h1>Edition</h1>
-			<img class="default-cover-edit" src="img/cover/default.jpg" alt="Default cover" />
-			<div class="info_song-edit">
-				<span class="title_song-edit">Titre</span><br/>
-				<span class="artist-edit">Artiste</span><br/>
-				<span class="album-edit">Album</span><br/>
-			</div>
-		</div>
-		<div role="main" style="height: 350px;" class="ui-content">
-			<form>
-				<fieldset style="text-align: center;" data-role="controlgroup" data-type="horizontal" data-mini="true">
-					<input name="radio-choice-h-6" id="radio-choice-h-detail" value="on" checked="checked" type="radio">
-					<label id="radio_label_detail" for="radio-choice-h-detail">Détails</label>
-					<input name="radio-choice-h-6" id="radio-choice-h-pochette" value="off" type="radio">
-					<label id="radio_label_pochette" for="radio-choice-h-pochette">Pochette</label>
-				</fieldset>
-				
-				<div id="list_edit">
-					<ul id="list_scroll" data-role="listview">
-						<li><span>Titre</span><input value="PLS"/></li>
-					</ul>
-				</div>
-			</form>
-		</div>
-	</div>
 		
 	<script src="js/jquery.js"></script>
 	<!-- jQuery Upload Form Dependencies -->
@@ -177,13 +210,16 @@
 	<script src="js/jquery.fileupload.js"></script>
 	<!-- Other scripts -->
 	<script src="js/global.js" type="text/javascript"></script>
-		
+	<script src="js/menu.js" type="text/javascript"></script>
+	<script src="js/jquery.dlmenu.js"></script>
+	<script src="js/pagetransitions.js"></script>
+
 	<!-- custom scrollbar plugin -->
 	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 	<script>
 		(function($){
 			$(window).load(function(){
-				$("#list_scroll").mCustomScrollbar({
+				$(".list_scroll").mCustomScrollbar({
 					theme:"minimal"
 				});
 				$("#menu_scroll").mCustomScrollbar({

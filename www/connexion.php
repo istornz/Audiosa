@@ -5,15 +5,15 @@ $DB_NAME	 	= "audio_db";
 $USER_LOGIN 	= "db_reader_user";
 $USER_PSW		= "VpuCdvqjwNU3ce5T";
 
-try {
-    $dbh = new PDO('mysql:host=localhost;dbname=audio_db', $USER_LOGIN, $USER_PSW);
-    foreach($dbh->query('SELECT * from UTILISATEURS') as $row) {
-        print_r($row);
-    }
-    $dbh = null;
-} catch (PDOException $e) {
-    print "Erreur !: " . $e->getMessage() . "<br/>";
-    die();
+try 
+{
+    $dbh = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $USER_LOGIN, $USER_PSW);
+    echo "Connected to database";
+}
+catch(PDOException $e)
+{
+	die("error");
+    echo $e->getMessage();
 }
 
 ?>

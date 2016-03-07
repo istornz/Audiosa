@@ -61,7 +61,7 @@ $(document).ready(function()
 
 			success:function(data){
 				var JSONParsed = JSON.parse(data);
-				if(JSONParsed.status == "error")
+				if(JSONParsed.status_code == 0)
 				{
 					if(JSONParsed.errorDescribe == "extension not authorized")
 					{

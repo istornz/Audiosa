@@ -42,7 +42,7 @@ if($resultat = mysqli_query($connexion, $commande_SQL))
 	}
 	else
 	{
-		echo '{"status_code":0,"error_description":"username and/or password doesn\'t match"}';
+		echo '{"status_code":0,"error_description":"username and/or password does not match"}';
 	}
 }
 else
@@ -51,7 +51,7 @@ else
 }
 
 /* Libération des résultats */
-mysqli_free_result($resultat);
+mysqli_free_result ($resultat);
 
 mysqli_close ($connexion);
 

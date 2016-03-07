@@ -2,18 +2,19 @@
 
 $DB_HOST	 	= "localhost";
 $DB_NAME	 	= "audio_db";
-$USER_LOGIN 	= "db_reader_user";
+$USER_LOGIN 	= "db_reade_user";
 $USER_PSW		= "VpuCdvqjwNU3ce5T";
 
-try {
-    $dbh = new PDO('mysql:host=localhost;dbname=audio_db', $USER_LOGIN, $USER_PSW);
-    foreach($dbh->query('SELECT * from UTILISATEURS') as $row) {
-        print_r($row);
-    }
-    $dbh = null;
-} catch (PDOException $e) {
-    print "Erreur !: " . $e->getMessage() . "<br/>";
-    die();
-}
+// Create connection
+$conn = new mysqli($DB_HOST, 
+					$USER_LOGIN, 
+					$USER_PSW);
+
+// Check connection
+if ($conn->connect_error)
+{
+    die('{"error":"Impossible de se connecter", "errorMessage":"' . $conn->connect_error . '"}"');
+} 
+echo "Connected successfully";
 
 ?>

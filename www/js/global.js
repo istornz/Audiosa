@@ -60,22 +60,24 @@ $(document).ready(function()
 			processData: false,
 
 			success:function(data){
-				var JSONParsed = JSON.parse(data);
+				
+				var JSONParsed = data;
+				
 				if(JSONParsed.status_code == 0)
 				{
-					if(JSONParsed.errorDescribe == "extension not authorized")
+					if(JSONParsed.error_description == "extension not authorized")
 					{
 						elementLabel.innerHTML = "Extension non autorisée";
 					}
-					else if(JSONParsed.errorDescribe == "file already exist")
+					else if(JSONParsed.error_description == "file already exist")
 					{
 						elementLabel.innerHTML = "Fichier déjà présent";
 					}
-					else if(JSONParsed.errorDescribe == "file too big")
+					else if(JSONParsed.error_description == "file too big")
 					{
 						elementLabel.innerHTML = "Fichier trop volumineux";
 					}
-					else if(JSONParsed.errorDescribe == "file is not a valid flac file")
+					else if(JSONParsed.error_description == "file is not a valid flac file")
 					{
 						elementLabel.innerHTML = "Fichier Flac non valide";
 					}

@@ -55,25 +55,7 @@ else
 	echo '{"status_code":0,"error_description":"failed to execute query"}';
 }
 
-
-
-
-
 /* Libération des résultats */
-mysqli_free_result ($resultat);
-
-mysqli_close ($connexion);
-
-/*
-try 
-{
-    $dbh = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $USER_LOGIN, $USER_PSW);
-    die('{"success":"1"}');
-}
-catch(PDOException $e)
-{
-	die('{"success":"0", "errorMessage":"' . $e->getMessage() . '"}');
-}
-*/
+$connexion = null;
 
 ?>

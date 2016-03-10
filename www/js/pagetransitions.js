@@ -1,8 +1,12 @@
 var PageTransitions = (function() {
 
 	var $main = $( '#pt-main' ),
+		//Morceaux / Artiste / Album
+		page_actu = 1;
 		$pages = $main.children( 'div.pt-page' ),
-		$iterate = $( '#iterateEffects' ),
+		$morceaux = $( '#transi_morceaux' ),
+		$album = $( '#transi_album' ),
+		$artiste = $( '#transi_artiste' ),
 		animcursor = 1,
 		pagesCount = $pages.length,
 		current = 0,
@@ -37,15 +41,48 @@ var PageTransitions = (function() {
 			}
 		} );
 
-		$iterate.on( 'click', function() {
+		//Morceau
+		$morceaux.on( 'click', function() {
 			if( isAnimating ) {
 				return false;
 			}
-			if( animcursor > 67 ) {
-				animcursor = 1;
+			
+			if(page_actu == 1) {
+				return false;
+			}
+			else
+			{
+				if(page_actu == 2) {
+					nextPage( 28 );
+				}
+				else {
+					nextPage( 28 );
+					nextPage( 28 );
+					console.log("pls");
+				}
+				
+				
+				page_actu = 1;
+			}
+		} );
+		
+		//Album
+		$album.on( 'click', function() {
+			if( isAnimating ) {
+				return false;
+			}
+
+			nextPage( 28 );
+			page_actu = 2;
+		} );
+		
+		//Artiste
+		$artiste.on( 'click', function() {
+			if( isAnimating ) {
+				return false;
 			}
 			nextPage( 28 );
-			++animcursor;
+			page_actu = 3;
 		} );
 
 	}

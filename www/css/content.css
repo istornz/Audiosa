@@ -110,6 +110,7 @@ font-size: 14px;
 }
 
 #footer_bar {
+	margin-top: -20px;
 	float: left;
 	width: 100%;
 	background-color: #484848;
@@ -136,7 +137,7 @@ font-size: 14px;
 }
 
 .list-central-morceaux {
-	height: 58px;
+	height: auto;
 }
 
 .default-cover-morceaux {

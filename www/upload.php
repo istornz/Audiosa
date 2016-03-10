@@ -10,7 +10,7 @@ if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 	$extensionFichier 	= pathinfo(htmlentities($_FILES['file']['name']), PATHINFO_EXTENSION);
 	$tailleFichier		= htmlentities($_FILES['file']['size']);
 	$mimetypeFichier	= htmlentities($_FILES['file']['type']);
-	$fullPath			= htmlentities('uploaded/' . $_FILES['file']['name']);
+	$fullPath			= htmlentities('D:\uploaded\\' . $_FILES['file']['name']);
 	
 	if($extensionFichier != $ALLOWED_EXTENSION)
 	{

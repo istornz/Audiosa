@@ -11,31 +11,36 @@ $USER_PSW		= "VpuCdvqjwNU3ce5T";
 //		Variables		//
 /************************/
 
-if(!(isset($_POST['pseudo']) && isset($_POST['password'])))
+if(!(isset($_POST['pseudoPost']) && isset($_POST['passwordPost'])))
 {
 	die('{"status_code":0,"error_description":"empty field"}');
 }
-
-$pseudo		= mysql_real_escape_string($_POST['pseudo']);
-$password	= mysql_real_escape_string($_POST['password']);
 
 /************************/
 //		   MYSQL		//
 /************************/
 
-$connexion = mysqli_connect($DB_HOST,
-							$USER_LOGIN,
-							$USER_PSW,
-							$DB_NAME) or die('{"status_code":0,"error_description":"connection to database failed"}'); 
+try 
+{
+    $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $USER_LOGIN, $USER_PSW);
+	
+	$pseudo		= $connexion->quote($_POST['pseudoPost']);
+	$password	= $connexion->quote($_POST['passwordPost']);
+}
+catch(PDOException $e)
+{
+	die('{"status_code":0, "error_description":"connection to database failed"}');
+}
 							
 /************************/
 //		   JSON			//
 /************************/
 
-$commande_SQL 	= "SELECT username FROM UTILISATEUR WHERE UTILISATEUR.username='". $pseudo ."' AND UTILISATEUR.password='". md5($password) ."' LIMIT 1";
-if($resultat = mysqli_query($connexion, $commande_SQL))
+$commande_SQL 	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username='". $pseudo ."' AND UTILISATEUR.password='". md5($password) ."' LIMIT 1";
+
+if($selectStatement = $connexion->query($commande_SQL))
 {
-	$nbr_ligne = mysqli_num_rows($resultat);
+	$nbr_ligne = $selectStatement->fetchColumn();
 	if($nbr_ligne > 0)
 	{
 		echo '{"status_code":1}';
@@ -49,6 +54,10 @@ else
 {
 	echo '{"status_code":0,"error_description":"failed to execute query"}';
 }
+
+
+
+
 
 /* Libération des résultats */
 mysqli_free_result ($resultat);

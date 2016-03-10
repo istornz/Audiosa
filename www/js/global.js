@@ -11,6 +11,23 @@ function blurAction(state, div)
 		div.className = "";
 	}
 }
+
+$( "#formConnexionPopup" ).submit(function( event ) 
+{
+  event.preventDefault();
+ 
+  var $form = $( this ),
+    pseudoValue = $form.find( "input[name='pseudo']" ).val(),
+	passwordValue = $form.find( "input[name='pseudo']" ).val(),
+    url = $form.attr( "action" );
+ 
+  var posting = $.post( url, { pseudoPost: pseudoValue, passwordPost:passwordValue } );
+  
+  posting.done(function( data ) {
+	console.log(data);
+  });
+});
+
 $(document).ready(function()
 {
 	var fileInput  	= document.querySelector( "#uploadForm" );

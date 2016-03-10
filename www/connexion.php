@@ -24,8 +24,8 @@ try
 {
     $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $USER_LOGIN, $USER_PSW);
 	
-	$pseudo		= $connexion->quote($_POST['pseudoPost']);
-	$password	= $connexion->quote($_POST['passwordPost']);
+	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
+	$passwordQuoted	= $connexion->quote($_POST['passwordPost']);
 }
 catch(PDOException $e)
 {
@@ -36,7 +36,7 @@ catch(PDOException $e)
 //		   JSON			//
 /************************/
 
-$commande_SQL 	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username='". $pseudo ."' AND UTILISATEUR.password='". md5($password) ."' LIMIT 1";
+$commande_SQL 	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username='". $pseudoQuoted ."' AND UTILISATEUR.password='". md5($passwordQuoted) ."' LIMIT 1";
 
 if($selectStatement = $connexion->query($commande_SQL))
 {

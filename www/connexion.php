@@ -36,7 +36,7 @@ catch(PDOException $e)
 //		   JSON			//
 /************************/
 
-$commande_SQL 	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username='". $pseudoQuoted ."' AND UTILISATEUR.password='". md5($passwordQuoted) ."' LIMIT 1";
+$commande_SQL	= "SELECT username FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password='". md5($passwordQuoted) ."' LIMIT 1";
 
 if($selectStatement = $connexion->query($commande_SQL))
 {
@@ -47,6 +47,7 @@ if($selectStatement = $connexion->query($commande_SQL))
 	}
 	else
 	{
+		echo $commande_SQL;
 		echo '{"status_code":0,"error_description":"username and/or password does not match"}';
 	}
 }

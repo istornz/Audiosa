@@ -36,7 +36,7 @@ catch(PDOException $e)
 //		   JSON			//
 /************************/
 
-$commande_SQL	= "SELECT username FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password='". md5($passwordQuoted) ."' LIMIT 1";
+$commande_SQL	= "SELECT username FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password='". md5($USER_PSW) ."' LIMIT 1";
 
 if($selectStatement = $connexion->query($commande_SQL))
 {

@@ -134,6 +134,7 @@ font-size: 14px;
 	-ms-filter: blur(20px);
 	filter: blur(20px);
 	background-color: #ccc;
+	pointer-events: none;
 }
 
 .list-central-morceaux {

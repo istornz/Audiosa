@@ -28,6 +28,15 @@ $( "#formConnexionPopup" ).submit(function( event )
   });
 });
 
+	
+
+$(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
+        var notDismissible = $(this).jqmData('dismissible') === false;
+        if (notDismissible) {
+          $('.ui-popup-screen').off();
+        }
+});
+
 $(document).ready(function()
 {
 	var fileInput  	= document.querySelector( "#uploadForm" );

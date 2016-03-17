@@ -43,6 +43,8 @@ $(document).ready(function()
 	var fileData	= $('#fileUpload').prop('files');
 	var elementLabel = document.getElementById("uploadLabel");
 	
+
+	
 	fileInput.addEventListener( "change", function( event ) {  
 		//the_return.innerHTML = this.value;  
 	});

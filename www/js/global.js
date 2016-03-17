@@ -15,20 +15,70 @@ function blurAction(state, div)
 $( "#formConnexionPopup" ).submit(function( event ) 
 {
   event.preventDefault();
- 
+  var elementPseudoFieldDiv 	= $( "#pseudo-text" ).parent();
+  var elementPaswordFieldDiv 	= $( "#password-text" ).parent()
   var $form = $( this ),
     pseudoValue = $form.find( "input[name='pseudo']" ).val(),
-	passwordValue = $form.find( "input[name='pseudo']" ).val(),
+	passwordValue = $form.find( "input[name='password']" ).val(),
     url = $form.attr( "action" );
  
   var posting = $.post( url, { pseudoPost: pseudoValue, passwordPost:passwordValue } );
   
   posting.done(function( data ) {
-	console.log(data);
+	var JSONParsed = data;
+	
+	if(JSONParsed.status_code == 0)
+	{
+		if(JSONParsed.error_description == "empty pseudo")
+		{
+			//elementLabel.innerHTML = "Extension non autorisée";
+			elementPseudoFieldDiv.addClass( "animated shake" );
+			window.setTimeout( function(){
+                elementPseudoFieldDiv.removeClass('animated shake');
+            }, 500);
+		}
+		else if(JSONParsed.error_description == "empty password")
+		{
+			//elementLabel.innerHTML = "Extension non autorisée"; 
+			elementPaswordFieldDiv.addClass( "animated shake" );
+			window.setTimeout( function(){
+                elementPaswordFieldDiv.removeClass('animated shake');
+            }, 500);
+		}
+		else if(JSONParsed.error_description == "undeclared variables")
+		{
+			//elementLabel.innerHTML = "Extension non autorisée";
+			elementPseudoFieldDiv.addClass( "animated shake" );
+			elementPaswordFieldDiv.addClass( "animated shake" );
+			window.setTimeout( function(){
+				elementPseudoFieldDiv.addClass( "animated shake" );
+                elementPaswordFieldDiv.removeClass('animated shake');
+            }, 500);
+		}
+		else if(JSONParsed.error_description == "connection to database failed")
+		{
+			//elementLabel.innerHTML = "Extension non autorisée";
+		}
+		else if(JSONParsed.error_description == "username and/or password does not match")
+		{
+			//elementLabel.innerHTML = "Extension non autorisée";
+		}
+		else if(JSONParsed.error_description == "failed to execute query")
+		{
+			//elementLabel.innerHTML = "Extension non autorisée";
+		}
+		else
+		{
+			
+		}
+	}
+	else
+	{
+		console.log(data);
+	}
+	
   });
 });
-
-	
 
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
         var notDismissible = $(this).jqmData('dismissible') === false;

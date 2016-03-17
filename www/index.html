@@ -5,6 +5,7 @@
 	<link href="css/jquery.mobile-1.4.5.css" rel="stylesheet"/>
 	<link href="css/content.css" rel="stylesheet"/>
 	<link href="css/sidebar.css" rel="stylesheet"/>
+	<link href="css/animate.css" rel="stylesheet"/>
 	<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"/>
 	<link rel="stylesheet" type="text/css" href="css/transit/default.css" />
 	<link rel="stylesheet" type="text/css" href="css/transit/multilevelmenu.css" />
@@ -41,7 +42,7 @@
 		<div id="web-player" class="cover">
 		</div>
 		<div id="web-player-onblur">
-			<img id="web-player-img" src="img/covers/default.jpg" alt="Default cover" />
+			<img id="web-player-img" src="img/covers/nn.jpg" alt="Default cover" />
 			<div id="web-player-cmd">
 				<div style="text-align: center; margin-top: 14px;">
 					<img id="web-player-shuffle" src="img/player/shufflew.png" alt="shuffle">
@@ -169,11 +170,11 @@
 			<h1>Connexion</h1>
 		</div>
 		<div role="main" class="ui-content">
-			<form id="formConnexionPopup">
+			<form id="formConnexionPopup" method="post" action="apis/connexion.php">
 				<img src="img/logo.png" alt="logo" height="100px" width="100px" />
 				<br/><br/>
 				<input placeholder="Pseudo" data-theme="a" name="pseudo" id="pseudo-text" value="" type="text" autocomplete="off" type="text">
-				<input placeholder="Mot de passe" data-theme="a" name="password" id="password-text" value="" type="text" autocomplete="off" type="password">
+				<input placeholder="Mot de passe" data-theme="a" name="password" id="password-text" value="" type="password" autocomplete="off" type="password">
 				<a href="" id="motDePasseOublie"><u><b>Mot de passe oublié ?</u></b></a>
 				<br/><br/>
 				<button type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</a>
@@ -187,7 +188,7 @@
 			<h1>Importer</h1>
 		</div>
 		<div role="main" style="height: 280px;" class="ui-content">
-			<form id="uploadForm" method="post" action="upload.php" enctype="multipart/form-data">
+			<form id="uploadForm" method="post" action="apis/upload.php" enctype="multipart/form-data">
 				<input id="fileUpload" type="file" name="upl" />
 			</form>
 			<br>

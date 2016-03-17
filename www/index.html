@@ -172,7 +172,11 @@
 		<div role="main" class="ui-content">
 			<form id="formConnexionPopup" method="post" action="apis/connexion.php">
 				<img src="img/logo.png" alt="logo" height="100px" width="100px" />
-				<br/><br/>
+				<div class="ui-corner-all custom-corners">
+  					<div class="ui-bar ui-bar-a" style="background-color: #e74c3c;">
+						<span id="errorLabel">Mot de passe incorrect !</span>
+					</div>
+				</div>
 				<input placeholder="Pseudo" data-theme="a" name="pseudo" id="pseudo-text" value="" type="text" autocomplete="off" type="text">
 				<input placeholder="Mot de passe" data-theme="a" name="password" id="password-text" value="" type="password" autocomplete="off" type="password">
 				<a href="" id="motDePasseOublie"><u><b>Mot de passe oublié ?</u></b></a>

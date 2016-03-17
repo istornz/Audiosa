@@ -17,6 +17,14 @@
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=152, Strength=130);
 }
 
+#errorLabel
+{
+	text-shadow: none;
+	color: white;
+	font-size: 15px;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+}
+
 .list_musique {
 	float: right;
     width: 100%;

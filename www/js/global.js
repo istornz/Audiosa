@@ -15,69 +15,116 @@ function blurAction(state, div)
 $( "#formConnexionPopup" ).submit(function( event ) 
 {
   event.preventDefault();
-  var elementPseudoFieldDiv 	= $( "#pseudo-text" ).parent();
-  var elementPaswordFieldDiv 	= $( "#password-text" ).parent()
-  var $form = $( this ),
-    pseudoValue = $form.find( "input[name='pseudo']" ).val(),
-	passwordValue = $form.find( "input[name='password']" ).val(),
-    url = $form.attr( "action" );
- 
-  var posting = $.post( url, { pseudoPost: pseudoValue, passwordPost:passwordValue } );
+  var elementPseudoField 	= $( "#pseudo-text" );
+  var elementPaswordField 	= $( "#password-text" );
   
-  posting.done(function( data ) {
-	var JSONParsed = data;
+  var elementPseudoFieldDiv		= elementPseudoField.parent();
+  var elementPaswordFieldDiv	= elementPaswordField.parent();
+  
+  var elementMessageDiv		= $( "#messageInfoDiv" );
+  var elementMessageLabel	= $( "#messageInfoLabel" );
+  
+  if(elementPseudoField.val().length == 0 || elementPaswordField.val().length == 0)
+  {
+	  elementMessageDiv.css("background-color", "#e74c3c");
+	  if(elementPseudoField.val().length == 0 && elementPaswordField.val().length == 0)
+	  {
+		elementMessageDiv.css("display", "block");
+		elementMessageLabel.text("Les deux champs sont necessaires");
+		
+		elementPseudoFieldDiv.addClass( "animated shake" );
+		window.setTimeout( function(){
+			elementPseudoFieldDiv.removeClass('animated shake');
+		}, 500);
+		
+		elementPaswordFieldDiv.addClass( "animated shake" );
+		window.setTimeout( function(){
+			elementPaswordFieldDiv.removeClass('animated shake');
+		}, 500);
+	  }
+	  else if(elementPseudoField.val().length == 0)
+	  {
+		elementMessageDiv.css("display", "block");
+		elementMessageLabel.text("Pseudo vide");
+		elementPseudoFieldDiv.addClass( "animated shake" );
+		window.setTimeout( function(){
+			elementPseudoFieldDiv.removeClass('animated shake');
+		}, 500);
+	  }
+	  else if(elementPaswordField.val().length == 0)
+	  {
+		elementMessageDiv.css("display", "block");
+		elementMessageLabel.text("Mot de passe vide");
+		elementPaswordFieldDiv.addClass( "animated shake" );
+		window.setTimeout( function(){
+			elementPaswordFieldDiv.removeClass('animated shake');
+		}, 500);
+	  }
+  }
+  
+  if(elementPseudoField.val().length > 0 && elementPaswordField.val().length > 0)
+  {
+	var $form = $( this ),
+		pseudoValue = elementPseudoField.val(),
+		passwordValue = elementPaswordField.val(),
+		url = $form.attr( "action" );
+	 
+	var posting = $.post( url, { pseudoPost: pseudoValue, passwordPost:passwordValue } );
 	
-	if(JSONParsed.status_code == 0)
-	{
-		if(JSONParsed.error_description == "empty pseudo")
+	posting.done(function( data ) {
+		var JSONParsed = data;
+		
+		elementMessageDiv.addClass( "animated bounceIn" );
+		window.setTimeout( function(){
+			elementMessageDiv.removeClass( "animated bounceIn" );
+		}, 500);
+		
+		if(JSONParsed.status_code == 1)
 		{
-			//elementLabel.innerHTML = "Extension non autorisée";
-			elementPseudoFieldDiv.addClass( "animated shake" );
-			window.setTimeout( function(){
-                elementPseudoFieldDiv.removeClass('animated shake');
-            }, 500);
-		}
-		else if(JSONParsed.error_description == "empty password")
-		{
-			//elementLabel.innerHTML = "Extension non autorisée"; 
-			elementPaswordFieldDiv.addClass( "animated shake" );
-			window.setTimeout( function(){
-                elementPaswordFieldDiv.removeClass('animated shake');
-            }, 500);
-		}
-		else if(JSONParsed.error_description == "undeclared variables")
-		{
-			//elementLabel.innerHTML = "Extension non autorisée";
-			elementPseudoFieldDiv.addClass( "animated shake" );
-			elementPaswordFieldDiv.addClass( "animated shake" );
-			window.setTimeout( function(){
-				elementPseudoFieldDiv.addClass( "animated shake" );
-                elementPaswordFieldDiv.removeClass('animated shake');
-            }, 500);
-		}
-		else if(JSONParsed.error_description == "connection to database failed")
-		{
-			//elementLabel.innerHTML = "Extension non autorisée";
-		}
-		else if(JSONParsed.error_description == "username and/or password does not match")
-		{
-			//elementLabel.innerHTML = "Extension non autorisée";
-		}
-		else if(JSONParsed.error_description == "failed to execute query")
-		{
-			//elementLabel.innerHTML = "Extension non autorisée";
+			elementMessageDiv.css("display", "block");
+			elementMessageDiv.css("background-color", "#2ecc71");
+			elementMessageLabel.text("Connexion reussie !");
 		}
 		else
 		{
-			
+			elementMessageDiv.css("background-color", "#e74c3c");
+			elementMessageDiv.css("display", "block");
+			if(JSONParsed.error_description == "undeclared variables")
+			{
+				elementMessageLabel.text("Variable(s) non déclaré(es)");
+				
+				elementMessageDiv.addClass( "animated shake" );
+				window.setTimeout( function(){
+					elementMessageDiv.addClass( "animated bounceIn" );
+				}, 500);
+				
+				elementPseudoFieldDiv.addClass( "animated shake" );
+				elementPaswordFieldDiv.addClass( "animated shake" );
+				window.setTimeout( function(){
+					elementPseudoFieldDiv.addClass( "animated shake" );
+					elementPaswordFieldDiv.removeClass('animated shake');
+				}, 500);
+			}
+			else if(JSONParsed.error_description == "connection to database failed")
+			{
+				elementMessageLabel.text("Connexion à la bdd impossible");
+			}
+			else if(JSONParsed.error_description == "username and/or password does not match")
+			{
+				elementMessageLabel.text("Identifiant(s) incorrect(s)");
+			}
+			else if(JSONParsed.error_description == "failed to execute query")
+			{
+				elementMessageLabel.text("Impossible d'executer la requête");
+			}
+			else
+			{
+				elementMessageLabel.text("Erreur");
+			}
 		}
-	}
-	else
-	{
-		console.log(data);
-	}
-	
-  });
+		
+	  });
+  }
 });
 
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
@@ -184,11 +231,6 @@ $(document).ready(function()
 				elementProgress.close();
 			}
 		});
-
-		//elementProgress.preventDefault();
-		
-		
-		//fakeLoading(elementProgress, 2, 0.5);
 	});
 	
 	elementProgress.onComplete(function() {

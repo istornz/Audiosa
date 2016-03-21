@@ -1,16 +1,16 @@
 @font-face {
     font-family: audiosa;
-    src: url("../font/big_noodle_titling.ttf");
+    src: url("../fonts/big_noodle_titling.ttf");
 }
 
 @font-face {
     font-family: oswald;
-    src: url("../font/Oswald-Regular.ttf");
+    src: url("../fonts/Oswald-Regular.ttf");
 }
 
 @font-face {
     font-family: roboto;
-    src: url("../font/Roboto-Thin.ttf");
+    src: url("../fonts/Roboto-Thin.ttf");
 }
 
 html {

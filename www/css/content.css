@@ -17,7 +17,7 @@
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=152, Strength=130);
 }
 
-#errorLabel
+#messageInfoLabel
 {
 	text-shadow: none;
 	color: white;

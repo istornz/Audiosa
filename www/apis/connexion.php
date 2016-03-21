@@ -16,16 +16,6 @@ if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
 	die('{"status_code":0,"error_description":"undeclared variables"}');
 }
 
-if(strlen($_POST['pseudoPost']) <= 0)
-{
-	die('{"status_code":0,"error_description":"empty pseudo"}');
-}
-
-if(strlen($_POST['passwordPost']) <= 0)
-{
-	die('{"status_code":0,"error_description":"empty password"}');
-}
-
 /************************/
 //		   MYSQL		//
 /************************/

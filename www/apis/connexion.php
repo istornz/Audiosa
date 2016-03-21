@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 header('Content-Type: application/json');
 
 $DB_HOST	 	= "localhost";
@@ -44,6 +45,7 @@ if($selectStatement = $connexion->query($commande_SQL))
 	
 	if($nbr_ligne > 0)
 	{
+		$_SESSION['pseudo'] = $_POST['pseudoPost'];
 		echo '{"status_code":1}';
 	}
 	else

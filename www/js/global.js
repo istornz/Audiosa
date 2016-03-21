@@ -3,18 +3,16 @@ elementProgress = null;
 function blurAction(state, div)
 {
 	if(state == 1)
-	{
 		div.className = "fullPageBlurred";
-	}
 	else
-	{
 		div.className = "";
-	}
 }
 
 $( "#formConnexionPopup" ).submit(function( event ) 
 {
   event.preventDefault();
+  
+  var fullPage = document.getElementById("fullPage");
   var elementPseudoField 	= $( "#pseudo-text" );
   var elementPaswordField 	= $( "#password-text" );
   
@@ -23,6 +21,8 @@ $( "#formConnexionPopup" ).submit(function( event )
   
   var elementMessageDiv			= $( "#messageInfoDiv" );
   var elementMessageLabel		= $( "#messageInfoLabel" );
+  
+  var elementConnexionPopup 	= $( "#popupConnexion" );
   var elementConnexionButton	= $( "#connexionButton" );
   
   if(elementPseudoField.val().length == 0 || elementPaswordField.val().length == 0)
@@ -30,9 +30,6 @@ $( "#formConnexionPopup" ).submit(function( event )
 	  elementMessageDiv.css("background-color", "#e74c3c");
 	  if(elementPseudoField.val().length == 0 && elementPaswordField.val().length == 0)
 	  {
-		elementMessageDiv.css("display", "block");
-		elementMessageLabel.text("Les deux champs sont necessaires");
-		
 		elementPseudoFieldDiv.addClass( "animated shake" );
 		window.setTimeout( function(){
 			elementPseudoFieldDiv.removeClass('animated shake');
@@ -45,8 +42,6 @@ $( "#formConnexionPopup" ).submit(function( event )
 	  }
 	  else if(elementPseudoField.val().length == 0)
 	  {
-		elementMessageDiv.css("display", "block");
-		elementMessageLabel.text("Pseudo vide");
 		elementPseudoFieldDiv.addClass( "animated shake" );
 		window.setTimeout( function(){
 			elementPseudoFieldDiv.removeClass('animated shake');
@@ -54,8 +49,6 @@ $( "#formConnexionPopup" ).submit(function( event )
 	  }
 	  else if(elementPaswordField.val().length == 0)
 	  {
-		elementMessageDiv.css("display", "block");
-		elementMessageLabel.text("Mot de passe vide");
 		elementPaswordFieldDiv.addClass( "animated shake" );
 		window.setTimeout( function(){
 			elementPaswordFieldDiv.removeClass('animated shake');
@@ -86,8 +79,13 @@ $( "#formConnexionPopup" ).submit(function( event )
 		if(JSONParsed.status_code == 1)
 		{
 			elementMessageDiv.css("display", "block");
-			elementMessageDiv.css("background-color", "#2ecc71");
+			elementMessageDiv.css("background-color", "#16a085");
 			elementMessageLabel.text("Connexion reussie !");
+			
+			window.setTimeout( function(){
+				elementConnexionPopup.popup( "close" );
+				blurAction(0, fullPage);
+			}, 1000);	
 		}
 		else
 		{
@@ -143,8 +141,6 @@ $(document).ready(function()
 	var fileInput  	= document.querySelector( "#uploadForm" );
 	var fileData	= $('#fileUpload').prop('files');
 	var elementLabel = document.getElementById("uploadLabel");
-	
-
 	
 	fileInput.addEventListener( "change", function( event ) {  
 		//the_return.innerHTML = this.value;  

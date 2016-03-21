@@ -215,3 +215,8 @@ font-size: 14px;
 #list_edit {
 	height: 350px;
 }
+
+#connexionButton
+{
+	height: 42px;
+}

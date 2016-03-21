@@ -21,8 +21,9 @@ $( "#formConnexionPopup" ).submit(function( event )
   var elementPseudoFieldDiv		= elementPseudoField.parent();
   var elementPaswordFieldDiv	= elementPaswordField.parent();
   
-  var elementMessageDiv		= $( "#messageInfoDiv" );
-  var elementMessageLabel	= $( "#messageInfoLabel" );
+  var elementMessageDiv			= $( "#messageInfoDiv" );
+  var elementMessageLabel		= $( "#messageInfoLabel" );
+  var elementConnexionButton	= $( "#connexionButton" );
   
   if(elementPseudoField.val().length == 0 || elementPaswordField.val().length == 0)
   {
@@ -68,12 +69,15 @@ $( "#formConnexionPopup" ).submit(function( event )
 		pseudoValue = elementPseudoField.val(),
 		passwordValue = elementPaswordField.val(),
 		url = $form.attr( "action" );
-	 
+	
+	elementConnexionButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
+	
 	var posting = $.post( url, { pseudoPost: pseudoValue, passwordPost:passwordValue } );
 	
 	posting.done(function( data ) {
 		var JSONParsed = data;
 		
+		elementConnexionButton.html("Se connecter");
 		elementMessageDiv.addClass( "animated bounceIn" );
 		window.setTimeout( function(){
 			elementMessageDiv.removeClass( "animated bounceIn" );

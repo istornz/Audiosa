@@ -83,6 +83,7 @@ $( "#formConnexionPopup" ).submit(function( event )
 			elementMessageLabel.text("Connexion reussie !");
 			
 			window.setTimeout( function(){
+				userConnected();
 				elementConnexionPopup.popup( "close" );
 				blurAction(0, fullPage);
 			}, 1000);	
@@ -128,6 +129,15 @@ $( "#formConnexionPopup" ).submit(function( event )
 	  });
   }
 });
+
+function userConnected()
+{
+	var elementConnectButton 	= $( "#image_utilisateur" );
+	var elementImportButton 	= $( "#import_button" );
+	
+	elementConnectButton.attr("src", "img/menuIcon.png");
+	elementImportButton.css("display", "block");
+}
 
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
         var notDismissible = $(this).jqmData('dismissible') === false;

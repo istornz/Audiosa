@@ -94,7 +94,10 @@
 				Ma musique
 				<?php
 					if($user_logged == 1)
-						echo '<a style="z-index: 999;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
+						echo '<a style="z-index: 999;display: block;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
+					else
+						echo '<a style="z-index: 999;display: none" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
+
 				?>
 			</h3>
 		</div>
@@ -203,7 +206,7 @@
 				<input placeholder="Mot de passe" data-theme="a" name="password" id="password-text" value="" type="password" autocomplete="off" type="password">
 				<a href="" id="motDePasseOublie"><u><b>Mot de passe oublié ?</u></b></a>
 				<br/><br/>
-				<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+				<button id="connexionButton" type="submit" class="ui-btn ui-corner-all button_selection" style="background-color: #16a085">Se connecter</button>
 			</form>
 		</div>
 	</div>
@@ -216,10 +219,10 @@
 		<div role="main" style="text-align: center;" class="ui-content">
 			<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
 			<span id="userLabel">Admin</span>
-			<br />
-			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
-			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
-			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+			<hr style="visibility:hidden;" />
+			<button id="changerMdpButton" class="ui-btn ui-corner-all button_selection" style="background-color: #2980b9">Changer mot de passe</button>
+			<button id="visualiserLogButton"class="ui-btn ui-corner-all button_selection" style="background-color: #7f8c8d">Visualiser les logs</button>
+			<button id="deconnexionButton" onclick="disconnect();" class="ui-btn ui-corner-all button_selection" style="background-color: #c0392b">Déconnexion</button>
 		</div>
 	</div>
 	
@@ -299,6 +302,7 @@
 	<script src="js/playlist/choices.js"></script>
 	<!-- custom scrollbar plugin -->
 	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
+	<script src="js/md5.min.js" type="text/javascript"></script>
 	<script>
 		(function($){
 			$(window).load(function(){

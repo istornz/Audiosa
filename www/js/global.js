@@ -144,6 +144,16 @@ function userConnected()
 	elementImportButton.css("display", "block");
 }
 
+function userDisconnected()
+{
+	var elementConnectButton 	= $( "#image_utilisateur" );
+	var elementImportButton 	= $( "#import_button" );
+	
+	elementConnectButton.attr("src", "img/user.png");
+	elementConnectButton.parent().attr("href", "#popupConnexion");
+	elementImportButton.css("display", "none");
+}
+
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
         var notDismissible = $(this).jqmData('dismissible') === false;
         if (notDismissible) {
@@ -285,4 +295,19 @@ function progress(e)
            // process completed  
         }
     }  
+ }
+ 
+ function disconnect()
+ {
+	 var elementMenuPopup 	= $( "#popupMenu" );
+	 
+	 $.ajax({
+        url: "apis/logout.php"
+    });
+	
+	window.setTimeout( function(){
+		userDisconnected();
+		elementMenuPopup.popup( "close" );
+		blurAction(0, fullPage);
+	}, 500);
  }

@@ -207,6 +207,21 @@
 			</form>
 		</div>
 	</div>
+
+<div data-role="popup" id="popupMenu" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:340px;">
+		<div data-role="header" data-theme="a">
+			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+			<h1>Menu</h1>
+		</div>
+		<div role="main" style="text-align: center;" class="ui-content">
+			<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
+			<span id="userLabel">Admin</span>
+			<br />
+			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+		</div>
+	</div>
 	
 	<div data-role="popup" id="popupImport" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
 		<div data-role="header" data-theme="a">

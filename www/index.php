@@ -1,6 +1,6 @@
 ﻿<?php
 	session_start();
-	
+	//session_destroy();
 	if(isset($_SESSION['pseudo']))
 		$user_logged = 1; // L'utilisateur est connecté
 	else
@@ -94,7 +94,9 @@
 				Ma musique
 				<?php
 					if($user_logged == 1)
-						echo '<a style="z-index: 999;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
+						echo '<a style="z-index: 999;display: block;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
+					else
+						echo '<a style="z-index: 999;display: none;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
 				?>
 			</h3>
 		</div>
@@ -208,6 +210,21 @@
 		</div>
 	</div>
 	
+	<div data-role="popup" id="popupMenu" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:340px;">
+		<div data-role="header" data-theme="a">
+			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+			<h1>Menu</h1>
+		</div>
+		<div role="main" style="text-align: center;" class="ui-content">
+			<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
+			<span id="userLabel">Admin</span>
+			<br />
+			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all" style="background-color: #16a085">Se connecter</button>
+		</div>
+	</div>
+	
 	<div data-role="popup" id="popupImport" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
 		<div data-role="header" data-theme="a">
 			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
@@ -280,11 +297,30 @@
 	<script src="js/global.js" type="text/javascript"></script>
 	<script src="js/jquery.dlmenu.js"></script>
 	<script src="js/pagetransitions.js"></script>
+<<<<<<< HEAD
 	<!-- generation de playlist -->
 	<script src="js/playlist/choices.js"></script>
+=======
+	<script src="js/md5.min.js"></script>
+
+>>>>>>> origin/master
 	<!-- custom scrollbar plugin -->
 	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 	<script>
+		
+		<?php
+			if($user_logged == 1)
+			{
+				echo 'passwordHash = "'. $_SESSION['password'] . '";';
+				echo 'pseudo = "'. $_SESSION['pseudo'] . '";';
+			}
+			else
+			{
+				echo 'passwordHash 	= null;';
+				echo 'pseudo 		= null;';
+			}
+		?>
+		
 		(function($){
 			$(window).load(function(){
 				$(".list_scroll").mCustomScrollbar({

@@ -3,10 +3,7 @@
 session_start();
 header('Content-Type: application/json');
 
-$DB_HOST	 	= "localhost";
-$DB_NAME	 	= "audio_db";
-$USER_LOGIN 	= "db_reader_user";
-$USER_PSW		= "VpuCdvqjwNU3ce5T";
+include('conf.php');
 
 /************************/
 //		Variables		//
@@ -23,7 +20,7 @@ if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
 
 try 
 {
-    $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $USER_LOGIN, $USER_PSW);
+    $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_READER_LOGIN, $DB_READER_PSW);
 	
 	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
 	$passwordQuoted	= $connexion->quote($_POST['passwordPost']);
@@ -45,7 +42,8 @@ if($selectStatement = $connexion->query($commande_SQL))
 	
 	if($nbr_ligne > 0)
 	{
-		$_SESSION['pseudo'] = $_POST['pseudoPost'];
+		$_SESSION['pseudo'] 	= $_POST['pseudoPost'];
+		$_SESSION['password'] 	= md5($_POST['passwordPost']);
 		echo '{"status_code":1}';
 	}
 	else

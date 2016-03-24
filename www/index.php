@@ -94,7 +94,9 @@
 				Ma musique
 				<?php
 					if($user_logged == 1)
-						echo '<a style="z-index: 999;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
+						echo '<a style="z-index: 999;display: block;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
+					else
+						echo '<a style="z-index: 999;display: none;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
 				?>
 			</h3>
 		</div>
@@ -240,10 +242,25 @@
 	<script src="js/global.js" type="text/javascript"></script>
 	<script src="js/jquery.dlmenu.js"></script>
 	<script src="js/pagetransitions.js"></script>
+	<script src="js/md5.min.js"></script>
 
 	<!-- custom scrollbar plugin -->
 	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 	<script>
+		
+		<?php
+			if($user_logged == 1)
+			{
+				echo 'passwordHash = "'. $_SESSION['password'] . '";';
+				echo 'pseudo = "'. $_SESSION['pseudo'] . '";';
+			}
+			else
+			{
+				echo 'passwordHash 	= null;';
+				echo 'pseudo 		= null;';
+			}
+		?>
+		
 		(function($){
 			$(window).load(function(){
 				$(".list_scroll").mCustomScrollbar({

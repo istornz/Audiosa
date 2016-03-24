@@ -1,4 +1,6 @@
 elementProgress = null;
+pseudo			= null;
+passwordHash	= null;
 
 function blurAction(state, div)
 {
@@ -83,6 +85,8 @@ $( "#formConnexionPopup" ).submit(function( event )
 			elementMessageLabel.text("Connexion reussie !");
 			
 			window.setTimeout( function(){
+				pseudo = pseudoValue;
+				passwordHash = md5(passwordValue); 
 				userConnected();
 				elementConnexionPopup.popup( "close" );
 				blurAction(0, fullPage);
@@ -136,7 +140,9 @@ function userConnected()
 	var elementImportButton 	= $( "#import_button" );
 	
 	elementConnectButton.attr("src", "img/menuIcon.png");
+	elementConnectButton.attr("href", "#popupMenu");
 	elementImportButton.css("display", "block");
+
 }
 
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
@@ -151,10 +157,6 @@ $(document).ready(function()
 	var fileInput  	= document.querySelector( "#uploadForm" );
 	var fileData	= $('#fileUpload').prop('files');
 	var elementLabel = document.getElementById("uploadLabel");
-	
-	fileInput.addEventListener( "change", function( event ) {  
-		//the_return.innerHTML = this.value;  
-	});
 	
 	elementProgress = new ElasticProgress(document.querySelectorAll('.uploadAnimation')[0], {
 		align: "center",
@@ -175,8 +177,10 @@ $(document).ready(function()
 	})
 	
 	elementProgress.onOpen(function() {
-		
 		var formData = new FormData();
+		
+		formData.append('pseudoPost', pseudo);
+		formData.append('passwordPost', passwordHash);
 		formData.append('file', $('input[type=file]')[0].files[0]);
 		
 		$.ajax({
@@ -216,6 +220,22 @@ $(document).ready(function()
 					{
 						elementLabel.innerHTML = "Fichier Flac non valide";
 					}
+					else if(JSONParsed.error_description == "undeclared variables")
+					{
+						elementLabel.innerHTML = "Variables non déclarés";
+					}
+					else if(JSONParsed.error_description == "connection to database failed")
+					{
+						elementLabel.innerHTML = "Connexion bdd impossible";
+					}
+					else if(JSONParsed.error_description == "failed to execute query")
+					{
+						elementLabel.innerHTML = "Impossible de se connecter";
+					}
+					else if(JSONParsed.error_description == "username and/or password does not match")
+					{
+						elementLabel.innerHTML = "Identifiant(s) incorrect(s)";
+					}
 					else
 					{
 						elementLabel.innerHTML = "Erreur, veuillez réessayer";
@@ -224,10 +244,8 @@ $(document).ready(function()
 					elementProgress.fail();
 					
 					var timer = setInterval(function() {
-					   
 					   elementLabel.innerHTML = "Mettre en ligne";
 					   clearInterval(timer);
-					   
 					  }, 2700);
 				}
 				else

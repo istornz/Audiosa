@@ -304,6 +304,20 @@
 	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 	<script src="js/md5.min.js" type="text/javascript"></script>
 	<script>
+		
+		<?php
+ 			if($user_logged == 1)
+ 			{
+ 				echo 'passwordHash = "'. $_SESSION['password'] . '";';
+ 				echo 'pseudo = "'. $_SESSION['pseudo'] . '";';
+ 			}
+ 			else
+ 			{
+ 				echo 'passwordHash 	= null;';
+ 				echo 'pseudo 		= null;';
+ 			}
+ 		?>
+		
 		(function($){
 			$(window).load(function(){
 				$(".list_scroll").mCustomScrollbar({

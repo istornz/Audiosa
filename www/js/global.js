@@ -245,6 +245,10 @@ $(document).ready(function()
 					{
 						elementLabel.innerHTML = "Identifiant(s) incorrect(s)";
 					}
+					else if(JSONParsed.error_description == "unable to move file")
+					{
+						elementLabel.innerHTML = "Impossible de déplacer le fichier";
+					}
 					else
 					{
 						elementLabel.innerHTML = "Erreur, veuillez réessayer";

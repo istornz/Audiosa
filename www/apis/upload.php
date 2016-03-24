@@ -87,6 +87,10 @@ if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 	{
 		die('{"status_code":1}');
 	}
+	else
+	{
+		die('{"status_code":0, "error_description":"unable to move file"}');
+	}
 	
 }
 else

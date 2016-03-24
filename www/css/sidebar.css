@@ -44,7 +44,7 @@ h3  {
 #menu {
 	float: left;
 	height: 100%;
-	width: 30%;
+	width: 22%;
 	background: #34495e;
 }
 
@@ -55,11 +55,6 @@ h3  {
 #menu_scroll {
 	overflow: hidden !important;
 }
-
-#content_menu_title {
-
-}
-
 
 #audiosa_title {
     width: 100%;
@@ -152,16 +147,17 @@ html body .ui-group-theme-b a:visited {
 }
 
 #web-player-img {
-    width: 65%;
-    margin-left: 17.5%;
-    margin-top: 5%;
+	width: 43%;
+    margin-left: 28.5%;
+    margin-top: 14%;
+    margin-bottom: 14%;
 }
 
 #web-player-onblur {
 	position: absolute;
-    width: 30%;
+    width: 22%;
 	height: 54%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #web-player-shuffle {
@@ -201,7 +197,6 @@ html body .ui-group-theme-b a:visited {
 	height: 54%;
 	background-color: #484848;
 	border-top: 1px solid white;
-    margin-top: 7%;
 }
 
 /* Hide the number input */
@@ -229,4 +224,8 @@ html body .ui-group-theme-b a:visited {
 
 div.ui-slider {
 	margin: 0 !important;
+}
+
+.player_cmds {
+	cursor: pointer;
 }

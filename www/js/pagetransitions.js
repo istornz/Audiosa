@@ -4,9 +4,9 @@ var PageTransitions = (function() {
 		//Morceaux / Artiste / Album
 		page_actu = 1;
 		$pages = $main.children( 'div.pt-page' ),
-		$morceaux = $( '#transi_morceaux' ),
-		$album = $( '#transi_album' ),
-		$artiste = $( '#transi_artiste' ),
+		$morceaux = $( '.paging_morceaux' ),
+		$album = $( '.paging_album' ),
+		$artiste = $( '.paging_artiste' ),
 		animcursor = 1,
 		pagesCount = $pages.length,
 		current = 0,
@@ -23,7 +23,7 @@ var PageTransitions = (function() {
 		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
 		// support css animations
 		support = Modernizr.cssanimations;
-	
+		
 	function init() {
 
 		$pages.each( function() {
@@ -46,21 +46,18 @@ var PageTransitions = (function() {
 			if( isAnimating ) {
 				return false;
 			}
-			
+						
 			if(page_actu == 1) {
 				return false;
 			}
 			else
 			{
 				if(page_actu == 2) {
-					nextPage( 28 );
+					backPage( 28);
 				}
 				else {
 					nextPage( 28 );
-					nextPage( 28 );
-					console.log("pls");
 				}
-				
 				
 				page_actu = 1;
 			}
@@ -72,8 +69,21 @@ var PageTransitions = (function() {
 				return false;
 			}
 
-			nextPage( 28 );
-			page_actu = 2;
+			if(page_actu == 3) {
+				return false;
+			}
+			else
+			{
+				if(page_actu == 2) {
+					nextPage( 28);
+				}
+				else {
+					backPage( 28 );
+				}
+				
+				page_actu = 3;
+			}
+			
 		} );
 		
 		//Artiste
@@ -81,13 +91,84 @@ var PageTransitions = (function() {
 			if( isAnimating ) {
 				return false;
 			}
-			nextPage( 28 );
-			page_actu = 3;
+			
+			if(page_actu == 2) {
+				return false;
+			}
+			else
+			{
+				if(page_actu == 1) {
+					nextPage( 28);
+				}
+				else {
+					backPage( 28 );
+				}
+				
+				page_actu = 2;
+			}
 		} );
 
 	}
 
-	function nextPage(options ) {
+	
+		function backPage(options) {
+		var animation = (options.animation) ? options.animation : options;
+
+		if( isAnimating ) {
+			return false;
+		}
+
+		isAnimating = true;
+		
+		var $currPage = $pages.eq( current );
+
+		if(options.showPage){
+			if( options.showPage < pagesCount + 1 ) {
+				current = options.showPage;
+			}
+			else {
+				current = 0;
+			}
+		}
+		else{
+			if( current < pagesCount + 1 ) {
+				--current;
+			}
+			else {
+				current = 0;
+			}
+		}
+
+		var $nextPage = $pages.eq( current ).addClass( 'pt-page-current' ),
+			outClass = '', inClass = '';
+
+			outClass = 'pt-page-rotateRightSideFirst';
+			inClass = 'pt-page-moveFromRight pt-page-delay200 pt-page-ontop';
+
+
+		$currPage.addClass( outClass ).on( animEndEventName, function() {
+			$currPage.off( animEndEventName );
+			endCurrPage = true;
+			if( endNextPage ) {
+				onEndAnimation( $currPage, $nextPage );
+			}
+		} );
+
+		$nextPage.addClass( inClass ).on( animEndEventName, function() {
+			$nextPage.off( animEndEventName );
+			endNextPage = true;
+			if( endCurrPage ) {
+				onEndAnimation( $currPage, $nextPage );
+			}
+		} );
+
+		if( !support ) {
+			onEndAnimation( $currPage, $nextPage );
+		}
+
+	}
+	
+	function nextPage(options) {
 		var animation = (options.animation) ? options.animation : options;
 
 		if( isAnimating ) {

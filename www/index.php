@@ -78,9 +78,9 @@
 				00:00
 				</div>
 				<div style="text-align: center; margin-top: 14px;">
-					<img id="web-player-previous" src="img/player/previous.png" alt="previous">
-					<img id="web-player-play" src="img/player/play.png" alt="play">
-					<img id="web-player-next" src="img/player/next.png" alt="next">
+					<img id="web-player-previous" class="player_cmds" src="img/player/previous.png" alt="previous">
+					<img id="web-player-play" class="player_cmds" src="img/player/play.png" alt="play">
+					<img id="web-player-next" class="player_cmds" src="img/player/next.png" alt="next">
 				</div>
 			</div>
 		</div>
@@ -174,12 +174,12 @@
 		<div id="footer_bar">
 			<form class="no-margin">
 				<fieldset class="txt-center" data-role="controlgroup" data-type="horizontal" data-mini="true">
-					<input class="menu_morceaux" type="radio" name="radio-choice-h-6" id="radio-choice-morceaux" value="on" checked="checked">
-					<label id="transi_morceaux" style="height: 28px;" class="paging" for="radio-choice-morceaux">Morceaux</label>
-					<input class="menu_artist" type="radio" name="radio-choice-h-6" id="radio-choice-artist" value="off">
-					<label id="transi_artiste" style="height: 28px;"class="paging" for="radio-choice-artist">Artistes</label>
-					<input class="menu_album" type="radio" name="radio-choice-h-6" id="radio-choice-album" value="other">
-					<label id="transi_album" style="height: 28px;" class="paging" for="radio-choice-album">Albums</label>
+					<input class="menu_morceaux paging_morceaux" type="radio" name="radio-choice-h-6" id="radio-choice-morceaux" value="on" checked="checked">
+					<label id="transi_morceaux" style="height: 28px;" class="paging paging_morceaux" for="radio-choice-morceaux">Morceaux</label>
+					<input class="menu_artist paging_artiste" type="radio" name="radio-choice-h-6" id="radio-choice-artist" value="off">
+					<label id="transi_artiste" style="height: 28px;" class="paging paging_artiste" for="radio-choice-artist">Artistes</label>
+					<input class="menu_album paging_album" type="radio" name="radio-choice-h-6" id="radio-choice-album" value="other">
+					<label id="transi_album" style="height: 28px;" class="paging paging_album" for="radio-choice-album">Albums</label>
 				</fieldset>
 			</form>
 		</div>
@@ -224,6 +224,9 @@
 	</div>
 		
 	<script src="js/jquery.js"></script>
+	<!-- Socket -->
+	<script src="./js/server/socket.io.js"></script>
+	<script src="./js/client/client.js"></script>
 	<!-- jQuery Upload Form Dependencies -->
 	<script src="js/tweenmax.js"></script>
 	<script src="js/elastic-progress.js"></script>

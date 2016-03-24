@@ -219,7 +219,6 @@ font-size: 14px;
 	color: white;
 }
 
-<<<<<<< HEAD
 .categories
 {
 	width: 255px;
@@ -269,15 +268,4 @@ font-size: 14px;
     font-size: 25px;
     font-family: oldsansblack;
     margin-top: 120px;
-=======
-#userImage
-{
-	width: 100px;
-}
-
-#userLabel
-{
-	font-size: 29px;
-    font-family: roboto;
->>>>>>> origin/master
 }

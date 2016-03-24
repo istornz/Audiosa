@@ -140,9 +140,8 @@ function userConnected()
 	var elementImportButton 	= $( "#import_button" );
 	
 	elementConnectButton.attr("src", "img/menuIcon.png");
-	elementConnectButton.attr("href", "#popupMenu");
+	elementConnectButton.parent().attr("href", "#popupMenu");
 	elementImportButton.css("display", "block");
-
 }
 
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {

@@ -48,7 +48,7 @@
 		<div id="menu_content">
 			<ul id="menu_scroll" data-role="listview" style="max-height: 100%;">
 				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img style="float: left;" class="first_icon_sidebar_cell" src="img/music_library.png" alt="Nouvelle playlist" >&nbsp;&nbsp;&nbsp;&nbsp;Ma musique</div></a></li>
-				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/add_playlist_green.png" alt="Nouvelle playlist" >&nbsp;&nbsp;&nbsp;&nbsp;Nouvelle playlist</div></a></li>
+				<li><a href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/add_playlist_green.png" alt="Nouvelle playlist" >&nbsp;&nbsp;&nbsp;&nbsp;Nouvelle playlist</div></a></li>
 				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 1</div></a></li>
 				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 2</div></a></li>
 				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 3</div></a></li>
@@ -209,6 +209,21 @@
 	</div>
 	
 	<div data-role="popup" id="popupImport" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
+		<div data-role="header" data-theme="a">
+			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+			<h1>Importer</h1>
+		</div>
+		<div role="main" style="height: 280px;" class="ui-content">
+			<form id="uploadForm" method="post" action="apis/upload.php" enctype="multipart/form-data">
+				<input id="fileUpload" type="file" name="upl" />
+			</form>
+			<br />
+			<div class="uploadAnimation" role="button" aria-label="Upload file"></div>
+			<h2 id="uploadLabel">Mettre en ligne</h2>
+		</div>
+	</div>
+	
+	<div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
 		<div data-role="header" data-theme="a">
 			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 			<h1>Importer</h1>

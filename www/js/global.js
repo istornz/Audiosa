@@ -264,7 +264,6 @@ $(document).ready(function()
 			},
 
 			error: function(data){
-				console.log(data);
 				elementProgress.close();
 			}
 		});
@@ -287,10 +286,10 @@ function progress(e)
 	{
         var max = e.total;
         var current = e.loaded;
-        var Percentage = (current * 100)/max;
+        var Percentage = current/max;
 		elementProgress.setValue(Percentage);
 		
-        if(Percentage >= 100)
+        if(Percentage >= 1)
         {
            // process completed  
         }

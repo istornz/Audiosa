@@ -1,1 +1,6 @@
 *.flac
+www/js/server/.DS_Store
+
+www/js/server_test_client/.DS_Store
+
+www/js/server/.DS_Store

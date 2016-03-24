@@ -223,25 +223,50 @@
 		</div>
 	</div>
 	
-	<div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
+	<div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false">
 		<div data-role="header" data-theme="a">
 			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
-			<h1>Importer</h1>
+			<h1>Générer une playlist</h1>
 		</div>
-		<div role="main" style="height: 280px;" class="ui-content">
-			<form id="uploadForm" method="post" action="apis/upload.php" enctype="multipart/form-data">
-				<input id="fileUpload" type="file" name="upl" />
-			</form>
-			<br />
-			<div class="uploadAnimation" role="button" aria-label="Upload file"></div>
-			<h2 id="uploadLabel">Mettre en ligne</h2>
+		<div role="main" style="height: 475px; width: 587px;" class="ui-content">
+			<div id="choix">
+				<h1 class="txt-center" style="margin-bottom: 20px;" >Veuillez faire vos choix</h1>
+				<a href="#" id="choice_genres" class="choice_genres"><div class="categories cat_genres">
+				</div></a>
+				<a href="#" class="choice_artistes"><div class="categories cat_artistes">
+				</div></a>
+				<a href="#" class="choice_album"><div class="categories cat_albums">
+				</div></a>
+				<a href="#" class="choice_annees"><div class="categories cat_annees">
+				</div></a>
+			</div>
+			
+			<div id="list_genres" style="display: none;">
+			
+				<div class="categories cat_annees">
+				
+					<div class="genre_title">Classique</div>
+				</div>
+				
+								<div class="categories cat_annees">
+				
+					<div>Classique</div>
+				</div>
+				
+								<div class="categories cat_annees">
+				
+					<div>Classique</div>
+				</div>
+				
+				
+			</div>
 		</div>
 	</div>
 		
 	<script src="js/jquery.js"></script>
 	<!-- Socket -->
 	<script src="./js/server/socket.io.js"></script>
-	<script src="./js/client/client.js"></script>
+	<!-- <script src="./js/client/client.js"></script> -->
 	<!-- jQuery Upload Form Dependencies -->
 	<script src="js/tweenmax.js"></script>
 	<script src="js/elastic-progress.js"></script>
@@ -255,7 +280,8 @@
 	<script src="js/global.js" type="text/javascript"></script>
 	<script src="js/jquery.dlmenu.js"></script>
 	<script src="js/pagetransitions.js"></script>
-
+	<!-- generation de playlist -->
+	<script src="js/playlist/choices.js"></script>
 	<!-- custom scrollbar plugin -->
 	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 	<script>

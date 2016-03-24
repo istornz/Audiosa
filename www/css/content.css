@@ -218,3 +218,54 @@ font-size: 14px;
 	text-shadow: none;
 	color: white;
 }
+
+.categories
+{
+	width: 255px;
+    height: 160px;
+    background-color: red;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 30px;
+}
+
+.categories.cat_annees
+{
+    background-image: url("../img/categories/annees.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.categories.cat_genres
+{
+    background-image: url("../img/categories/genres.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.categories.cat_artistes
+{
+    background-image: url("../img/categories/artistes.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.categories.cat_albums
+{
+    background-image: url("../img/categories/albums.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.genre_title
+{
+	text-align: center;
+    background-color: #F9F9F9;
+    color: #1794E0;
+    text-shadow: none;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: oldsansblack;
+    margin-top: 120px;
+}

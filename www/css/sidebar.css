@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: OSB;
+    src: url("../fonts/OldSansBlack.ttf");
+}
+
+@font-face {
     font-family: oswald;
     src: url("../fonts/Oswald-Regular.ttf");
 }

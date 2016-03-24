@@ -1,7 +1,7 @@
-// Connexion à socket.io
+﻿// Connexion à socket.io
 console.log("CLIENT socket lancé:");
 
-var SERVER_URL = "http://localhost";
+var SERVER_URL = "http://172.16.126.17";
 var SERVER_PORT = "8080";
 
 var socket = io.connect(SERVER_URL+':'+SERVER_PORT);

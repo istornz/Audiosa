@@ -197,12 +197,12 @@
 			<form id="formConnexionPopup" method="post" action="apis/connexion.php">
 				<img src="img/logo.png" alt="logo" height="100px" width="100px" />
 				<div class="ui-corner-all custom-corners">
-  					<div id="messageInfoDiv" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
-						<span id="messageInfoLabel">Mot de passe incorrect !</span>
+  					<div id="messageInfoConnexionDiv" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
+						<span id="messageInfoConnexionLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
 					</div>
 				</div>
 				<!--<i class="fa fa-refresh fa-spin"></i>-->
-				<input placeholder="Pseudo" data-theme="a" name="pseudo" id="pseudo-text" value="" type="text" autocomplete="off" type="text">
+				<input placeholder="Pseudo" data-theme="a" name="pseudo" id="pseudo-text" value="" autocomplete="off" type="text">
 				<input placeholder="Mot de passe" data-theme="a" name="password" id="password-text" value="" type="password" autocomplete="off" type="password">
 				<a href="" id="motDePasseOublie"><u><b>Mot de passe oublié ?</u></b></a>
 				<br/><br/>
@@ -213,33 +213,81 @@
 
 <div data-role="popup" id="popupMenu" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:340px;">
 		<div data-role="header" data-theme="a">
-			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+			<a id="backToMenu" href="#" style="display: none;" onclick="changeMenuAction();" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
 			<h1>Menu</h1>
+			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 		</div>
-		<div role="main" style="text-align: center;" class="ui-content">
+		<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
 			<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
 			<span id="userLabel">Admin</span>
 			<hr style="visibility:hidden;" />
-			<button id="changerMdpButton" class="ui-btn ui-corner-all button_selection" style="background-color: #2980b9">Changer mot de passe</button>
-			<button id="visualiserLogButton"class="ui-btn ui-corner-all button_selection" style="background-color: #7f8c8d">Visualiser les logs</button>
+			
+			<a id="changerpassButton" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #2980b9" onclick="navigateToPopupID('#popupChangerPass');" href="#popupChangerPass" data-rel="popup" data-position-to="window" data-transition="pop">Changer mot de passe</a>
+			
+			<a id="visualiserLogButton" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #7f8c8d" onclick="" href="#popupVisualiserLogs" data-rel="popup" data-position-to="window" data-transition="pop">Visualiser les logs</a>
+			
 			<button id="deconnexionButton" onclick="disconnect();" class="ui-btn ui-corner-all button_selection" style="background-color: #c0392b">Déconnexion</button>
 		</div>
-	</div>
-	
-	<div data-role="popup" id="popupImport" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
+		
+		<div id="changerpassPanel" role="main" style="text-align: center; display: none;" class="ui-content">
+			<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
+			
+		</div>
+		
+</div>
+
+
+<div data-role="popup" id="popupChangerPass" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:340px;">
 		<div data-role="header" data-theme="a">
+			<a id="backToMenu" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupMenu');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
+			<h1>Mot de passe</h1>
 			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
-			<h1>Importer</h1>
 		</div>
-		<div role="main" style="height: 280px;" class="ui-content">
-			<form id="uploadForm" method="post" action="apis/upload.php" enctype="multipart/form-data">
-				<input id="fileUpload" type="file" name="upl" />
+		<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
+			<form id="formChangerMotDePassePopup" method="post" action="apis/changepass.php">
+				<img id="userImage" src="img/changepass_icon.png" alt="utilisateur"></a><br />
+				<div class="ui-corner-all custom-corners">
+  					<div id="messageInfoDivChangerPass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
+						<span id="messageInfoChangerPassLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
+					</div>
+				</div>
+				<input placeholder="Mot de passe actuel" data-theme="a" name="currentPassword" id="currentPassword-text" value="" autocomplete="off" type="password">
+				<input placeholder="Nouveau mot de passe" data-theme="a" name="newPassword" id="newPassword-text" value="" type="password" autocomplete="off" type="password">
+				<input placeholder="Confirmation" data-theme="a" name="confirmPassword" id="confirmPassword-text" value="" type="password" autocomplete="off" type="password">
+				<input type="hidden" name="pseudoName" id="pseudoName-text" value="">
+				<br/>
+				<button id="changerPassButton" type="submit" class="ui-btn ui-corner-all button_selection" style="background-color: #2980b9">Changer le mot de passe</button>
 			</form>
-			<br />
-			<div class="uploadAnimation" role="button" aria-label="Upload file"></div>
-			<h2 id="uploadLabel">Mettre en ligne</h2>
 		</div>
+</div>
+
+<div data-role="popup" id="popupVisualiserLogs" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:450px; max-height:400px;">
+		<div data-role="header" data-theme="a">
+			<a id="backToMenu" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupMenu');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
+			<h1>Logs</h1>
+			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+		</div>
+		<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
+			<ul id="listview-log" data-icon="false" data-role="listview" data-inset="true" style="height:auto; max-height:300px;">
+    		</ul>
+		</div>
+</div>
+
+	
+<div data-role="popup" id="popupImport" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
+	<div data-role="header" data-theme="a">
+		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+		<h1>Importer</h1>
 	</div>
+	<div role="main" style="height: 280px;" class="ui-content">
+		<form id="uploadForm" method="post" action="apis/upload.php" enctype="multipart/form-data">
+			<input id="fileUpload" type="file" name="upl" />
+		</form>
+		<br />
+		<div class="uploadAnimation" role="button" aria-label="Upload file"></div>
+		<h2 id="uploadLabel">Mettre en ligne</h2>
+	</div>
+</div>
 	
 	<div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false">
 		<div data-role="header" data-theme="a">
@@ -310,6 +358,7 @@
  			{
  				echo 'passwordHash = "'. $_SESSION['password'] . '";';
  				echo 'pseudo = "'. $_SESSION['pseudo'] . '";';
+ 				echo '$("#pseudoName-text").attr("value", pseudo);';
  			}
  			else
  			{

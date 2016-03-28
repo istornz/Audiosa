@@ -74,8 +74,7 @@ if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 	
 	if($tailleFichier > $MAX_FILESIZE)
 	{
-		echo '{"status_code":0, "error_description":"file too big"}';
-		exit;
+		die('{"status_code":0, "error_description":"file too big"}');
 	}
 	
 	if(!($mimetypeFichier == "audio/flac") && !($mimetypeFichier == "audio/x-flac"))

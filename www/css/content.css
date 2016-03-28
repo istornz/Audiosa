@@ -147,7 +147,7 @@ font-size: 14px;
 
 .cover {
 	float: left;
-	width: 60px;"
+	width: 60px;
 }
 
 .morceaux-artist {
@@ -204,16 +204,11 @@ font-size: 14px;
 	line-height: 10px;
 }
 
-#connexionButton
-{
-	height: 42px;
-}
-
 #list_edit {
 	height: 350px;
 }
 
-#messageInfoLabel
+.messageInfoLabel
 {
 	text-shadow: none;
 	color: white;
@@ -283,6 +278,15 @@ font-size: 14px;
 
 .button_selection
 {
+	height: 42px;
 	text-shadow: none !important;
 	color: white !important;
+}
+
+.list-log
+{
+	white-space: normal !important;
+	height: auto;
+	font-size: 12px;
+	font-weight: normal !important;
 }

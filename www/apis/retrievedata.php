@@ -43,28 +43,24 @@ function retrieveMorceaux($connexion)
 	$commande_SQL	= "SELECT * FROM PISTES";
 	$date = getdate();
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
-	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","pistes": [';
+	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","pistes": ';
 
 	if($selectStatement = $connexion->query($commande_SQL))
 	{
 		$increLigne = 0;
 		$nbrLigne = $selectStatement->rowCount();
 		
-		while($result = $selectStatement->fetch(PDO::FETCH_ASSOC))
+		while($ligne = $selectStatement->fetch(PDO::FETCH_ASSOC))
 		{
 			$nbrColonne = $selectStatement->columnCount();
-			
-			echo json_encode($result);
-			
-			if($increLigne == ($nbrLigne - 1 ))
-				echo "";
-			else
-				echo ",";
+			$convertToUTF8Format[]=array_map("utf8_encode", $ligne);
 			
 			$increLigne++;
 		}
 		
-	echo "]}";
+		echo json_encode($convertToUTF8Format);
+		
+	echo "}";
 	}
 	else
 	{

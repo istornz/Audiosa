@@ -67,7 +67,7 @@ font-size: 14px;
 .ui-listview {
 	border-radius: 0 !important;
 	margin: 0 !important;
-	overflow: scroll !important;
+	/*overflow: scroll !important;*/
     max-height: 82%;
 }
 

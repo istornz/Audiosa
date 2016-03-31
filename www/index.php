@@ -291,37 +291,98 @@
 	
 	<div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false">
 		<div data-role="header" data-theme="a">
-			<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+			<a href="#" id="quitPlaylistButton" onclick="blurAction(0, document.getElementById('fullPage'));"  class="ui-btn ui-btn-left ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+			<a href="#" style="display: none;" id="backPlaylistChoice" onclick="" class="ui-btn ui-btn-left ui-icon-arrow-l ui-btn-icon-notext ui-corner-all" >No text</a>
 			<h1>Générer une playlist</h1>
 		</div>
 		<div role="main" style="height: 475px; width: 587px;" class="ui-content">
 			<div id="choix">
 				<h1 class="txt-center" style="margin-bottom: 20px;" >Veuillez faire vos choix</h1>
-				<a href="#" id="choice_genres" class="choice_genres"><div class="categories cat_genres">
+				<a href="#" id="choice_genres" class="choice_click"><div class="categories cat_genres">
 				</div></a>
-				<a href="#" class="choice_artistes"><div class="categories cat_artistes">
+				<a href="#" id="choice_artistes" class="choice_click"><div class="categories cat_artistes">
 				</div></a>
-				<a href="#" class="choice_album"><div class="categories cat_albums">
+				<a href="#" id="choice_albums" class="choice_click"><div class="categories cat_albums">
 				</div></a>
-				<a href="#" class="choice_annees"><div class="categories cat_annees">
+				<a href="#" id="choice_annees" class="choice_click"><div class="categories cat_annees">
 				</div></a>
 			</div>
 			
 			<div id="list_genres" style="display: none;">
+			
+				<div id="classique" class="categories categories_genres cat_annees">
+					
+					<div class="genre_title">Classique</div>
+				</div>
+				
+				<div id="jazz" class="categories categories_genres cat_annees">
+				
+					<div class="genre_title">Jazz</div>
+				</div>
+				
+				<div id="rap" class="categories categories_genres cat_annees">
+				
+					<div class="genre_title">Rap</div>
+				</div>
+				
+				
+			</div>
+			
+			<div id="list_albums" style="display: none;">
 			
 				<div class="categories cat_annees">
 				
 					<div class="genre_title">Classique</div>
 				</div>
 				
-								<div class="categories cat_annees">
+				<div class="categories cat_annees">
 				
-					<div>Classique</div>
+					<div class="genre_title">Classique</div>
 				</div>
 				
-								<div class="categories cat_annees">
+				<div class="categories cat_annees">
 				
-					<div>Classique</div>
+					<div class="genre_title">Classique</div>
+				</div>
+				
+				
+			</div>
+			
+			<div id="list_artistes" style="display: none;">
+			
+				<div class="categories cat_annees">
+				
+					<div class="genre_title">Classique</div>
+				</div>
+				
+				<div class="categories cat_annees">
+				
+					<div class="genre_title">Classique</div>
+				</div>
+				
+				<div class="categories cat_annees">
+				
+					<div class="genre_title">Classique</div>
+				</div>
+				
+				
+			</div>
+			
+			<div id="list_annees" style="display: none;">
+			
+				<div class="categories cat_annees">
+				
+					<div class="genre_title">Classique</div>
+				</div>
+				
+				<div class="categories cat_annees">
+				
+					<div class="genre_title">Classique</div>
+				</div>
+				
+				<div class="categories cat_annees">
+				
+					<div class="genre_title">Classique</div>
 				</div>
 				
 				

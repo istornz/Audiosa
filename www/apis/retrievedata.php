@@ -53,29 +53,13 @@ function retrieveMorceaux($connexion)
 		while($result = $selectStatement->fetch(PDO::FETCH_ASSOC))
 		{
 			$nbrColonne = $selectStatement->columnCount();
-			$increColonne = 0;
-			echo "{";
-			// Pour chaque cellule, avec comme séparateur "=>"
-			foreach ($result as $colonne => $valeur)
-			{
-				// Transformation des infos vides en null
-				if($valeur == "")
-					$valeur = "null";
-				else
-					$valeur = '"' . $valeur  . '"';
-				
-				echo '"' . $colonne. '": ' . $valeur  . '';
-				
-				if($increColonne != ($nbrColonne - 1 ))
-					echo ", ";
-				
-				$increColonne++;
-			}
+			
+			echo json_encode($result);
 			
 			if($increLigne == ($nbrLigne - 1 ))
-				echo "}";
+				echo "";
 			else
-				echo "},";
+				echo ",";
 			
 			$increLigne++;
 		}

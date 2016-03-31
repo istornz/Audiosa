@@ -197,7 +197,7 @@ function retrieveAlbums($connexion)
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
 	$increLigne = 0;
 	
-	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","album": [';
+	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","albums": [';
 	
 	if($selectStatement = $connexion->query($commande_SQL))
 	{

@@ -165,6 +165,22 @@ function getTrackNumberForAlbum($connexion, $albumName)
 	return $nbrPistes;
 }
 
+function getArtistNameForAlbum($connexion, $albumName)
+{
+	$commande_SQL	= "SELECT artist FROM PISTES WHERE album='". $albumName ."' LIMIT 1";
+	$nomArtiste 	= "inconnu";
+	
+	if($selectStatement = $connexion->query($commande_SQL))
+	{	
+		if($ligne = $selectStatement->fetch(PDO::FETCH_ASSOC))
+		{
+			$nomArtiste = $ligne['artist'];
+		}
+	}
+	
+	return $nomArtiste;
+}
+
 function getTrackNumberForArtist($connexion, $artistName)
 {
 	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE artist='". $artistName ."'";
@@ -223,7 +239,8 @@ function retrieveAlbums($connexion)
 		{
 			echo "{";
 				echo '"album_name": "' . $tableauAlbums[$i] . '",';
-				echo '"tracks_nbr": ' . getTrackNumberForAlbum($connexion, $tableauAlbums[$i])  . '';
+				echo '"tracks_nbr": ' . getTrackNumberForAlbum($connexion, $tableauAlbums[$i]) . ', ';
+				echo '"artist_name": "' . getArtistNameForAlbum($connexion, $tableauAlbums[$i]) . '"';
 			
 			if($increLigne == ($nbrAlbum - 1 ))
 				echo "}";

@@ -308,83 +308,94 @@
 				</div></a>
 			</div>
 			
-			<div id="list_genres" style="display: none;">
+			<div id="list_genres" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
 			
-				<div id="classique" class="categories categories_genres cat_annees">
+				<div id="classique" class="categories categories_genres cat_genres">
 					
 					<div class="genre_title">Classique</div>
 				</div>
 				
-				<div id="jazz" class="categories categories_genres cat_annees">
+				<div id="jazz" class="categories categories_genres cat_genres">
 				
 					<div class="genre_title">Jazz</div>
 				</div>
 				
-				<div id="rap" class="categories categories_genres cat_annees">
+				<div id="rap" class="categories categories_genres cat_genres">
 				
 					<div class="genre_title">Rap</div>
 				</div>
 				
+			</div>
+			
+			<div id="list_albums" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			
+				<div id="album1" class="categories categories_albums cat_c_albums cat_albums ">
+					
+					<div class="album_title">Album 1</div>
+				</div>
+				
+				<div id="album2" class="categories categories_albums cat_c_albums cat_albums">
+				
+					<div class="album_title">Album 2</div>
+				</div>
+				
+				<div id="album3" class="categories categories_albums cat_c_albums cat_albums">
+				
+					<div class="album_title">Album 3</div>
+				</div>
 				
 			</div>
 			
-			<div id="list_albums" style="display: none;">
+			<div id="list_artistes" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
 			
-				<div class="categories cat_annees">
-				
-					<div class="genre_title">Classique</div>
+				<div id="artiste1" class="categories categories_artistes cat_c_artistes cat_artistes">
+					
+					<div class="artist_title">Artiste 1</div>
 				</div>
 				
-				<div class="categories cat_annees">
+				<div id="artiste2" class="categories categories_artistes cat_c_artistes cat_artistes">
 				
-					<div class="genre_title">Classique</div>
+					<div class="artist_title">Artiste 2</div>
 				</div>
 				
-				<div class="categories cat_annees">
+				<div id="artiste3" class="categories categories_artistes cat_c_artistes cat_artistes">
 				
-					<div class="genre_title">Classique</div>
+					<div class="artist_title">Artiste 3</div>
 				</div>
 				
+				<div id="artiste4" class="categories categories_artistes cat_c_artistes cat_artistes">
+					
+					<div class="artist_title">Artiste 4</div>
+				</div>
+				
+				<div id="artiste5" class="categories categories_artistes cat_c_artistes cat_artistes">
+				
+					<div class="artist_title">Artiste 5</div>
+				</div>
+				
+				<div id="artiste6" class="categories categories_artistes cat_c_artistes cat_artistes">
+				
+					<div class="artist_title">Artiste 6</div>
+				</div>
 				
 			</div>
 			
-			<div id="list_artistes" style="display: none;">
+			<div id="list_annees" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
 			
-				<div class="categories cat_annees">
-				
-					<div class="genre_title">Classique</div>
+				<div id="1980" class="categories categories_annees cat_annees">
+					
+					<div class="genre_title">1980</div>
 				</div>
 				
-				<div class="categories cat_annees">
+				<div id="1990" class="categories categories_annees cat_annees">
 				
-					<div class="genre_title">Classique</div>
+					<div class="genre_title">1990</div>
 				</div>
 				
-				<div class="categories cat_annees">
+				<div id="2000" class="categories categories_annees cat_annees">
 				
-					<div class="genre_title">Classique</div>
+					<div class="genre_title">2000</div>
 				</div>
-				
-				
-			</div>
-			
-			<div id="list_annees" style="display: none;">
-			
-				<div class="categories cat_annees">
-				
-					<div class="genre_title">Classique</div>
-				</div>
-				
-				<div class="categories cat_annees">
-				
-					<div class="genre_title">Classique</div>
-				</div>
-				
-				<div class="categories cat_annees">
-				
-					<div class="genre_title">Classique</div>
-				</div>
-				
 				
 			</div>
 		</div>
@@ -393,7 +404,7 @@
 	<script src="js/jquery.js"></script>
 	<!-- Socket -->
 	<script src="./js/server/socket.io.js"></script>
-	<!-- <script src="./js/client/client.js"></script> -->
+	<!--<script src="./js/client/client.js"></script>-->
 	<!-- jQuery Upload Form Dependencies -->
 	<script src="js/tweenmax.js"></script>
 	<script src="js/elastic-progress.js"></script>
@@ -433,7 +444,24 @@
 				$(".list_scroll").mCustomScrollbar({
 					theme:"minimal"
 				});
+				
 				$("#menu_scroll").mCustomScrollbar({
+					theme:"minimal"
+				});
+				
+				$("#list_albums").mCustomScrollbar({
+					theme:"minimal"
+				});
+				
+				$("#list_artistes").mCustomScrollbar({
+					theme:"minimal"
+				});
+				
+				$("#list_annees").mCustomScrollbar({
+					theme:"minimal"
+				});
+				
+				$("#list_genres").mCustomScrollbar({
 					theme:"minimal"
 				});
 			});

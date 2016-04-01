@@ -218,14 +218,14 @@ font-size: 14px;
 {
 	width: 255px;
     height: 160px;
-    background-color: red;
+    background-color: #383838;
     float: left;
     margin-left: 15px;
     margin-bottom: 30px;
 	cursor: pointer;
 }
 
-.checked_cat
+.checked_cat_genres
 {
 	position: absolute;
 	margin-left: 80px;
@@ -233,34 +233,78 @@ font-size: 14px;
     width: 110px;
 }
 
+.checked_cat_artistes
+{
+    position: absolute;
+    margin-left: 47px;
+    margin-top: 34px;
+    width: 110px;
+}
+
+.checked_cat_annees
+{
+	position: absolute;
+	margin-left: 80px;
+    margin-top: 7px;
+    width: 110px;
+}
+
+.checked_cat_albums
+{
+	position: absolute;
+	margin-left: 80px;
+    margin-top: 25px;
+    width: 110px;
+}
+
 .categories.cat_annees
 {
     background-image: url("../img/categories/annees.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+	background-position: 50% 50%;
 }
 
 .categories.cat_genres
 {
     background-image: url("../img/categories/genres.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+	background-position: 50% 50%;
 }
 
 .categories.cat_artistes
 {
     background-image: url("../img/categories/artistes.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+	background-position: 50% 50%;
 }
 
 .categories.cat_albums
 {
     background-image: url("../img/categories/albums.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+	background-position: 50% 50%;
 }
 
+.categories_artistes
+{
+	margin-left: 53px;
+}
+
+.cat_c_artistes
+{
+	width: 200px;
+    height: 211px;
+}
+
+.cat_c_albums
+ {
+    height: 194px;
+}
+ 
 .genre_title
 {
 	text-align: center;
@@ -272,6 +316,32 @@ font-size: 14px;
     font-size: 25px;
     font-family: oldsansblack;
     margin-top: 120px;
+}
+
+.artist_title 
+{
+	text-align: center;
+    background-color: #F9F9F9;
+    color: #1794E0;
+    text-shadow: none;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: oldsansblack;
+    margin-top: 170px;
+}
+
+.album_title 
+{
+	text-align: center;
+    background-color: #F9F9F9;
+    color: #1794E0;
+    text-shadow: none;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: oldsansblack;
+    margin-top: 153px;
 }
 
 #userImage

@@ -97,7 +97,6 @@
 						echo '<a style="z-index: 999;display: block;" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
 					else
 						echo '<a style="z-index: 999;display: none" id="import_button" href="#popupImport" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-plus ui-btn-icon-right ui-corner-all">Importer</a>';
-
 				?>
 			</h3>
 		</div>

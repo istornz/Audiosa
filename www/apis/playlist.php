@@ -123,6 +123,8 @@ for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 //  Recuperation des pistes fonction de l'année    //
 /***************************************************/
 
+
+
 for($iannee = 0; $iannee < count($annees); $iannee++) {
 	$piste_limite = rand(2,4); 
 	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE PISTES.date <". $connexion->quote($albums[$iannee]) ." ORDER BY RAND() LIMIT ".$piste_limite;
@@ -132,7 +134,7 @@ for($iannee = 0; $iannee < count($annees); $iannee++) {
 	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
 		array_push($_playlist,$result["idPISTES"]);
 	}
-}
+} 
 
 echo json_encode($_playlist);
 

@@ -60,7 +60,7 @@ function retrieveMorceaux($connexion)
 		
 		echo json_encode($convertToUTF8Format);
 		
-	echo "}";
+		echo "}";
 	}
 	else
 	{

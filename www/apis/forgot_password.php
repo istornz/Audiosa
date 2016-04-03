@@ -32,16 +32,47 @@ catch(PDOException $e)
 // 	     Demande pass    	//
 /****************************/
 
-$commande_SQL	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.email=". $mailQuoted ." LIMIT 1";
+$commande_SQL	= "SELECT * FROM UTILISATEUR WHERE UTILISATEUR.email=". $mailQuoted ." LIMIT 1";
 
 if($selectStatement = $connexion->query($commande_SQL))
 {
 	$nbr_ligne = $selectStatement->fetchColumn();
+	$ligne = $selectStatement->fetch(PDO::FETCH_ASSOC);
 	
 	if($nbr_ligne <= 0)
 	{
-		die('{"status_code":0,"error_description":"username and/or password does not match"}');
+		die('{"status_code":0,"error_description":"no user with this email"}');
 	}
+	
+	$passwordHash = $ligne['password'];
+	
+	if(!isset($_POST['hashpassMail']))
+	{
+		//Envoyer mail
+		
+		// Plusieurs destinataires
+     $to  = 'iphoneretro@me.com'; // notez la virgule
+	 $headers = "From: someone@your-website.com";
+	 $test = mail($to,"PLS","SARCE",$headers);
+		
+		if($test)
+		{
+			die('{"status_code":0,"error_description":"OK"}');
+		}
+		else
+		{
+			die('{"status_code":0,"error_description":"PLS"}');
+		}
+		
+	}
+	
+	if($passwordHash != $_POST['hashpassMail'])
+	{
+		die('{"status_code":0,"error_description":"unable to login"}');
+	}
+	
+	// FORM DE CHANGEMENT
+	
 }
 else
 {

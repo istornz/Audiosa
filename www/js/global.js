@@ -308,6 +308,94 @@ $("#formChangerMotDePassePopup").submit(function(event) {
     }
 });
 
+$("#formOublieMotDePassePopup").submit(function(event) {
+    event.preventDefault();
+    var fullPage = document.getElementById("fullPage");
+    var elementMailField = $("#email-text");
+    var elementMailFieldDiv = elementMailField.parent();
+    var elementMessageOublieDiv = $("#messageInfoDivOubliePass");
+    var elementMessageOublieLabel = $("#messageInfoOubliePassLabel");
+    var elementOubliePopup = $("#popupMotDePasseOublie");
+    var elementOublieButton = $("#oubliePassButton");
+    
+    if (elementMailField.val().length == 0) {
+		elementMailFieldDiv.addClass("animated shake");
+		window.setTimeout(function() {
+			elementMailFieldDiv.removeClass(
+				'animated shake');
+		}, 500);
+    }
+	
+    if (elementMailField.val().length > 0) {
+        
+        var $form = $(this),
+        	mailValue = elementMailField.val(),
+            url = $form.attr("action");
+        elementOublieButton.html(
+            "<i class=\"fa fa-refresh fa-spin\"></i>");
+        
+        var posting = $.get(url, {
+	        mail: mailValue
+        });
+		
+        posting.done(function(data) {
+            var JSONParsed = JSON.parse(data);
+			
+            elementOublieButton.html("Valider");
+            elementMessageOublieDiv.addClass("animated bounceIn");
+            window.setTimeout(function() {
+                elementMessageOublieDiv.removeClass(
+                    "animated bounceIn");
+            }, 500);
+            
+            if (JSONParsed.status_code == 1) {
+                elementMessageOublieDiv.css("display", "block");
+                elementMessageOublieDiv.css("background-color",
+                    "#16a085");
+                elementMessageOublieLabel.text("Un mail à été envoyé");
+                window.setTimeout(function() {
+                    elementMessageOublieDiv.css("display", "none");
+                    elementMailField.val("");
+					
+					elementOubliePopup.popup("close");
+                    blurAction(0, fullPage);
+					
+                }, 1000);
+            } else {
+                elementMessageOublieDiv.css("background-color",
+                    "#e74c3c");
+                elementMessageOublieDiv.css("display", "block");
+				console.log(JSONParsed.error_description);
+                if (JSONParsed.error_description == "undeclared variables") {
+                    elementMessageOublieLabel.text("Variable(s) non déclaré(es)");
+                } else if (JSONParsed.error_description ==
+                    "connection to database failed") {
+                    elementMessageOublieLabel.text(
+                        "Connexion à la bdd impossible");
+                } else if (JSONParsed.error_description ==
+                    "mail not valid") {
+                    elementMessageOublieLabel.text(
+                        "Mail invalide");
+                } else if (JSONParsed.error_description ==
+                    "no user with this email") {
+                    elementMessageOublieLabel.text(
+                        "Adresse email inexistante");
+                } else if (JSONParsed.error_description ==
+                    "failed to execute select query") {
+                    elementMessageOublieLabel.text(
+                        "Impossible de vous identifier");
+                } else if (JSONParsed.error_description ==
+                    "mail not sent") {
+                    elementMessageOublieLabel.text(
+                        "Impossible d'envoyer le mail");
+                } else {
+                    elementMessageOublieLabel.text("Erreur");
+                }
+            }
+        });
+    }
+});
+
 function userConnected() {
     var elementConnectButton = $("#image_utilisateur");
     var elementImportButton = $("#import_button");

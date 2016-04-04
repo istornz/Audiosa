@@ -26,17 +26,9 @@ try
 {
     $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_WRITER_LOGIN, $DB_WRITER_PSW);
 	
-	if(isValidMd5($_POST['newPasswordPost']))
-	{
-		$newPasswordQuoted	= $connexion->quote($_POST['newPasswordPost']);
-	}
-	else
-	{
-		$newPasswordQuoted = "'". md5($_POST['newPasswordPost']) . "'";
-	}
-		
 	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
 	$passwordQuoted	= $connexion->quote($_POST['actualPasswordPost']);
+	$newPasswordQuoted	= $connexion->quote($_POST['newPasswordPost']);
 }
 catch(PDOException $e)
 {
@@ -80,9 +72,5 @@ else
 	die('{"status_code":0,"error_description":"failed to execute update query"}');
 }
 
-function isValidMd5($md5 ='')
-{
-    return preg_match('/^[a-f0-9]{32}$/', $md5);
-}
 
 ?>

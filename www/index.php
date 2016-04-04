@@ -203,7 +203,8 @@
 			<!--<i class="fa fa-refresh fa-spin"></i>-->
 			<input placeholder="Pseudo" data-theme="a" name="pseudo" id="pseudo-text" value="" autocomplete="off" type="text">
 			<input placeholder="Mot de passe" data-theme="a" name="password" id="password-text" value="" type="password" autocomplete="off" type="password">
-			<a href="" id="motDePasseOublie"><u><b>Mot de passe oublié ?</u></b></a>
+			
+			<a href="#popupMotDePasseOublie" onclick="navigateToPopupID('#popupMotDePasseOublie');" data-rel="popup" data-position-to="window" data-transition="pop" id="motDePasseOublie"><u><b>Mot de passe oublié ?</u></b></a>
 			<br/><br/>
 			<button id="connexionButton" type="submit" class="ui-btn ui-corner-all button_selection" style="background-color: #16a085">Se connecter</button>
 		</form>
@@ -212,9 +213,9 @@
 
 <div data-role="popup" id="popupMenu" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:340px;">
 	<div data-role="header" data-theme="a">
-		<a id="backToMenu" href="#" style="display: none;" onclick="changeMenuAction();" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
-		<h1>Menu</h1>
 		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+		<h1>Menu</h1>
+		
 	</div>
 	<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
 		<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
@@ -224,18 +225,12 @@
 		<a id="visualiserLogButton" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #7f8c8d" onclick="" href="#popupVisualiserLogs" data-rel="popup" data-position-to="window" data-transition="pop">Visualiser les logs</a>
 		<button id="deconnexionButton" onclick="disconnect();" class="ui-btn ui-corner-all button_selection" style="background-color: #c0392b">Déconnexion</button>
 	</div>
-	
-	<div id="changerpassPanel" role="main" style="text-align: center; display: none;" class="ui-content">
-		<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
-		
-	</div>
 </div>
 
 <div data-role="popup" id="popupChangerPass" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:340px;">
 	<div data-role="header" data-theme="a">
 		<a id="backToMenu" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupMenu');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
 		<h1>Mot de passe</h1>
-		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 	</div>
 	<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
 		<form id="formChangerMotDePassePopup" method="post" action="apis/changepass.php">
@@ -243,11 +238,11 @@
 			<div class="ui-corner-all custom-corners">
   					<div id="messageInfoDivChangerPass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
 					<span id="messageInfoChangerPassLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
-				</div>
+			</div>
 			</div>
 			<input placeholder="Mot de passe actuel" data-theme="a" name="currentPassword" id="currentPassword-text" value="" autocomplete="off" type="password">
-			<input placeholder="Nouveau mot de passe" data-theme="a" name="newPassword" id="newPassword-text" value="" type="password" autocomplete="off" type="password">
-			<input placeholder="Confirmation" data-theme="a" name="confirmPassword" id="confirmPassword-text" value="" type="password" autocomplete="off" type="password">
+			<input placeholder="Nouveau mot de passe" data-theme="a" name="newPassword" id="newPassword-text" value="" autocomplete="off" type="password">
+			<input placeholder="Confirmation" data-theme="a" name="confirmPassword" id="confirmPassword-text" value="" autocomplete="off" type="password">
 			<input type="hidden" name="pseudoName" id="pseudoName-text" value="">
 			<br/>
 			<button id="changerPassButton" type="submit" class="ui-btn ui-corner-all button_selection" style="background-color: #2980b9">Changer le mot de passe</button>
@@ -259,7 +254,6 @@
 	<div data-role="header" data-theme="a">
 		<a id="backToMenu" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupMenu');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
 		<h1>Logs</h1>
-		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 	</div>
 	<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
 		<ul id="listview-log" data-icon="false" data-role="listview" data-inset="true" style="height:auto; max-height:300px; overflow: hidden !important;">
@@ -280,6 +274,25 @@
 		<br />
 		<div class="uploadAnimation" role="button" aria-label="Upload file"></div>
 		<h2 id="uploadLabel">Mettre en ligne</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="popupMotDePasseOublie" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:360px;">
+	<div data-role="header" data-theme="a">
+		<a id="backToMenu" href="#popupConnexion" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupConnexion');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
+		<h1>Mot de passe oublié</h1>
+	</div>
+	<div role="main" style="text-align: center;" class="ui-content">
+		<form id="formOublieMotDePassePopup" method="post" action="apis/forgot_password.php">
+			<img id="userImage" src="img/changepass_icon.png" alt="utilisateur"></a><br />
+			<div class="ui-corner-all custom-corners">
+  				<div id="messageInfoDivOubliePass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
+				<span id="messageInfoOubliePassLabel" class="messageInfoLabel">Mot de passe incorrect !</span></div>
+			</div>
+			<input placeholder="Adresse mail" data-theme="a" name="email" id="email-text" value="" type="text" autocomplete="off">
+			<br/>
+			<button id="oubliePassButton" type="submit" class="ui-btn ui-corner-all button_selection" style="background-color: #2980b9">Valider</button>
+		</form>
 	</div>
 </div>
 	

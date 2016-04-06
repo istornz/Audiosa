@@ -141,28 +141,23 @@ function getAlbumNumberForArtist($connexion, $artistName)
 	return $nbrAlbums;
 }
 
-function getTrackNumberForAlbum($connexion, $albumName)
+function getTrackForAlbum($connexion, $albumName, $artistName)
 {
-	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE album='". $albumName ."'";
+	$commande_SQL	= "SELECT * FROM PISTES WHERE album='". $albumName ."' AND artist='". $artistName ."'";
 	$tableauPistes = array();
-	$nbrPistes = 0;
 	
 	if($selectStatement = $connexion->query($commande_SQL))
-	{
-		$nbrLigne = $selectStatement->rowCount();
-		
+	{		
 		while($ligne = $selectStatement->fetch(PDO::FETCH_ASSOC))
 		{
-			if (!in_array($ligne['idPISTES'], $tableauPistes))
+			if (!in_array($ligne, $tableauPistes))
 			{
-				$tableauPistes[] = $ligne['idPISTES'];
+				$tableauPistes[]=array_map("utf8_encode", $ligne);
 			}
 		}
-		
-		$nbrPistes = count($tableauPistes);
 	}
 	
-	return $nbrPistes;
+	return $tableauPistes;
 }
 
 function getArtistNameForAlbum($connexion, $albumName)
@@ -237,10 +232,13 @@ function retrieveAlbums($connexion)
 		
 		for($i = 0; $i < $nbrAlbum; $i++)
 		{
+			$artistName = getArtistNameForAlbum($connexion, $tableauAlbums[$i]);
+			$tracks = getTrackForAlbum($connexion, $tableauAlbums[$i], $artistName);
+			
 			echo "{";
 				echo '"album_name": "' . $tableauAlbums[$i] . '",';
-				echo '"tracks_nbr": ' . getTrackNumberForAlbum($connexion, $tableauAlbums[$i]) . ', ';
-				echo '"artist_name": "' . getArtistNameForAlbum($connexion, $tableauAlbums[$i]) . '"';
+				echo '"tracks": ' . json_encode($tracks) . ', ';
+				echo '"artist_name": "' . $artistName . '"';
 			
 			if($increLigne == ($nbrAlbum - 1 ))
 				echo "}";

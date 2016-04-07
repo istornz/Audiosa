@@ -295,9 +295,69 @@
 		</form>
 	</div>
 </div>
-	
 
-	<div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false">
+<div data-role="popup" id="popupEditionMetadonnee" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:500px;">
+	<div data-role="header" data-theme="a" style="height:150px;">
+		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+		<h1>Edition</h1>
+		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+		<img id="imgCoverEditionMetadonnee" src="img/covers/defaultCover.jpg" alt="albumCover"></a>
+		<div class="divHeaderEdition">
+			<span id="titreMusiqueEdition">Validé</span><br />
+			<span id="nomArtisteEdition">Booba ft. Benash</span><br />
+			<span id="nomAlbumEdition">Nero némesis</span>
+		</div>
+	</div>
+	<div role="main" style="text-align: center;" class="ui-content">
+		<form>
+			<fieldset id="fieldset_radio_choice" data-role="controlgroup" data-theme="b" data-type="horizontal">
+				<input type="radio" name="radio_choice_edition" id="radio_choice_detail_edition" value="on" checked="checked">
+				<label class="radio_choice_label_edition" for="radio_choice_detail_edition">Détails</label>
+				<input type="radio" name="radio_choice_edition" id="radio_choice_pochette_edition" value="off">
+				<label class="radio_choice_label_edition" for="radio_choice_pochette_edition">Pochette</label>
+			</fieldset>
+		</form>
+		
+		<div id="listview-editionMetadonnee" style="height:auto; max-height:300px; overflow: hidden !important;">
+		<ul data-icon="false" data-role="listview" data-inset="true" >
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Titre</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Artiste</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Album</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Interprète</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Interprète</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Interprète</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Interprète</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+		</ul>
+		</div>
+		
+		
+		<br />
+		<button id="addMetatagButton" type="submit" class="ui-btn ui-corner-all button_selection">Ajouter une métadonnée</button>
+	</div>
+</div>
+
+<div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false">
 		<div data-role="header" data-theme="a">
 			<a href="#" id="quitPlaylistButton" onclick="blurAction(0, document.getElementById('fullPage'));"  class="ui-btn ui-btn-left ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 			<a onclick="navigateToPopupID('#popupPlaylist');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" style="display: none;" id="backPlaylistChoice" class="ui-btn ui-btn-left ui-icon-carat-l ui-btn-icon-notext ui-corner-all" >No text</a>

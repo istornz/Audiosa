@@ -23,6 +23,8 @@ $(".categories_genres").click(function() {
 		$('.'+$(this).attr("id")+'_checked').remove();
 		genres_choisis.splice(is_in_array[1], 1);
 	}
+	
+	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis)
 });
 
 $(".categories_artistes").click(function() {
@@ -42,6 +44,8 @@ $(".categories_artistes").click(function() {
 		$('.'+$(this).attr("id")+'_checked').remove();
 		artistes_choisis.splice(is_in_array[1], 1);
 	}
+	
+	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis)
 });
 
 $(".categories_albums").click(function() {
@@ -61,6 +65,8 @@ $(".categories_albums").click(function() {
 		$('.'+$(this).attr("id")+'_checked').remove();
 		albums_choisis.splice(is_in_array[1], 1);
 	}
+	
+	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis)
 });
 
 $(".categories_annees").click(function() {
@@ -80,6 +86,8 @@ $(".categories_annees").click(function() {
 		$('.'+$(this).attr("id")+'_checked').remove();
 		annees_choisis.splice(is_in_array[1], 1);
 	}
+	
+	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis)
 });
 
 $(".choice_click").click(function() {
@@ -88,13 +96,18 @@ $(".choice_click").click(function() {
 });
 
 $("#backPlaylistChoice").click(function() {
+	$("#animate_playlist").css("height","475px");
+	$("#animate_playlist").css("width","587px");
+	$("#set_playlist_name").css("display","none");
 	$("#list_genres").css("display","none");
 	$("#list_artistes").css("display","none");
 	$("#list_annees").css("display","none");
 	$("#list_albums").css("display","none");
 	$("#choix").css("display","block");
 	$("#backPlaylistChoice").css("display","none");
-	$("#quitPlaylistButton").css("display","block");
+	$("#quitPlaylistButton").css("display","block");	
+	
+	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis)
 });
 
 
@@ -118,7 +131,95 @@ $("#choice_albums").click(function() {
 	$("#list_albums").css("display","block");
 });
 
+$("#create_playlist").click(function() {
+	$("#choix").css("display","none");
+	$("#list_annees").css("display","none");
+	$("#list_albums").css("display","none");
+	$("#list_artistes").css("display","none");
+	$("#list_genres").css("display","none");
+	$("#set_playlist_name").css("display","block");
+	$("#create_playlist").css("display","none");
+	
+	$("#quitPlaylistButton").css("display","none");
+	$("#backPlaylistChoice").css("display","block");
+	
+	$("#animate_playlist").css("height","240px");
+	$("#animate_playlist").css("width","350px");
+
+
 });
+
+$("#valider_playlist").click(function() {
+
+	var name = $("#nom_playlist_input").val();
+	
+	if( name ) {
+	
+		var alphanum  = /[^a-z\d]/i;
+		var nameIsValid = !(alphanum.test( name ));
+		var elementMessageDiv = $("#messageInfoPlaylistDiv");
+		var elementMessageLabel = $("#messageInfoPlaylistLabel");
+		
+		if(nameIsValid) {
+
+			sendChoices(genres_choisis, 
+						artistes_choisis, 
+						annees_choisis, 
+						albums_choisis, 
+						$("#nom_playlist_input").val(), function() {
+							
+							elementMessageDiv.css("background-color", "#16a085");
+									
+							elementMessageDiv.css("display", "block");
+								
+							elementMessageLabel.text("Playlist "+name+" créee avec succès");
+																
+							window.setTimeout(function() {
+								elementMessageDiv.css("display", "none");
+								$("#popupPlaylist").popup("close");
+								blurAction(0, document.getElementById('fullPage'));
+							}, 2500);
+							
+						});
+		}
+		else
+		{
+			
+			elementMessageDiv.css("background-color", "#e74c3c");
+					
+			elementMessageDiv.css("display", "block");
+				
+			//elementMessageLabel.text("Entrez un nom de playlist valide");
+				
+			elementMessageDiv.addClass("animated shake");
+				
+			window.setTimeout(function() {
+				elementMessageDiv.css("display", "none");
+			}, 2500);
+		}
+
+	}
+
+});
+
+});
+
+function setMessage(div, type, msg, timeout) {
+
+	$("#"+div).css("visibility","visible");
+
+	if(type == "error") {
+		type = "style='color: red;'";
+	} else { type = ""; }
+	
+	$("#"+div).html( "<p "+type+">"+msg+"</p>" );
+	
+	if(timeout != 0) {
+		setTimeout(function() { 
+			$("#"+div).css("visibility","hidden");
+		}, timeout);
+	}
+}
 
 function in_array(string, array){
     var result = [false,""];
@@ -131,7 +232,7 @@ function in_array(string, array){
     return result;
 }
 
-function sendChoices(genres, artists, annees, albums) {
+function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 
 	genres = JSON.stringify(genres);
 	artists = JSON.stringify(artists);
@@ -141,9 +242,17 @@ function sendChoices(genres, artists, annees, albums) {
 	$.ajax({
 	  method: "POST",
 	  url: "apis/playlist.php",
-	  data: { genres: genres, artists: artists, annees: annees, albums: albums, pseudoPost: pseudo, passwordPost: passwordHash}
+	  data: { playlist_name : playlist_name, genres: genres, artists: artists, annees: annees, albums: albums, pseudoPost: pseudo, passwordPost: passwordHash}
 	})
 	  .done(function( msg ) {
-		console.log(msg);
+		callback();
 	  });
+}
+
+function afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis) {
+	if(genres_choisis.length == 0 && artistes_choisis.length == 0 && albums_choisis.length == 0 && annees_choisis.length == 0){   
+	   $("#create_playlist").css("display","none");
+	}else{
+	   $("#create_playlist").css("display","inline-block");
+	}
 }

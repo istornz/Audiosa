@@ -375,3 +375,24 @@ font-size: 14px;
 	color: inherit;
 	text-decoration: none;
 }
+
+
+#nom_playlist_input::-webkit-input-placeholder {
+   color: grey;
+   text-shadow: 0;
+}
+
+#nom_playlist_input:-moz-placeholder { /* Firefox 18- */
+   color: grey;  
+   text-shadow: 0;
+}
+
+#nom_playlist_input::-moz-placeholder {  /* Firefox 19+ */
+   color: grey;  
+   text-shadow: 0;
+}
+
+#nom_playlist_input:-ms-input-placeholder {  
+   color: grey;  
+   text-shadow: 0;
+}

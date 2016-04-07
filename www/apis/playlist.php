@@ -10,9 +10,9 @@ header('Content-Type: application/json');
 include('conf.php');
 
 $genres = json_decode($_POST['genres']);
-$albums = json_decode($_POST['albums']);
 $annees = json_decode($_POST['annees']);
 $artists = json_decode($_POST['artists']);
+$playlist_name = json_decode($_POST['playlist_name']);
 
 $_genres = array();
 $_annees = array();
@@ -127,7 +127,7 @@ for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 
 for($iannee = 0; $iannee < count($annees); $iannee++) {
 	$piste_limite = rand(2,4); 
-	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE PISTES.date <". $connexion->quote($albums[$iannee]) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE PISTES.date >= ". $connexion->quote($albums[$iannee]) ." AND PISTES.date < ". $connexion->quote($albums[$iannee]+10) ." ORDER BY RAND() LIMIT ".$piste_limite;
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -135,6 +135,27 @@ for($iannee = 0; $iannee < count($annees); $iannee++) {
 		array_push($_playlist,$result["idPISTES"]);
 	}
 } 
+
+/************************************/
+//  	Creation de la playlist     //
+/************************************/
+
+
+
+for($ipiste = 0; $ipiste < count($_playlist	); $ipiste++) {
+
+	$commande_SQL	= "INSERT INTO PLAYLISTS VALUES() ". $connexion->quote($albums[$iannee]) ." AND PISTES.date < ". $connexion->quote($albums[$iannee]+10) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$query = $connexion->prepare($commande_SQL);
+	$query->execute();
+	
+	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
+		array_push($_playlist,$result["idPISTES"]);
+	}
+}
+
+
+
+
 
 echo json_encode($_playlist);
 

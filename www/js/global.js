@@ -399,17 +399,25 @@ $("#formOublieMotDePassePopup").submit(function(event) {
 function userConnected() {
     var elementConnectButton = $("#image_utilisateur");
     var elementImportButton = $("#import_button");
+	var elementNewPlaylistButton = $("#button_new_playlist");
+	var classEditMusic = $(".edit_music_container");
     elementConnectButton.attr("src", "img/menuIcon.png");
     elementConnectButton.parent().attr("href", "#popupMenu");
     elementImportButton.css("display", "block");
+	elementNewPlaylistButton.css("display", "block");
+	classEditMusic.css("display", "block");
 }
 
 function userDisconnected() {
     var elementConnectButton = $("#image_utilisateur");
     var elementImportButton = $("#import_button");
+	var elementNewPlaylistButton = $("#button_new_playlist");
+	var classEditMusic = $(".edit_music_container");
     elementConnectButton.attr("src", "img/user.png");
     elementConnectButton.parent().attr("href", "#popupConnexion");
     elementImportButton.css("display", "none");
+	elementNewPlaylistButton.css("display", "none");
+	classEditMusic.css("display", "none");
 }
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
     var notDismissible = $(this).jqmData('dismissible') === false;

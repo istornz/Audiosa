@@ -166,20 +166,67 @@ $("#valider_playlist").click(function() {
 						artistes_choisis, 
 						annees_choisis, 
 						albums_choisis, 
-						$("#nom_playlist_input").val(), function() {
+						name, function( rep ) {
 							
-							elementMessageDiv.css("background-color", "#16a085");
-									
-							elementMessageDiv.css("display", "block");
+							//	console.log(rep);
+						
+							if(rep.status_code == 0) {
+							
+								if(rep.error_description == "undeclared variables")
+								{
 								
-							elementMessageLabel.text("Playlist "+name+" créee avec succès");
-																
-							window.setTimeout(function() {
-								elementMessageDiv.css("display", "none");
-								$("#popupPlaylist").popup("close");
-								blurAction(0, document.getElementById('fullPage'));
-							}, 2500);
+									elementMessageLabel.text("Vous devez être connecté");
+									
+								}
+								else if(rep.error_description == "connection to database failed")
+								{
+								
+									elementMessageLabel.text("Une erreur est survenue, réessayez plus tard");
+									
+								}
+								else if(rep.error_description == "username and/or password does not match")
+								{
+								
+									elementMessageLabel.text("Vous devez être connecté");
+									
+								}
+								else if(rep.error_description == "Music list is empty")
+								{
+								
+									elementMessageLabel.text("Aucune musique ne corréspond à votre recherche");
+									
+								}
+								else
+								{
+									elementMessageLabel.text("Une erreur est survenue, réessayez plus tard");
+								}
 							
+								elementMessageDiv.css("background-color", "#e74c3c");
+					
+								elementMessageDiv.css("display", "block");
+																		
+								elementMessageDiv.addClass("animated shake");
+									
+								window.setTimeout(function() {
+									elementMessageDiv.css("display", "none");
+								}, 2500);
+									
+							} 
+							else 
+							{
+							
+								elementMessageDiv.css("background-color", "#16a085");
+										
+								elementMessageDiv.css("display", "block");
+									
+								elementMessageLabel.text("Playlist "+name+" créee avec succès");
+																	
+								window.setTimeout(function() {
+									elementMessageDiv.css("display", "none");
+									$("#popupPlaylist").popup("close");
+									blurAction(0, document.getElementById('fullPage'));
+								}, 2500);
+							}
 						});
 		}
 		else
@@ -238,6 +285,7 @@ function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 	artists = JSON.stringify(artists);
 	annees = JSON.stringify(annees);
 	albums = JSON.stringify(albums);
+	playlist_name = JSON.stringify(playlist_name);
 	
 	$.ajax({
 	  method: "POST",
@@ -245,7 +293,7 @@ function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 	  data: { playlist_name : playlist_name, genres: genres, artists: artists, annees: annees, albums: albums, pseudoPost: pseudo, passwordPost: passwordHash}
 	})
 	  .done(function( msg ) {
-		callback();
+		callback( msg );
 	  });
 }
 

@@ -3,6 +3,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 header('Content-Type: application/json');
 
+require("global_fonction.php");
+
 /************************/
 //	    Variables		//
 /************************/
@@ -32,31 +34,28 @@ try
     $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_READER_LOGIN, $DB_READER_PSW);
 	
 	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
-//	$passwordQuoted	= $connexion->quote($_POST['passwordPost']);
+	$passwordQuoted	= $connexion->quote($_POST['passwordPost']);
 }
 catch(PDOException $e)
 {
+	write_error_to_log("Création playlist","Connection DB failed: ". $e->getMessage());
 	die('{"status_code":0, "error_description":"connection to database failed"}');
 }
 
 /************************/
 //	   Verifications 	//
 /************************/
+try {
 
-$commande_SQL	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password='". $_POST['passwordPost'] ."' LIMIT 1";
+$commande_SQL	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password= ". $passwordQuoted ." LIMIT 1";
 
-if($selectStatement = $connexion->query($commande_SQL))
+$selectStatement = $connexion->query($commande_SQL);
+
+$nbr_ligne = $selectStatement->fetchColumn();
+
+if($nbr_ligne == 0)
 {
-	$nbr_ligne = $selectStatement->fetchColumn();
-	
-	if($nbr_ligne == 0)
-	{
-		die('{"status_code":0,"error_description":"username and/or password does not match"}');
-	}
-}
-else
-{
-	die('{"status_code":0,"error_description":"failed to execute query"}');
+	die('{"status_code":0,"error_description":"username and/or password does not match"}');
 }
 
 /************************************************/
@@ -84,9 +83,12 @@ for($igenres = 0; $igenres < count($_genres); $igenres++) {
 	$query->execute();
 	
 	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
-		array_push($_playlist,$result["idPISTES"]);
+		if (!in_array($result["idPISTES"], $_playlist)) {
+			array_push($_playlist,$result["idPISTES"]);
+		}
 	}
 }
+
 
 /***************************************************/
 //  Recuperation des pistes fonction de l'artiste  //
@@ -99,7 +101,9 @@ for($iartist = 0; $iartist < count($artists); $iartist++) {
 	$query->execute();
 	
 	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
-		array_push($_playlist,$result["idPISTES"]);
+		if (!in_array($result["idPISTES"], $_playlist)) {
+			array_push($_playlist,$result["idPISTES"]);
+		}	
 	}
 }
 
@@ -115,9 +119,12 @@ for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 	$query->execute();
 	
 	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
-		array_push($_playlist,$result["idPISTES"]);
+		if (!in_array($result["idPISTES"], $_playlist)) {
+			array_push($_playlist,$result["idPISTES"]);
+		}
 	}
 }
+
 
 /***************************************************/
 //  Recuperation des pistes fonction de l'année    //
@@ -132,31 +139,63 @@ for($iannee = 0; $iannee < count($annees); $iannee++) {
 	$query->execute();
 	
 	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
-		array_push($_playlist,$result["idPISTES"]);
+		if (!in_array($result["idPISTES"], $_playlist)) {
+			array_push($_playlist,$result["idPISTES"]);
+		}
 	}
 } 
+
+if(count($_playlist) == 0)
+{
+	die('{"status_code":0,"error_description":"Music list is empty"}');
+}
+
 
 /************************************/
 //  	Creation de la playlist     //
 /************************************/
 
+	$commande_SQL	= "INSERT INTO PLAYLISTS VALUES ('',". $connexion->quote($playlist_name) .", 0)";
+	$query = $connexion->prepare($commande_SQL);
+	$query->execute();
+
+	
+	
+/************************************/
+//  	ID de la playlist           //
+/************************************/
+
+	$commande_SQL	= "SELECT idPLAYLIST FROM PLAYLISTS WHERE PLAYLISTS.name = ". $connexion->quote($playlist_name) ." ORDER BY idPLAYLIST DESC LIMIT 1";
+	$query = $connexion->prepare($commande_SQL);
+	$query->execute();
+			
+	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
+			$playlist_id = $result["idPLAYLIST"];
+	}
+
+	
+/************************************/
+//  	Insertion des musiques      //
+/************************************/
 
 
 for($ipiste = 0; $ipiste < count($_playlist	); $ipiste++) {
 
-	$commande_SQL	= "INSERT INTO PLAYLISTS VALUES() ". $connexion->quote($albums[$iannee]) ." AND PISTES.date < ". $connexion->quote($albums[$iannee]+10) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "INSERT INTO CONTENU_PLAYLISTS VALUES ( '', ". $playlist_id .", ". $_playlist[$ipiste] ." )";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
-	
-	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
-		array_push($_playlist,$result["idPISTES"]);
-	}
 }
 
+} catch (Exception $err) {
+	die('{"status_code":0,"error_description":"Failed to execute query"}');
+	write_error_to_log("Création playlist", $err->getMessage());
+}
+
+$commande_SQL	= "UPDATE PLAYLISTS SET items_count = '".count($_playlist)."' WHERE idPLAYLIST = '$playlist_id' ";
+$query = $connexion->prepare($commande_SQL);
+$query->execute();
 
 
-
-
-echo json_encode($_playlist);
+echo json_encode('{"status_code":1}');
 
 ?>

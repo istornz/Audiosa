@@ -37,7 +37,7 @@
 				<img id="icon_logo" src="img/logo.png" alt="logo" >&nbsp;Audiosa 
 				<?php
 					if($user_logged == 0)
-						echo '<a class="icon_navbar" href="#popupConnexion" data-rel="popup" data-position-to="window" data-transition="pop"><img id="image_utilisateur" src="img/user.png" alt="utilisateur"></a>';
+						echo '<a class="icon_navbar" href="#popupEditionMetadonnee" data-rel="popup" data-position-to="window" data-transition="pop"><img id="image_utilisateur" src="img/user.png" alt="utilisateur"></a>';
 					else
 						echo '<a class="icon_navbar" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop"><img id="image_utilisateur" src="img/menuIcon.png" alt="utilisateur"></a>';
 				?>
@@ -196,7 +196,7 @@
 		<form id="formConnexionPopup" method="post" action="apis/connexion.php">
 			<img src="img/logo.png" alt="logo" height="100px" width="100px" />
 			<div class="ui-corner-all custom-corners">
-  					<div id="messageInfoConnexionDiv" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
+  				<div id="messageInfoConnexionDiv" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
 					<span id="messageInfoConnexionLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
 				</div>
 			</div>
@@ -236,8 +236,8 @@
 		<form id="formChangerMotDePassePopup" method="post" action="apis/changepass.php">
 			<img id="userImage" src="img/changepass_icon.png" alt="utilisateur"></a><br />
 			<div class="ui-corner-all custom-corners">
-  					<div id="messageInfoDivChangerPass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
-					<span id="messageInfoChangerPassLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
+  				<div id="messageInfoDivChangerPass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
+				<span id="messageInfoChangerPassLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
 			</div>
 			</div>
 			<input placeholder="Mot de passe actuel" data-theme="a" name="currentPassword" id="currentPassword-text" value="" autocomplete="off" type="password">
@@ -297,136 +297,142 @@
 </div>
 
 
-<div data-role="popup" id="popupEditionMetadonnee" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:360px;">
-	<div data-role="header" data-theme="a">
-		<a id="backToMenu" href="#popupConnexion" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupConnexion');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
+<div data-role="popup" id="popupEditionMetadonnee" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:500px;">
+	<div data-role="header" data-theme="a" style="height:150px;">
+		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 		<h1>Edition</h1>
+		<img id="imgCoverEditionMetadonnee" src="img/covers/defaultCover.jpg" alt="albumCover"></a>
+		<div class="divHeaderEdition">
+			<span id="titreMusiqueEdition">Validé</span><br />
+			<span id="nomArtisteEdition">Booba ft. Benash</span><br />
+			<span id="nomAlbumEdition">Nero némesis</span>
+		</div>
 	</div>
 	<div role="main" style="text-align: center;" class="ui-content">
-		<form id="formOublieMotDePassePopup" method="post" action="apis/forgot_password.php">
-			<img id="userImage" src="img/changepass_icon.png" alt="utilisateur"></a><br />
-			<div class="ui-corner-all custom-corners">
-  				<div id="messageInfoDivOubliePass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
-				<span id="messageInfoOubliePassLabel" class="messageInfoLabel">Mot de passe incorrect !</span></div>
-			</div>
-			<input placeholder="Adresse mail" data-theme="a" name="email" id="email-text" value="" type="text" autocomplete="off">
-			<br/>
-			<button id="oubliePassButton" type="submit" class="ui-btn ui-corner-all button_selection" style="background-color: #2980b9">Valider</button>
+		<form>
+			<fieldset id="fieldset_radio_choice" data-role="controlgroup" data-theme="b" data-type="horizontal">
+				<input type="radio" name="radio_choice_edition" id="radio_choice_detail_edition" value="on" checked="checked">
+				<label class="radio_choice_label_edition" for="radio_choice_detail_edition">Détails</label>
+				<input type="radio" name="radio_choice_edition" id="radio_choice_pochette_edition" value="off">
+				<label class="radio_choice_label_edition" for="radio_choice_pochette_edition">Pochette</label>
+			</fieldset>
 		</form>
+		
+		
 	</div>
 </div>
 	
 <div data-role="popup" id="popupPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false">
-		<div data-role="header" data-theme="a">
-			<a href="#" id="quitPlaylistButton" onclick="blurAction(0, document.getElementById('fullPage'));"  class="ui-btn ui-btn-left ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
-			<a href="#" style="display: none;" id="backPlaylistChoice" onclick="" class="ui-btn ui-btn-left ui-icon-carat-l ui-btn-icon-notext ui-corner-all" >No text</a>
-			<h1>Générer une playlist</h1>
+	<div data-role="header" data-theme="a">
+		<a href="#" id="quitPlaylistButton" onclick="blurAction(0, document.getElementById('fullPage'));"  class="ui-btn ui-btn-left ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+		<a href="#" style="display: none;" id="backPlaylistChoice" onclick="" class="ui-btn ui-btn-left ui-icon-carat-l ui-btn-icon-notext ui-corner-all" >No text</a>
+		<h1>Générer une playlist</h1>
+	</div>
+	<div role="main" style="height: 475px; width: 587px;" class="ui-content">
+		<div id="choix">
+			<h1 class="txt-center" style="margin-bottom: 20px;" >Veuillez faire vos choix</h1>
+			<a href="#" id="choice_genres" class="choice_click"><div class="categories cat_genres">
+			</div></a>
+			<a href="#" id="choice_artistes" class="choice_click"><div class="categories cat_artistes">
+			</div></a>
+			<a href="#" id="choice_albums" class="choice_click"><div class="categories cat_albums">
+			</div></a>
+			<a href="#" id="choice_annees" class="choice_click"><div class="categories cat_annees">
+			</div></a>
 		</div>
-		<div role="main" style="height: 475px; width: 587px;" class="ui-content">
-			<div id="choix">
-				<h1 class="txt-center" style="margin-bottom: 20px;" >Veuillez faire vos choix</h1>
-				<a href="#" id="choice_genres" class="choice_click"><div class="categories cat_genres">
-				</div></a>
-				<a href="#" id="choice_artistes" class="choice_click"><div class="categories cat_artistes">
-				</div></a>
-				<a href="#" id="choice_albums" class="choice_click"><div class="categories cat_albums">
-				</div></a>
-				<a href="#" id="choice_annees" class="choice_click"><div class="categories cat_annees">
-				</div></a>
+		
+		<div id="list_genres" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+		
+			<div id="classique" class="categories categories_genres cat_genres">
+				
+				<div class="genre_title">Classique</div>
 			</div>
 			
-			<div id="list_genres" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			<div id="jazz" class="categories categories_genres cat_genres">
 			
-				<div id="classique" class="categories categories_genres cat_genres">
-					
-					<div class="genre_title">Classique</div>
-				</div>
-				
-				<div id="jazz" class="categories categories_genres cat_genres">
-				
-					<div class="genre_title">Jazz</div>
-				</div>
-				
-				<div id="rap" class="categories categories_genres cat_genres">
-				
-					<div class="genre_title">Rap</div>
-				</div>
-				
+				<div class="genre_title">Jazz</div>
 			</div>
 			
-			<div id="list_albums" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			<div id="rap" class="categories categories_genres cat_genres">
 			
-				<div id="album1" class="categories categories_albums cat_c_albums cat_albums ">
-					
-					<div class="album_title">Album 1</div>
-				</div>
-				
-				<div id="album2" class="categories categories_albums cat_c_albums cat_albums">
-				
-					<div class="album_title">Album 2</div>
-				</div>
-				
-				<div id="album3" class="categories categories_albums cat_c_albums cat_albums">
-				
-					<div class="album_title">Album 3</div>
-				</div>
-				
+				<div class="genre_title">Rap</div>
 			</div>
 			
-			<div id="list_artistes" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
-			
-				<div id="artiste1" class="categories categories_artistes cat_c_artistes cat_artistes">
-					
-					<div class="artist_title">Artiste 1</div>
-				</div>
+		</div>
+		
+		<div id="list_albums" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+		
+			<div id="album1" class="categories categories_albums cat_c_albums cat_albums ">
 				
-				<div id="artiste2" class="categories categories_artistes cat_c_artistes cat_artistes">
-				
-					<div class="artist_title">Artiste 2</div>
-				</div>
-				
-				<div id="artiste3" class="categories categories_artistes cat_c_artistes cat_artistes">
-				
-					<div class="artist_title">Artiste 3</div>
-				</div>
-				
-				<div id="artiste4" class="categories categories_artistes cat_c_artistes cat_artistes">
-					
-					<div class="artist_title">Artiste 4</div>
-				</div>
-				
-				<div id="artiste5" class="categories categories_artistes cat_c_artistes cat_artistes">
-				
-					<div class="artist_title">Artiste 5</div>
-				</div>
-				
-				<div id="artiste6" class="categories categories_artistes cat_c_artistes cat_artistes">
-				
-					<div class="artist_title">Artiste 6</div>
-				</div>
-				
+				<div class="album_title">Album 1</div>
 			</div>
 			
-			<div id="list_annees" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			<div id="album2" class="categories categories_albums cat_c_albums cat_albums">
 			
-				<div id="1980" class="categories categories_annees cat_annees">
-					
-					<div class="genre_title">1980</div>
-				</div>
-				
-				<div id="1990" class="categories categories_annees cat_annees">
-				
-					<div class="genre_title">1990</div>
-				</div>
-				
-				<div id="2000" class="categories categories_annees cat_annees">
-				
-					<div class="genre_title">2000</div>
-				</div>
-				
+				<div class="album_title">Album 2</div>
 			</div>
+			
+			<div id="album3" class="categories categories_albums cat_c_albums cat_albums">
+			
+				<div class="album_title">Album 3</div>
+			</div>
+			
+		</div>
+		
+		<div id="list_artistes" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+		
+			<div id="artiste1" class="categories categories_artistes cat_c_artistes cat_artistes">
+				
+				<div class="artist_title">Artiste 1</div>
+			</div>
+			
+			<div id="artiste2" class="categories categories_artistes cat_c_artistes cat_artistes">
+			
+				<div class="artist_title">Artiste 2</div>
+			</div>
+			
+			<div id="artiste3" class="categories categories_artistes cat_c_artistes cat_artistes">
+			
+				<div class="artist_title">Artiste 3</div>
+			</div>
+			
+			<div id="artiste4" class="categories categories_artistes cat_c_artistes cat_artistes">
+				
+				<div class="artist_title">Artiste 4</div>
+			</div>
+			
+			<div id="artiste5" class="categories categories_artistes cat_c_artistes cat_artistes">
+			
+				<div class="artist_title">Artiste 5</div>
+			</div>
+			
+			<div id="artiste6" class="categories categories_artistes cat_c_artistes cat_artistes">
+			
+				<div class="artist_title">Artiste 6</div>
+			</div>
+			
+		</div>
+		
+		<div id="list_annees" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+		
+			<div id="1980" class="categories categories_annees cat_annees">
+				
+				<div class="genre_title">1980</div>
+			</div>
+			
+			<div id="1990" class="categories categories_annees cat_annees">
+			
+				<div class="genre_title">1990</div>
+			</div>
+			
+			<div id="2000" class="categories categories_annees cat_annees">
+			
+				<div class="genre_title">2000</div>
+			</div>
+			
 		</div>
 	</div>
+</div>
 		
 	<script src="js/jquery.js"></script>
 	<!-- Socket -->

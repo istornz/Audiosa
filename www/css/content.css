@@ -396,3 +396,29 @@ font-size: 14px;
    color: grey;  
    text-shadow: 0;
 }
+
+#imgCoverEditionMetadonnee
+{
+	float: left;
+	margin-top: 10px;
+    margin-left: 17px;
+    width: 80px;
+}
+
+.divHeaderEdition
+{
+	float: left;
+	margin-top: 12px;
+    margin-left: 17px;
+	line-height: 25px;
+}
+
+.radio_choice_label_edition
+{
+	font-size: 12px !important;
+}
+
+#fieldset_radio_choice
+{
+	margin-top: -7px;
+}

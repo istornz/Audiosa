@@ -452,3 +452,23 @@ font-size: 14px;
 {
 	height: 45px !important;
 }
+
+
+.edit_music_container
+{
+	float: right; 
+	margin-right: -20px;
+}
+
+.edit_music
+{
+	width: 43px;
+    height: 43px;
+    margin-top: 10px;
+}
+
+.no-carat-l a:after
+{
+	background-image: none;
+	display: none;
+}

@@ -2,13 +2,4 @@
 [23/03/2016 11:23:29]	[API Importation]	Connexion BDD impossible
 [23/03/2016 11:23:29]	[Site WEB]	Connexion serveur socket impossible
 [23/03/2016 11:23:29]	[API Connexion]	Connexion BDD impossible
-<<<<<<< HEAD
 [07/04/2016 13:34:17]	[PLAYLIST]	TEST
-[07/04/2016 13:34:17]	[PLAYLIST]	TEST 2
-=======
-[07/04/2016 13:32:55]	[PLAYLIST]	BON JOUR YOU TUBE
-[07/04/2016 13:33:17]	[PLAYLIST]	BON JOUR YOU TUBE
-[07/04/2016 13:33:46]	[PLAYLIST]	BON JOUR YOU TUBE
-[07/04/2016 13:34:17]	[PLAYLIST]	BON JOUR YOU TUBE
-[08/04/2016 11:08:31]	[CrÃ©ation playlist]	Connection DB failed: SQLSTATE[HY000] [1044] Accès refusé pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
->>>>>>> origin/master

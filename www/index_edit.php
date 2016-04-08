@@ -318,36 +318,22 @@
 			</fieldset>
 		</form>
 		
-		<div id="listview-editionMetadonnee" style="height:auto; max-height:300px; overflow: hidden !important;">
+		<div id="listview-editionMetadonnee" style=" min-height:300px; max-height: 300px; overflow: hidden !important;">
 		<ul data-icon="false" data-role="listview" data-inset="true" >
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
+							<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Album</span>
 					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Artiste</span>
+				</li>				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Album</span>
 					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
+				</li>				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Album</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>				<li class="cellMetadonnee">
 					<span class="metadonnee_label" for="text-4">Album</span>
 					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
 				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Interprète</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Interprète</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Interprète</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Interprète</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
+
 		</ul>
 		</div>
 		

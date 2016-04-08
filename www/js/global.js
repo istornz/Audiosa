@@ -598,6 +598,7 @@ $("#visualiserLogButton").click(function(){
 	    $.ajax({
 				url : 'error.log',
 				type : 'GET',
+				cache: false,
 				dataType : 'text',
 				success : function(log_file_content, statut) {
 					stateLogLoading = true;

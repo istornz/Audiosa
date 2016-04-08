@@ -588,9 +588,21 @@ $(".edit_music").click(function() {
 
 $("#fieldset_radio_choice").click(function (event) {
     
-	console.log($("#radio_choice_detail_edition").attr("data-cacheval"));
-	console.log($("#radio_choice_pochette_edition").attr("data-cacheval"));
+	var elementRadioDetail = $("#radio_choice_detail_edition");
+	var elementRadioPochette = $("#radio_choice_pochette_edition");
 	
+	if(elementRadioDetail.attr("data-cacheval") == "true")
+	{
+		console.log("Affichage Detail");
+	}
+	else
+	{
+		console.log("Affichage Pochette");
+	}
+	
+	
+	//console.log($("#radio_choice_detail_edition").attr("data-cacheval"));
+	//console.log($("#radio_choice_pochette_edition").attr("data-cacheval"));
 });
 
 $("#visualiserLogButton").click(function(){

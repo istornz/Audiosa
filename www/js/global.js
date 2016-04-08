@@ -586,6 +586,13 @@ $(".edit_music").click(function() {
 
 });
 
+$("#fieldset_radio_choice").click(function (event) {
+    
+	console.log($("#radio_choice_detail_edition").attr("data-cacheval"));
+	console.log($("#radio_choice_pochette_edition").attr("data-cacheval"));
+	
+});
+
 $("#visualiserLogButton").click(function(){
 	
 	var elementListViewLog = $('#listview-log');
@@ -633,7 +640,5 @@ $("#visualiserLogButton").click(function(){
 
     	});
     }
-    
-    
    
 });

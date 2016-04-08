@@ -580,6 +580,12 @@ function navigateToPopupID(page)
     $.mobile.changePage(page, 'pop', true, true);
 }
 
+$(".edit_music").click(function() {
+	
+	$("#popupEditionMetadonnee").popup("open", { transition: "pop" });
+
+});
+
 $("#visualiserLogButton").click(function(){
 	
 	var elementListViewLog = $('#listview-log');

@@ -308,7 +308,7 @@
 			<span id="nomAlbumEdition">Nero némesis</span>
 		</div>
 	</div>
-	<div role="main" style="height: 380px; text-align: center;" class="ui-content">
+	<div role="main" style="text-align: center;" class="ui-content">
 		<form>
 			<fieldset id="fieldset_radio_choice" data-role="controlgroup" data-theme="b" data-type="horizontal">
 				<input type="radio" name="radio_choice_edition" id="radio_choice_detail_edition" value="on" checked="checked">
@@ -318,47 +318,6 @@
 			</fieldset>
 		</form>
 		
-<<<<<<< HEAD
-		<div id="listview-editionMetadonnee" style="height:270px;">
-		<ul data-icon="false" style="min-height:270px; overflow: hidden !important;" data-role="listview" data-inset="true" >
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li><li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
-				</li>
-				<li class="cellMetadonnee">
-					<span class="metadonnee_label" for="text-4">Titre</span>
-=======
 		<div id="listview-editionMetadonnee" style=" min-height:300px; max-height: 300px; overflow: hidden !important;">
 		<ul data-icon="false" data-role="listview" data-inset="true" >
 							<li class="cellMetadonnee">
@@ -372,12 +331,13 @@
 					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
 				</li>				<li class="cellMetadonnee">
 					<span class="metadonnee_label" for="text-4">Album</span>
->>>>>>> origin/master
 					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
 				</li>
 
 		</ul>
 		</div>
+		
+		
 		<br />
 		<button id="addMetatagButton" type="submit" class="ui-btn ui-corner-all button_selection">Ajouter une métadonnée</button>
 	</div>

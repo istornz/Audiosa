@@ -23,4 +23,6 @@ $DB_WRITER_PSW		= "5VHKUmhKrsSspmjs";
 
 
 define("ERROR_LOG_FILE", "../error.log");
+define("DEFAULT_MYSQL_TYPE", "VARCHAR(60)");
+
 ?>

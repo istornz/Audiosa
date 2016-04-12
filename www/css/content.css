@@ -423,24 +423,34 @@ font-size: 14px;
 	margin-top: -7px;
 }
 
-#addMetatagButton
+#editButtonMeta
 {
 	background-color: #16a085 ;
 	margin: 0 auto !important;
     width: 250px;
 }
 
-.metadonnee_label
+.metadonnee_left
 {
-	width: 100px !important;
 	text-align: right !important;
-	margin-left: 10px !important;
-	margin-top: -10px !important;
 	line-height: 41px;
 	float: left;
 }
 
+.metadonnee_label
+{
+	width: 100px !important;
+	margin-top: -10px !important;
+	margin-left: 10px !important;
+}
+
 .metadonnee_field
+{
+	width: 108px !important;
+    margin-top: -5px !important;
+}
+
+.metadonnee_right
 {
 	margin-top: -5px !important;
 	width: 300px !important;
@@ -451,8 +461,8 @@ font-size: 14px;
 .cellMetadonnee
 {
 	height: 45px !important;
+	border: none !important;
 }
-
 
 .edit_music_container
 {
@@ -472,4 +482,30 @@ font-size: 14px;
 {
 	background-image: none;
 	display: none;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#coverPreview
+{	
+	max-width:270px; /* On garde le ratio de l'image */
+	max-height:270px;
+	width: auto;
+	height: auto;
 }

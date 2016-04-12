@@ -25,18 +25,6 @@ if($_POST['newPasswordPost'] != $_POST['confirmPasswordPost'])
 try 
 {
     $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_WRITER_LOGIN, $DB_WRITER_PSW);
-	
-	if(isValidMd5($_POST['newPasswordPost']))
-	{
-		$newPasswordQuoted	= $connexion->quote($_POST['newPasswordPost']);
-	}
-	else
-	{
-		$newPasswordQuoted = "'". md5($_POST['newPasswordPost']) . "'";
-	}
-		
-	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
-	$passwordQuoted	= $connexion->quote($_POST['actualPasswordPost']);
 }
 catch(PDOException $e)
 {
@@ -47,9 +35,11 @@ catch(PDOException $e)
 // Verification utilisateur //
 /****************************/
 
-$commande_SQL	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password=". $passwordQuoted ." LIMIT 1";
+$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password LIMIT 1');
+$selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
+$selectStatement->bindValue(':password', $_POST['actualPasswordPost'], PDO::PARAM_STR);
 
-if($selectStatement = $connexion->query($commande_SQL))
+if($selectStatement->execute())
 {
 	$nbr_ligne = $selectStatement->fetchColumn();
 	
@@ -67,9 +57,12 @@ else
 //    Changement Pass   //
 /************************/
 
-$commande_SQL	= "UPDATE UTILISATEUR SET UTILISATEUR.password = ". $newPasswordQuoted ." WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password=". $passwordQuoted ."";
+$selectStatement = $connexion->prepare('UPDATE UTILISATEUR SET UTILISATEUR.password = :newpassword WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password');
+$selectStatement->bindValue(':newpassword', $_POST['newPasswordPost'], PDO::PARAM_STR);
+$selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
+$selectStatement->bindValue(':password', $_POST['actualPasswordPost'], PDO::PARAM_STR);
 
-if($connexion->query($commande_SQL))
+if($selectStatement->execute())
 {
 	$_SESSION['pseudo'] 	= $_POST['pseudoPost'];
 	$_SESSION['password'] 	= $_POST['newPasswordPost'];
@@ -80,9 +73,5 @@ else
 	die('{"status_code":0,"error_description":"failed to execute update query"}');
 }
 
-function isValidMd5($md5 ='')
-{
-    return preg_match('/^[a-f0-9]{32}$/', $md5);
-}
 
 ?>

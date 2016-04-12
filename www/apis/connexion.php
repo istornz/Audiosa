@@ -21,9 +21,6 @@ if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
 try 
 {
     $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_READER_USER_LOGIN, $DB_READER_USER_PSW);
-	
-	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
-	$passwordQuoted	= $connexion->quote($_POST['passwordPost']);
 }
 catch(PDOException $e)
 {
@@ -34,9 +31,11 @@ catch(PDOException $e)
 //		   JSON			//
 /************************/
 
-$commande_SQL	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password='". md5($_POST['passwordPost']) ."' LIMIT 1";
+$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password LIMIT 1');
+$selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
+$selectStatement->bindValue(':password', md5($_POST['passwordPost']), PDO::PARAM_STR);
 
-if($selectStatement = $connexion->query($commande_SQL))
+if($selectStatement->execute())
 {
 	$nbr_ligne = $selectStatement->fetchColumn();
 	

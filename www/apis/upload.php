@@ -35,9 +35,11 @@ catch(PDOException $e)
 //	   Verifications 	//
 /************************/
 
-$commande_SQL	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password='". $_POST['passwordPost'] ."' LIMIT 1";
+$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password LIMIT 1');
+$selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
+$selectStatement->bindValue(':password', $_POST['passwordPost'], PDO::PARAM_STR);
 
-if($selectStatement = $connexion->query($commande_SQL))
+if($selectStatement->execute())
 {
 	$nbr_ligne = $selectStatement->fetchColumn();
 	

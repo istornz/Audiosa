@@ -2,6 +2,7 @@ elementProgress = null;
 pseudo = null;
 passwordHash = null;
 stateLogLoading = false;
+customMetaTag = 0;
 
 function blurAction(state, div) {
     if (state == 1) div.className = "fullPageBlurred";
@@ -419,12 +420,14 @@ function userDisconnected() {
 	elementNewPlaylistButton.css("display", "none");
 	classEditMusic.css("display", "none");
 }
+
 $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
     var notDismissible = $(this).jqmData('dismissible') === false;
     if (notDismissible) {
         $('.ui-popup-screen').off();
     }
 });
+
 $(document).ready(function() {
     var fileInput = document.querySelector("#uploadForm");
     var fileData = $('#fileUpload').prop('files');
@@ -586,24 +589,64 @@ $(".edit_music").click(function() {
 
 });
 
-$("#fieldset_radio_choice").click(function (event) {
-    
-	var elementRadioDetail = $("#radio_choice_detail_edition");
-	var elementRadioPochette = $("#radio_choice_pochette_edition");
+$("#radio_choice_detail_edition").on('change', function ()
+{
+	var elementDivDetail = $("#divlist-editionMetadonnee");
+	var elementDivPochette = $("#divlist-editionPochette");
+	var buttonEditLabel = $("#titleEditButton");
+	var inputFormUpload = $("#uploadPochetteInput");
+	var editButtonUpload =  $("#editButtonMeta");
 	
-	if(elementRadioDetail.attr("data-cacheval") == "true")
-	{
-		console.log("Affichage Detail");
-	}
-	else
-	{
-		console.log("Affichage Pochette");
-	}
-	
-	
-	//console.log($("#radio_choice_detail_edition").attr("data-cacheval"));
-	//console.log($("#radio_choice_pochette_edition").attr("data-cacheval"));
+	elementDivDetail.css("display", "block");
+	elementDivPochette.css("display", "none");
+	buttonEditLabel.text("Ajouter une métadonnée");
+	inputFormUpload.css("display", "none");
+	editButtonUpload.attr("onclick", "addCustomMetatag();");
 });
+
+$("#radio_choice_pochette_edition").on('change', function ()
+{
+	var elementDivDetail = $("#divlist-editionMetadonnee");
+	var elementDivPochette = $("#divlist-editionPochette");
+	var buttonEditLabel = $("#titleEditButton");
+	var inputFormUpload = $("#uploadPochetteInput");
+	var editButtonUpload =  $("#editButtonMeta");
+	
+	elementDivDetail.css("display", "none");
+	elementDivPochette.css("display", "block");
+	buttonEditLabel.text("Modifier");
+	inputFormUpload.css("display", "block");
+	editButtonUpload.attr("onclick", "");
+});
+
+$("#uploadPochetteInput").on('change', function ()
+{
+	var cover = this.files[0];
+	var blobURLCover = window.URL.createObjectURL(this.files[0]);
+	
+	$("#coverPreview").attr("src", blobURLCover);
+});
+
+$("#formEditionMetadonnee").submit(function(event) {
+    event.preventDefault();
+    
+
+    console.log($('#formEditionMetadonnee').serialize());
+    
+    
+});
+
+function addCustomMetatag()
+{
+	var elementListview = $("#listview-editionMetadonnee");
+	customMetaTag++;
+	
+	var htmlContent = '<li class="cellMetadonnee"><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_left metadonnee_field ui-shadow-inset"><input style="text-align:right;" data-theme="s" data-wrapper-class="metadonnee_left metadonnee_left" type="text" data-mini="true" name="custom_metatag_title_meta'+ customMetaTag +'" id="custom_metatag_title_meta'+ customMetaTag +'"></div><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_right ui-shadow-inset"><input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="custom_metatag_content_meta'+ customMetaTag +'" id="custom_metatag_content_meta'+ customMetaTag +'"></div></li>';
+	
+	elementListview.append(htmlContent);
+	elementListview.listview( "refresh" );
+	elementListview.append();
+}
 
 $("#visualiserLogButton").click(function(){
 	

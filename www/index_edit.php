@@ -336,6 +336,35 @@
 					<span class="metadonnee_label" for="text-4">Moncef</span>
 					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
 				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Moncef</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Moncef</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Moncef</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Moncef</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Moncef</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Moncef</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				<li class="cellMetadonnee">
+					<span class="metadonnee_label" for="text-4">Moncef</span>
+					<input data-theme="s" data-wrapper-class="metadonnee_field" type="text" data-mini="true" name="text-4" id="text-4" value="" />
+				</li>
+				
 		</ul>
 		</div>
 		<br />

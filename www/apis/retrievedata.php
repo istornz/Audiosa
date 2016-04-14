@@ -53,10 +53,28 @@ function retrieveMorceaux($connexion)
 		while($ligne = $selectStatement->fetch(PDO::FETCH_ASSOC))
 		{
 			$nbrColonne = $selectStatement->columnCount();
-			$convertToUTF8Format[]=array_map("utf8_encode", $ligne);
+			$convertToUTF8Format[] = array_map("utf8_encode", $ligne);
+			
+			/*
+			$genreID = $convertToUTF8Format[0]["genre"];
+			$commande_SQL	= "SELECT nom FROM GENRES WHERE idGENRES=" . $genreID;
+			
+			if($selectStatement = $connexion->query($commande_SQL))
+			{
+				if($ligne = $selectStatement->fetch(PDO::FETCH_ASSOC))
+				{
+					$arrayKeyValueGenre = array("genre" => $ligne['nom']);
+					print_r( $arrayKeyValueGenre );
+					//$convertToUTF8Format[$increLigne] = array_replace($convertToUTF8Format[$increLigne], $arrayKeyValueGenre);
+				}
+				
+			}
+			*/
 			
 			$increLigne++;
 		}
+		
+		
 		
 		echo json_encode($convertToUTF8Format);
 		

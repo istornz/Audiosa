@@ -104,12 +104,12 @@
 	<div class="pt-page pt-page-1">
 		<div id="list_morceaux" class="list_musique">
 			<ul class="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
-				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Andrea Clark<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
+				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/imgae-nekfeu-de-album-feu-cover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Nique les clones<br><span class="morceaux-artist-album">Nekfeu - FEU</span></div><div class="edit_music_container"><img class="edit_music" onclick="loadEditMetatagPopup(0);" src="img/edit_music.png"></div></a></li>
 				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Beverly Graham<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
-				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Christina Morales<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
+				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Christina Morales<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" onclick="loadEditMetatagPopup(1);" src="img/edit_music.png"></div></a></li>
 				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Denise Patterson<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
-				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Deborah Curtis<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
-				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Edward Barnett<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
+				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Deborah Curtis<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" onclick="loadEditMetatagPopup(2);" src="img/edit_music.png"></div></a></li>
+				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Edward Barnett<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" onclick="loadEditMetatagPopup(3);" src="img/edit_music.png"></div></a></li>
 				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Hannah Carpenter<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
 				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Jane Carter<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>
 				<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="img/covers/defaultCover.jpg" alt="Default cover" /></div><div class="morceaux-artist">Jane Gray<br><span class="morceaux-artist-album">Artist - Album</span></div><div class="edit_music_container"><img class="edit_music" src="img/edit_music.png"></div></a></li>		
@@ -321,7 +321,7 @@
 		<div id="divlist-editionMetadonnee" style="min-height:270px; max-height: 270px; overflow: hidden !important; display:block;">
 			<form id="formEditionMetadonnee" method="POST" action="something.php">
 				<ul id="listview-editionMetadonnee" data-shadow="false" data-icon="false" data-role="listview" data-inset="true" >
-					<li class="cellMetadonnee">
+					<!--<li class="cellMetadonnee">
 						<span name="metatag_title_artist" id="metatag_title_artist" class="metadonnee_left metadonnee_label" for="artist">Artiste</span>
 						<input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="artist" id="artist" value="" />
 					</li>
@@ -335,7 +335,7 @@
 					</li>
 					<li class="cellMetadonnee">
 						<span name="metatag_title_sarce" id="metatag_title_sarce" class="metadonnee_left metadonnee_label" for="moncef">Moncef</span>
-						<input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="moncef" id="moncef" value="" />
+						<input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="moncef" id="moncef" value="" /> -->
 					</li>
 				</ul>
 			</form>

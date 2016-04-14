@@ -3,6 +3,8 @@ pseudo = null;
 passwordHash = null;
 stateLogLoading = false;
 customMetaTag = 0;
+alreadyPresentMetatag = 0;
+musicArray = [];
 
 function blurAction(state, div) {
     if (state == 1) div.className = "fullPageBlurred";
@@ -542,6 +544,12 @@ $(document).ready(function() {
         elementProgress.close();
         elementLabel.style.display = '';
     })
+    
+    /* LOAD JSON RETRIEV MUSIC */
+    musicArray = JSON.parse('[{"idPISTES":"1","genre":"1","cover":"imgae-nekfeu-de-album-feu-cover.jpg","md5":"090A68BE54CE42F12658A850DABFD48C","filename":"02. James Joint.flac","title":"Nique les clones","version":"1","album":"FEU","tracknumber":"2","artist":"Nekfeu","performer":"Nekfeu","copyright":"2016","license":"Merci","organisation":"PLS","description":"Super album PLS","date":"2016","location":"","contact":"","isrc":"","duree":"300","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"2","genre":"1","cover":"defaultCover.jpg","md5":"8079208CB33DB452EFF21CA5B37B4561","filename":"12. Higher.flac","title":"Higher","version":"2","album":"Feu","tracknumber":"12","artist":"Nekfeu","performer":"Rihanna","copyright":"2015","license":"Sarce","organisation":"cul","description":"Chnaw","date":"2016","location":"","contact":"","isrc":"","duree":"403","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"4","genre":"1","cover":"nn.jpg","md5":"428FA179519C0EE5FD30DA9FF2C895AE","filename":"validee.flac","title":"Validée","version":"3","album":"Feu","tracknumber":"3","artist":"Nekfeu","performer":"","copyright":"","license":"","organisation":"","description":"","date":"","location":"","contact":"","isrc":"","duree":"329","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"5","genre":"1","cover":"defaultCover.jpg","md5":"428FA179519C0EE5FD30DA9FF2C895AE","filename":"validee.flac","title":"Validée","version":"3","album":"Feu","tracknumber":"3","artist":"Nekfeu","performer":"","copyright":"","license":"","organisation":"","description":"","date":"","location":"","contact":"","isrc":"","duree":"329","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"6","genre":"1","cover":"imgae-nekfeu-de-album-feu-cover.jpg","md5":"ddb018fcf0331673170c6daa9b1dc36f","filename":"plsdz.flac","title":"La horla","version":"3","album":"Feu","tracknumber":"4","artist":"Nekfeu","performer":"","copyright":"","license":"","organisation":"","description":"","date":"","location":"","contact":"","isrc":"","duree":"200","TRACK":"006","LANGUAGE":"Fr"}]');
+    
+    //console.log(musicArray);
+    
 });
 
 function progress(e) {
@@ -583,11 +591,50 @@ function navigateToPopupID(page)
     $.mobile.changePage(page, 'pop', true, true);
 }
 
-$(".edit_music").click(function() {
+function loadEditMetatagPopup(idArrayMusic)
+{
+	var elementListview = $("#listview-editionMetadonnee");
+	var elementTitreMusique = $("#titreMusiqueEdition");
+	var elementArtisteMusique = $("#nomArtisteEdition");
+	var elementAlbumMusique = $("#nomAlbumEdition");
+	var elementCoverMusique = $("#imgCoverEditionMetadonnee");
+	var elementPreviewPochette = $("#coverPreview");
+	var popEditionMetadonnee = $('#popupEditionMetadonnee');
 	
-	$("#popupEditionMetadonnee").popup("open", { transition: "pop" });
+	alreadyPresentMetatag = 0;
+	
+	elementTitreMusique.text(musicArray[idArrayMusic]["title"]);
+	elementArtisteMusique.text(musicArray[idArrayMusic]["artist"]);
+	elementAlbumMusique.text(musicArray[idArrayMusic]["album"]);
+	elementCoverMusique.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"]);
+	elementPreviewPochette.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"]);
+	
+	$('#listview-editionMetadonnee li').remove();
+	
+    for (var colonne in musicArray[idArrayMusic])
+    {
+	    var colonneTitle = colonne;
+	    var colonneValue = musicArray[idArrayMusic][colonne];
+	    
+	    if(colonneTitle != "idPISTES" && colonneTitle != "cover")
+		{
+		    var htmlContent = '<li class="cellMetadonnee ui-li-static ui-body-inherit"><span name="metatag_title_meta'+ alreadyPresentMetatag +'" id="metatag_title_meta'+ alreadyPresentMetatag +'" class="metadonnee_left metadonnee_label" for="metatag_title_meta'+ alreadyPresentMetatag +'">'+ firstLetterUppercase(colonne) +'</span><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_right ui-shadow-inset"><input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="metatag_content_meta'+ alreadyPresentMetatag +'" id="metatag_content_meta'+ alreadyPresentMetatag +'" value="'+ colonneValue +'"></div></li>';
+			
+	        elementListview.append(htmlContent);
+	        alreadyPresentMetatag++;
+		}
+    }
+	
+	elementListview.listview( "refresh" );
+	elementListview.append();
+	
+	popEditionMetadonnee.popup('open', { transition: 'pop' }); 
+}
 
-});
+function firstLetterUppercase(string)
+{
+    return string.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
 $("#radio_choice_detail_edition").on('change', function ()
 {

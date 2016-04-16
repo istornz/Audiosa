@@ -4,7 +4,6 @@ passwordHash = null;
 stateLogLoading = false;
 customMetaTag = 0;
 alreadyPresentMetatag = 0;
-musicArray = [];
 
 function blurAction(state, div) {
     if (state == 1) div.className = "fullPageBlurred";
@@ -545,9 +544,11 @@ $(document).ready(function() {
         elementLabel.style.display = '';
     })
     
-    /* LOAD JSON RETRIEV MUSIC */
+    /* LOAD JSON RETRIEV MUSIC 
     musicArray = JSON.parse('[{"idPISTES":"1","genre":"1","cover":"imgae-nekfeu-de-album-feu-cover.jpg","md5":"090A68BE54CE42F12658A850DABFD48C","filename":"02. James Joint.flac","title":"Nique les clones","version":"1","album":"FEU","tracknumber":"2","artist":"Nekfeu","performer":"Nekfeu","copyright":"2016","license":"Merci","organisation":"PLS","description":"Super album PLS","date":"2016","location":"","contact":"","isrc":"","duree":"300","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"2","genre":"1","cover":"defaultCover.jpg","md5":"8079208CB33DB452EFF21CA5B37B4561","filename":"12. Higher.flac","title":"Higher","version":"2","album":"Feu","tracknumber":"12","artist":"Nekfeu","performer":"Rihanna","copyright":"2015","license":"Sarce","organisation":"cul","description":"Chnaw","date":"2016","location":"","contact":"","isrc":"","duree":"403","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"4","genre":"1","cover":"nn.jpg","md5":"428FA179519C0EE5FD30DA9FF2C895AE","filename":"validee.flac","title":"Validée","version":"3","album":"Feu","tracknumber":"3","artist":"Nekfeu","performer":"","copyright":"","license":"","organisation":"","description":"","date":"","location":"","contact":"","isrc":"","duree":"329","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"5","genre":"1","cover":"defaultCover.jpg","md5":"428FA179519C0EE5FD30DA9FF2C895AE","filename":"validee.flac","title":"Validée","version":"3","album":"Feu","tracknumber":"3","artist":"Nekfeu","performer":"","copyright":"","license":"","organisation":"","description":"","date":"","location":"","contact":"","isrc":"","duree":"329","TRACK":"006","LANGUAGE":"Fr"},{"idPISTES":"6","genre":"1","cover":"imgae-nekfeu-de-album-feu-cover.jpg","md5":"ddb018fcf0331673170c6daa9b1dc36f","filename":"plsdz.flac","title":"La horla","version":"3","album":"Feu","tracknumber":"4","artist":"Nekfeu","performer":"","copyright":"","license":"","organisation":"","description":"","date":"","location":"","contact":"","isrc":"","duree":"200","TRACK":"006","LANGUAGE":"Fr"}]');
-    
+    console.log(musicArray);
+	*/
+
     //console.log(musicArray);
     
 });
@@ -603,6 +604,8 @@ function loadEditMetatagPopup(idArrayMusic)
 	
 	alreadyPresentMetatag = 0;
 	
+	console.log("Tableau -> " + musicArray);
+	
 	elementTitreMusique.text(musicArray[idArrayMusic]["title"]);
 	elementArtisteMusique.text(musicArray[idArrayMusic]["artist"]);
 	elementAlbumMusique.text(musicArray[idArrayMusic]["album"]);
@@ -615,6 +618,7 @@ function loadEditMetatagPopup(idArrayMusic)
     {
 	    var colonneTitle = colonne;
 	    var colonneValue = musicArray[idArrayMusic][colonne];
+	    console.log(colonneTitle);
 	    
 	    if(colonneTitle != "idPISTES" && colonneTitle != "cover")
 		{
@@ -692,7 +696,7 @@ function addCustomMetatag()
 	
 	elementListview.append(htmlContent);
 	elementListview.listview( "refresh" );
-	elementListview.append();
+	//elementListview.append();
 }
 
 $("#visualiserLogButton").click(function(){

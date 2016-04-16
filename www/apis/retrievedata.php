@@ -35,14 +35,12 @@ else if($_POST['argPost'] == "artistes")
 	retrieveArtistes($connexion);
 else if($_POST['argPost'] == "albums")
 	retrieveAlbums($connexion);
-else if($_POST['argPost'] == "playlists")
-	retrievePlaylists($connexion);
 else
 	die('{"status_code":0, "error_description":"invalid parameter"}');
 
 function retrieveMorceaux($connexion)
 {
-	$commande_SQL	= "SELECT * FROM `PISTES` JOIN GENRES ON GENRES.idGENRES = PISTES.genre";
+	$commande_SQL	= "SELECT * FROM `PISTES` JOIN GENRES ON GENRES.idGENRES = PISTES.genre;";
 	$date = getdate();
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
 	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","pistes": ';

@@ -4,6 +4,7 @@ session_start();
 header('Content-Type: application/json');
 
 include('conf.php');
+require("global_fonction.php");
 
 /************************/
 //		Variables		//
@@ -11,6 +12,7 @@ include('conf.php');
 
 if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
 {
+	write_error_to_log("API Connexion","Paramètres manquants, 'pseudoPost' et/ou 'passwordPost' ne sont pas renseignés");
 	die('{"status_code":0,"error_description":"undeclared variables"}');
 }
 
@@ -24,6 +26,7 @@ try
 }
 catch(PDOException $e)
 {
+	write_error_to_log("API Connexion","Connexion à la base de données impossible : " . $e->getMessage());
 	die('{"status_code":0, "error_description":"connection to database failed"}');
 }
 							
@@ -43,16 +46,18 @@ if($selectStatement->execute())
 	{
 		$_SESSION['pseudo'] 	= $_POST['pseudoPost'];
 		$_SESSION['password'] 	= md5($_POST['passwordPost']);
-		echo '{"status_code":1}';
+		die('{"status_code":1}');
 	}
 	else
 	{
-		echo '{"status_code":0,"error_description":"username and/or password does not match"}';
+		die('{"status_code":0,"error_description":"username and/or password does not match"}');
 	}
 }
 else
 {
-	echo '{"status_code":0,"error_description":"failed to execute query"}';
+	$errorInfoArray = $selectStatement->errorInfo();
+	write_error_to_log("API Connexion","Impossible d'exécuter la commande SQL (connexion) : " . $errorInfoArray[2]);
+	die('{"status_code":0,"error_description":"failed to execute query"}');
 }
 
 /* Libération des résultats */

@@ -42,6 +42,16 @@ catch(PDOException $e)
 	die('{"status_code":0, "error_description":"connection to database failed"}');
 }
 
+try 
+{
+    $connexionWrite = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_WRITER_LOGIN, $DB_WRITER_PSW);
+}
+catch(PDOException $e)
+{
+	write_error_to_log("Création playlist","Connection DB failed: ". $e->getMessage());
+	die('{"status_code":0, "error_description":"connection to database failed"}');
+}
+
 /************************/
 //	   Verifications 	//
 /************************/
@@ -155,8 +165,8 @@ if(count($_playlist) == 0)
 //  	Creation de la playlist     //
 /************************************/
 
-	$commande_SQL	= "INSERT INTO playlists VALUES ('',". $connexion->quote($playlist_name) .", 0)";
-	$query = $connexion->prepare($commande_SQL);
+	$commande_SQL	= "INSERT INTO playlists VALUES ('',". $connexionWrite->quote($playlist_name) .", 0)";
+	$query = $connexionWrite->prepare($commande_SQL);
 	$query->execute();
 
 	
@@ -182,18 +192,18 @@ if(count($_playlist) == 0)
 for($ipiste = 0; $ipiste < count($_playlist	); $ipiste++) {
 
 	$commande_SQL	= "INSERT INTO contenu_playlists VALUES ( '', ". $playlist_id .", ". $_playlist[$ipiste] ." )";
-	$query = $connexion->prepare($commande_SQL);
+	$query = $connexionWrite->prepare($commande_SQL);
 	$query->execute();
 }
+
+$commande_SQL	= "UPDATE playlists SET items_count = '".count($_playlist)."' WHERE idPLAYLIST = '$playlist_id' ";
+$query = $connexionWrite->prepare($commande_SQL);
+$query->execute();
 
 } catch (Exception $err) {
 	die('{"status_code":0,"error_description":"Failed to execute query"}');
 	write_error_to_log("Création playlist", $err->getMessage());
 }
-
-$commande_SQL	= "UPDATE playlists SET items_count = '".count($_playlist)."' WHERE idPLAYLIST = '$playlist_id' ";
-$query = $connexion->prepare($commande_SQL);
-$query->execute();
 
 
 echo json_encode('{"status_code":1}');

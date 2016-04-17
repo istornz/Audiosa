@@ -3,6 +3,7 @@
 header('Content-Type: application/json');
 
 include('conf.php');
+require("global_fonction.php");
 
 /************************/
 //		Variables		//
@@ -10,6 +11,7 @@ include('conf.php');
 
 if(!isset($_POST['pseudoPost']) || !isset($_POST['actualPasswordPost']) || !isset($_POST['newPasswordPost']) || !isset($_POST['confirmPasswordPost']))
 {
+	write_error_to_log("API Changement mot de passe","Paramètres manquants, 'pseudoPost', 'actualPasswordPost', 'newPasswordPost' et/ou 'confirmPasswordPost'  ne sont pas renseignés");
 	die('{"status_code":0,"error_description":"undeclared variables"}');
 }
 
@@ -25,9 +27,19 @@ if($_POST['newPasswordPost'] != $_POST['confirmPasswordPost'])
 try 
 {
     $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_WRITER_LOGIN, $DB_WRITER_PSW);
+    
+    if(isValidMd5($_POST['newPasswordPost']))
+	{
+		$newPassword	= $_POST['newPasswordPost'];
+	}
+	else
+	{
+		$newPassword = md5($_POST['newPasswordPost']);
+	}
 }
 catch(PDOException $e)
 {
+	write_error_to_log("API Changement mot de passe","Connexion à la base de données impossible : " . $e->getMessage());
 	die('{"status_code":0, "error_description":"connection to database failed"}');
 }
 
@@ -50,6 +62,8 @@ if($selectStatement->execute())
 }
 else
 {
+	$errorInfoArray = $selectStatement->errorInfo();
+	write_error_to_log("API Changement mot de passe","Impossible d'exécuter la commande SQL (vérification utilisateur) : " . $errorInfoArray[2]);
 	die('{"status_code":0,"error_description":"failed to execute select query"}');
 }
 
@@ -58,20 +72,26 @@ else
 /************************/
 
 $selectStatement = $connexion->prepare('UPDATE utilisateur SET utilisateur.password = :newpassword WHERE utilisateur.username = :username AND utilisateur.password = :password');
-$selectStatement->bindValue(':newpassword', $_POST['newPasswordPost'], PDO::PARAM_STR);
+$selectStatement->bindValue(':newpassword', $newPassword, PDO::PARAM_STR);
 $selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':password', $_POST['actualPasswordPost'], PDO::PARAM_STR);
 
 if($selectStatement->execute())
 {
 	$_SESSION['pseudo'] 	= $_POST['pseudoPost'];
-	$_SESSION['password'] 	= $_POST['newPasswordPost'];
+	$_SESSION['password'] 	= $newPassword;
 	die ('{"status_code":1}');
 }
 else
 {
+	$errorInfoArray = $selectStatement->errorInfo();
+	write_error_to_log("API Changement mot de passe","Impossible d'exécuter la commande SQL (changement mot de passe) : " . $errorInfoArray[2]);
 	die('{"status_code":0,"error_description":"failed to execute update query"}');
 }
 
+function isValidMd5($md5 ='')
+{
+    return preg_match('/^[a-f0-9]{32}$/', $md5);
+}
 
 ?>

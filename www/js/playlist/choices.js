@@ -3,6 +3,10 @@ artistes_choisis = [];
 albums_choisis = [];
 annees_choisis = [];
 
+	genresLoaded=false, 
+	albumsLoaded=false,
+	artistesLoaded=false,
+	anneesLoaded=false;
 
 $(document).ready(function() {
 
@@ -161,12 +165,12 @@ function createChoiceEvent() {
 
 $(".categories_genres").click(function() {
 
-	var is_in_array = in_array($(this).attr("id"),genres_choisis)
+	var is_in_array = in_array($(this).data("title"),genres_choisis)
 	console.log(is_in_array);
 	
 	if(!is_in_array[0] == true)
 	{
-		genres_choisis.push($(this).attr("id"));
+		genres_choisis.push($(this).data("title"));
 		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_genres '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
 		
 		console.log(genres_choisis);
@@ -182,12 +186,12 @@ $(".categories_genres").click(function() {
 
 $(".categories_artistes").click(function() {
 
-	var is_in_array = in_array($(this).attr("id"),artistes_choisis)
+	var is_in_array = in_array($(this).data("title"),artistes_choisis)
 	console.log(is_in_array);
 	
 	if(!is_in_array[0] == true)
 	{
-		artistes_choisis.push($(this).attr("id"));
+		artistes_choisis.push($(this).data("title"));
 		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_artistes '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
 		
 		console.log(artistes_choisis);
@@ -203,12 +207,12 @@ $(".categories_artistes").click(function() {
 
 $(".categories_albums").click(function() {
 
-	var is_in_array = in_array($(this).attr("id"),albums_choisis)
+	var is_in_array = in_array($(this).data("title"),albums_choisis)
 	console.log(is_in_array);
 	
 	if(!is_in_array[0] == true)
 	{
-		albums_choisis.push($(this).attr("id"));
+		albums_choisis.push($(this).data("title"));
 		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_albums '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
 		
 		console.log(albums_choisis);
@@ -224,12 +228,12 @@ $(".categories_albums").click(function() {
 
 $(".categories_annees").click(function() {
 
-	var is_in_array = in_array($(this).attr("id"),annees_choisis)
+	var is_in_array = in_array($(this).data("title"),annees_choisis)
 	console.log(is_in_array);
 	
 	if(!is_in_array[0] == true)
 	{
-		annees_choisis.push($(this).attr("id"));
+		annees_choisis.push($(this).data("title"));
 		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_annees '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
 		
 		console.log(annees_choisis);
@@ -311,6 +315,12 @@ function afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis,
 
 function get_choices(type) {
 
+	if(type == "albums") { if(albumsLoaded) { return;} }
+	else if(type == "artistes") { if(artistesLoaded) { return;} }
+	else if(type == "annees") 	{ if(anneesLoaded) { return;} }
+	else if(type == "genres") 	{ if(genresLoaded) { return;} }
+	else { return; }
+
 	$.ajax({
 		method: "POST",
 		url: "apis/load_playlist_choices.php",
@@ -333,14 +343,14 @@ function get_choices(type) {
 	if(type == "genres") {
 		for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
 		
-			$("#list_genres").append('<div id="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres"><div class="genre_title">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
+			$("#list_genres").append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres"><div class="genre_title">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
 			
 		}
 	} else if (type == "albums") {
 		
 		for(var indiceAlbum=0; indiceAlbum < msg.albums.length; indiceAlbum++) {
 		
-			$("#list_albums").append('<div id="'+escapeHtml(msg.albums[indiceAlbum].album)+'" class="categories categories_albums cat_c_albums cat_albums "><div class="album_title">'+escapeHtml(msg.albums[indiceAlbum].album)+'</div></div>');
+			$("#list_albums").append('<div id="'+escapeHtml(msg.albums[indiceAlbum].idPISTES)+'_albumc" data-title="'+escapeHtml(msg.albums[indiceAlbum].album)+'" class="categories categories_albums cat_c_albums cat_albums "><div class="album_title">'+escapeHtml(msg.albums[indiceAlbum].album)+'</div></div>');
 		
 		}
 		
@@ -348,7 +358,7 @@ function get_choices(type) {
 
 	for(var indiceArtiste=0; indiceArtiste < msg.artists.length; indiceArtiste++) {
 		
-			$("#list_artistes").append('<div id="'+escapeHtml(msg.artists[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes"><div class="artist_title">'+escapeHtml(msg.artists[indiceArtiste].artist)+'</div></div>');
+			$("#list_artistes").append('<div id="'+escapeHtml(msg.artists[indiceArtiste].idPISTES)+'_artistc" data-title="'+escapeHtml(msg.artists[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes"><div class="artist_title">'+escapeHtml(msg.artists[indiceArtiste].artist)+'</div></div>');
 			
 		}
 	} else {
@@ -356,7 +366,7 @@ function get_choices(type) {
 		
 		for(var indiceAnnee=0; indiceAnnee < msg.annees.length; indiceAnnee++) {
 		
-			$("#list_annees").append('<div id="'+escapeHtml(msg.annees[indiceAnnee].date)+'" class="categories categories_annees cat_annees"><div class="genre_title">'+escapeHtml(msg.annees[indiceAnnee].date)+'</div></div>');
+			$("#list_annees").append('<div id="'+escapeHtml(msg.annees[indiceAnnee].idPISTES)+'_anneesc" data-title="'+escapeHtml(msg.annees[indiceAnnee].date)+'" class="categories categories_annees cat_annees"><div class="genre_title">'+escapeHtml(msg.annees[indiceAnnee].date)+'</div></div>');
 			
 		}
 	
@@ -369,5 +379,10 @@ function get_choices(type) {
 			
 			createChoiceEvent();
 		
+			if(type == "albums") { albumsLoaded = true; }
+			else if(type == "artistes") 	{ artistesLoaded = true}
+			else if(type == "annees") 	{ anneesLoaded = true }
+			else if(type == "genres") 	{ genresLoaded = true }
+			else { return; }
 		});
 };

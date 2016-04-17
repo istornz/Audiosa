@@ -14,10 +14,10 @@ include('conf.php');
 $genres = json_decode($_POST['genres']);
 $annees = json_decode($_POST['annees']);
 $artists = json_decode($_POST['artists']);
+$albums = json_decode($_POST['albums']);
 $playlist_name = json_decode($_POST['playlist_name']);
 
 $_genres = array();
-$_annees = array();
 $_playlist = array();
 
 if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
@@ -38,8 +38,8 @@ try
 }
 catch(PDOException $e)
 {
-	write_error_to_log("Création playlist","Connection DB failed: ". $e->getMessage());
-	die('{"status_code":0, "error_description":"connection to database failed"}');
+	write_error_to_log("Création playlist","Connexion : ". $e->getMessage());
+	die('{"status_code":0, "error_description":"Erreur lors de la connexion à la base de données"}');
 }
 
 try 
@@ -124,7 +124,7 @@ for($iartist = 0; $iartist < count($artists); $iartist++) {
 
 for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 	$piste_limite = rand(2,4);
-	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.artist=". $connexion->quote($albums[$ialbum]) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.album=". $connexion->quote($albums[$ialbum]) ." ORDER BY RAND() LIMIT ".$piste_limite;
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -144,16 +144,17 @@ for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 
 for($iannee = 0; $iannee < count($annees); $iannee++) {
 	$piste_limite = rand(2,4); 
-	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.date >= ". $connexion->quote($albums[$iannee]) ." AND pistes.date < ". $connexion->quote($albums[$iannee]+10) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.date = ".$annees[$iannee]." ORDER BY RAND() LIMIT ".$piste_limite;
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
 	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
+			
 		if (!in_array($result["idPISTES"], $_playlist)) {
 			array_push($_playlist,$result["idPISTES"]);
 		}
 	}
-} 
+}
 
 if(count($_playlist) == 0)
 {

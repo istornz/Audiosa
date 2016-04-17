@@ -2,7 +2,6 @@
 
 header('Content-Type: application/json');
 
-include('conf.php');
 require("global_fonction.php");
 
 /************************/

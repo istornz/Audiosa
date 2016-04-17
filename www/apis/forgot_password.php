@@ -2,7 +2,6 @@
 
 header('Content-Type: text/html');
 
-include('conf.php');
 require("global_fonction.php");
 
 /************************/
@@ -66,12 +65,15 @@ if($selectStatement->execute())
 		$headers 		.= "MIME-Version: 1.0\r\n";
 		$headers 		.= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 		
-		echo $resetLinkURL;
-		
 		if(mail($to, $titre, $corps, $headers))
+		{
 			die('{"status_code":1}');
+		}
 		else
+		{
+			write_error_to_log("API Mot de passe oublié","Impossible d'envoyer l'email de réinitialisation");
 			die('{"status_code":0,"error_description":"mail not sent"}');
+		}
 		
 	}
 	

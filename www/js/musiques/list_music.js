@@ -6,9 +6,9 @@ var artist = $("#into_artist");
 var album = $("#into_album");
   
 get_music("morceaux");
-get_music("artistes");
-get_music("albums");
-  
+//get_music("artistes");
+//get_music("albums");
+
 //type : artistes / morceaux / albums
 function get_music(type) {
 

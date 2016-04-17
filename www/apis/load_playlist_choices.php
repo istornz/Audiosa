@@ -11,6 +11,13 @@ require("global_fonction.php");
 
 include('conf.php');
 
+$type = $_POST["type"];
+
+if($type != "albums" && $type != "artistes" && $type != "annees" && $type != "genres")
+{
+	die('{"status_code":0, "error_description": "bad type"}');
+}
+
 /************************/
 //		   MYSQL		//
 /************************/
@@ -30,13 +37,17 @@ catch(PDOException $e)
 
 	$date = getdate();
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
-	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","genres": ';
+	echo '{"status_code":1, "fetched_at": "'. $dateStr .'"';
 	
+if($type == "genres") {
+ 
+ 	echo ',"genres": ';
+
 	/************************/
 	//	    GENRES  	 	//
 	/************************/
 
-	$commande_SQL	= "SELECT nom FROM GENRES WHERE nom != 'NULL'";
+	$commande_SQL	= "SELECT nom FROM genres WHERE nom != 'NULL'";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -45,20 +56,23 @@ catch(PDOException $e)
 	}
 	
 	echo json_encode($genresToUTF8Format);
-		
+} 
+else if($type == "albums")
+{
+
 	/************************/
 	//	    ALBUMS  	 	//
 	/************************/
 
 	echo ',"albums": ';
 	
-	$commande_SQL	= "SELECT DISTINCT album FROM PISTES WHERE album != 'NULL'";
+	$commande_SQL	= "SELECT DISTINCT album FROM pistes WHERE album != 'NULL'";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
 	while($result = $query->fetch(PDO::FETCH_ASSOC)) {
 	
-		$commande_SQL	= "SELECT cover FROM PISTES WHERE album = ".$connexion->quote($result["album"])." LIMIT 1";
+		$commande_SQL	= "SELECT cover FROM pistes WHERE album = ".$connexion->quote($result["album"])." LIMIT 1";
 		$queryCover = $connexion->prepare($commande_SQL);
 		$queryCover->execute();
 	
@@ -71,13 +85,20 @@ catch(PDOException $e)
 	
 	echo json_encode($albumsToUTF8Format);
 	
+	echo ',"coverAlbum": ';
+	
+	echo json_encode($coverToUTF8Format);
+}
+else if ($type == "artistes")
+{
+	
 	/************************/
 	//	    ARTISTES  	 	//
 	/************************/
 	
 	echo ',"artists": ';
 	
-	$commande_SQL	= "SELECT DISTINCT artist FROM PISTES WHERE artist != 'NULL' ";
+	$commande_SQL	= "SELECT DISTINCT artist FROM pistes WHERE artist != 'NULL' ";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -87,13 +108,16 @@ catch(PDOException $e)
 	
 	echo json_encode($artistToUTF8Format);
 	
+}
+else if($type == "annees")
+{
 	/************************/
 	//	    ANNEES  	 	//
 	/************************/
 	
 	echo ',"annees": ';
 	
-	$commande_SQL	= "SELECT DISTINCT date FROM PISTES WHERE date != 'NULL'";
+	$commande_SQL	= "SELECT DISTINCT date FROM pistes WHERE date != 'NULL'";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -103,9 +127,7 @@ catch(PDOException $e)
 	
 	echo json_encode($anneeToUTF8Format);
 	
-	echo ',"coverAlbum": ';
-	
-	echo json_encode($coverToUTF8Format);
+}
 		
 	echo "}";
 ?>

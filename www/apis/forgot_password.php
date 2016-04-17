@@ -30,7 +30,7 @@ catch(PDOException $e)
 // 	     Demande pass    	//
 /****************************/
 
-$selectStatement = $connexion->prepare('SELECT * FROM UTILISATEUR WHERE UTILISATEUR.email = :mail LIMIT 1');
+$selectStatement = $connexion->prepare('SELECT * FROM utilisateur WHERE utilisateur.email = :mail LIMIT 1');
 $selectStatement->bindValue(':mail', $_POST['mailPost'], PDO::PARAM_STR);
 
 if($selectStatement->execute())

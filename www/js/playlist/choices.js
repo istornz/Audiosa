@@ -155,82 +155,6 @@ $("#valider_playlist").click(function() {
 
 });
 
-$("#button_new_playlist").click(function() {
-	
-	$.ajax({
-		method: "GET",
-		url: "apis/load_playlist_choices.php"
-	})
-	.done(function( msg ) {
-	
-		//musicArray = JSON.parse(JSON.stringify(msg.pistes));
-		
-		//console.log( "MUSIC ARRAY" );
-		//console.log(musicArray);
-
-		if(msg.status_code != 1)
-		{
-			console.log("UNE ERREUR EST SURVENUE");
-			//GESTION DES ERREURS
-
-			return false;
-		}
-		
-		$("#list_genres").mCustomScrollbar('destroy');
-		$("#list_genres").html("");		
-		$("#list_albums").mCustomScrollbar('destroy');
-		$("#list_albums").html("");		
-		$("#list_artistes").mCustomScrollbar('destroy');
-		$("#list_artistes").html("");
-		$("#list_annees").mCustomScrollbar('destroy');
-		$("#list_annees").html("");
-		
-		for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
-		
-			$("#list_genres").append('<div id="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres"><div class="genre_title">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
-			
-		}
-		
-		for(var indiceAlbum=0; indiceAlbum < msg.albums.length; indiceAlbum++) {
-		
-			$("#list_albums").append('<div id="'+escapeHtml(msg.albums[indiceAlbum].album)+'" class="categories categories_albums cat_c_albums cat_albums "><div class="album_title">'+escapeHtml(msg.albums[indiceAlbum].album)+'</div></div>');
-		
-		}
-		
-		for(var indiceArtiste=0; indiceArtiste < msg.artists.length; indiceArtiste++) {
-		
-			$("#list_artistes").append('<div id="'+escapeHtml(msg.artists[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes"><div class="artist_title">'+escapeHtml(msg.artists[indiceArtiste].artist)+'</div></div>');
-			
-		}
-		
-		for(var indiceAnnee=0; indiceAnnee < msg.annees.length; indiceAnnee++) {
-		
-			$("#list_annees").append('<div id="'+escapeHtml(msg.annees[indiceAnnee].date)+'" class="categories categories_annees cat_annees"><div class="genre_title">'+escapeHtml(msg.annees[indiceAnnee].date)+'</div></div>');
-			
-		}
-		
-		$("#list_genres").mCustomScrollbar({
-			theme:"minimal"
-		});
-		
-		$("#list_albums").mCustomScrollbar({
-			theme:"minimal"
-		});
-		
-		$("#list_artistes").mCustomScrollbar({
-			theme:"minimal"
-		});
-		
-		$("#list_annees").mCustomScrollbar({
-			theme:"minimal"
-		});
-		
-		createChoiceEvent();
-	});
-		
-	
-});
-
 });
 
 function createChoiceEvent() {
@@ -319,7 +243,7 @@ $(".categories_annees").click(function() {
 	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
 });
 
-}
+};
 
 
 function in_array(string, array){
@@ -331,7 +255,7 @@ function in_array(string, array){
         }
     }
     return result;
-}
+};
 
 function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 
@@ -349,7 +273,7 @@ function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 	  .done(function( msg ) {
 		callback( msg );
 	  });
-}
+};
 
 function reset_choices()
 {
@@ -359,7 +283,7 @@ function reset_choices()
 	annees_choisis = [];
 	
 	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
-}
+};
 
 function choice_back() {
 
@@ -375,7 +299,7 @@ function choice_back() {
 	$("#quitPlaylistButton").css("display","block");	
 	
 	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
-}
+};
 
 function afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis) {
 	if(genres_choisis.length == 0 && artistes_choisis.length == 0 && albums_choisis.length == 0 && annees_choisis.length == 0){   
@@ -383,4 +307,67 @@ function afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis,
 	}else{
 	   $("#create_playlist").css("display","inline-block");
 	}
-}
+};
+
+function get_choices(type) {
+
+	$.ajax({
+		method: "POST",
+		url: "apis/load_playlist_choices.php",
+		data: { type: type}
+	})
+	.done(function( msg ) {
+		
+			if(msg.status_code != 1)
+			{
+				console.log("UNE ERREUR EST SURVENUE");
+				//GESTION DES ERREURS
+
+				return false;
+			}
+			
+			$("#list_"+type).mCustomScrollbar('destroy');
+			$("#list_"+type).html("");		
+			
+			
+	if(type == "genres") {
+		for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
+		
+			$("#list_genres").append('<div id="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres"><div class="genre_title">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
+			
+		}
+	} else if (type == "albums") {
+		
+		for(var indiceAlbum=0; indiceAlbum < msg.albums.length; indiceAlbum++) {
+		
+			$("#list_albums").append('<div id="'+escapeHtml(msg.albums[indiceAlbum].album)+'" class="categories categories_albums cat_c_albums cat_albums "><div class="album_title">'+escapeHtml(msg.albums[indiceAlbum].album)+'</div></div>');
+		
+		}
+		
+	} else if (type == "artistes") {
+
+	for(var indiceArtiste=0; indiceArtiste < msg.artists.length; indiceArtiste++) {
+		
+			$("#list_artistes").append('<div id="'+escapeHtml(msg.artists[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes"><div class="artist_title">'+escapeHtml(msg.artists[indiceArtiste].artist)+'</div></div>');
+			
+		}
+	} else {
+
+		
+		for(var indiceAnnee=0; indiceAnnee < msg.annees.length; indiceAnnee++) {
+		
+			$("#list_annees").append('<div id="'+escapeHtml(msg.annees[indiceAnnee].date)+'" class="categories categories_annees cat_annees"><div class="genre_title">'+escapeHtml(msg.annees[indiceAnnee].date)+'</div></div>');
+			
+		}
+	
+	}
+		
+			
+			$("#list_"+type).mCustomScrollbar({
+				theme:"minimal"
+			});
+			
+			createChoiceEvent();
+		
+		});
+};

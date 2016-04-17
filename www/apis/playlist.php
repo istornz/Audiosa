@@ -47,7 +47,7 @@ catch(PDOException $e)
 /************************/
 try {
 
-$commande_SQL	= "SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username=". $pseudoQuoted ." AND UTILISATEUR.password= ". $passwordQuoted ." LIMIT 1";
+$commande_SQL	= "SELECT COUNT(*) FROM utilisateur WHERE utilisateur.username=". $pseudoQuoted ." AND utilisateur.password= ". $passwordQuoted ." LIMIT 1";
 
 $selectStatement = $connexion->query($commande_SQL);
 
@@ -63,7 +63,7 @@ if($nbr_ligne == 0)
 /************************************************/
 
 for($igenres = 0; $igenres < count($genres); $igenres++) {
-	$commande_SQL	= "SELECT idGENRES FROM GENRES WHERE GENRES.nom=". $connexion->quote($genres[$igenres]);
+	$commande_SQL	= "SELECT idGENRES FROM genres WHERE genres.nom=". $connexion->quote($genres[$igenres]);
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -78,7 +78,7 @@ for($igenres = 0; $igenres < count($genres); $igenres++) {
 
 for($igenres = 0; $igenres < count($_genres); $igenres++) {
 	$piste_limite = rand(2,4);
-	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE PISTES.genre=". $connexion->quote($_genres[$igenres]) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.genre=". $connexion->quote($_genres[$igenres]) ." ORDER BY RAND() LIMIT ".$piste_limite;
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -96,7 +96,7 @@ for($igenres = 0; $igenres < count($_genres); $igenres++) {
 
 for($iartist = 0; $iartist < count($artists); $iartist++) {
 	$piste_limite = rand(2,4);
-	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE PISTES.artist=". $connexion->quote($artists[$iartist]) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.artist=". $connexion->quote($artists[$iartist]) ." ORDER BY RAND() LIMIT ".$piste_limite;
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -114,7 +114,7 @@ for($iartist = 0; $iartist < count($artists); $iartist++) {
 
 for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 	$piste_limite = rand(2,4);
-	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE PISTES.artist=". $connexion->quote($albums[$ialbum]) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.artist=". $connexion->quote($albums[$ialbum]) ." ORDER BY RAND() LIMIT ".$piste_limite;
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -134,7 +134,7 @@ for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 
 for($iannee = 0; $iannee < count($annees); $iannee++) {
 	$piste_limite = rand(2,4); 
-	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE PISTES.date >= ". $connexion->quote($albums[$iannee]) ." AND PISTES.date < ". $connexion->quote($albums[$iannee]+10) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.date >= ". $connexion->quote($albums[$iannee]) ." AND pistes.date < ". $connexion->quote($albums[$iannee]+10) ." ORDER BY RAND() LIMIT ".$piste_limite;
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -155,7 +155,7 @@ if(count($_playlist) == 0)
 //  	Creation de la playlist     //
 /************************************/
 
-	$commande_SQL	= "INSERT INTO PLAYLISTS VALUES ('',". $connexion->quote($playlist_name) .", 0)";
+	$commande_SQL	= "INSERT INTO playlists VALUES ('',". $connexion->quote($playlist_name) .", 0)";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 
@@ -165,7 +165,7 @@ if(count($_playlist) == 0)
 //  	ID de la playlist           //
 /************************************/
 
-	$commande_SQL	= "SELECT idPLAYLIST FROM PLAYLISTS WHERE PLAYLISTS.name = ". $connexion->quote($playlist_name) ." ORDER BY idPLAYLIST DESC LIMIT 1";
+	$commande_SQL	= "SELECT idPLAYLIST FROM playlists WHERE playlists.name = ". $connexion->quote($playlist_name) ." ORDER BY idPLAYLIST DESC LIMIT 1";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 			
@@ -181,7 +181,7 @@ if(count($_playlist) == 0)
 
 for($ipiste = 0; $ipiste < count($_playlist	); $ipiste++) {
 
-	$commande_SQL	= "INSERT INTO CONTENU_PLAYLISTS VALUES ( '', ". $playlist_id .", ". $_playlist[$ipiste] ." )";
+	$commande_SQL	= "INSERT INTO contenu_playlists VALUES ( '', ". $playlist_id .", ". $_playlist[$ipiste] ." )";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 }
@@ -191,7 +191,7 @@ for($ipiste = 0; $ipiste < count($_playlist	); $ipiste++) {
 	write_error_to_log("Création playlist", $err->getMessage());
 }
 
-$commande_SQL	= "UPDATE PLAYLISTS SET items_count = '".count($_playlist)."' WHERE idPLAYLIST = '$playlist_id' ";
+$commande_SQL	= "UPDATE playlists SET items_count = '".count($_playlist)."' WHERE idPLAYLIST = '$playlist_id' ";
 $query = $connexion->prepare($commande_SQL);
 $query->execute();
 

@@ -31,7 +31,7 @@ catch(PDOException $e)
 //		   JSON			//
 /************************/
 
-$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password LIMIT 1');
+$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM utilisateur WHERE utilisateur.username = :username AND utilisateur.password = :password LIMIT 1');
 $selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':password', md5($_POST['passwordPost']), PDO::PARAM_STR);
 

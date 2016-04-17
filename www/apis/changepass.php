@@ -35,7 +35,7 @@ catch(PDOException $e)
 // Verification utilisateur //
 /****************************/
 
-$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password LIMIT 1');
+$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM utilisateur WHERE utilisateur.username = :username AND utilisateur.password = :password LIMIT 1');
 $selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':password', $_POST['actualPasswordPost'], PDO::PARAM_STR);
 
@@ -57,7 +57,7 @@ else
 //    Changement Pass   //
 /************************/
 
-$selectStatement = $connexion->prepare('UPDATE UTILISATEUR SET UTILISATEUR.password = :newpassword WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password');
+$selectStatement = $connexion->prepare('UPDATE utilisateur SET utilisateur.password = :newpassword WHERE utilisateur.username = :username AND utilisateur.password = :password');
 $selectStatement->bindValue(':newpassword', $_POST['newPasswordPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':password', $_POST['actualPasswordPost'], PDO::PARAM_STR);

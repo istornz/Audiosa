@@ -313,13 +313,13 @@
 		<div role="main" id="animate_playlist" style="height: 475px; width: 587px;" class="ui-content">
 			<div id="choix">
 				<h1 class="txt-center" style="margin-bottom: 20px;" >Veuillez faire vos choix</h1>
-				<a onclick="navigateToPopupID('#popupPlaylist');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_genres" class="choice_click"><div class="categories cat_genres">
+				<a onclick="navigateToPopupID('#popupPlaylist'); get_choices('genres');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_genres" class="choice_click"><div class="categories cat_genres">
 				</div></a>
-				<a onclick="navigateToPopupID('#popupPlaylist');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_artistes" class="choice_click"><div class="categories cat_artistes">
+				<a onclick="navigateToPopupID('#popupPlaylist'); get_choices('artistes');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_artistes" class="choice_click"><div class="categories cat_artistes">
 				</div></a>
-				<a onclick="navigateToPopupID('#popupPlaylist');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_albums" class="choice_click"><div class="categories cat_albums">
+				<a onclick="navigateToPopupID('#popupPlaylist'); get_choices('albums');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_albums" class="choice_click"><div class="categories cat_albums">
 				</div></a>
-				<a onclick="navigateToPopupID('#popupPlaylist');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_annees" class="choice_click"><div class="categories cat_annees">
+				<a onclick="navigateToPopupID('#popupPlaylist'); get_choices('annees');" href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" id="choice_annees" class="choice_click"><div class="categories cat_annees">
 				</div></a>
 			</div>
 
@@ -329,7 +329,7 @@
 					<span id="messageInfoPlaylistLabel" class="messageInfoLabel">Entrez un nom de playlist valide</span>
 				</div>
 				
-				<h4> Choissisez un nom pour votre playlist </h4>
+				<h4> Choisissez un nom pour votre playlist </h4>
 				<input style="background-color: #E9E9E9; color: black;" id="nom_playlist_input" type="text" placeholder=">> Nom de la playlist" /><br>
 				<a id="valider_playlist" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #2980b9">Créer la playlist</a>
 

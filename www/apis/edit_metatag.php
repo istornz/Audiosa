@@ -32,7 +32,7 @@ catch(PDOException $e)
 //	   Verifications 	//
 /************************/
 
-$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM UTILISATEUR WHERE UTILISATEUR.username = :username AND UTILISATEUR.password = :password LIMIT 1');
+$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM utilisateur WHERE utilisateur.username = :username AND utilisateur.password = :password LIMIT 1');
 $selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':password', $_POST['passwordPost'], PDO::PARAM_STR);
 
@@ -104,7 +104,7 @@ if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0)
 	
 }
 
-$commandeSQLAlter = "ALTER TABLE PISTES ";
+$commandeSQLAlter = "ALTER TABLE pistes";
 for($i = 0; $i < count($arrayAlterColumn); $i++)
 {
 	$commandeSQLAlter .= "ADD COLUMN " . $arrayAlterColumn[$i]['column'] . " " . DEFAULT_MYSQL_TYPE;
@@ -123,7 +123,7 @@ if(!$alterStatement->execute())
 
 $global_array = array_merge($arrayUpdateColumn, $arrayAlterColumn);
 
-$commandeSQLUpdate = "UPDATE PISTES SET ";
+$commandeSQLUpdate = "UPDATE pistes SET ";
 for($i = 0; $i < count($global_array); $i++)
 {
 	$commandeSQLUpdate .= $global_array[$i]['column'] . " = '" . $global_array[$i]['value'] . "'";

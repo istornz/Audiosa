@@ -13,6 +13,6 @@ $DB_WRITER_LOGIN 	= "db_writer_music";
 $DB_WRITER_PSW		= "5VHKUmhKrsSspmjs";
 
 define("ERROR_LOG_FILE", "../error.log");
-define("DEFAULT_MYSQL_TYPE", "VARCHAR(60)");
+define("DEFAULT_MYSQL_TYPE", "VARCHAR(150)");
 
 ?>

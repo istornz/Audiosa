@@ -40,11 +40,11 @@ else
 
 function retrieveMorceaux($connexion)
 {
-	$commande_SQL	= "SELECT * FROM `PISTES` JOIN GENRES ON GENRES.idGENRES = PISTES.genre;";
+	$commande_SQL	= "SELECT * FROM `pistes` JOIN genres ON genres.idGENRES = pistes.genre;";
 	$date = getdate();
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
 	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","pistes": ';
-
+	
 	if($selectStatement = $connexion->query($commande_SQL))
 	{
 		$increLigne = 0;
@@ -54,27 +54,9 @@ function retrieveMorceaux($connexion)
 		{
 			$nbrColonne = $selectStatement->columnCount();
 			$convertToUTF8Format[] = array_map("utf8_encode", $ligne);
-			
-			/*
-			$genreID = $convertToUTF8Format[0]["genre"];
-			$commande_SQL	= "SELECT nom FROM GENRES WHERE idGENRES=" . $genreID;
-			
-			if($selectStatement = $connexion->query($commande_SQL))
-			{
-				if($ligne = $selectStatement->fetch(PDO::FETCH_ASSOC))
-				{
-					$arrayKeyValueGenre = array("genre" => $ligne['nom']);
-					print_r( $arrayKeyValueGenre );
-					//$convertToUTF8Format[$increLigne] = array_replace($convertToUTF8Format[$increLigne], $arrayKeyValueGenre);
-				}
-				
-			}
-			*/
-			
+						
 			$increLigne++;
 		}
-		
-		
 		
 		echo json_encode($convertToUTF8Format);
 		
@@ -88,7 +70,7 @@ function retrieveMorceaux($connexion)
 
 function retrieveArtistes($connexion)
 {
-	$commande_SQL		= "SELECT * FROM PISTES";
+	$commande_SQL		= "SELECT * FROM pistes";
 	$tableauArtistes 	= array();
 	$date = getdate();
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
@@ -137,7 +119,7 @@ function retrieveArtistes($connexion)
 
 function getAlbumNumberForArtist($connexion, $artistName)
 {
-	$commande_SQL	= "SELECT album FROM PISTES WHERE artist='". $artistName ."'";
+	$commande_SQL	= "SELECT album FROM pistes WHERE artist='". $artistName ."'";
 	$tableauAlbums = array();
 	$nbrAlbums = 0;
 	
@@ -150,10 +132,12 @@ function getAlbumNumberForArtist($connexion, $artistName)
 			if (!in_array($ligne['album'], $tableauAlbums))
 			{
 				$tableauAlbums[] = $ligne['album'];
+				
 			}
 		}
 		
 		$nbrAlbums = count($tableauAlbums);
+		
 	}
 	
 	return $nbrAlbums;
@@ -161,7 +145,7 @@ function getAlbumNumberForArtist($connexion, $artistName)
 
 function getTrackForAlbum($connexion, $albumName, $artistName)
 {
-	$commande_SQL	= "SELECT * FROM PISTES WHERE album='". $albumName ."' AND artist='". $artistName ."'";
+	$commande_SQL	= "SELECT * FROM pistes WHERE album='". $albumName ."' AND artist='". $artistName ."'";
 	$tableauPistes = array();
 	
 	if($selectStatement = $connexion->query($commande_SQL))
@@ -180,7 +164,7 @@ function getTrackForAlbum($connexion, $albumName, $artistName)
 
 function getArtistNameForAlbum($connexion, $albumName)
 {
-	$commande_SQL	= "SELECT artist FROM PISTES WHERE album='". $albumName ."' LIMIT 1";
+	$commande_SQL	= "SELECT artist FROM pistes WHERE album='". $albumName ."' LIMIT 1";
 	$nomArtiste 	= "inconnu";
 	
 	if($selectStatement = $connexion->query($commande_SQL))
@@ -196,7 +180,7 @@ function getArtistNameForAlbum($connexion, $albumName)
 
 function getTrackNumberForArtist($connexion, $artistName)
 {
-	$commande_SQL	= "SELECT idPISTES FROM PISTES WHERE artist='". $artistName ."'";
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE artist='". $artistName ."'";
 	$tableauPistes = array();
 	$nbrPistes = 0;
 	
@@ -220,7 +204,7 @@ function getTrackNumberForArtist($connexion, $artistName)
 
 function retrieveAlbums($connexion)
 {
-	$commande_SQL		= "SELECT album FROM PISTES";
+	$commande_SQL		= "SELECT album FROM pistes";
 	$tableauAlbums 	= array();
 	$date = getdate();
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];

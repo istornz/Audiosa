@@ -52,6 +52,7 @@ var PageTransitions = (function() {
 			}
 			else
 			{
+				
 				if(page_actu == 2) {
 					backPage( 28);
 				}
@@ -74,6 +75,7 @@ var PageTransitions = (function() {
 			}
 			else
 			{
+				get_music("albums");
 				if(page_actu == 2) {
 					nextPage( 28);
 				}
@@ -97,6 +99,7 @@ var PageTransitions = (function() {
 			}
 			else
 			{
+				get_music("artistes");
 				if(page_actu == 1) {
 					nextPage( 28);
 				}

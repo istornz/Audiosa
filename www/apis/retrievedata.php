@@ -67,7 +67,7 @@ function retrieveMorceaux($connexion)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (selection morceaux) : " . $errorInfoArray[2]);
 		die('{"status_code":0,"error_description":"failed to execute select query"}');
 	}
@@ -122,14 +122,15 @@ function retrieveArtistes($connexion)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (selection artistes) : " . $errorInfoArray[2]);
 	}
 }
 
 function getAlbumNumberForArtist($connexion, $artistName)
 {
-	$commande_SQL	= "SELECT album FROM pistes WHERE artist='". $artistName ."'";
+	$artistName = $connexion->quote($artistName);
+	$commande_SQL	= "SELECT album FROM pistes WHERE artist=". $artistName;
 	$tableauAlbums = array();
 	$nbrAlbums = 0;
 	
@@ -150,7 +151,7 @@ function getAlbumNumberForArtist($connexion, $artistName)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (récupération du nombre de pistes pour chaque artistes) : " . $errorInfoArray[2]);
 	}
 	
@@ -160,10 +161,10 @@ function getAlbumNumberForArtist($connexion, $artistName)
 function retrieveAlbums($connexion)
 {
 	$commande_SQL		= "SELECT album FROM pistes";
-	$tableauAlbums 	= array();
-	$date = getdate();
-	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
-	$increLigne = 0;
+	$tableauAlbums 		= array();
+	$date 				= getdate();
+	$dateStr 			= $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
+	$increLigne 		= 0;
 	
 	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","albums": [';
 	
@@ -209,14 +210,17 @@ function retrieveAlbums($connexion)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (récupération des albums) : " . $errorInfoArray[2]);
 	}
 }
 
 function getTrackForAlbum($connexion, $albumName, $artistName)
 {
-	$commande_SQL	= "SELECT * FROM pistes WHERE album='". $albumName ."' AND artist='". $artistName ."'";
+	$albumName = $connexion->quote($albumName);
+	$artistName = $connexion->quote($artistName);
+	
+	$commande_SQL	= "SELECT * FROM pistes WHERE album=". $albumName ." AND artist=". $artistName;
 	$tableauPistes = array();
 	
 	if($selectStatement = $connexion->query($commande_SQL))
@@ -231,7 +235,7 @@ function getTrackForAlbum($connexion, $albumName, $artistName)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (récupération des pistes d'un album) : " . $errorInfoArray[2]);
 	}
 	
@@ -240,7 +244,8 @@ function getTrackForAlbum($connexion, $albumName, $artistName)
 
 function getArtistNameForAlbum($connexion, $albumName)
 {
-	$commande_SQL	= "SELECT artist FROM pistes WHERE album='". $albumName ."' LIMIT 1";
+	$albumName = $connexion->quote($albumName);
+	$commande_SQL	= "SELECT artist FROM pistes WHERE album=". $albumName ." LIMIT 1";
 	$nomArtiste 	= "inconnu";
 	
 	if($selectStatement = $connexion->query($commande_SQL))
@@ -252,7 +257,7 @@ function getArtistNameForAlbum($connexion, $albumName)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (récupération du nom de l'artiste d'un album) : " . $errorInfoArray[2]);
 	}
 	
@@ -261,7 +266,8 @@ function getArtistNameForAlbum($connexion, $albumName)
 
 function getTrackNumberForArtist($connexion, $artistName)
 {
-	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE artist='". $artistName ."'";
+	$artistName = $connexion->quote($artistName);
+	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE artist=". $artistName;
 	$tableauPistes = array();
 	$nbrPistes = 0;
 	
@@ -281,7 +287,7 @@ function getTrackNumberForArtist($connexion, $artistName)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (récupération du nombre de pistes de chaque artistes) : " . $errorInfoArray[2]);
 	}
 	
@@ -340,13 +346,14 @@ function retrievePlaylists($connexion)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (récupération des playlists) : " . $errorInfoArray[2]);
 	}
 }
 
 function getTrackForPlaylist($connexion, $playlistID)
 {
+	$playlistID = $connexion->quote($playlistID);
 	$commande_SQL	= "SELECT * FROM pistes, contenu_playlists WHERE pistes.idPISTES = contenu_playlists.PISTES_idPISTES AND contenu_playlists.PLAYLIST_idPLAYLIST=" . $playlistID;
 	$tableauPistes = array();
 	
@@ -362,7 +369,7 @@ function getTrackForPlaylist($connexion, $playlistID)
 	}
 	else
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $connexion->errorInfo();
 		write_error_to_log("API Récupération données","Impossible d'exécuter la commande SQL (récupération des pistes d'une playlist) : " . $errorInfoArray[2]);
 	}
 	

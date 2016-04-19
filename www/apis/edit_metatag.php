@@ -6,12 +6,13 @@ header('Content-Type: application/json');
 //	    Variables		//
 /************************/
 
-include('conf.php');
-$ALLOWED_EXTENSION_COVER 	= array('gif', 'png', 'jpg', 'jpeg'); 
+require("global_fonction.php");
+$ALLOWED_EXTENSION_COVER	= array('gif', 'png', 'jpg', 'jpeg'); 
 $MAX_FILESIZE_COVER 		= 3145728; // 3Mb max
 
-if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
+if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']) || !isset($_POST['idPISTES']) || !isset($_POST['updateData']) || !isset($_POST['alterData']))
 {
+	write_error_to_log("API Édition métadonnées","Paramètres manquants, 'pseudoPost', 'passwordPost', 'idPISTES', 'updateData' et/ou 'alterData' ne sont pas renseignés");
 	die('{"status_code":0,"error_description":"undeclared variables"}');
 }
 
@@ -25,6 +26,7 @@ try
 }
 catch(PDOException $e)
 {
+	write_error_to_log("API Édition métadonnées","Connexion à la base de données impossible : " . $e->getMessage());
 	die('{"status_code":0, "error_description":"connection to database failed"}');
 }
 
@@ -47,6 +49,8 @@ if($selectStatement->execute())
 }
 else
 {
+	$errorInfoArray = $selectStatement->errorInfo();
+	write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (connexion) : " . $errorInfoArray[2]);
 	die('{"status_code":0,"error_description":"unable to login"}');
 }
 
@@ -54,91 +58,95 @@ else
 //  Edition metadonnee  //
 /************************/
 
-if(!isset($_POST['updateData']) || !isset($_POST['updateData']))
-{
-	die('{"status_code":0,"error_description":"undeclared variable"}');
-}
-
 $idPISTES			= intVal($_POST['idPISTES']);
 $arrayUpdateColumn 	= json_decode($_POST['updateData'], true);
 $arrayAlterColumn 	= json_decode($_POST['alterData'], true);
 
-//print_r( $_POST );
-//print_r( $_FILES );
+$global_array 		= $arrayUpdateColumn;
 
-if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0)
+if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0 && isset($_POST['md5']))
 {
 	$extensionFichier 	= pathinfo(htmlentities($_FILES['cover']['name']), PATHINFO_EXTENSION);
 	$tailleFichier		= htmlentities($_FILES['cover']['size']);
 	$mimetypeFichier	= htmlentities($_FILES['cover']['type']);
-	$fullPath			= htmlentities('../img/covers/' . $_FILES['cover']['name']);
+	$md5Fichier			= $_POST['md5'];
+	$fileName			= $_POST['md5'] . "." . $extensionFichier;
+	$fullPath			= htmlentities('../img/covers/' . $fileName);
 	
 	if(!in_array($extensionFichier, $ALLOWED_EXTENSION_COVER))
 	{
+		write_error_to_log("API Édition métadonnées","Extension non autorisée ('" . $extensionFichier . "')");
 		die('{"status_code":0, "error_description":"extension not authorized"}');
-	}
-	
-	if(file_exists($fullPath))
-	{
-		die('{"status_code":0, "error_description":"file already exist"}');
 	}
 	
 	if($tailleFichier > $MAX_FILESIZE_COVER)
 	{
+		write_error_to_log("API Édition métadonnées","La taille du fichier ('" . $tailleFichier . "') est trop importante, maximum : '" . $MAX_FILESIZE_COVER . "')");
 		die('{"status_code":0, "error_description":"file too big"}');
 	}
 	
 	if(getimagesize($_FILES['cover']['tmp_name']) == 0)
 	{
+		write_error_to_log("API Édition métadonnées","La cover est invalide (le fichier n'est pas une image)");
 		die('{"status_code":0, "error_description":"file is not a valid image file"}');
 	}
 	
-	if(move_uploaded_file($_FILES['cover']['tmp_name'], $fullPath))
+	if(!move_uploaded_file($_FILES['cover']['tmp_name'], $fullPath))
 	{
-		die('{"status_code":1}');
-	}
-	else
-	{
+		write_error_to_log("API Édition métadonnées","Impossible de déplacer le fichier au chemin : '" . $fullPath . "'");
 		die('{"status_code":0, "error_description":"unable to move file"}');
 	}
 	
-}
-
-$commandeSQLAlter = "ALTER TABLE pistes";
-for($i = 0; $i < count($arrayAlterColumn); $i++)
-{
-	$commandeSQLAlter .= "ADD COLUMN " . $arrayAlterColumn[$i]['column'] . " " . DEFAULT_MYSQL_TYPE;
+	array_push ($global_array, array("column"=>"cover", "value"=>$fileName));
 	
-	if($i == count($arrayAlterColumn) - 1) // Avant dernier element
-		$commandeSQLAlter .= ";";
-	else
-		$commandeSQLAlter .= ", ";
 }
 
-$alterStatement = $connexion->prepare($commandeSQLAlter);
-if(!$alterStatement->execute())
+if(count($arrayAlterColumn) > 0)
 {
-	die('{"status_code":0,"error_description":"failed to alter table"}');	
-}
-
-$global_array = array_merge($arrayUpdateColumn, $arrayAlterColumn);
-
-$commandeSQLUpdate = "UPDATE pistes SET ";
-for($i = 0; $i < count($global_array); $i++)
-{
-	$commandeSQLUpdate .= $global_array[$i]['column'] . " = '" . $global_array[$i]['value'] . "'";
+	$commandeSQLAlter = "ALTER TABLE pistes ";
+	for($i = 0; $i < count($arrayAlterColumn); $i++)
+	{
+		$commandeSQLAlter .= "ADD COLUMN " . $arrayAlterColumn[$i]['column'] . " " . DEFAULT_MYSQL_TYPE;
+		
+		if($i == count($arrayAlterColumn) - 1) // Avant dernier element
+			$commandeSQLAlter .= ";";
+		else
+			$commandeSQLAlter .= ", ";
+	}
 	
-	if($i == count($global_array) - 1) // Avant dernier element
-		$commandeSQLUpdate .= ";";
-	else
-		$commandeSQLUpdate .= ", ";
+	$alterStatement = $connexion->prepare($commandeSQLAlter);
+	
+	if(!$alterStatement->execute())
+	{
+		$errorInfoArray = $selectStatement->errorInfo();
+		write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (alter) : " . $errorInfoArray[2]);
+		
+		die('{"status_code":0,"error_description":"failed to alter table' . $connexion->errorInfo() . '"}');	
+	}
+	
+	$global_array = array_merge($arrayUpdateColumn, $arrayAlterColumn);
 }
 
-$updateStatement = $connexion->prepare($commandeSQLUpdate);
-
-if(!$updateStatement->execute())
+if(count($global_array) > 0)
 {
-	die('{"status_code":0,"error_description":"failed to update metatag"}');
+	$commandeSQLUpdate = "UPDATE pistes SET ";
+	for($i = 0; $i < count($global_array); $i++)
+	{
+		$commandeSQLUpdate .= $global_array[$i]['column'] . " = '" . $global_array[$i]['value'] . "'";
+		
+		if($i == count($global_array) - 1) // Avant dernier element
+			$commandeSQLUpdate .= " WHERE pistes.idPISTES=". $idPISTES .";";
+		else
+			$commandeSQLUpdate .= ", ";
+	}
+	
+	$updateStatement = $connexion->prepare($commandeSQLUpdate);
+	
+	if(!$updateStatement->execute())
+	{
+		write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (update) : " . $errorInfoArray[2]);
+		die('{"status_code":0,"error_description":"failed to update metatag"}');
+	}
 }
 
 echo '{"status_code":1}';

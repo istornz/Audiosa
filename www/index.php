@@ -41,7 +41,6 @@
 					else
 						echo '<a class="icon_navbar" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop"><img id="image_utilisateur" src="img/menuIcon.png" alt="utilisateur"></a>';
 				?>
-				
 				</h3>
 			</div>
 		</div>
@@ -60,6 +59,7 @@
 		<div id="web-player" class="cover">
 		</div>
 		<div id="web-player-onblur">
+			
 			<img id="web-player-img" src="img/covers/nn.jpg" alt="Default cover" />
 			<div id="web-player-cmd">
 				<div style="text-align: center; margin-top: 14px;">
@@ -249,7 +249,7 @@
 	<div data-role="header" data-theme="a" style="height:150px;">
 		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 		<h1>Edition</h1>
-		<a href="#" onclick='$( "#formEditionMetadonnee" ).submit();' class="ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all">No text</a>
+		<a href="#" onclick='launchRequestEditMetatag();' class="ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all">No text</a>
 		<img id="imgCoverEditionMetadonnee" src="img/covers/defaultCover.jpg" alt="albumCover"></a>
 		<div class="divHeaderEdition">
 			<span id="titreMusiqueEdition">Validé</span><br />
@@ -258,47 +258,27 @@
 		</div>
 	</div>
 	<div role="main" style="text-align: center;" class="ui-content">
-		<form>
-			<fieldset id="fieldset_radio_choice" data-role="controlgroup" data-theme="b" data-type="horizontal">
-				<input type="radio" name="radio_choice_edition" id="radio_choice_detail_edition" value="on" checked="checked">
-				<label class="radio_choice_label_edition" for="radio_choice_detail_edition">Détails</label>
-				<input type="radio" name="radio_choice_edition" id="radio_choice_pochette_edition" value="off">
-				<label class="radio_choice_label_edition" for="radio_choice_pochette_edition">Pochette</label>
-			</fieldset>
-		</form>
+		<fieldset id="fieldset_radio_choice" data-role="controlgroup" data-theme="b" data-type="horizontal">
+			<input type="radio" name="radio_choice_edition" id="radio_choice_detail_edition" value="on" checked="checked">
+			<label class="radio_choice_label_edition" for="radio_choice_detail_edition">Détails</label>
+			<input type="radio" name="radio_choice_edition" id="radio_choice_pochette_edition" value="off">
+			<label class="radio_choice_label_edition" for="radio_choice_pochette_edition">Pochette</label>
+		</fieldset>
 		
 		<div id="divlist-editionMetadonnee" style="min-height:270px; max-height: 270px; overflow: hidden !important; display:block;">
-			<form id="formEditionMetadonnee" method="POST" action="something.php">
-				<ul id="listview-editionMetadonnee" data-shadow="false" data-icon="false" data-role="listview" data-inset="true" >
-					<!--<li class="cellMetadonnee">
-						<span name="metatag_title_artist" id="metatag_title_artist" class="metadonnee_left metadonnee_label" for="artist">Artiste</span>
-						<input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="artist" id="artist" value="" />
-					</li>
-					<li class="cellMetadonnee">
-						<span name="metatag_title_album" id="metatag_title_album" class="metadonnee_left metadonnee_label" for="album">Album</span>
-						<input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="album" id="album" value="" />
-					</li>
-					<li class="cellMetadonnee">
-						<span name="metatag_title_sarce" id="metatag_title_sarce" class="metadonnee_left metadonnee_label" for="sarce">Sarce</span>
-						<input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="sarce" id="sarce" value="" />
-					</li>
-					<li class="cellMetadonnee">
-						<span name="metatag_title_sarce" id="metatag_title_sarce" class="metadonnee_left metadonnee_label" for="moncef">Moncef</span>
-						<input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="moncef" id="moncef" value="" /> -->
-					</li>
-				</ul>
-			</form>
+			<ul id="listview-editionMetadonnee" data-shadow="false" data-icon="false" data-role="listview" data-inset="true" >
+				<!-- Cellules metadonnées -->
+			</ul>
 		</div>
 		
-		<div id="divlist-editionPochette" style="min-height:270px; max-height: 270px; overflow: hidden !important; display:none;">
+		<div id="divlist-editionPochette" style="overflow: hidden !important; display:none;">
 			<img id="coverPreview" src="img/covers/defaultCover.jpg" />
-			
 		</div>
 		<br />
 		
 		<div id="editButtonMeta" onclick="addCustomMetatag();" class="fileUpload ui-btn ui-corner-all button_selection">
 			<span id="titleEditButton">Ajouter une métadonnée</span>
-			<input form="formEditionMetadonnee" id="uploadPochetteInput" name="uploadPochetteInput" style="display: none;" accept="image/*" type="file" class="upload" />
+			<input id="uploadPochetteInput" name="uploadPochetteInput" style="display: none;" accept="image/*" type="file" class="upload" />
 		</div>
 	</div>
 </div>

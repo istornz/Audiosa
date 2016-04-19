@@ -1,9 +1,11 @@
-elementProgress = null;
-pseudo = null;
-passwordHash = null;
-stateLogLoading = false;
-customMetaTag = 0;
-alreadyPresentMetatag = 0;
+elementProgress		= null;
+pseudo				= null;
+passwordHash		= null;
+stateLogLoading		= false;
+customMetatag		= 0;
+currentMetatag		= 0;
+idPisteEdit			= null;
+md5PisteEdit		= null;
 
 function blurAction(state, div) {
     if (state == 1) div.className = "fullPageBlurred";
@@ -453,11 +455,10 @@ $(document).ready(function() {
         var formData = new FormData();
         formData.append('pseudoPost', pseudo);
         formData.append('passwordPost', passwordHash);
-        formData.append('file', $('input[type=file]')[0].files[
-            0]);
+        formData.append('file', $('#fileUpload')[0].files[0]);
         $.ajax({
             type: 'POST',
-            url: 'apis/upload.php',
+            url: './apis/upload.php',
             data: formData,
             xhr: function() {
                 var myXhr = $.ajaxSettings.xhr();
@@ -595,9 +596,11 @@ function loadEditMetatagPopup(idArrayMusic)
 	var elementPreviewPochette = $("#coverPreview");
 	var popEditionMetadonnee = $('#popupEditionMetadonnee');
 	
-	alreadyPresentMetatag = 0;
-	
-	console.log("Tableau -> " + musicArray);
+	updateDataArray	= [];
+	alterDataArray 	= [];
+	currentMetatag 	= 0;
+	idPisteEdit		= musicArray[idArrayMusic]["idPISTES"];
+	md5PisteEdit	= musicArray[idArrayMusic]["md5"];
 	
 	elementTitreMusique.text(musicArray[idArrayMusic]["title"]);
 	elementArtisteMusique.text(musicArray[idArrayMusic]["artist"]);
@@ -606,26 +609,116 @@ function loadEditMetatagPopup(idArrayMusic)
 	elementPreviewPochette.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"]);
 	
 	$('#listview-editionMetadonnee li').remove();
-	
+	var editionArray = [];
     for (var colonne in musicArray[idArrayMusic])
     {
 	    var colonneTitle = colonne;
 	    var colonneValue = musicArray[idArrayMusic][colonne];
-	    console.log(colonneTitle);
 	    
-	    if(colonneTitle != "idPISTES" && colonneTitle != "cover")
-		{
-		    var htmlContent = '<li class="cellMetadonnee ui-li-static ui-body-inherit"><span name="metatag_title_meta'+ alreadyPresentMetatag +'" id="metatag_title_meta'+ alreadyPresentMetatag +'" class="metadonnee_left metadonnee_label" for="metatag_title_meta'+ alreadyPresentMetatag +'">'+ firstLetterUppercase(colonne) +'</span><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_right ui-shadow-inset"><input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="metatag_content_meta'+ alreadyPresentMetatag +'" id="metatag_content_meta'+ alreadyPresentMetatag +'" value="'+ colonneValue +'"></div></li>';
-			
-	        elementListview.append(htmlContent);
-	        alreadyPresentMetatag++;
+	    if(colonneTitle != "idPISTES" && colonneTitle != "cover" && colonneTitle != "idGENRES" && colonneTitle != "image")
+		{			
+			editionArray.push({
+									colonneTitle: colonneTitle,
+									colonneValue: colonneValue
+            					});
 		}
     }
+    
+    // Récupération des métadonnées à modifier dans le tableau
+    indexIDGenre = editionArray.findIndex(x => x.colonneTitle=="genre");
+    indexNomGenre = editionArray.findIndex(x => x.colonneTitle=="nom");
+    //Changement nom metatag 'nom' par 'genre'
+    editionArray[indexNomGenre]['colonneTitle'] = "genre";
+    //Swap de l'ID du genre par son nom
+    editionArray[indexIDGenre] = editionArray[indexNomGenre];
+    //Suppression du nom du genre, actuellement en doublon
+    editionArray.splice(indexNomGenre, 1);
+    
+    //Application du tableau modifié
+    for (i = 0; i < editionArray.length; i++)
+    {
+		// Assignation des métadonnées dans un tableau
+		var htmlContent = '<li class="cellMetadonnee ui-li-static ui-body-inherit"><span name="metatag_title_meta'+ currentMetatag +'" id="metatag_title_meta'+ currentMetatag +'" class="metadonnee_left metadonnee_label" for="metatag_title_meta'+ currentMetatag +'">'+ firstLetterUppercase(editionArray[i]['colonneTitle']) +'</span><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_right ui-shadow-inset"><input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="metatag_content_meta'+ currentMetatag +'" id="metatag_content_meta'+ currentMetatag +'" value="'+ editionArray[i]['colonneValue'] +'" oninput="metatagCheckArray('+ currentMetatag +', 0);"></div></li>';
+	    
+    	elementListview.append(htmlContent);
+    	currentMetatag++;
+	}
 	
 	elementListview.listview( "refresh" );
 	elementListview.append();
 	
 	popEditionMetadonnee.popup('open', { transition: 'pop' }); 
+}
+
+function addCustomMetatag()
+{
+	var elementListview = $("#listview-editionMetadonnee");
+	var elementPLS = elementListview.parents(".mCustomScrollbar");
+	
+	var htmlContent = '<li class="cellMetadonnee"><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_left metadonnee_field ui-shadow-inset"><input style="text-align:right;" data-theme="s" data-wrapper-class="metadonnee_left metadonnee_left" type="text" data-mini="true" name="custom_metatag_title_meta'+ customMetatag +'" id="custom_metatag_title_meta'+ customMetatag +'" oninput="metatagCheckArray(' + customMetatag + ', 1);"></div><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_right ui-shadow-inset"><input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="custom_metatag_content_meta'+ customMetatag +'" id="custom_metatag_content_meta'+ customMetatag +'" oninput="metatagCheckArray(' + customMetatag + ', 1);"></div></li>';
+	
+	elementListview.append(htmlContent);
+	elementListview.listview( "refresh" );
+	elementPLS.mCustomScrollbar("scrollTo", "bottom");
+	customMetatag++;
+}
+
+function metatagCheckArray(idMetatag, metatagStyle)
+{
+	//Déclarations des variables
+	var elementMetatagTitle = '';
+	var elementMetatagValue = '';
+	var colonneTitle		= '';
+	var colonneValue		= '';
+	var tempArray 			= [];
+	
+	//Si metatagStyle est égale à 0 alors la métadonnée est dejà présente dans la base de donnée
+	if(metatagStyle == 0)
+	{
+		//On copie le contenu du tableau des métadonnées dejà présentes dans le tableau temporaire
+		tempArray = updateDataArray;
+		elementMetatagTitle = $("#metatag_title_meta" + idMetatag);
+		elementMetatagValue = $("#metatag_content_meta" + idMetatag);
+		//On récupère le titre de la métatonnée depuis la balise span, on le met en minuscule
+		colonneTitle = elementMetatagTitle.text().toLowerCase();
+		
+	}
+	else
+	{
+		//On copie le contenu du tableau des métadonnées non présentes dans le tableau temporaire
+		tempArray = alterDataArray;
+		elementMetatagTitle = $("#custom_metatag_title_meta" + idMetatag);
+		elementMetatagValue = $("#custom_metatag_content_meta" + idMetatag);
+		//On récupère le titre de la métatonnée depuis la balise input
+		colonneTitle = elementMetatagTitle[0].value;
+	}
+	
+	//On récupère la valeur de la métadonnée depuis la balise input
+	colonneValue = elementMetatagValue[0].value;
+	
+	//On vérifie si l'id de la metadonnée existe deja dans le tableau ou non ou x est une variable inconnue
+	indexColumn = tempArray.findIndex(x => x.idMetatag==idMetatag);
+	if(indexColumn == -1)
+	{
+		//La clé idMetatag est introuvable on va la créer
+		tempArray.push({
+							idMetatag: idMetatag,
+							column: colonneTitle,
+							value: colonneValue
+						})
+	}
+	else
+	{
+		//La clé existe, on va donc mettre à jour les valeurs de l'objet présent dans le tableau
+		tempArray[indexColumn]['column'] = colonneTitle;
+		tempArray[indexColumn]['value'] = colonneValue;
+	}
+	
+	//On assigne de nouveau le tableau concerné par le tableau modifié
+	if(metatagStyle == 0)
+		updateDataArray = tempArray;
+	else
+		alterDataArray = tempArray;
 }
 
 function firstLetterUppercase(string)
@@ -671,25 +764,50 @@ $("#uploadPochetteInput").on('change', function ()
 	$("#coverPreview").attr("src", blobURLCover);
 });
 
-$("#formEditionMetadonnee").submit(function(event) {
-    event.preventDefault();
-    
-
-    console.log($('#formEditionMetadonnee').serialize());
-    
-    
-});
-
-function addCustomMetatag()
+function launchRequestEditMetatag()
 {
-	var elementListview = $("#listview-editionMetadonnee");
-	customMetaTag++;
-	
-	var htmlContent = '<li class="cellMetadonnee"><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_left metadonnee_field ui-shadow-inset"><input style="text-align:right;" data-theme="s" data-wrapper-class="metadonnee_left metadonnee_left" type="text" data-mini="true" name="custom_metatag_title_meta'+ customMetaTag +'" id="custom_metatag_title_meta'+ customMetaTag +'"></div><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_right ui-shadow-inset"><input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="custom_metatag_content_meta'+ customMetaTag +'" id="custom_metatag_content_meta'+ customMetaTag +'"></div></li>';
-	
-	elementListview.append(htmlContent);
-	elementListview.listview( "refresh" );
-	//elementListview.append();
+	console.log("-- MISE EN FORME JSON DES CHAMPS A MODIFIER (UPDATE) --");
+    console.log(JSON.stringify(updateDataArray));
+    
+    //Faire de même pour les champs à alter
+    console.log("-- MISE EN FORME JSON DES CHAMPS A CREER (ALTER) --");
+    console.log(JSON.stringify(alterDataArray));
+    
+    var JSONStringUpdate = JSON.stringify(updateDataArray);
+    var JSONStringAlter = JSON.stringify(alterDataArray);
+    
+    var formData = new FormData;
+    formData.append('pseudoPost', pseudo);
+    formData.append('passwordPost', passwordHash);
+    formData.append('idPISTES', idPisteEdit);
+    formData.append('updateData', JSONStringUpdate);
+    formData.append('alterData', JSONStringAlter);
+    
+    if($( '#uploadPochetteInput' )[0].files[0] != null)
+    {
+	    formData.append('cover', $( '#uploadPochetteInput' )[0].files[0] );
+	    formData.append('md5',  md5PisteEdit);
+    }
+    
+    console.log("Envoi de la requete AJAX");
+    
+    $.ajax({
+        url: './apis/edit_metatag.php',
+        type: 'POST',
+        data: formData,
+        async: true,
+        success: function (data) {
+	        console.log("Succes");
+            console.log(data);
+        },
+        cache: false,
+        contentType: false,
+        processData: false,
+        error: function(data) {
+                console.log("Error");
+                console.log(data);
+            }
+    });
 }
 
 $("#visualiserLogButton").click(function(){
@@ -725,8 +843,8 @@ $("#visualiserLogButton").click(function(){
 					elementListViewLog.append(htmlContent);
 					elementListViewLog.listview( "refresh" );
 					elementListViewLog.mCustomScrollbar({
-					theme:"minimal"
-				});
+						theme:"minimal"
+					});
 					
 					elementVisualiserLogButton.html("Visualiser les logs");
 					

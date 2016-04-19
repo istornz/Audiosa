@@ -166,8 +166,6 @@ function retrieveAlbums($connexion)
 	$dateStr 			= $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
 	$increLigne 		= 0;
 	
-	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","albums": [';
-	
 	if($selectStatement = $connexion->query($commande_SQL))
 	{
 		$nbrLigne = $selectStatement->rowCount();
@@ -188,14 +186,17 @@ function retrieveAlbums($connexion)
 			die('{"status_code":0,"error_description":"no album"}');
 		}
 		
+		echo '{"status_code":1, "fetched_at": "'. $dateStr .'","albums": [';
+		
 		for($i = 0; $i < $nbrAlbum; $i++)
 		{
 			$artistName = getArtistNameForAlbum($connexion, $tableauAlbums[$i]);
-			$tracks = getTrackForAlbum($connexion, $tableauAlbums[$i], $artistName);
+			$tracks 	= getTrackForAlbum($connexion, $tableauAlbums[$i]);
 			
 			echo "{";
 				echo '"album_name": "' . $tableauAlbums[$i] . '",';
 				echo '"tracks": ' . json_encode($tracks) . ', ';
+				echo '"items_count": ' . count($tracks) . ', ';
 				echo '"artist_name": "' . $artistName . '"';
 			
 			if($increLigne == ($nbrAlbum - 1 ))
@@ -215,12 +216,12 @@ function retrieveAlbums($connexion)
 	}
 }
 
-function getTrackForAlbum($connexion, $albumName, $artistName)
+function getTrackForAlbum($connexion, $albumName)
 {
 	$albumName = $connexion->quote($albumName);
 	$artistName = $connexion->quote($artistName);
 	
-	$commande_SQL	= "SELECT * FROM pistes WHERE album=". $albumName ." AND artist=". $artistName;
+	$commande_SQL	= "SELECT * FROM pistes WHERE album=". $albumName;
 	$tableauPistes = array();
 	
 	if($selectStatement = $connexion->query($commande_SQL))
@@ -297,12 +298,10 @@ function getTrackNumberForArtist($connexion, $artistName)
 function retrievePlaylists($connexion)
 {
 	$commande_SQL		= "SELECT * FROM playlists";
-	$tableauPlaylists 		= array();
-	$date = getdate();
-	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
-	$increLigne = 0;
-	
-	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","playlists": [';
+	$tableauPlaylists 	= array();
+	$date 				= getdate();
+	$dateStr 			= $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
+	$increLigne 		= 0;
 	
 	if($selectStatement = $connexion->query($commande_SQL))
 	{
@@ -310,7 +309,7 @@ function retrievePlaylists($connexion)
 		
 		while($ligne = $selectStatement->fetch(PDO::FETCH_ASSOC))
 		{
-			if (!in_array($ligne['name'], $tableauAlbums))
+			if (!in_array($ligne['name'], $tableauPlaylists))
 			{
 				$tableauPlaylists[] = array('idPLAYLIST' => $ligne['idPLAYLIST'], 
 											'name' => $ligne['name'], 
@@ -324,6 +323,8 @@ function retrievePlaylists($connexion)
 		{
 			die('{"status_code":0,"error_description":"no playlist"}');
 		}
+		
+		echo '{"status_code":1, "fetched_at": "'. $dateStr .'","playlists": [';
 		
 		for($i = 0; $i < $nbrPlaylists; $i++)
 		{

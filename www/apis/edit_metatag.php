@@ -34,7 +34,7 @@ catch(PDOException $e)
 //	   Verifications 	//
 /************************/
 
-$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM utilisateur WHERE utilisateur.username = :username AND utilisateur.password = :password LIMIT 1');
+$selectStatement = $connexion->prepare('SELECT COUNT(*) FROM `utilisateur` WHERE utilisateur.username = :username AND utilisateur.password = :password LIMIT 1');
 $selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':password', $_POST['passwordPost'], PDO::PARAM_STR);
 
@@ -103,10 +103,10 @@ if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0 && isset($_POST['md
 
 if(count($arrayAlterColumn) > 0)
 {
-	$commandeSQLAlter = "ALTER TABLE pistes ";
+	$commandeSQLAlter = "ALTER TABLE `pistes` ";
 	for($i = 0; $i < count($arrayAlterColumn); $i++)
 	{
-		$commandeSQLAlter .= "ADD COLUMN " . $arrayAlterColumn[$i]['column'] . " " . DEFAULT_MYSQL_TYPE;
+		$commandeSQLAlter .= "ADD COLUMN `" . $arrayAlterColumn[$i]['column'] . "` " . DEFAULT_MYSQL_TYPE;
 		
 		if($i == count($arrayAlterColumn) - 1) // Avant dernier element
 			$commandeSQLAlter .= ";";
@@ -114,14 +114,14 @@ if(count($arrayAlterColumn) > 0)
 			$commandeSQLAlter .= ", ";
 	}
 	
-	$alterStatement = $connexion->prepare($commandeSQLAlter);
+	$alterStatement = $connexion->prepare(utf8_decode($commandeSQLAlter));
 	
 	if(!$alterStatement->execute())
 	{
-		$errorInfoArray = $selectStatement->errorInfo();
+		$errorInfoArray = $alterStatement->errorInfo();
 		write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (alter) : " . $errorInfoArray[2]);
 		
-		die('{"status_code":0,"error_description":"failed to alter table' . $connexion->errorInfo() . '"}');	
+		die('{"status_code":0,"error_description":"failed to alter table"}');	
 	}
 	
 	$global_array = array_merge($arrayUpdateColumn, $arrayAlterColumn);
@@ -129,23 +129,76 @@ if(count($arrayAlterColumn) > 0)
 
 if(count($global_array) > 0)
 {
-	$commandeSQLUpdate = "UPDATE pistes SET ";
+	$commandeSQLUpdate = "UPDATE `pistes` SET ";
 	for($i = 0; $i < count($global_array); $i++)
 	{
-		$commandeSQLUpdate .= $global_array[$i]['column'] . " = '" . $global_array[$i]['value'] . "'";
-		
-		if($i == count($global_array) - 1) // Avant dernier element
-			$commandeSQLUpdate .= " WHERE pistes.idPISTES=". $idPISTES .";";
+		if($global_array[$i]['column'] == "genre")
+		{
+			$commandeSQLInsert = "INSERT INTO `genres` (nom) SELECT ". $connexion->quote($global_array[$i]['value']) . " FROM `genres` WHERE NOT EXISTS (SELECT `idGENRES` FROM `genres` WHERE nom=". $connexion->quote($global_array[$i]['value']) . ") LIMIT 1";
+			$insertStatement = $connexion->prepare(utf8_decode($commandeSQLInsert));
+			if($insertStatement->execute())
+			{
+				$ligne_affecte = $insertStatement->rowCount();
+				if($ligne_affecte == 1)
+				{
+					//Le genre à été intégré dans la base de données
+					$idGENRES = $connexion->lastInsertId();
+				}
+				else
+				{
+					//Le genre existe déjà, on récupère son ID
+					$commandeSQLSelect = "SELECT `idGENRES` FROM `genres` WHERE nom=". $connexion->quote($global_array[$i]['value']) ." LIMIT 1";
+					$selectStatement = $connexion->prepare(utf8_decode($commandeSQLSelect));
+					if($selectStatement->execute())
+					{
+						$ligne = $selectStatement->fetch(PDO::FETCH_ASSOC);
+						$idGENRES = $ligne['idGENRES'];
+					}
+					else
+					{
+						write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (select genre id) : " . $errorInfoArray[2]);
+						die('{"status_code":0,"error_description":"failed to select genre id"}');
+					}
+				}
+				
+				//Update
+				$commandeSQLUpdateGenre = "UPDATE `pistes` SET `genre`=". $idGENRES ." WHERE `idPISTES`=". $idPISTES;
+				$updateGenreStatement = $connexion->prepare($commandeSQLUpdateGenre);
+				if(!$updateGenreStatement->execute())
+				{
+					write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (update genre id) : " . $errorInfoArray[2]);
+					die('{"status_code":0,"error_description":"failed to update genre id"}');
+				}
+				
+			}
+			else
+			{
+				write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (insert genre) : " . $errorInfoArray[2]);
+				die('{"status_code":0,"error_description":"failed to insert genre"}');
+			}
+		}
 		else
-			$commandeSQLUpdate .= ", ";
-	}
+		{
+			$commandeSQLUpdate .= "`" . $global_array[$i]['column'] . "` = " . $connexion->quote($global_array[$i]['value']);
+		
+			if($i == count($global_array) - 1) // Avant dernier element
+			{
+				$commandeSQLUpdate .= " WHERE `idPISTES`=". $idPISTES .";";
+				
+				$updateStatement = $connexion->prepare(utf8_decode($commandeSQLUpdate));
 	
-	$updateStatement = $connexion->prepare($commandeSQLUpdate);
-	
-	if(!$updateStatement->execute())
-	{
-		write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (update) : " . $errorInfoArray[2]);
-		die('{"status_code":0,"error_description":"failed to update metatag"}');
+				if(!$updateStatement->execute())
+				{
+					$errorInfoArray = $updateStatement->errorInfo();
+					write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (update) : " . $errorInfoArray[2] . $commandeSQLUpdate);
+					die('{"status_code":0,"error_description":"failed to update metatag"}');
+				}
+			}
+			else
+			{
+				$commandeSQLUpdate .= ", ";
+			}
+		}
 	}
 }
 

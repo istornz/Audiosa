@@ -625,8 +625,15 @@ function loadEditMetatagPopup(idArrayMusic)
     }
     
     // Récupération des métadonnées à modifier dans le tableau
-    indexIDGenre = editionArray.findIndex(x => x.colonneTitle=="genre");
-    indexNomGenre = editionArray.findIndex(x => x.colonneTitle=="nom");
+    //indexIDGenre = editionArray.findIndex(x => x.colonneTitle=="genre"); Ne marche pas sous Safari
+    //indexNomGenre = editionArray.findIndex(x => x.colonneTitle=="nom"); Ne marche pas sous Safari
+    indexIDGenre = editionArray.findIndex(function (x) {
+		return x.colonneTitle == "genre";
+	});
+    indexNomGenre = editionArray.findIndex(function (x) {
+		return x.colonneTitle == "nom";
+	});
+	
     //Changement nom metatag 'nom' par 'genre'
     editionArray[indexNomGenre]['colonneTitle'] = "genre";
     //Swap de l'ID du genre par son nom
@@ -666,6 +673,9 @@ function addCustomMetatag()
 function metatagCheckArray(idMetatag, metatagStyle)
 {
 	//Déclarations des variables
+	var elementTitleEdit	= $("#titreMusiqueEdition");
+	var elementArtistEdit	= $("#nomArtisteEdition");
+	var elementAlbumEdit	= $("#nomAlbumEdition");
 	var elementMetatagTitle = '';
 	var elementMetatagValue = '';
 	var colonneTitle		= '';
@@ -681,7 +691,6 @@ function metatagCheckArray(idMetatag, metatagStyle)
 		elementMetatagValue = $("#metatag_content_meta" + idMetatag);
 		//On récupère le titre de la métatonnée depuis la balise span, on le met en minuscule
 		colonneTitle = elementMetatagTitle.text().toLowerCase();
-		
 	}
 	else
 	{
@@ -696,8 +705,24 @@ function metatagCheckArray(idMetatag, metatagStyle)
 	//On récupère la valeur de la métadonnée depuis la balise input
 	colonneValue = elementMetatagValue[0].value;
 	
+	switch (colonneTitle) {
+	    case "title":
+	        elementTitleEdit.html(colonneValue);
+	        break;
+	    case "artist":
+	        elementArtistEdit.html(colonneValue);
+	        break;
+	    case "album":
+	        elementAlbumEdit.html(colonneValue);
+	        break;
+	}
+	
 	//On vérifie si l'id de la metadonnée existe deja dans le tableau ou non ou x est une variable inconnue
-	indexColumn = tempArray.findIndex(x => x.idMetatag==idMetatag);
+	//indexColumn = tempArray.findIndex(x => x.idMetatag==idMetatag); Ne marche pas sous Safari
+	indexColumn = tempArray.findIndex(function (x) {
+		return x.idMetatag == idMetatag;
+	});
+	
 	if(indexColumn == -1)
 	{
 		//La clé idMetatag est introuvable on va la créer
@@ -758,23 +783,32 @@ $("#radio_choice_pochette_edition").on('change', function ()
 
 $("#uploadPochetteInput").on('change', function ()
 {
-	var cover = this.files[0];
-	var blobURLCover = window.URL.createObjectURL(this.files[0]);
 	
-	$("#coverPreview").attr("src", blobURLCover);
+	var elementCoverPreview 		= $("#coverPreview");
+	var elementCoverPreviewHeader 	= $("#imgCoverEditionMetadonnee");
+	var cover 						= this.files[0];
+	var blobURLCover 				= window.URL.createObjectURL(this.files[0]);
+	
+	elementCoverPreview.attr("src", blobURLCover);
+	elementCoverPreviewHeader.attr("src", blobURLCover);
 });
 
 function launchRequestEditMetatag()
 {
+	/*
 	console.log("-- MISE EN FORME JSON DES CHAMPS A MODIFIER (UPDATE) --");
     console.log(JSON.stringify(updateDataArray));
     
-    //Faire de même pour les champs à alter
     console.log("-- MISE EN FORME JSON DES CHAMPS A CREER (ALTER) --");
     console.log(JSON.stringify(alterDataArray));
+    */
     
-    var JSONStringUpdate = JSON.stringify(updateDataArray);
-    var JSONStringAlter = JSON.stringify(alterDataArray);
+    var JSONStringUpdate 			= JSON.stringify(updateDataArray);
+    var JSONStringAlter 			= JSON.stringify(alterDataArray);
+    var elementEditMetadonneePopup 	= $("#popupEditionMetadonnee");
+    var elementMessageEditMetaDiv 	= $("#messageInfoDivEditionMetadonnees");
+    var elementMessageEditMetaLabel = $("#messageInfoEditionMetadonneesLabel");
+    var elementValiderButton		= $("#validerMetadonneesButton");
     
     var formData = new FormData;
     formData.append('pseudoPost', pseudo);
@@ -789,7 +823,8 @@ function launchRequestEditMetatag()
 	    formData.append('md5',  md5PisteEdit);
     }
     
-    console.log("Envoi de la requete AJAX");
+    elementValiderButton.removeClass( "ui-icon-check ui-btn-icon-notext" );
+    elementValiderButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
     
     $.ajax({
         url: './apis/edit_metatag.php',
@@ -797,14 +832,88 @@ function launchRequestEditMetatag()
         data: formData,
         async: true,
         success: function (data) {
-	        console.log("Succes");
-            console.log(data);
+            var JSONParsed = data;
+            
+            elementValiderButton.addClass( "ui-icon-check ui-btn-icon-notext" );
+			elementValiderButton.html("");
+            
+            elementMessageEditMetaDiv.css("display", "block");
+            elementMessageEditMetaDiv.addClass("animated bounceIn");
+			window.setTimeout(function() {
+                elementMessageEditMetaDiv.removeClass(
+                    "animated bounceIn");
+            }, 500);
+            
+            if (JSONParsed.status_code == 1)
+            {
+                elementMessageEditMetaDiv.css("background-color",
+                    "#16a085");
+                elementMessageEditMetaLabel.text("Changement reussie !");
+                window.setTimeout(function() {
+                    elementMessageEditMetaDiv.css("display", "none");
+                    get_music("morceaux");
+		            elementEditMetadonneePopup.popup("close");
+	                blurAction(0, fullPage);
+                }, 1000);
+	        }
+	        else
+	        {
+		        elementMessageEditMetaDiv.css("background-color",
+                    "#e74c3c");
+                    
+                switch(JSONParsed.error_description)
+                {
+	            	case "undeclared variables":
+	                    elementMessageEditMetaLabel.text("Variable(s) non déclaré(es)");
+	                    break;
+	                case "connection to database failed":
+	                    elementMessageEditMetaLabel.text("Connexion à la bdd impossible");
+	                    break;
+	                case "username and/or password does not match":
+	                    elementMessageEditMetaLabel.text("Identifiant(s) incorrect(s)");
+	                    break;
+	                case "unable to login":
+	                    elementMessageEditMetaLabel.text("Impossible de se connecter");
+	                    break;
+	                case "extension not authorized":
+	                    elementMessageEditMetaLabel.text("Extension non autorisée (cover)");
+	                    break;
+	                case "file too big":
+	                    elementMessageEditMetaLabel.text("Fichier trop volumineux (cover)");
+	                    break;
+	                case "file is not a valid image file":
+	                    elementMessageEditMetaLabel.text("La cover n'est pas une image valide");
+	                    break;
+	                case "unable to move file":
+	                    elementMessageEditMetaLabel.text("Impossible de déplacer la cover");
+	                    break;
+	                case "failed to alter table":
+	                    elementMessageEditMetaLabel.text("Impossible d'ajouter une métadonnée");
+	                    break;
+	                case "failed to select genre id":
+	                    elementMessageEditMetaLabel.text("Impossible de récupérer l'identifiant du genre");
+	                    break;
+	                case "failed to update genre id":
+	                    elementMessageEditMetaLabel.text("Impossible de mettre à jour l'identifiant du genre");
+	                    break;
+	                case "failed to insert genre":
+	                    elementMessageEditMetaLabel.text("Impossible d'ajouter le genre");
+	                    break;
+	                case "failed to update metatag":
+	                    elementMessageEditMetaLabel.text("Impossible de mettre à jour une métadonnée");
+	                    break;
+	                default :
+	                    elementMessageEditMetaLabel.text("Une erreur est survenue");
+	                    break; 	
+                }
+	        }
         },
         cache: false,
         contentType: false,
         processData: false,
         error: function(data) {
-                console.log("Error");
+                elementValiderButton.addClass( "ui-icon-check ui-btn-icon-notext" );
+				elementValiderButton.html("");
                 console.log(data);
             }
     });
@@ -834,10 +943,12 @@ $("#visualiserLogButton").click(function(){
 					stateLogLoading = true;
 					
 					var arrayLogContent = log_file_content.split("\n");
-					var htmlContent = "";
+					var htmlContent 	= "";
 					for(i = 0; i < arrayLogContent.length; i++)
 					{
-						htmlContent += '<li><a class="no-margin txt-left list-log" href="#">' + arrayLogContent[i] + '</a></li>';
+						if(arrayLogContent[i].length > 0)
+							htmlContent += '<li><a class="no-margin txt-left list-log" href="#">' + arrayLogContent[i] + '</a></li>';
+						
 					}
 					
 					elementListViewLog.append(htmlContent);

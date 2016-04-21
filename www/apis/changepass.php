@@ -29,7 +29,7 @@ try
     
     if(isValidMd5($_POST['newPasswordPost']))
 	{
-		$newPassword	= $_POST['newPasswordPost'];
+		$newPassword = $_POST['newPasswordPost'];
 	}
 	else
 	{

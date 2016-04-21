@@ -37,8 +37,11 @@ function get_music(type) {
 					$("#into_"+type).append('<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
 				}
 				
-				$(".edit_music_container").css("display", "block");
-				console.log(musicArray);
+				if(pseudo != null && passwordHash != null)
+				{
+					$(".edit_music_container").css("display", "block");
+				}
+				
 			}
 			else if(type == "artistes")
 			{

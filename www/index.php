@@ -249,7 +249,7 @@
 	<div data-role="header" data-theme="a" style="height:150px;">
 		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 		<h1>Edition</h1>
-		<a href="#" onclick='launchRequestEditMetatag();' class="ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all">No text</a>
+		<a id="validerMetadonneesButton" href="#" onclick='launchRequestEditMetatag();' class="ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all">No text</a>
 		<img id="imgCoverEditionMetadonnee" src="img/covers/defaultCover.jpg" alt="albumCover"></a>
 		<div class="divHeaderEdition">
 			<span id="titreMusiqueEdition">Validé</span><br />
@@ -258,6 +258,9 @@
 		</div>
 	</div>
 	<div role="main" style="text-align: center;" class="ui-content">
+			<div id="messageInfoDivEditionMetadonnees" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;margin-bottom: 18px;">
+				<span id="messageInfoEditionMetadonneesLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
+			</div>
 		<fieldset id="fieldset_radio_choice" data-role="controlgroup" data-theme="b" data-type="horizontal">
 			<input type="radio" name="radio_choice_edition" id="radio_choice_detail_edition" value="on" checked="checked">
 			<label class="radio_choice_label_edition" for="radio_choice_detail_edition">Détails</label>

@@ -48,9 +48,7 @@
 			<ul id="menu_scroll" data-role="listview" style="max-height: 100%;">
 				<li id="button_my_music"><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img style="float: left;" class="first_icon_sidebar_cell" src="img/music_library.png" alt="Nouvelle playlist" >&nbsp;&nbsp;&nbsp;&nbsp;Ma musique</div></a></li>
 				<li id="button_new_playlist" style="display: none;"><a href="#popupPlaylist" data-rel="popup" data-position-to="window" data-transition="pop" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/add_playlist_green.png" alt="Nouvelle playlist" >&nbsp;&nbsp;&nbsp;&nbsp;Nouvelle playlist</div></a></li>
-				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 1</div></a></li>
-				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 2</div></a></li>
-				<li><a href="#" class="no-margin txt-left"><div class="cellSideBar"><img class="icon_sidebar_cell" src="img/play_blue.png" alt="Jouer" >&nbsp;&nbsp;&nbsp;&nbsp;Playlist 3</div></a></li>
+				<div id="into_playlists"></div>
 			</ul>
 		</div>
 		<div id="view_more">
@@ -60,7 +58,7 @@
 		</div>
 		<div id="web-player-onblur">
 			
-			<img id="web-player-img" src="img/covers/nn.jpg" alt="Default cover" />
+			<img id="web-player-img" src="img/covers/defaultCover.jpg" alt="Default cover" />
 			<div id="web-player-cmd">
 				<div style="text-align: center; margin-top: 14px;">
 					<img id="web-player-shuffle" src="img/player/shufflew.png" alt="shuffle">
@@ -258,9 +256,9 @@
 		</div>
 	</div>
 	<div role="main" style="text-align: center;" class="ui-content">
-			<div id="messageInfoDivEditionMetadonnees" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;margin-bottom: 18px;">
-				<span id="messageInfoEditionMetadonneesLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
-			</div>
+		<div id="messageInfoDivEditionMetadonnees" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;margin-bottom: 18px;">
+			<span id="messageInfoEditionMetadonneesLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
+		</div>
 		<fieldset id="fieldset_radio_choice" data-role="controlgroup" data-theme="b" data-type="horizontal">
 			<input type="radio" name="radio_choice_edition" id="radio_choice_detail_edition" value="on" checked="checked">
 			<label class="radio_choice_label_edition" for="radio_choice_detail_edition">Détails</label>
@@ -357,6 +355,7 @@
 	<script src="js/pagetransitions.js"></script>
 	<!-- generation de playlist -->
 	<script src="js/playlist/choices.js"></script>
+	<script src="js/playlist/list_playlist.js"></script>
 	<!-- custom scrollbar plugin -->
 	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
 	<script src="js/md5.min.js" type="text/javascript"></script>

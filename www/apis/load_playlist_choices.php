@@ -96,7 +96,7 @@ else if ($type == "artistes")
 	//	    ARTISTES  	 	//
 	/************************/
 	
-	echo ',"artists": ';
+	echo ',"artistes": ';
 	
 	$commande_SQL	= "SELECT DISTINCT idPISTES,artist FROM pistes WHERE artist != 'NULL' ";
 	$query = $connexion->prepare($commande_SQL);

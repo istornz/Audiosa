@@ -15,7 +15,7 @@ $genres = json_decode($_POST['genres']);
 $annees = json_decode($_POST['annees']);
 $artists = json_decode($_POST['artists']);
 $albums = json_decode($_POST['albums']);
-$playlist_name = json_decode($_POST['playlist_name']);
+$playlist_name = $_POST['playlist_name'];
 
 $_genres = array();
 $_playlist = array();
@@ -207,6 +207,6 @@ $query->execute();
 }
 
 
-echo json_encode('{"status_code":1}');
+echo '{"status_code":1}';
 
 ?>

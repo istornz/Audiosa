@@ -47,7 +47,7 @@ if($type == "genres") {
 	//	    GENRES  	 	//
 	/************************/
 
-	$commande_SQL	= "SELECT idGENRES,nom FROM genres WHERE nom != 'NULL'";
+	$commande_SQL	= "SELECT * FROM genres WHERE nom != 'NULL'";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -66,7 +66,7 @@ else if($type == "albums")
 
 	echo ',"albums": ';
 	
-	$commande_SQL	= "SELECT DISTINCT idPISTES,album FROM pistes WHERE album != 'NULL'";
+	$commande_SQL	= "SELECT idPISTES,album FROM pistes WHERE album != 'NULL' GROUP BY album";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -98,7 +98,7 @@ else if ($type == "artistes")
 	
 	echo ',"artistes": ';
 	
-	$commande_SQL	= "SELECT DISTINCT idPISTES,artist FROM pistes WHERE artist != 'NULL' ";
+	$commande_SQL	= "SELECT DISTINCT idPISTES,artist FROM pistes WHERE artist != 'NULL' GROUP BY artist";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	
@@ -117,7 +117,7 @@ else if($type == "annees")
 	
 	echo ',"annees": ';
 	
-	$commande_SQL	= "SELECT DISTINCT idPISTES,date FROM pistes WHERE date != 'NULL'";
+	$commande_SQL	= "SELECT idPISTES,date FROM pistes WHERE date != 'NULL' GROUP BY date";
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	

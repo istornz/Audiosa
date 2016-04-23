@@ -1,7 +1,5 @@
 musicArray = [];
 
-  
-get_music("morceaux");
 //get_music("artistes");
 //get_music("albums");
 
@@ -25,7 +23,7 @@ function get_music(type) {
 		$('body').removeClass('ui-loading');
 		
 		musicArray = msg.pistes;
-		
+
 		if(msg.status_code != 1)
 		{
 			console.log("UNE ERREUR EST SURVENUE");
@@ -34,7 +32,7 @@ function get_music(type) {
 			return false;
 		}
 		$("#into_"+type).mCustomScrollbar('destroy');
-		$("#into_"+type).html("");
+		$("#into_"+type).html("");	
 			
 			if(type == "morceaux") {
 				for(var indicePiste=0; indicePiste < msg.pistes.length; indicePiste++) {
@@ -49,7 +47,7 @@ function get_music(type) {
 			}
 			else if(type == "artistes")
 			{
-				for(var indicePiste=0; indicePiste < msg.artists.length; indicePiste++) {
+				for(var indicePiste=0; indicePiste < msg.artistes.length; indicePiste++) {
 				
 					$.ajax({
                     type: 'GET',
@@ -59,9 +57,9 @@ function get_music(type) {
                         console.log(data);
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        //console.log(XMLHttpRequest);
-                        //console.log(textStatus);
-                        //console.log(errorThrown);
+                        console.log(XMLHttpRequest);
+                        console.log(textStatus);
+                        console.log(errorThrown);
                     }
                 });
 				}
@@ -73,7 +71,7 @@ function get_music(type) {
 					$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.albums[indicePiste].tracks[0].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.albums[indicePiste].album_name)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.albums[indicePiste].artist_name)+' - '+msg.albums.length+' musiques</span></div> </a></li>');
 				}
 			}
-			  
+			
 			$("#into_"+type).listview().listview('refresh');
 			$("#into_"+type).mCustomScrollbar({
 				theme:"minimal"

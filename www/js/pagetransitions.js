@@ -1,12 +1,14 @@
+page_actu = 1;
+page_actu_playlist = false;
+
 var PageTransitions = (function() {
 
 	var $main = $( '#pt-main' ),
-		//Morceaux / Artiste / Album
-		page_actu = 1;
+		//1 Morceaux / 2 Artiste / 3 Album
 		$pages = $main.children( 'div.pt-page' ),
 		$morceaux = $( '.paging_morceaux' ),
-		$album = $( '.paging_album' ),
-		$artiste = $( '.paging_artiste' ),
+		$albums = $( '.paging_album' ),
+		$artistes = $( '.paging_artiste' ),
 		animcursor = 1,
 		pagesCount = $pages.length,
 		current = 0,
@@ -46,31 +48,37 @@ var PageTransitions = (function() {
 			if( isAnimating ) {
 				return false;
 			}
-						
-			if(page_actu == 1) {
+			
+
+			if(page_actu == 1 && page_actu_playlist == false) {
 				return false;
 			}
 			else
 			{
-				
+				get_music("morceaux");
 				if(page_actu == 2) {
 					backPage( 28);
 				}
-				else {
+				else if (page_actu == 3) {
 					nextPage( 28 );
+				}
+				else {
+					page_actu_playlist = false;
 				}
 				
 				page_actu = 1;
 			}
+		
+		
 		} );
 		
 		//Album
-		$album.on( 'click', function() {
+		$albums.on( 'click', function() {
 			if( isAnimating ) {
 				return false;
 			}
 
-			if(page_actu == 3) {
+			if(page_actu == 3 && page_actu_playlist == false) {
 				return false;
 			}
 			else
@@ -79,8 +87,11 @@ var PageTransitions = (function() {
 				if(page_actu == 2) {
 					nextPage( 28);
 				}
-				else {
+				else if(page_actu == 1){
 					backPage( 28 );
+				}
+				else {
+					page_actu_playlist == false;
 				}
 				
 				page_actu = 3;
@@ -89,12 +100,12 @@ var PageTransitions = (function() {
 		} );
 		
 		//Artiste
-		$artiste.on( 'click', function() {
+		$artistes.on( 'click', function() {
 			if( isAnimating ) {
 				return false;
 			}
 			
-			if(page_actu == 2) {
+			if(page_actu == 2 && page_actu_playlist == false) {
 				return false;
 			}
 			else
@@ -103,8 +114,11 @@ var PageTransitions = (function() {
 				if(page_actu == 1) {
 					nextPage( 28);
 				}
-				else {
+				else if(page_actu == 3) {
 					backPage( 28 );
+				}
+				else {
+					page_actu_playlist == false;
 				}
 				
 				page_actu = 2;

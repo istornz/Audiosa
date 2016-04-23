@@ -392,7 +392,10 @@
 				});
 				
 				$("#uploadPochetteInput").parent().removeClass("ui-input-text"); //Suppression de la classe ui-input-text rajoutée par défaut par jQuery (cette classe dégrade le design du bouton d'édition des metadonnées)
-			});
+		
+				list_playlists();
+				get_music("morceaux");
+		});
 		})(jQuery);
 	</script>
 </body>

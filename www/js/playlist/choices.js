@@ -3,10 +3,10 @@ artistes_choisis = [];
 albums_choisis = [];
 annees_choisis = [];
 
-	genresLoaded=false, 
-	albumsLoaded=false,
-	artistesLoaded=false,
-	anneesLoaded=false;
+genresLoaded=false, 
+albumsLoaded=false,
+artistesLoaded=false,
+anneesLoaded=false;
 
 $(document).ready(function() {
 
@@ -18,7 +18,6 @@ $(".choice_click").click(function() {
 $("#backPlaylistChoice").click(function() {
 	choice_back();
 });
-
 
 $("#choice_genres").click(function() {
 	$("#choix").css("display","none");
@@ -356,9 +355,9 @@ function get_choices(type) {
 		
 	} else if (type == "artistes") {
 
-	for(var indiceArtiste=0; indiceArtiste < msg.artists.length; indiceArtiste++) {
+	for(var indiceArtiste=0; indiceArtiste < msg.artistes.length; indiceArtiste++) {
 		
-			$("#list_artistes").append('<div id="'+escapeHtml(msg.artists[indiceArtiste].idPISTES)+'_artistc" data-title="'+escapeHtml(msg.artists[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes"><div class="artist_title">'+escapeHtml(msg.artists[indiceArtiste].artist)+'</div></div>');
+			$("#list_artistes").append('<div id="'+escapeHtml(msg.artistes[indiceArtiste].idPISTES)+'_artistc" data-title="'+escapeHtml(msg.artistes[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes"><div class="artist_title">'+escapeHtml(msg.artistes[indiceArtiste].artist)+'</div></div>');
 			
 		}
 	} else {

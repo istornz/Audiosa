@@ -309,9 +309,9 @@
 				<div id="messageInfoPlaylistDiv" class="ui-bar ui-bar-a" style="background-color: #e74c3c; display: none;">
 					<span id="messageInfoPlaylistLabel" class="messageInfoLabel">Entrez un nom de playlist valide</span>
 				</div>
-				
-				<h4> Choisissez un nom pour votre playlist </h4>
-				<input style="background-color: #E9E9E9; color: black;" id="nom_playlist_input" type="text" placeholder=">> Nom de la playlist" /><br>
+				<img src="./img/playlist_name.png" style="width: 100px; display: block; margin: 0 auto;" />
+				<h4 style="text-align: center;">Choisissez un nom pour votre playlist</h4>
+				<input style="background-color: #E9E9E9; color: black;" id="nom_playlist_input" type="text" placeholder="Nom"/><br>
 				<a id="valider_playlist" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #2980b9">Créer la playlist</a>
 
 			</div>

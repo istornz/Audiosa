@@ -615,7 +615,7 @@ function loadEditMetatagPopup(idArrayMusic)
 	    var colonneTitle = colonne;
 	    var colonneValue = musicArray[idArrayMusic][colonne];
 	    
-	    if(colonneTitle != "idPISTES" && colonneTitle != "cover" && colonneTitle != "idGENRES" && colonneTitle != "image")
+	    if(colonneTitle != "idPISTES" && colonneTitle != "cover" && colonneTitle != "idGENRES" && colonneTitle != "image" && colonneTitle != "md5")
 		{			
 			editionArray.push({
 									colonneTitle: colonneTitle,

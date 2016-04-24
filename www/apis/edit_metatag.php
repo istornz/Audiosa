@@ -97,9 +97,10 @@ if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0 && isset($_POST['md
 		die('{"status_code":0, "error_description":"unable to move file"}');
 	}
 	
-	array_push ($global_array, array("column"=>"cover", "value"=>$fileName));
-	
+	$global_array[] = array("column"=>"cover", "value"=>$fileName);
 }
+
+
 
 if(count($arrayAlterColumn) > 0)
 {
@@ -162,8 +163,9 @@ if(count($global_array) > 0)
 				}
 				
 				//Update
-				$commandeSQLUpdateGenre = "UPDATE `pistes` SET `genre`=". $idGENRES ." WHERE `idPISTES`=". $idPISTES;
+				$commandeSQLUpdateGenre = "UPDATE `pistes` SET `genre`=". $idGENRES ." WHERE idPISTES=". $idPISTES;
 				$updateGenreStatement = $connexion->prepare($commandeSQLUpdateGenre);
+				
 				if(!$updateGenreStatement->execute())
 				{
 					write_error_to_log("API Édition métadonnées","Impossible d'exécuter la commande SQL (update genre id) : " . $errorInfoArray[2]);
@@ -183,10 +185,10 @@ if(count($global_array) > 0)
 		
 			if($i == count($global_array) - 1) // Avant dernier element
 			{
-				$commandeSQLUpdate .= " WHERE `idPISTES`=". $idPISTES .";";
+				$commandeSQLUpdate .= " WHERE idPISTES=". $idPISTES .";";
 				
 				$updateStatement = $connexion->prepare(utf8_decode($commandeSQLUpdate));
-	
+				
 				if(!$updateStatement->execute())
 				{
 					$errorInfoArray = $updateStatement->errorInfo();

@@ -57,8 +57,8 @@ if($selectStatement->execute())
 		$titre 			= "Réinitialisation mot de passe Audiosa";
 		
 		$corps 			= '<p>Vous avez demandé le changement de votre mot de passe sur Audiosa</p>';
-		$corps  		.= '<p>Veuillez clicker sur le lien ci-dessous : </p>';
-		$corps  		.= '<a href="'. $resetLinkURL .'" target="_blank">Go to this page</a>';
+		$corps  		.= '<p>Veuillez cliquer sur le lien ci-dessous : </p>';
+		$corps  		.= '<a href="'. $resetLinkURL .'" target="_blank">Réinitialiser le mot de passe</a>';
 		
 		$headers 		= "From: Audiosa\r\n";
 		$headers 		.= "Reply-To: ". strip_tags($_GET['mail']) . "\r\n";
@@ -74,7 +74,6 @@ if($selectStatement->execute())
 			write_error_to_log("API Mot de passe oublié","Impossible d'envoyer l'email de réinitialisation");
 			die('{"status_code":0,"error_description":"mail not sent"}');
 		}
-		
 	}
 	
 	if($passwordHash != $_GET['hashpass'])
@@ -85,10 +84,10 @@ if($selectStatement->execute())
 	echo '<form id="formChangerMotDePassePopup" method="POST" action="changepass.php">
 			<input type="hidden" name="pseudoPost" id="pseudoName-text" value="'. $ligne['username'] .'">
 			<input type="hidden" name="actualPasswordPost" id="pseudoName-text" value="'. $_GET['hashpass'] .'">
-			<input placeholder="Nouveau mot de passe" name="newPasswordPost" id="newPassword-text" value="" type="text">
-			<input placeholder="Confirmation" name="confirmPasswordPost" id="confirmPassword-text" value="" type="text">
-			<br/>
-			<input type="submit" value="Changer le mot de passe"/>
+			<input placeholder="Nouveau mot de passe" name="newPasswordPost" id="newPassword-text" type="text">
+			<input placeholder="Confirmation" name="confirmPasswordPost" id="confirmPassword-text" type="password">
+			<br/><br/>
+			<input type="submit" value="Changer le mot de passe" />
 		</form>';
 	
 }

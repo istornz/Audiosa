@@ -224,7 +224,6 @@ function retrieveAlbums($connexion)
 function getTrackForAlbum($connexion, $albumName)
 {
 	$albumName = $connexion->quote($albumName);
-	$artistName = $connexion->quote($artistName);
 	
 	$commande_SQL	= "SELECT * FROM pistes WHERE album=". $albumName ." ORDER BY title ASC";
 	$tableauPistes = array();

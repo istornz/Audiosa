@@ -94,40 +94,37 @@ $("#formConnexionPopup").submit(function(event) {
                 elementMessageDiv.css("background-color",
                     "#e74c3c");
                 elementMessageDiv.css("display", "block");
-                if (JSONParsed.error_description ==
-                    "undeclared variables") {
-                    elementMessageLabel.text(
-                        "Variable(s) non déclaré(es)");
-                    elementMessageDiv.addClass("animated shake");
-                    window.setTimeout(function() {
-                        elementMessageDiv.addClass(
-                            "animated bounceIn");
-                    }, 500);
-                    elementPseudoFieldDiv.addClass(
-                        "animated shake");
-                    elementPaswordFieldDiv.addClass(
-                        "animated shake");
-                    window.setTimeout(function() {
-                        elementPseudoFieldDiv.addClass(
-                            "animated shake");
-                        elementPaswordFieldDiv.removeClass(
-                            'animated shake');
-                    }, 500);
-                } else if (JSONParsed.error_description ==
-                    "connection to database failed") {
-                    elementMessageLabel.text(
-                        "Connexion à la bdd impossible");
-                } else if (JSONParsed.error_description ==
-                    "username and/or password does not match") {
-                    elementMessageLabel.text(
-                        "Identifiant(s) incorrect(s)");
-                } else if (JSONParsed.error_description ==
-                    "failed to execute query") {
-                    elementMessageLabel.text(
-                        "Impossible d'executer la requête");
-                } else {
-                    elementMessageLabel.text("Erreur");
-                }
+				
+				switch(JSONParsed.error_description)
+                {
+	            	case "undeclared variables":
+					{
+	                    elementMessageLabel.text("Variable(s) non déclaré(es)");
+						elementMessageDiv.addClass("animated shake");
+						window.setTimeout(function() {
+							elementMessageDiv.addClass("animated bounceIn");
+						}, 500);
+						elementPseudoFieldDiv.addClass("animated shake");
+						elementPaswordFieldDiv.addClass("animated shake");
+						window.setTimeout(function() {
+							elementPseudoFieldDiv.addClass("animated shake");
+							elementPaswordFieldDiv.removeClass('animated shake');
+						}, 500);
+	                    break;
+					}
+					case "connection to database failed":
+	                    elementMessageLabel.text("Connexion à la bdd impossible");
+	                    break;
+					case "username and/or password does not match":
+	                    elementMessageLabel.text("Identifiant(s) incorrect(s)");
+	                    break;
+					case "failed to execute query":
+	                    elementMessageLabel.text("Impossible d'executer la requête");
+	                    break;
+					default :
+	                    elementMessageLabel.text("Erreur");
+	                    break;
+				}
             }
         });
     }
@@ -200,7 +197,6 @@ $("#formChangerMotDePassePopup").submit(function(event) {
                 elementMessageChangerPassDiv.removeClass(
                     "animated bounceIn");
             }, 500);
-	    
 	    elementNouveauMotDePasseFieldDiv.addClass("animated shake");
             window.setTimeout(function() {
                 elementNouveauMotDePasseFieldDiv.removeClass(
@@ -282,31 +278,31 @@ $("#formChangerMotDePassePopup").submit(function(event) {
                 elementMessageChangerPassDiv.css("background-color",
                     "#e74c3c");
                 elementMessageChangerPassDiv.css("display", "block");
-                if (JSONParsed.error_description == "undeclared variables") {
-                    elementMessageChangerPassLabel.text("Variable(s) non déclaré(es)");
-                } else if (JSONParsed.error_description ==
-                    "connection to database failed") {
-                    elementMessageChangerPassLabel.text(
-                        "Connexion à la bdd impossible");
-                } else if (JSONParsed.error_description ==
-                    "username and/or password does not match") {
-                    elementMessageChangerPassLabel.text(
-                        "Mot de passe incorrect");
-                } else if (JSONParsed.error_description ==
-                    "passwords don\'t match") {
-                    elementMessageChangerPassLabel.text(
-                        "Les mots de passes sont différents");
-                } else if (JSONParsed.error_description ==
-                    "failed to execute select query") {
-                    elementMessageChangerPassLabel.text(
-                        "Impossible de vous identifier");
-                } else if (JSONParsed.error_description ==
-                    "failed to execute update query") {
-                    elementMessageChangerPassLabel.text(
-                        "Impossible de mettre à jour le mot de passe");
-                } else {
-                    elementMessageChangerPassLabel.text("Erreur");
-                }
+				
+				switch(JSONParsed.error_description)
+                {
+	            	case "undeclared variables":
+	                    elementMessageChangerPassLabel.text("Variable(s) non déclaré(es)");
+	                    break;
+					case "connection to database failed":
+	                    elementMessageChangerPassLabel.text("Connexion à la bdd impossible");
+	                    break;
+					case "username and/or password does not match":
+	                    elementMessageChangerPassLabel.text("Mot de passe incorrect");
+	                    break; 
+					case "passwords don\'t match":
+	                    elementMessageChangerPassLabel.text("Les mots de passes sont différents");
+	                    break;
+					case "failed to execute select query":
+	                    elementMessageChangerPassLabel.text("Impossible de vous identifier");
+	                    break;
+					case "failed to execute update query":
+	                    elementMessageChangerPassLabel.text("Impossible de mettre à jour le mot de passe");
+	                    break;
+					default:
+						elementMessageChangerPassLabel.text("Erreur");
+						break;
+				}
             }
         });
     }
@@ -369,32 +365,28 @@ $("#formOublieMotDePassePopup").submit(function(event) {
                 elementMessageOublieDiv.css("background-color",
                     "#e74c3c");
                 elementMessageOublieDiv.css("display", "block");
-				console.log(JSONParsed.error_description);
-                if (JSONParsed.error_description == "undeclared variables") {
-                    elementMessageOublieLabel.text("Variable(s) non déclaré(es)");
-                } else if (JSONParsed.error_description ==
-                    "connection to database failed") {
-                    elementMessageOublieLabel.text(
-                        "Connexion à la bdd impossible");
-                } else if (JSONParsed.error_description ==
-                    "mail not valid") {
-                    elementMessageOublieLabel.text(
-                        "Mail invalide");
-                } else if (JSONParsed.error_description ==
-                    "no user with this email") {
-                    elementMessageOublieLabel.text(
-                        "Adresse email inexistante");
-                } else if (JSONParsed.error_description ==
-                    "failed to execute select query") {
-                    elementMessageOublieLabel.text(
-                        "Impossible de vous identifier");
-                } else if (JSONParsed.error_description ==
-                    "mail not sent") {
-                    elementMessageOublieLabel.text(
-                        "Impossible d'envoyer le mail");
-                } else {
-                    elementMessageOublieLabel.text("Erreur");
-                }
+				
+				switch(JSONParsed.error_description)
+                {
+	            	case "undeclared variables":
+	                    elementMessageChangerPassLabel.text("Variable(s) non déclaré(es)");
+	                    break;
+					case "connection to database failed":
+	                    elementMessageChangerPassLabel.text("Connexion à la bdd impossible");
+	                    break;
+					case "mail not valid":
+	                    elementMessageChangerPassLabel.text("Mail invalide");
+	                    break;
+					case "failed to execute select query":
+	                    elementMessageChangerPassLabel.text("Impossible de vous identifier");
+	                    break;
+					case "mail not sent":
+	                    elementMessageChangerPassLabel.text("Impossible d'envoyer le mail");
+	                    break;
+					default:
+						elementMessageOublieLabel.text("Erreur");
+						break;
+				}
             }
         });
     }
@@ -434,7 +426,7 @@ $(window).on('popupbeforeposition', 'div:jqmData(role="popup")', function() {
 $(document).ready(function() {
     var fileInput = document.querySelector("#uploadForm");
     var fileData = $('#fileUpload').prop('files');
-    var elementLabel = document.getElementById("uploadLabel");
+    var elementUploadLabel = document.getElementById("uploadLabel");
     elementProgress = new ElasticProgress(document.querySelectorAll(
         '.uploadAnimation')[0], {
         align: "center",
@@ -447,10 +439,12 @@ $(document).ready(function() {
         labelTilt: 70,
         arrowDirection: "up"
     });
+	
     elementProgress.onClick(function() {
-        elementLabel.style.display = 'none';
+        elementUploadLabel.style.display = 'none';
         elementProgress.open();
     })
+	
     elementProgress.onOpen(function() {
         var formData = new FormData();
         formData.append('pseudoPost', pseudo);
@@ -474,76 +468,70 @@ $(document).ready(function() {
             processData: false,
             success: function(data) {
                 var JSONParsed = data;
-                
+				
                 if (JSONParsed.status_code == 0) {
-                    if (JSONParsed.error_description ==
-                        "extension not authorized") {
-                        elementLabel.innerHTML =
-                            "Extension non autorisée";
-                    } else if (JSONParsed.error_description ==
-                        "file already exist") {
-                        elementLabel.innerHTML =
-                            "Fichier déjà présent";
-                    } else if (JSONParsed.error_description ==
-                        "file too big") {
-                        elementLabel.innerHTML =
-                            "Fichier trop volumineux";
-                    } else if (JSONParsed.error_description ==
-                        "file is not a valid flac file"
-                    ) {
-                        elementLabel.innerHTML =
-                            "Fichier Flac non valide";
-                    } else if (JSONParsed.error_description ==
-                        "undeclared variables") {
-                        elementLabel.innerHTML =
-                            "Variables non déclarés";
-                    } else if (JSONParsed.error_description ==
-                        "connection to database failed"
-                    ) {
-                        elementLabel.innerHTML =
-                            "Connexion bdd impossible";
-                    } else if (JSONParsed.error_description ==
-                        "failed to execute query") {
-                        elementLabel.innerHTML =
-                            "Impossible de se connecter";
-                    } else if (JSONParsed.error_description ==
-                        "username and/or password does not match"
-                    ) {
-                        elementLabel.innerHTML =
-                            "Identifiant(s) incorrect(s)";
-                    } else if (JSONParsed.error_description ==
-                        "unable to move file") {
-                        elementLabel.innerHTML =
-                            "Impossible de déplacer le fichier";
-                    } else {
-                        elementLabel.innerHTML =
-                            "Erreur, veuillez réessayer";
-                    }
-                    elementProgress.fail();
+					
+					elementProgress.fail();
+					switch(JSONParsed.error_description)
+					{
+						case "undeclared variables":
+							elementUploadLabel.innerHTML = "Variable(s) non déclaré(es)";
+							break;
+						case "connection to database failed":
+							elementUploadLabel.innerHTML = "Connexion à la bdd impossible";
+							break;
+						case "extension not authorized":
+							elementUploadLabel.innerHTML = "Extension non autorisée";
+							break;
+						case "file already exist":
+							elementUploadLabel.innerHTML = "Fichier déjà présent";
+							break;
+						case "file too big":
+							elementUploadLabel.innerHTML = "Fichier trop volumineux";
+							break;
+						case "file is not a valid flac file":
+							elementUploadLabel.innerHTML = "Fichier Flac non valide";
+							break;
+						case "failed to execute query":
+							elementUploadLabel.innerHTML = "Impossible de se connecter";
+							break;
+						case "username and/or password does not match":
+							elementUploadLabel.innerHTML = "Identifiant(s) incorrect(s)";
+							break;
+						case "unable to move file":
+							elementUploadLabel.innerHTML = "Impossible de déplacer le fichier";
+							break;
+						default:
+							elementUploadLabel.innerHTML = "Erreur";
+							break;
+					}
+					
                     var timer = setInterval(
                         function() {
-                            elementLabel.innerHTML =
+                            elementUploadLabel.innerHTML =
                                 "Mettre en ligne";
                             clearInterval(timer);
                         }, 2700);
                 } else {
-                    elementLabel.innerHTML =
+                    elementUploadLabel.innerHTML =
                         "Mettre en ligne";
                 }
             },
             error: function(data) {
-                console.log(data);
+                
                 elementProgress.close();
             }
         });
     });
+	
     elementProgress.onComplete(function() {
         elementProgress.close();
-        elementLabel.style.display = '';
+        elementUploadLabel.style.display = '';
     })
+	
     elementProgress.onFail(function() {
         elementProgress.close();
-        elementLabel.style.display = '';
+        elementUploadLabel.style.display = '';
     }) 
 });
 

@@ -14,7 +14,6 @@ $DB_WRITER_PSW		= "5VHKUmhKrsSspmjs";
 
 define("ERROR_LOG_FILE", "../error.log");
 define("DEFAULT_MYSQL_TYPE", "VARCHAR(150)");
-//define("UPLOAD_DIR", "D:\uploaded\\");
-define("UPLOAD_DIR", "../uploaded/");
+define("UPLOAD_DIR", "D:\\uploaded\\");
 
 ?>

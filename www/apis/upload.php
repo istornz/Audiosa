@@ -1,14 +1,12 @@
 <?php
 
 header('Content-Type: application/json');
-
 require("global_fonction.php");
 
 /************************/
 //	    Variables		//
 /************************/
 
-include('conf.php');
 $ALLOWED_EXTENSION 	= 'flac';
 $MAX_FILESIZE 		= 536870912; // 512Mb max
 

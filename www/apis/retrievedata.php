@@ -43,7 +43,7 @@ else
 
 function retrieveMorceaux($connexion)
 {
-	$commande_SQL	= "SELECT DISTINCT * FROM `pistes` JOIN genres ON genres.idGENRES = pistes.genre;";
+	$commande_SQL	= "SELECT * FROM `pistes` JOIN genres ON genres.idGENRES = pistes.genre ORDER BY title ASC;";
 	$date = getdate();
 	$dateStr = $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
 	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","pistes": ';
@@ -75,13 +75,13 @@ function retrieveMorceaux($connexion)
 
 function retrieveArtistes($connexion)
 {
-	$commande_SQL		= "SELECT DISTINCT * FROM pistes";
+	$commande_SQL		= "SELECT * FROM pistes ORDER BY artist ASC";
 	$tableauArtistes 	= array();
 	$date 				= getdate();
 	$dateStr 			= $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
 	$increLigne 		= 0;
 	
-	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","artists": [';
+	echo '{"status_code":1, "fetched_at": "'. $dateStr .'","artistes": [';
 	
 	if($selectStatement = $connexion->query($commande_SQL))
 	{
@@ -132,7 +132,7 @@ function retrieveArtistes($connexion)
 function getAlbumsForArtist($connexion, $artistName)
 {
 	$artistName 	= $connexion->quote($artistName);
-	$commande_SQL	= "SELECT DISTINCT album FROM pistes WHERE artist=". $artistName;
+	$commande_SQL	= "SELECT album FROM pistes WHERE artist=". $artistName ." ORDER BY album ASC";
 	$tableauAlbums 	= array();
 	$tableauTracks 	= array();
 	$nbrAlbums 		= 0;
@@ -165,7 +165,7 @@ function getAlbumsForArtist($connexion, $artistName)
 
 function retrieveAlbums($connexion)
 {
-	$commande_SQL		= "SELECT DISTINCT album FROM pistes";
+	$commande_SQL		= "SELECT album FROM pistes ORDER BY album ASC";
 	$tableauAlbums 		= array();
 	$date 				= getdate();
 	$dateStr 			= $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];
@@ -226,7 +226,7 @@ function getTrackForAlbum($connexion, $albumName)
 	$albumName = $connexion->quote($albumName);
 	$artistName = $connexion->quote($artistName);
 	
-	$commande_SQL	= "SELECT DISTINCT * FROM pistes WHERE album=". $albumName;
+	$commande_SQL	= "SELECT * FROM pistes WHERE album=". $albumName ." ORDER BY title ASC";
 	$tableauPistes = array();
 	
 	if($selectStatement = $connexion->query($commande_SQL))
@@ -251,7 +251,7 @@ function getTrackForAlbum($connexion, $albumName)
 function getArtistNameForAlbum($connexion, $albumName)
 {
 	$albumName = $connexion->quote($albumName);
-	$commande_SQL	= "SELECT DISTINCT artist FROM pistes WHERE album=". $albumName ." LIMIT 1";
+	$commande_SQL	= "SELECT artist FROM pistes WHERE album=". $albumName ." ORDER BY artist ASC LIMIT 1";
 	$nomArtiste 	= "inconnu";
 	
 	if($selectStatement = $connexion->query($commande_SQL))
@@ -272,7 +272,7 @@ function getArtistNameForAlbum($connexion, $albumName)
 
 function retrievePlaylists($connexion)
 {
-	$commande_SQL		= "SELECT DISTINCT * FROM playlists";
+	$commande_SQL		= "SELECT * FROM playlists ORDER BY name ASC";
 	$tableauPlaylists 	= array();
 	$date 				= getdate();
 	$dateStr 			= $date['mday'] . "/" . $date['mon'] . "/" . $date['year'];

@@ -1,31 +1,6 @@
-﻿[25/04/2016 11:03:28]   [Extracteur]   script doublons, doublon present dans la base : "01 pinetop is just top.flac"
-[25/04/2016 11:04:16]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
-[25/04/2016 11:04:27]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
-[25/04/2016 11:04:29]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
-[25/04/2016 11:04:45]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
-[25/04/2016 11:04:51]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
-[25/04/2016 11:06:20]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:07:21]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:08:06]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:08:35]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:09:05]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:09:10]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:10:02]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:12:08]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:12:25]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:12:40]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:12:47]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:12:49]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:13:44]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:13:56]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:18:28]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:18:39]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 11:18:50]	[API Importation]	Le fichier existe déjà (fichier : '06 America.flac')
-[25/04/2016 13:49:41]	[API Importation]	Le fichier existe déjà (fichier : '05 Theessink, Hans - Power of love.flac')
-[25/04/2016 13:49:58]	[API Importation]	Le fichier existe déjà (fichier : '05 Theessink, Hans - Power of love.flac')
-[25/04/2016 13:51:26]	[API Importation]	Le fichier existe déjà (fichier : '05 Theessink, Hans - Power of love.flac')
-[25/04/2016 13:52:29]	[API Importation]	Le fichier existe déjà (fichier : '05 Theessink, Hans - Power of love.flac')
-[25/04/2016 13:52:49]	[API Importation]	Le fichier existe déjà (fichier : '03 Valse De Melody.flac')
-[25/04/2016 13:52:59]	[API Importation]	Le fichier existe déjà (fichier : '03 Valse De Melody.flac')
-[25/04/2016 13:53:05]	[API Importation]	Le fichier existe déjà (fichier : '05 Theessink, Hans - Power of love.flac')
-[25/04/2016 13:53:45]	[API Importation]	Le fichier existe déjà (fichier : '03 Valse De Melody.flac')
+﻿[25/04/2016 14:26:32]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
+[25/04/2016 14:26:37]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
+[25/04/2016 14:26:37]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
+[25/04/2016 14:26:37]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
+[25/04/2016 14:26:38]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
+[25/04/2016 14:26:38]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'

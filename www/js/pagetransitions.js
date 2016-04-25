@@ -162,7 +162,6 @@ var PageTransitions = (function() {
 			outClass = 'pt-page-rotateRightSideFirst';
 			inClass = 'pt-page-moveFromRight pt-page-delay200 pt-page-ontop';
 
-
 		$currPage.addClass( outClass ).on( animEndEventName, function() {
 			$currPage.off( animEndEventName );
 			endCurrPage = true;

@@ -71,7 +71,7 @@ if(isset($_FILES['cover']) && $_FILES['cover']['error'] == 0 && isset($_POST['md
 	$mimetypeFichier	= htmlentities($_FILES['cover']['type']);
 	$md5Fichier			= $_POST['md5'];
 	$fileName			= $_POST['md5'] . "." . $extensionFichier;
-	$fullPath			= htmlentities('../img/covers/' . $fileName);
+	$fullPath			= htmlentities(COVER_DIR . $fileName);
 	
 	if(!in_array($extensionFichier, $ALLOWED_EXTENSION_COVER))
 	{

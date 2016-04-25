@@ -147,7 +147,7 @@
 					<span id="messageInfoConnexionLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
 				</div>
 			</div>
-			<!--<i class="fa fa-refresh fa-spin"></i>-->
+			
 			<input placeholder="Pseudo" data-theme="a" name="pseudo" id="pseudo-text" value="" autocomplete="off" type="text">
 			<input placeholder="Mot de passe" data-theme="a" name="password" id="password-text" value="" type="password" autocomplete="off" type="password">
 			
@@ -183,9 +183,9 @@
 		<form id="formChangerMotDePassePopup" method="post" action="apis/changepass.php">
 			<img id="userImage" src="img/changepass_icon.png" alt="utilisateur"></a><br />
 			<div class="ui-corner-all custom-corners">
-  					<div id="messageInfoDivChangerPass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
+  				<div id="messageInfoDivChangerPass" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;">
 					<span id="messageInfoChangerPassLabel" class="messageInfoLabel">Mot de passe incorrect !</span>
-			</div>
+				</div>
 			</div>
 			<input placeholder="Mot de passe actuel" data-theme="a" name="currentPassword" id="currentPassword-text" value="" autocomplete="off" type="password">
 			<input placeholder="Nouveau mot de passe" data-theme="a" name="newPassword" id="newPassword-text" value="" autocomplete="off" type="password">
@@ -316,19 +316,19 @@
 
 			</div>
 			
-			<div id="list_genres" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			<div id="list_genres" style="max-height: 450px; overflow-y: scroll; overflow-x: hidden; display: none;">
 			
 			</div>
 			
-			<div id="list_albums" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			<div id="list_albums" style="max-height: 450px; overflow-y: scroll; overflow-x: hidden; display: none;">
 				
 			</div>
 			
-			<div id="list_artistes" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			<div id="list_artistes" style="max-height: 450px; overflow-y: scroll; overflow-x: hidden; display: none;">
 			
 			</div>
 			
-			<div id="list_annees" style="max-height: 450px; overflow-y: scroll; oerflow-x: hidden; display: none;">
+			<div id="list_annees" style="max-height: 450px; overflow-y: scroll; overflow-x: hidden; display: none;">
 
 			</div>
 		</div>

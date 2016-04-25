@@ -968,5 +968,4 @@ $("#visualiserLogButton").click(function(){
 
     	});
     }
-   
 });

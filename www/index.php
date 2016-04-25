@@ -101,19 +101,19 @@
 <div id="pt-main" class="pt-perspective">
 	<div class="pt-page pt-page-1">
 		<div id="list_morceaux" class="list_musique">
-			<ul id="into_morceaux" class="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+			<ul id="into_morceaux" class="list_scroll" data-role="listview" data-filter-placeholder="Chercher des morceaux" data-autodividers="true" data-filter="true" data-inset="true">
 			</ul>
 		</div>
 	</div>
 	<div class="pt-page pt-page-2">
 		<div id="list_artiste" class="list_musique" style="display: block;">
-			<ul id="into_artistes" class="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+			<ul id="into_artistes" class="list_scroll" data-filter-placeholder="Chercher des artistes" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
 			</ul>
 		</div>
 	</div>
 	<div class="pt-page pt-page-3">
 		<div id="list_album" class="list_musique" style="display: block;">
-			<ul id="into_albums" class="list_scroll" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
+			<ul id="into_albums" class="list_scroll" data-filter-placeholder="Chercher des albums" data-role="listview" data-autodividers="true" data-filter="true" data-inset="true">
 			</ul>
 		</div>
 	</div>
@@ -395,6 +395,35 @@
 		
 				list_playlists();
 				get_music("morceaux");
+				
+				var input1 = $(".ui-input-search").find("input")[0];
+				var input2 = $(".ui-input-search").find("input")[1];
+				var input3 = $(".ui-input-search").find("input")[2];
+				
+				$(input1).keyup(function() {
+					$("#into_morceaux").mCustomScrollbar('destroy');
+					$("#into_morceaux").filterable("refresh");
+					$("#into_morceaux").mCustomScrollbar({
+						theme:"minimal"
+					});
+				});
+
+				$(input2).keyup(function() {
+					$("#into_artistes").mCustomScrollbar('destroy');
+					$("#into_artistes").filterable("refresh");
+					$("#into_artistes").mCustomScrollbar({
+						theme:"minimal"
+					});
+				});
+
+				$(input3).keyup(function() {
+					$("#into_albums").mCustomScrollbar('destroy');
+					$("#into_albums").filterable("refresh");
+					$("#into_albums").mCustomScrollbar({
+						theme:"minimal"
+					});
+				});
+				
 		});
 		})(jQuery);
 	</script>

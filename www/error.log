@@ -1,5 +1,2 @@
-﻿[23/03/2016 11:22:34]	[Extracteur]	Musique 'Booba - Validée' deja existante
-[23/03/2016 11:23:29]	[API Importation]	Connexion BDD impossible
-[23/03/2016 11:23:29]	[Site WEB]	Connexion serveur socket impossible
-[23/03/2016 11:23:29]	[API Connexion]	Connexion BDD impossible
-[07/04/2016 13:34:17]	[PLAYLIST]	TEST
+﻿[25/04/2016 08:24:02]	[API Édition métadonnées]	Impossible d'exécuter la commande SQL (update) : La commande 'UPDATE' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la table 'pistes'UPDATE `pistes` SET `filename` = 'fichierTest', `title` = 'La loutre du samedi soirjj' WHERE idPISTES=2;
+[25/04/2016 08:26:35]	[API Édition métadonnées]	Impossible d'exécuter la commande SQL (update) : La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'idPISTES' de la table 'pistes'UPDATE `pistes` SET `title` = 'C\'est la PLS' WHERE idPISTES=5;

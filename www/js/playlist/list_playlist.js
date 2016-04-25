@@ -1,7 +1,4 @@
 playlistTracks = [];
-$morceaux = $( '.paging_morceaux' );
-$albums = $( '.paging_album' );
-$artistes = $( '.paging_artiste' );
 		
 function list_playlists()
 {

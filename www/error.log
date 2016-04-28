@@ -1,11 +1,1 @@
-﻿[28/04/2016 16:23:04]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'Dance_Music.png.jpeg' WHERE idGENRES=5;
-[28/04/2016 16:23:04]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=4;
-[28/04/2016 16:23:31]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'rock-music-wallpapers.jpg' WHERE idGENRES=1;
-[28/04/2016 16:23:31]	[API Illustration Genres]	UPDATE `genres` SET `image` = '30jimtu.jpg' WHERE idGENRES=3;
-[28/04/2016 16:38:42]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'rock-music-wallpapers.jpg' WHERE idGENRES=9;
-[28/04/2016 16:40:43]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=1;
-[28/04/2016 16:42:24]	[API Illustration Genres]	UPDATE `genres` SET `image` = '30jimtu.jpg' WHERE idGENRES=1;
-[28/04/2016 16:44:54]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=3;
-[28/04/2016 16:47:27]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=1;
-[28/04/2016 16:51:37]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'rock-music-wallpapers.jpg' WHERE idGENRES=1;
-[28/04/2016 16:53:16]	[API Illustration Genres]	UPDATE `genres` SET `image` = '01-6a00c225256b2c604a00d414274ec5685e.jpg' WHERE idGENRES=10;
+﻿[28/04/2016 17:03:04]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'backgroundDefault.jpg' WHERE idGENRES=10;

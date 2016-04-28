@@ -1,66 +1,11 @@
-<<<<<<< HEAD
-﻿
-=======
-<<<<<<< HEAD
-﻿[25/04/2016 08:24:02]	[API Édition métadonnées]	Impossible d'exécuter la commande SQL (update) : La commande 'UPDATE' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la table 'pistes'UPDATE `pistes` SET `filename` = 'fichierTest', `title` = 'La loutre du samedi soirjj' WHERE idPISTES=2;
-[25/04/2016 08:26:35]	[API Édition métadonnées]	Impossible d'exécuter la commande SQL (update) : La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'idPISTES' de la table 'pistes'UPDATE `pistes` SET `title` = 'C\'est la PLS' WHERE idPISTES=5;
-[25/04/2016 09:32:17]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 09:32:17]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 09:32:24]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_user'@'@localhost' (mot de passe: OUI)
-[25/04/2016 09:32:26]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_user'@'@localhost' (mot de passe: OUI)
-[25/04/2016 09:32:27]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_user'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:35:26]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:35:26]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:35:28]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:35:29]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:35:36]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:35:36]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:35:52]	[API Connexion]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_user'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:42:26]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1130] Le h�te 'h115-gm-pc17.lgm.local' n'est pas authoris� � se connecter � ce serveur MySQL
-[25/04/2016 10:42:27]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1130] Le h�te 'H115-GM-PC17' n'est pas authoris� � se connecter � ce serveur MySQL
-[25/04/2016 10:42:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1130] Le h�te 'H115-GM-PC17' n'est pas authoris� � se connecter � ce serveur MySQL
-[25/04/2016 10:42:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1130] Le h�te 'H115-GM-PC17' n'est pas authoris� � se connecter � ce serveur MySQL
-[25/04/2016 10:43:40]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[25/04/2016 10:43:40]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-=======
-﻿[25/04/2016 14:26:32]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
-[25/04/2016 14:26:37]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
-[25/04/2016 14:26:37]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
-[25/04/2016 14:26:37]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
-[25/04/2016 14:26:38]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
-[25/04/2016 14:26:38]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
->>>>>>> origin/master
->>>>>>> origin/master
-[28/04/2016 14:00:33]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:33]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:34]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:40]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:43]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:43]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:48]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:48]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:52]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:52]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:54]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:54]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:57]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:00:57]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[28/04/2016 14:01:47]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:47]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:53]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:54]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:55]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:58]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:01:58]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:03]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:08]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:08]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:19]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:19]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:23]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:23]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
-[28/04/2016 14:02:28]	[API Connexion]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+﻿[28/04/2016 16:23:04]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'Dance_Music.png.jpeg' WHERE idGENRES=5;
+[28/04/2016 16:23:04]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=4;
+[28/04/2016 16:23:31]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'rock-music-wallpapers.jpg' WHERE idGENRES=1;
+[28/04/2016 16:23:31]	[API Illustration Genres]	UPDATE `genres` SET `image` = '30jimtu.jpg' WHERE idGENRES=3;
+[28/04/2016 16:38:42]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'rock-music-wallpapers.jpg' WHERE idGENRES=9;
+[28/04/2016 16:40:43]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=1;
+[28/04/2016 16:42:24]	[API Illustration Genres]	UPDATE `genres` SET `image` = '30jimtu.jpg' WHERE idGENRES=1;
+[28/04/2016 16:44:54]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=3;
+[28/04/2016 16:47:27]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=1;
+[28/04/2016 16:51:37]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'rock-music-wallpapers.jpg' WHERE idGENRES=1;
+[28/04/2016 16:53:16]	[API Illustration Genres]	UPDATE `genres` SET `image` = '01-6a00c225256b2c604a00d414274ec5685e.jpg' WHERE idGENRES=10;

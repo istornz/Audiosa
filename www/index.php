@@ -212,7 +212,7 @@
 	<div data-role="header" data-theme="a">
 		<a id="backToMenu" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupMenu');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
 		<h1>Illustrer</h1>
-		<a onclick="valider_genres_illustration();" id="valider_genres_illustrationButton" style="display: none;" class="ui-btn ui-btn-right ui-icon-carat-r ui-corner-all" >Créer</a>
+		<a id="valider_genres_illustrationButton" style="display: none;" onclick="valider_genres_illustration();" class="ui-btn-right ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all" data-role="button" role="button">No text</a>
 	</div>
 	<div id="list_genres_illustration" style="height: 410px; overflow-y: scroll; overflow-x: hidden;">
 		<br />

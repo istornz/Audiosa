@@ -49,9 +49,9 @@ function get_music(type) {
 			{
 				for(var indicePiste=0; indicePiste < msg.artistes.length; indicePiste++) {
 				
-					$.ajax({
+				/*	$.ajax({
                     type: 'GET',
-                    url: 'http://api.deezer.com/search?q=booba',
+                    url: 'https://api.deezer.com/search?q=booba',
                     dataType: 'jsonp',
                     success: function(data) {
                         console.log(data);
@@ -61,9 +61,16 @@ function get_music(type) {
                         console.log(textStatus);
                         console.log(errorThrown);
                     }
-                });
-				}
+                });*/
 				
+				$.ajax({
+					url: "https://api.deezer.com/search?q=booba",
+					contentType: "text/plain",
+					dataType: "jsonp"
+				}).done(function(d) {
+					console.log("cc");
+				});
+				}
 			}
 			else
 			{

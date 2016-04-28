@@ -45,6 +45,8 @@ function get_music(type) {
 					$(".edit_music_container").css("display", "block");
 				}
 				
+				morceaux_loaded = true;
+				
 			}
 			else if(type == "artistes")
 			{
@@ -60,6 +62,8 @@ function get_music(type) {
 				for(var indicePiste=0; indicePiste < msg.albums.length; indicePiste++) {
 					$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.albums[indicePiste].tracks[0].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.albums[indicePiste].album_name)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.albums[indicePiste].artist_name)+' - '+msg.albums[indicePiste].items_count+' musique(s)</span></div> </a></li>');
 				}
+				
+				albums_loaded = true;
 			}
 			
 			if(type != "artistes") {
@@ -77,27 +81,26 @@ $("#button_my_music").click(function() {
 });
 
 function get_artist_cover(indicePiste,type,msg,maxPiste) {
-	console.log(msg.artistes[indicePiste].artist_name);
 	$.ajax({
 		type: 'GET',
-		url: "https://api.deezer.com/search?q="+msg.artistes[indicePiste].artist_name+"&output=jsonp",
+		url: "https://api.deezer.com/search?q="+msg.artistes[indicePiste].artist_name+"&limit=1&output=jsonp",
 		dataType: 'jsonp',
-		async: false,
+		cache: true,
 		contentType: "application/json; charset=utf-8"
 		}).done(function(data) {
-			$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="'+data.data[0].artist.picture_medium+'" alt="Default cover" /></div><div class="morceaux-artist">'+msg.artistes[indicePiste].artist_name+'<br><span class="morceaux-artist-album">'+msg.artistes[indicePiste].items_count+' Albums - X Morceaux</span></div></a></li>');
-	});
-	
-	if(indicePiste == maxPiste) {
-		$("#into_"+type).listview().listview('refresh');
-			$("#into_"+type).mCustomScrollbar({
-				theme:"minimal"
+			$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="'+data.data[0].artist.picture_medium+'" alt="Default cover"></div><div class="morceaux-artist">'+msg.artistes[indicePiste].artist_name+'<br><span class="morceaux-artist-album">'+msg.artistes[indicePiste].items_count+' Albums - X Morceaux</span></div></a></li>');
+			
+			if(indicePiste == --maxPiste) {
+			console.log(indicePiste + ' - ' + maxPiste);
+				$("#into_"+type).listview().listview('refresh');
+				$("#into_"+type).mCustomScrollbar({
+						theme:"minimal"
+				});
+				
+				artistes_loaded = true;
+			}
 		});
-	}
-}
 
-function jsonCallback (data) {
-	console.log("pls2");
 }
 			
 function escapeHtml(text) {

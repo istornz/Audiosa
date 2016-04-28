@@ -1,5 +1,9 @@
 page_actu = 1;
 page_actu_playlist = false;
+morceaux_loaded = false;
+artistes_loaded = false;
+albums_loaded = false;
+
 
 var PageTransitions = (function() {
 
@@ -55,7 +59,9 @@ var PageTransitions = (function() {
 			}
 			else
 			{
-				get_music("morceaux");
+				if(!morceaux_loaded) {
+					get_music("morceaux");
+				}
 				if(page_actu == 2) {
 					backPage( 28);
 				}
@@ -83,7 +89,10 @@ var PageTransitions = (function() {
 			}
 			else
 			{
-				get_music("albums");
+				if(!albums_loaded) {
+					get_music("albums");
+				}
+				
 				if(page_actu == 2) {
 					nextPage( 28);
 				}
@@ -110,7 +119,11 @@ var PageTransitions = (function() {
 			}
 			else
 			{
-				get_music("artistes");
+			
+				if(!artistes_loaded) {
+					get_music("artistes");
+				}
+				
 				if(page_actu == 1) {
 					nextPage( 28);
 				}

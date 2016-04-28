@@ -1,12 +1,12 @@
-genres_choisis = [];
-artistes_choisis = [];
-albums_choisis = [];
-annees_choisis = [];
+genres_choisis 		= [];
+artistes_choisis 	= [];
+albums_choisis 		= [];
+annees_choisis 		= [];
 
-genresLoaded=false, 
-albumsLoaded=false,
-artistesLoaded=false,
-anneesLoaded=false;
+genresLoaded		= false, 
+albumsLoaded		= false,
+artistesLoaded		= false,
+anneesLoaded		= false;
 
 $(document).ready(function() {
 
@@ -53,8 +53,6 @@ $("#create_playlist").click(function() {
 	
 	$("#animate_playlist").css("height","240px");
 	$("#animate_playlist").css("width","350px");
-
-
 });
 
 $("#valider_playlist").click(function() {
@@ -307,7 +305,7 @@ function choice_back() {
 function afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis) {
 	if(genres_choisis.length == 0 && artistes_choisis.length == 0 && albums_choisis.length == 0 && annees_choisis.length == 0){   
 	   $("#create_playlist").css("display","none");
-	}else{
+	} else {
 	   $("#create_playlist").css("display","inline-block");
 	}
 };
@@ -326,7 +324,7 @@ function get_choices(type) {
 		data: { type: type}
 	})
 	.done(function( msg ) {
-		
+			
 			if(msg.status_code != 1)
 			{
 				console.log("UNE ERREUR EST SURVENUE");
@@ -341,7 +339,7 @@ function get_choices(type) {
 			
 	if(type == "genres") {
 		for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
-		
+			
 			$("#list_genres").append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres"><div class="genre_title">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
 			
 		}
@@ -370,8 +368,6 @@ function get_choices(type) {
 		}
 	
 	}
-		
-			
 			$("#list_"+type).mCustomScrollbar({
 				theme:"minimal"
 			});

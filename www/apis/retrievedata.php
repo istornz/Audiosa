@@ -108,7 +108,7 @@ function retrieveArtistes($connexion)
 			$albums 	= getAlbumsForArtist($connexion, $tableauArtistes[$i]);
 			
 			echo "{";
-				echo '"artist_name": "' . $tableauArtistes[$i]  . '",';
+				echo '"artist_name": "' . utf8_encode($tableauArtistes[$i])  . '",';
 				echo '"albums": ' . json_encode($albums)  . ',';
 				echo '"items_count": ' . count($albums);
 			

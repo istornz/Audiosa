@@ -49,29 +49,11 @@ function get_music(type) {
 			else if(type == "artistes")
 			{
 				for(var indicePiste=0; indicePiste < msg.artistes.length; indicePiste++) {
-				
-				/*	$.ajax({
-                    type: 'GET',
-                    url: 'https://api.deezer.com/search?q=booba',
-                    dataType: 'jsonp',
-                    success: function(data) {
-                        console.log(data);
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        console.log(XMLHttpRequest);
-                        console.log(textStatus);
-                        console.log(errorThrown);
-                    }
-                });*/
-				
-				$.ajax({
-					url: "https://api.deezer.com/search?q=booba",
-					contentType: "text/plain",
-					dataType: "jsonp"
-				}).done(function(d) {
-					console.log("cc");
-				});
+					
+					get_artist_cover(indicePiste, type, msg, msg.artistes.length);
+
 				}
+				
 			}
 			else
 			{
@@ -80,17 +62,44 @@ function get_music(type) {
 				}
 			}
 			
-			$("#into_"+type).listview().listview('refresh');
-			$("#into_"+type).mCustomScrollbar({
-				theme:"minimal"
-			});
+			if(type != "artistes") {
+				$("#into_"+type).listview().listview('refresh');
+				$("#into_"+type).mCustomScrollbar({
+					theme:"minimal"
+				});
+			}
 	});
 }
+
 
 $("#button_my_music").click(function() {
 	$( '.paging_morceaux' ).click();
 });
 
+function get_artist_cover(indicePiste,type,msg,maxPiste) {
+	console.log(msg.artistes[indicePiste].artist_name);
+	$.ajax({
+		type: 'GET',
+		url: "https://api.deezer.com/search?q="+msg.artistes[indicePiste].artist_name+"&output=jsonp",
+		dataType: 'jsonp',
+		async: false,
+		contentType: "application/json; charset=utf-8"
+		}).done(function(data) {
+			$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="'+data.data[0].artist.picture_medium+'" alt="Default cover" /></div><div class="morceaux-artist">'+msg.artistes[indicePiste].artist_name+'<br><span class="morceaux-artist-album">'+msg.artistes[indicePiste].items_count+' Albums - X Morceaux</span></div></a></li>');
+	});
+	
+	if(indicePiste == maxPiste) {
+		$("#into_"+type).listview().listview('refresh');
+			$("#into_"+type).mCustomScrollbar({
+				theme:"minimal"
+		});
+	}
+}
+
+function jsonCallback (data) {
+	console.log("pls2");
+}
+			
 function escapeHtml(text) {
   var map = {
     '&': '&amp;',

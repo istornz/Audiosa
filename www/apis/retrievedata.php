@@ -132,7 +132,7 @@ function retrieveArtistes($connexion)
 function getAlbumsForArtist($connexion, $artistName)
 {
 	$artistName 	= $connexion->quote($artistName);
-	$commande_SQL	= "SELECT album FROM pistes WHERE artist=". $artistName ." ORDER BY album ASC";
+	$commande_SQL	= "SELECT DISTINCT album FROM pistes WHERE artist=". $artistName ." ORDER BY album ASC";
 	$tableauAlbums 	= array();
 	$tableauTracks 	= array();
 	$nbrAlbums 		= 0;

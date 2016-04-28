@@ -162,7 +162,6 @@
 	<div data-role="header" data-theme="a">
 		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
 		<h1>Menu</h1>
-		
 	</div>
 	<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
 		<img id="userImage" src="img/userAdmin.png" alt="utilisateur"></a><br />
@@ -213,6 +212,7 @@
 	<div data-role="header" data-theme="a">
 		<a id="backToMenu" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupMenu');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
 		<h1>Illustrer</h1>
+		<a id="valider_genres_illustrationButton" style="display: none;" onclick="valider_genres_illustration();" class="ui-btn-right ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all" data-role="button" role="button">No text</a>
 	</div>
 	<div id="list_genres_illustration" style="height: 410px; overflow-y: scroll; overflow-x: hidden;">
 		<br />

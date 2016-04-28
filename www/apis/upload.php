@@ -23,9 +23,6 @@ if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
 try
 {
     $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_READER_USER_LOGIN, $DB_READER_USER_PSW);
-	
-	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
-	$passwordQuoted	= $connexion->quote($_POST['passwordPost']);
 }
 catch(PDOException $e)
 {

@@ -1,29 +1,38 @@
 ﻿// Connexion à socket.io
 console.log("CLIENT socket lancé:");
-
-var SERVER_URL = "http://172.16.126.17";
+/*
+var SERVER_URL = "http://172.16.126.8/";
 var SERVER_PORT = "8081";
 
-//	var socket = io.connect(SERVER_URL+':'+SERVER_PORT);
+var socket = io.connect(SERVER_URL+':'+SERVER_PORT);
 
-/*	
-	socket.on('connect_error', function() {
-    console.log('Echec de la connexion au serveur ' + SERVER_URL+':'+SERVER_PORT);
-	});
-*/
-//var socket = io.connect(SERVER_URL+':'+SERVER_PORT);
+socket.on('connect_error', function() {
+console.log('Echec de la connexion au serveur ' + SERVER_URL+':'+SERVER_PORT);
+});
 
-//socket.send('bonjour');
-//socket.emit('{"player_mode": 2, "playlist": { "mode": 1,	"id_playlist": 47 }, "id_music": 36,"action": 0 }');
-
+<<<<<<< HEAD
 console.log("WebSocket is supported by your Browser!");
                
                // Let us open a web socket
+=======
+socket.send('bonjour');
+socket.emit('{"player_mode": 2, "playlist": null, "id_music": 36,"action": 0 }');
+*/
+>>>>>>> origin/master
 
 $("#web-player-previous").click(function() {
 	console.log("envoyé");
 
+<<<<<<< HEAD
 sendoscket(0);
+=======
+	socket.emit('player', {
+	  "player_mode": 2,
+	  "playlist": null,
+	  "id_music": 36,
+	  "action": 0
+	});
+>>>>>>> origin/master
 
 });
 

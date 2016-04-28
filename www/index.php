@@ -349,7 +349,7 @@
 	<script src="js/musiques/list_music.js"></script>
 	<!-- Socket -->
 	<script src="js/server/socket.io.js"></script>
-	<!--<script src="./js/client/client.js"></script>-->
+	<script src="./js/client/client.js"></script>
 	<!-- jQuery Upload Form Dependencies -->
 	<script src="js/tweenmax.js"></script>
 	<script src="js/elastic-progress.js"></script>

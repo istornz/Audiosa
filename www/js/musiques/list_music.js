@@ -21,9 +21,9 @@ function get_music(type) {
 	})
 	.done(function( msg ) {
 		
-		$('body').removeClass('ui-loading');
-		
 		musicArray = msg.pistes;
+		
+		console.log(msg.artistes);
 
 		if(msg.status_code != 1)
 		{
@@ -47,13 +47,23 @@ function get_music(type) {
 				
 				morceaux_loaded = true;
 				
+				$('body').removeClass('ui-loading');
 			}
 			else if(type == "artistes")
 			{
+				var nbrMorceaux = 0;
+			
+				$("#into_"+type).css("display","none");
 				for(var indicePiste=0; indicePiste < msg.artistes.length; indicePiste++) {
-					
-					get_artist_cover(indicePiste, type, msg, msg.artistes.length);
 
+				for(var indicenbrMorceaux=0; indicenbrMorceaux < msg.artistes[indicePiste].albums.length; indicenbrMorceaux++) {
+						
+						nbrMorceaux += msg.artistes[indicePiste].albums[indicenbrMorceaux].items_count;
+					}
+					
+					get_artist_cover(indicePiste, type, msg, msg.artistes.length, nbrMorceaux);
+					
+					nbrMorceaux = 0;
 				}
 				
 			}
@@ -63,6 +73,7 @@ function get_music(type) {
 					$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.albums[indicePiste].tracks[0].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.albums[indicePiste].album_name)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.albums[indicePiste].artist_name)+' - '+msg.albums[indicePiste].items_count+' musique(s)</span></div> </a></li>');
 				}
 				
+				$('body').removeClass('ui-loading');
 				albums_loaded = true;
 			}
 			
@@ -80,7 +91,8 @@ $("#button_my_music").click(function() {
 	$( '.paging_morceaux' ).click();
 });
 
-function get_artist_cover(indicePiste,type,msg,maxPiste) {
+function get_artist_cover(indicePiste,type,msg,maxPiste,nbrMorceaux) {
+
 	$.ajax({
 		type: 'GET',
 		url: "https://api.deezer.com/search?q="+msg.artistes[indicePiste].artist_name+"&limit=1&output=jsonp",
@@ -88,15 +100,17 @@ function get_artist_cover(indicePiste,type,msg,maxPiste) {
 		cache: true,
 		contentType: "application/json; charset=utf-8"
 		}).done(function(data) {
-			$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="'+data.data[0].artist.picture_medium+'" alt="Default cover"></div><div class="morceaux-artist">'+msg.artistes[indicePiste].artist_name+'<br><span class="morceaux-artist-album">'+msg.artistes[indicePiste].items_count+' Albums - X Morceaux</span></div></a></li>');
+			$("#into_"+type).append('<li><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="'+data.data[0].artist.picture_medium+'" alt="Default cover"></div><div class="morceaux-artist">'+msg.artistes[indicePiste].artist_name+'<br><span class="morceaux-artist-album">'+msg.artistes[indicePiste].items_count+' Albums - '+nbrMorceaux+' Morceaux</span></div></a></li>');
 			
 			if(indicePiste == --maxPiste) {
-			console.log(indicePiste + ' - ' + maxPiste);
+
 				$("#into_"+type).listview().listview('refresh');
 				$("#into_"+type).mCustomScrollbar({
 						theme:"minimal"
 				});
-				
+				$("#into_"+type).css("display","block");
+
+				$('body').removeClass('ui-loading');
 				artistes_loaded = true;
 			}
 		});

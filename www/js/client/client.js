@@ -16,64 +16,46 @@ var SERVER_PORT = "8081";
 //socket.send('bonjour');
 //socket.emit('{"player_mode": 2, "playlist": { "mode": 1,	"id_playlist": 47 }, "id_music": 36,"action": 0 }');
 
+console.log("WebSocket is supported by your Browser!");
+               
+               // Let us open a web socket
 
 $("#web-player-previous").click(function() {
 	console.log("envoyé");
 
-sendoscket();
+sendoscket(0);
 
 });
 
 
 $("#web-player-next").click(function() {
 
-	socket.emit('player', {
-	  "player_mode": 2,
-	  "playlist": {
-		"mode": 1,
-		"id_playlist": 47
-	  },
-	  "id_music": 36,
-	  "action": 0
-	});
+sendoscket(1);
 
 });
 
 
 $("#web-player-play").click(function() {
 
-	socket.emit('player', {
-	  "player_mode": 2,
-	  "playlist": {
-		"mode": 1,
-		"id_playlist": 47
-	  },
-	  "id_music": 36,
-	  "action": 0
-	});
 
 });
 
-       function sendoscket()
+       function sendoscket(action)
          {
-            if ("WebSocket" in window)
-            {
-               alert("WebSocket is supported by your Browser!");
-               
-               // Let us open a web socket
-               var ws = new WebSocket("ws://172.16.126.17:8081");
+            ws = new WebSocket("ws://172.16.126.8:8081");
+
 				
                ws.onopen = function()
                {
                   // Web Socket is connected, send data using send()
-                  ws.send("Message to send");
-                  alert("Message is sent...");
+                  ws.send('{ "player_mode": 2, "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": 36,  "action": '+action+' }');
+                  console.log("Message is sent...");
                };
 				
                ws.onmessage = function (evt) 
                { 
                   var received_msg = evt.data;
-                  alert("Message is received...");
+                  console.log(received_msg);
                };
 				
                ws.onclose = function()
@@ -81,11 +63,7 @@ $("#web-player-play").click(function() {
                   // websocket is closed.
                   alert("Connection is closed..."); 
                };
-            }
             
-            else
-            {
-               // The browser doesn't support WebSocket
-               alert("WebSocket NOT supported by your Browser!");
-            }
+            
+         
          }

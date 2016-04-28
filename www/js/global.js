@@ -972,6 +972,8 @@ $("#illustrerGenresButton").click(function(){
     }
 	else
 	{
+		tableauModificationCoverGenres = [];
+		
 		elementListViewIllustrerGenres.mCustomScrollbar('destroy');
 		elementListViewIllustrerGenres.html("<br />");		
 		
@@ -992,7 +994,7 @@ $("#illustrerGenresButton").click(function(){
 				}
 				
 				for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
-					elementListViewIllustrerGenres.append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" style="background-image: url(\'img/covers_genres/'+ escapeHtml(msg.genres[indiceGenre].image) +'\') !important;" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres upload"><input id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_inputGenres" type="file" name="upload" onchange="changeIllustrationGenres(\''+escapeHtml(msg.genres[indiceGenre].idGENRES)+'\');"/><div class="genre_title" style="margin-top: -39px !important;">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
+					elementListViewIllustrerGenres.append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" style="background-image: url(\'img/covers_genres/'+ escapeHtml(msg.genres[indiceGenre].image) +'\') !important; background-position: 50% !important; background-size: cover !important; cursor: pointer !important;" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres upload"><input id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_inputGenres" type="file" name="upload" onchange="changeIllustrationGenres(\''+escapeHtml(msg.genres[indiceGenre].idGENRES)+'\');"/><div class="genre_title" style="margin-top: -39px !important;">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
 					
 				}
 				
@@ -1003,19 +1005,34 @@ $("#illustrerGenresButton").click(function(){
 				elementIllustrerGenresButton.get(0).click();
 		});
 	}
-
-	
 });
 
 function changeIllustrationGenres(idGenres)
 {
 	var elementDivGenres 		= $('#'+ idGenres +'_genrec');
 	var elementInputGenres		= $('#'+ idGenres +'_inputGenres');
+	var elementValiderGenres	= $('#valider_genres_illustrationButton');
 	var coverGenres				= elementInputGenres.get(0).files[0];
 	var blobURLGenresCover		= window.URL.createObjectURL(coverGenres);
 	
 	elementDivGenres.css("background-image", 'url(' + blobURLGenresCover + ')');
 	
-	console.log("Changement genres cover");
-	console.log(blobURLGenresCover);
+	if(tableauModificationCoverGenres.indexOf(idGenres) == -1)
+	{
+		tableauModificationCoverGenres.push(idGenres);
+	}
+	
+	if(tableauModificationCoverGenres.length > 0)
+	{
+		elementValiderGenres.css("display", "block");
+	}
+	else
+	{
+		elementValiderGenres.css("display", "none");
+	}
+}
+
+function valider_genres_illustration()
+{
+	console.log("Test");
 }

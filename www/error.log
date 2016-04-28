@@ -31,3 +31,36 @@
 [25/04/2016 14:26:38]	[API Édition métadonnées]	Impossible de déplacer le fichier au chemin : '../img/covers/090a68be54ce42f12658a850dabfd48c.jpg'
 >>>>>>> origin/master
 >>>>>>> origin/master
+[28/04/2016 14:00:33]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:33]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:34]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:40]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:43]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:43]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:48]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:48]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:52]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:52]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:54]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:54]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:57]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:00:57]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[28/04/2016 14:01:47]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:47]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:51]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:53]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:54]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:55]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:58]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:01:58]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:03]	[G�n�ration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:08]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:08]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:19]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:19]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:23]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:23]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'
+[28/04/2016 14:02:28]	[API Connexion]	Connexion à la base de données impossible : SQLSTATE[HY000] [1044] Acc�s refus� pour l'utilisateur: ''@'@localhost'. Base 'audio_db'

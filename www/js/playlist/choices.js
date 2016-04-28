@@ -360,7 +360,6 @@ function get_choices(type) {
 		}
 	} else {
 
-		
 		for(var indiceAnnee=0; indiceAnnee < msg.annees.length; indiceAnnee++) {
 		
 			$("#list_annees").append('<div id="'+escapeHtml(msg.annees[indiceAnnee].idPISTES)+'_anneesc" data-title="'+escapeHtml(msg.annees[indiceAnnee].date)+'" class="categories categories_annees cat_annees"><div class="genre_title">'+escapeHtml(msg.annees[indiceAnnee].date)+'</div></div>');

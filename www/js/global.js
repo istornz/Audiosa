@@ -1,11 +1,12 @@
-elementProgress		= null;
-pseudo				= null;
-passwordHash		= null;
-stateLogLoading		= false;
-customMetatag		= 0;
-currentMetatag		= 0;
-idPisteEdit			= null;
-md5PisteEdit		= null;
+elementProgress			= null;
+pseudo					= null;
+passwordHash			= null;
+stateLogLoading			= false;
+stateIllustrerLoading	= false;
+customMetatag			= 0;
+currentMetatag			= 0;
+idPisteEdit				= null;
+md5PisteEdit			= null;
 
 function blurAction(state, div) {
     if (state == 1) div.className = "fullPageBlurred";
@@ -771,7 +772,6 @@ $("#radio_choice_pochette_edition").on('change', function ()
 
 $("#uploadPochetteInput").on('change', function ()
 {
-	
 	var elementCoverPreview 		= $("#coverPreview");
 	var elementCoverPreviewHeader 	= $("#imgCoverEditionMetadonnee");
 	var cover 						= this.files[0];
@@ -779,6 +779,8 @@ $("#uploadPochetteInput").on('change', function ()
 	
 	elementCoverPreview.attr("src", blobURLCover);
 	elementCoverPreviewHeader.attr("src", blobURLCover);
+	
+	console.log("Changement pochette");
 });
 
 function launchRequestEditMetatag()
@@ -947,7 +949,7 @@ $("#visualiserLogButton").click(function(){
 					
 					elementVisualiserLogButton.html("Visualiser les logs");
 					
-					$('#visualiserLogButton').get(0).click();
+					elementVisualiserLogButton.get(0).click();
 	       },
 	
 	       error : function(resultat, statut, erreur){
@@ -957,3 +959,63 @@ $("#visualiserLogButton").click(function(){
     	});
     }
 });
+
+$("#illustrerGenresButton").click(function(){
+	
+	var elementIllustrerGenresButton 	= $('#illustrerGenresButton');
+	var elementListViewIllustrerGenres 	= $('#list_genres_illustration');
+	
+	if(stateIllustrerLoading == true)
+    {
+	    stateIllustrerLoading = false;
+		navigateToPopupID('#popupIllustrerGenres');
+    }
+	else
+	{
+		elementListViewIllustrerGenres.mCustomScrollbar('destroy');
+		elementListViewIllustrerGenres.html("<br />");		
+		
+		$.ajax({
+		method: "POST",
+		url: "apis/load_playlist_choices.php",
+		data: { type: "genres"}
+		})
+		.done(function( msg ) {
+				stateIllustrerLoading = true;
+				
+				if(msg.status_code != 1)
+				{
+					console.log("UNE ERREUR EST SURVENUE");
+					//GESTION DES ERREURS
+					
+					return false;
+				}
+				
+				for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
+					elementListViewIllustrerGenres.append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" style="background-image: url(\'img/covers_genres/'+ escapeHtml(msg.genres[indiceGenre].image) +'\') !important;" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres upload"><input id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_inputGenres" type="file" name="upload" onchange="changeIllustrationGenres(\''+escapeHtml(msg.genres[indiceGenre].idGENRES)+'\');"/><div class="genre_title" style="margin-top: -39px !important;">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
+					
+				}
+				
+				elementListViewIllustrerGenres.mCustomScrollbar({
+						theme:"minimal"
+					});
+				
+				elementIllustrerGenresButton.get(0).click();
+		});
+	}
+
+	
+});
+
+function changeIllustrationGenres(idGenres)
+{
+	var elementDivGenres 		= $('#'+ idGenres +'_genrec');
+	var elementInputGenres		= $('#'+ idGenres +'_inputGenres');
+	var coverGenres				= elementInputGenres.get(0).files[0];
+	var blobURLGenresCover		= window.URL.createObjectURL(coverGenres);
+	
+	elementDivGenres.css("background-image", 'url(' + blobURLGenresCover + ')');
+	
+	console.log("Changement genres cover");
+	console.log(blobURLGenresCover);
+}

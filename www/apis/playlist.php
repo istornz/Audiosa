@@ -11,14 +11,14 @@ require("global_fonction.php");
 
 include('conf.php');
 
-$genres = json_decode($_POST['genres']);
-$annees = json_decode($_POST['annees']);
-$artists = json_decode($_POST['artists']);
-$albums = json_decode($_POST['albums']);
-$playlist_name = $_POST['playlist_name'];
+$genres 		= json_decode($_POST['genres']);
+$annees 		= json_decode($_POST['annees']);
+$artists 		= json_decode($_POST['artists']);
+$albums 		= json_decode($_POST['albums']);
+$playlist_name 	= $_POST['playlist_name'];
 
-$_genres = array();
-$_playlist = array();
+$_genres 		= array();
+$_playlist 		= array();
 
 if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
 {
@@ -189,10 +189,10 @@ if(count($_playlist) == 0)
 //  	Insertion des musiques      //
 /************************************/
 
-
 for($ipiste = 0; $ipiste < count($_playlist	); $ipiste++) {
 
 	$commande_SQL	= "INSERT INTO contenu_playlists VALUES ( '', ". $playlist_id .", ". $_playlist[$ipiste] ." )";
+	write_error_to_log("Création playlist", $commande_SQL);
 	$query = $connexionWrite->prepare($commande_SQL);
 	$query->execute();
 }

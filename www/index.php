@@ -169,7 +169,8 @@
 		<span id="userLabel">Admin</span>
 		<hr style="visibility:hidden;" />
 		<a id="changerpassButton" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #2980b9" onclick="navigateToPopupID('#popupChangerPass');" href="#popupChangerPass" data-rel="popup" data-position-to="window" data-transition="pop">Changer mot de passe</a>
-		<a id="visualiserLogButton" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #7f8c8d" onclick="" href="#popupVisualiserLogs" data-rel="popup" data-position-to="window" data-transition="pop">Visualiser les logs</a>
+		<a id="visualiserLogButton" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #7f8c8d" href="#popupVisualiserLogs" data-rel="popup" data-position-to="window" data-transition="pop">Visualiser les logs</a>
+		<a id="illustrerGenresButton" class="ui-btn ui-corner-all button_selection" role="button" style="background-color: #16a085" href="#popupIllustrerGenres" data-rel="popup" data-position-to="window" data-transition="pop">Illustrer les genres</a>
 		<button id="deconnexionButton" onclick="disconnect();" class="ui-btn ui-corner-all button_selection" style="background-color: #c0392b">Déconnexion</button>
 	</div>
 </div>
@@ -208,6 +209,15 @@
 	</div>
 </div>
 
+<div data-role="popup" id="popupIllustrerGenres" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:570px; max-height:470px;">
+	<div data-role="header" data-theme="a">
+		<a id="backToMenu" href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" onclick="navigateToPopupID('#popupMenu');" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all">No text</a>
+		<h1>Illustrer</h1>
+	</div>
+	<div id="list_genres_illustration" style="height: 410px; overflow-y: scroll; overflow-x: hidden;">
+		<br />
+	</div>
+</div>
 	
 <div data-role="popup" id="popupImport" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:400px;">
 	<div data-role="header" data-theme="a">

@@ -512,3 +512,18 @@ font-size: 14px;
 	width: auto;
 	height: auto;
 }
+
+/*File Upload*/
+
+div.upload {
+    
+    overflow: hidden;
+}
+
+div.upload input {
+    display: block !important;
+	width: 255px !important;
+    height: 159px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}

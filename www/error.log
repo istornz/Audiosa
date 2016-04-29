@@ -1,1 +1,2 @@
 ﻿[28/04/2016 17:03:04]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'backgroundDefault.jpg' WHERE idGENRES=10;
+[29/04/2016 10:08:51]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=11;

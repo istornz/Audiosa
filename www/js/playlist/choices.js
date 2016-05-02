@@ -325,6 +325,7 @@ function get_choices(type) {
 	})
 	.done(function( msg ) {
 			
+			console.log(msg);
 			if(msg.status_code != 1)
 			{
 				console.log("UNE ERREUR EST SURVENUE");
@@ -340,14 +341,14 @@ function get_choices(type) {
 	if(type == "genres") {
 		for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
 			
-			$("#list_genres").append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres"><div class="genre_title">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
+			$("#list_genres").append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres" style="background-image: url(\'img/covers_genres/'+escapeHtml(msg.genres[indiceGenre].image)+'\') !important;"><div class="genre_title">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
 			
 		}
 	} else if (type == "albums") {
 		
 		for(var indiceAlbum=0; indiceAlbum < msg.albums.length; indiceAlbum++) {
 		
-			$("#list_albums").append('<div id="'+escapeHtml(msg.albums[indiceAlbum].idPISTES)+'_albumc" data-title="'+escapeHtml(msg.albums[indiceAlbum].album)+'" class="categories categories_albums cat_c_albums cat_albums "><div class="album_title">'+escapeHtml(msg.albums[indiceAlbum].album)+'</div></div>');
+			$("#list_albums").append('<div id="'+escapeHtml(msg.albums[indiceAlbum].idPISTES)+'_albumc" data-title="'+escapeHtml(msg.albums[indiceAlbum].album)+'" class="categories categories_albums cat_c_albums cat_albums" style="background-image: url(\'img/covers/'+escapeHtml(msg.coverAlbum[indiceAlbum].cover)+'\') !important;"><div class="album_title">'+escapeHtml(msg.albums[indiceAlbum].album)+'</div></div>');
 		
 		}
 		
@@ -355,7 +356,7 @@ function get_choices(type) {
 
 	for(var indiceArtiste=0; indiceArtiste < msg.artistes.length; indiceArtiste++) {
 		
-			$("#list_artistes").append('<div id="'+escapeHtml(msg.artistes[indiceArtiste].idPISTES)+'_artistc" data-title="'+escapeHtml(msg.artistes[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes"><div class="artist_title">'+escapeHtml(msg.artistes[indiceArtiste].artist)+'</div></div>');
+			get_artist_cover(indiceArtiste,type,msg,msg.artistes.length);
 			
 		}
 	} else {
@@ -367,12 +368,15 @@ function get_choices(type) {
 		}
 	
 	}
+	
+	if(type != "artistes") {
 			$("#list_"+type).mCustomScrollbar({
 				theme:"minimal"
 			});
 			
 			createChoiceEvent();
-		
+	}
+				
 			if(type == "albums") { albumsLoaded = true; }
 			else if(type == "artistes") 	{ artistesLoaded = true}
 			else if(type == "annees") 	{ anneesLoaded = true }
@@ -380,3 +384,32 @@ function get_choices(type) {
 			else { return; }
 		});
 };
+
+function get_artist_cover(indiceArtiste,type,msg,maxPiste) {
+
+	$.ajax({
+		type: 'GET',
+		url: "https://api.deezer.com/search?q="+msg.artistes[indiceArtiste].artist+"&limit=1&output=jsonp",
+		dataType: 'jsonp',
+		cache: true,
+		contentType: "application/json; charset=utf-8"
+		}).done(function(data) {
+			$("#list_artistes").append('<div id="'+escapeHtml(msg.artistes[indiceArtiste].idPISTES)+'_artistc" data-title="'+escapeHtml(msg.artistes[indiceArtiste].artist)+'" class="categories categories_artistes cat_c_artistes cat_artistes" style="background-image: url(\''+data.data[0].artist.picture_medium+'\') !important;"><div class="artist_title">'+escapeHtml(msg.artistes[indiceArtiste].artist)+'</div></div>');
+
+			
+			if(indiceArtiste == --maxPiste) {
+
+			$("#list_"+type).mCustomScrollbar({
+				theme:"minimal"
+			});
+			
+			createChoiceEvent();
+
+				//$("#into_"+type).css("display","block");
+
+			//	$('body').removeClass('ui-loading');
+			//	artistes_loaded = true;
+			}
+		});
+
+}

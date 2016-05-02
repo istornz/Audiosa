@@ -18,21 +18,10 @@ console.log("WebSocket is supported by your Browser!");
 socket.send('bonjour');
 socket.emit('{"player_mode": 2, "playlist": null, "id_music": 36,"action": 0 }');
 */
->>>>>>> origin/master
 
 $("#web-player-previous").click(function() {
-	console.log("envoyé");
 
-<<<<<<< HEAD
-sendoscket(0);
-=======
-	socket.emit('player', {
-	  "player_mode": 2,
-	  "playlist": null,
-	  "id_music": 36,
-	  "action": 0
-	});
->>>>>>> origin/master
+sendoscket(2);
 
 });
 
@@ -46,28 +35,31 @@ sendoscket(1);
 
 $("#web-player-play").click(function() {
 
-
+sendoscket(0);
 });
 
        function sendoscket(action)
          {
-            ws = new WebSocket("ws://172.16.126.8:8081");
+            wsocket = new WebSocket("ws://172.16.126.8:8081");
 
 				
-               ws.onopen = function()
+               wsocket.onopen = function()
                {
                   // Web Socket is connected, send data using send()
-                  ws.send('{ "player_mode": 2, "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": 36,  "action": '+action+' }');
+                  wsocket.send('{ "player_mode": 2, "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": 36,  "action": '+action+' }');				  
+				  setTimeout(function() {  wsocket.send('{ "player_mode": 2, "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": 36,  "action": 1 }'); }, 4000);
+				  setTimeout(function() {  wsocket.send('{ "player_mode": 2, "playlist": {"mode": 1, "id_playlist": 47  }, "id_music": 36,  "action": 2 }'); }, 8000);
                   console.log("Message is sent...");
                };
 				
-               ws.onmessage = function (evt) 
+               wsocket.onmessage = function (evt) 
                { 
                   var received_msg = evt.data;
                   console.log(received_msg);
+				  
                };
 				
-               ws.onclose = function()
+               wsocket.onclose = function()
                { 
                   // websocket is closed.
                   alert("Connection is closed..."); 

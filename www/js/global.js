@@ -32,25 +32,21 @@ $("#formConnexionPopup").submit(function(event) {
             .val().length == 0) {
             elementPseudoFieldDiv.addClass("animated shake");
             window.setTimeout(function() {
-                elementPseudoFieldDiv.removeClass(
-                    'animated shake');
+                elementPseudoFieldDiv.removeClass('animated shake');
             }, 500);
             elementPaswordFieldDiv.addClass("animated shake");
             window.setTimeout(function() {
-                elementPaswordFieldDiv.removeClass(
-                    'animated shake');
+                elementPaswordFieldDiv.removeClass('animated shake');
             }, 500);
         } else if (elementPseudoField.val().length == 0) {
             elementPseudoFieldDiv.addClass("animated shake");
             window.setTimeout(function() {
-                elementPseudoFieldDiv.removeClass(
-                    'animated shake');
+                elementPseudoFieldDiv.removeClass('animated shake');
             }, 500);
         } else if (elementPaswordField.val().length == 0) {
             elementPaswordFieldDiv.addClass("animated shake");
             window.setTimeout(function() {
-                elementPaswordFieldDiv.removeClass(
-                    'animated shake');
+                elementPaswordFieldDiv.removeClass('animated shake');
             }, 500);
         }
     }
@@ -71,20 +67,17 @@ $("#formConnexionPopup").submit(function(event) {
             elementConnexionButton.html("Se connecter");
             elementMessageDiv.addClass("animated bounceIn");
             window.setTimeout(function() {
-                elementMessageDiv.removeClass(
-                    "animated bounceIn");
+                elementMessageDiv.removeClass("animated bounceIn");
             }, 500);
             if (JSONParsed.status_code == 1) {
                 elementMessageDiv.css("display", "block");
-                elementMessageDiv.css("background-color",
-                    "#16a085");
+                elementMessageDiv.css("background-color","#16a085");
                 elementMessageLabel.text("Connexion reussie !");
                 window.setTimeout(function() {
                     pseudo = pseudoValue;
                     passwordHash = md5(passwordValue);
                     elementPseudoForm.attr("value", pseudo);
-                    elementMessageDiv.css("display",
-                        "none");
+                    elementMessageDiv.css("display", "none");
                     elementPseudoField.val("");
                     elementPaswordField.val("");
                     userConnected();
@@ -92,8 +85,7 @@ $("#formConnexionPopup").submit(function(event) {
                     blurAction(0, fullPage);
                 }, 1000);
             } else {
-                elementMessageDiv.css("background-color",
-                    "#e74c3c");
+                elementMessageDiv.css("background-color", "#e74c3c");
                 elementMessageDiv.css("display", "block");
 				
 				switch(JSONParsed.error_description)
@@ -842,6 +834,7 @@ function launchRequestEditMetatag()
                 window.setTimeout(function() {
                     elementMessageEditMetaDiv.css("display", "none");
                     get_music("morceaux");
+					
 		            elementEditMetadonneePopup.popup("close");
 	                blurAction(0, fullPage);
                 }, 1000);
@@ -909,8 +902,8 @@ function launchRequestEditMetatag()
     });
 }
 
-$("#visualiserLogButton").click(function(){
-	
+$("#visualiserLogButton").click(function()
+{
 	var elementListViewLog = $('#listview-log');
 	var elementVisualiserLogButton = $('#visualiserLogButton');
 	

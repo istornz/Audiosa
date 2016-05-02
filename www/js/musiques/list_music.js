@@ -6,7 +6,7 @@ musicArray = [];
 //type : artistes / morceaux / albums
 
 function get_music(type) {
-
+	
 	if(type != "artistes" && type != "morceaux" && type != "albums") {
 		console.log(type);
 		return false;
@@ -84,6 +84,8 @@ function get_music(type) {
 				});
 			}
 	});
+	
+	
 }
 
 

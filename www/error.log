@@ -1,17 +1,1 @@
-Ôªø[28/04/2016 17:03:04]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'backgroundDefault.jpg' WHERE idGENRES=10;
-<<<<<<< HEAD
-[28/04/2016 17:15:12]	[API R√©cup√©ration donn√©es]	Connexion √† la base de donn√©es impossible : SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[28/04/2016 17:15:12]	[API R√©cup√©ration donn√©es]	Connexion √† la base de donn√©es impossible : SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[28/04/2016 17:15:18]	[GÈnÈration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'db_reader_user'@'@localhost' (mot de passe: OUI)
-[28/04/2016 17:15:20]	[GÈnÈration choix playlist]	Connection DB failed: SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'db_reader_user'@'@localhost' (mot de passe: OUI)
-[29/04/2016 10:36:25]	[API R√©cup√©ration donn√©es]	Connexion √† la base de donn√©es impossible : SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[29/04/2016 10:36:25]	[API R√©cup√©ration donn√©es]	Connexion √† la base de donn√©es impossible : SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
-[29/04/2016 10:39:20]	[API Illustration Genres]	Impossible de d√©placer le fichier au chemin : 'D:\covers_genres\perry_the_platypus_by_jikujiku.jpg'
-[29/04/2016 10:43:17]	[API Illustration Genres]	Impossible de d√©placer le fichier au chemin : 'D:\covers_genres\perry_the_platypus_by_jikujiku.jpg'
-[29/04/2016 10:43:50]	[API Illustration Genres]	Impossible de d√©placer le fichier au chemin : 'D:\covers_genres\perry_the_platypus_by_jikujiku.jpg'
-[29/04/2016 10:45:32]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'perry_the_platypus_by_jikujiku.jpg' WHERE idGENRES=1;
-=======
-[29/04/2016 10:08:51]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=11;
->>>>>>> origin/master
-[03/05/2016 14:48:07]	[API R√©cup√©ration donn√©es]	Connexion √† la base de donn√©es impossible : SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
-[03/05/2016 14:48:07]	[API R√©cup√©ration donn√©es]	Connexion √† la base de donn√©es impossible : SQLSTATE[HY000] [1045] AccËs refusÈ pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+Ôªø

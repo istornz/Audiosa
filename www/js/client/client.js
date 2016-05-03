@@ -8,7 +8,7 @@ idMusic		= 10;
 volumeRate 	= 0.5;
 mode_player = 0 //Lecture a la suite, 1 pour alea
 
-wsocket = new WebSocket("ws://172.16.126.10:8081");	
+wsocket = new WebSocket("ws://172.16.126.170:8081");	
 wsocket.onopen = function()
 {
 	console.log("Connected !");
@@ -17,8 +17,9 @@ wsocket.onopen = function()
 wsocket.onmessage = function (evt) 
 { 
 	var received_msg = evt.data;
-	//var JSON = JSON.parse(received_msg);
-	console.log(received_msg);
+	var jsonCallback = JSON.parse(received_msg);
+	idMusic = jsonCallback.id_music_played;
+	console.log(idMusic);
 };
 
 wsocket.onclose = function()

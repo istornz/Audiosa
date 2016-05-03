@@ -1,70 +1,72 @@
 ﻿// Connexion à socket.io
 console.log("CLIENT socket lancé:");
-/*
-var SERVER_URL = "http://172.16.126.8/";
-var SERVER_PORT = "8081";
 
-var socket = io.connect(SERVER_URL+':'+SERVER_PORT);
+isPlayed	= false;
+isPaused	= false;
+emplacement = 0; //0: pistes; 1: album; 2: playlist
+idMusic		= 10;
+volumeRate 	= 0.5;
+mode_player = 0 //Lecture a la suite, 1 pour alea
 
-socket.on('connect_error', function() {
-console.log('Echec de la connexion au serveur ' + SERVER_URL+':'+SERVER_PORT);
-});
+wsocket = new WebSocket("ws://172.16.126.10:8081");	
+wsocket.onopen = function()
+{
+	console.log("Connected !");
+};
 
-<<<<<<< HEAD
-console.log("WebSocket is supported by your Browser!");
-               
-               // Let us open a web socket
-=======
-socket.send('bonjour');
-socket.emit('{"player_mode": 2, "playlist": null, "id_music": 36,"action": 0 }');
-*/
+wsocket.onmessage = function (evt) 
+{ 
+	var received_msg = evt.data;
+	//var JSON = JSON.parse(received_msg);
+	console.log(received_msg);
+};
+
+wsocket.onclose = function()
+{ 
+	console.log("Connection is closed..."); 
+};
 
 $("#web-player-previous").click(function() {
-
-sendoscket(2);
+	
+	wsocket.send('{ "player_mode": '+mode_player+', "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": '+idMusic+',  "action": 4, "volume_rate": '+ volumeRate +', "emplacement": '+emplacement+' }');				  
 
 });
 
 
 $("#web-player-next").click(function() {
 
-sendoscket(1);
+	wsocket.send('{ "player_mode": '+mode_player+', "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": '+idMusic+',  "action": 3, "volume_rate": '+ volumeRate +', "emplacement": '+emplacement+' }');				  
 
 });
 
+$("#web-player-shuffle").click(function() {
+
+	if(mode_player == 0)
+		mode_player = 1;
+	else
+		mode_player = 0;
+
+});
 
 $("#web-player-play").click(function() {
-
-sendoscket(0);
+	
+	if(isPlayed)
+	{
+		if(isPaused)
+		{
+			isPaused = false;
+			wsocket.send('{ "player_mode": '+mode_player+', "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": '+idMusic+',  "action": 2, "volume_rate": '+ volumeRate +', "emplacement": '+emplacement+' }');				  
+		}
+		else
+		{
+			isPaused = true;
+			wsocket.send('{ "player_mode": '+mode_player+', "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": '+idMusic+',  "action": 1, "volume_rate": '+ volumeRate +', "emplacement": '+emplacement+' }');				  
+		}
+	}
+	else
+	{
+		isPlayed = true;
+		wsocket.send('{ "player_mode": '+mode_player+', "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": '+idMusic+',  "action": 0, "volume_rate": '+ volumeRate +', "emplacement": '+emplacement+' }');				  
+	}
+		
 });
-
-       function sendoscket(action)
-         {
-            wsocket = new WebSocket("ws://172.16.126.8:8081");
-
-				
-               wsocket.onopen = function()
-               {
-                  // Web Socket is connected, send data using send()
-                  wsocket.send('{ "player_mode": 2, "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": 36,  "action": '+action+' }');				  
-				  setTimeout(function() {  wsocket.send('{ "player_mode": 2, "playlist": {"mode": 1,	"id_playlist": 47  }, "id_music": 36,  "action": 1 }'); }, 4000);
-				  setTimeout(function() {  wsocket.send('{ "player_mode": 2, "playlist": {"mode": 1, "id_playlist": 47  }, "id_music": 36,  "action": 2 }'); }, 8000);
-                  console.log("Message is sent...");
-               };
-				
-               wsocket.onmessage = function (evt) 
-               { 
-                  var received_msg = evt.data;
-                  console.log(received_msg);
-				  
-               };
-				
-               wsocket.onclose = function()
-               { 
-                  // websocket is closed.
-                  alert("Connection is closed..."); 
-               };
-            
-            
-         
-         }

@@ -13,3 +13,5 @@
 =======
 [29/04/2016 10:08:51]	[API Illustration Genres]	UPDATE `genres` SET `image` = '366ab822-09bc-425e-9d2b-3e422b4bd5bf.jpg' WHERE idGENRES=11;
 >>>>>>> origin/master
+[03/05/2016 14:48:07]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[03/05/2016 14:48:07]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)

@@ -52,6 +52,35 @@ catch(PDOException $e)
 	die('{"status_code":0, "error_description":"connection to database failed"}');
 }
 
+if(isset($_POST['delete_playlist']))
+{
+	$idToDelete = intval($_POST['delete_playlist']);
+	
+	$commande_SQL = "DELETE FROM contenu_playlists WHERE PLAYLIST_idPLAYLIST=" . $idToDelete;
+	$query = $connexionWrite->prepare($commande_SQL);
+	if($query->execute())
+	{
+		$commande_SQL = "DELETE FROM playlists WHERE idPLAYLIST=" . $idToDelete;
+		$query = $connexionWrite->prepare($commande_SQL);
+		if($query->execute())
+		{
+			die('{"status_code":1}');
+		}
+		else
+		{
+			print_r( $query->errorInfo());
+			write_error_to_log("Création playlist","Impossible de supprimer la playlist '" . $idToDelete . "'");
+			die('{"status_code":0, "error_description":"unable to delete playlist"}');
+		}
+	}
+	else
+	{
+		print_r( $query->errorInfo());
+		write_error_to_log("Création playlist","Impossible de supprimer les pistes liées à la playlist '" . $idToDelete . "'");
+		die('{"status_code":0, "error_description":"unable to delete music linked to this playlist"}');
+	}
+}
+
 /************************/
 //	   Verifications 	//
 /************************/

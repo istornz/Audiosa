@@ -62,17 +62,17 @@
 			<div id="web-player-cmd">
 				<div style="text-align: center; margin-top: 14px;">
 					<img id="web-player-shuffle" src="img/player/shufflew.png" alt="shuffle">
-					<span>Titre musique</span>
+					<span id="mediaPlayerTitle">Titre musique</span>
 					<img id="web-player-sound" src="img/player/soundw.png" alt="sound">
 				</div>
-				<div style="text-align: center; font-size: 13px;">
+				<div id="mediaPlayerArtist" style="text-align: center; font-size: 13px;">
 				Artiste
 				</div>
 				<form class="full-width-slider" style="margin-top: -12px; margin-bottom: 0 !important">
 				    <label for="slider-12" class="ui-hidden-accessible">Slider:</label>
 				    <input type="range" name="slider-12" id="slider-12" min="0" max="100" value="0">
 				</form>
-				<div style="text-align: center; font-size: 13px; margin-top: -8px;">
+				<div id="mediaPlayerDuree" style="text-align: center; font-size: 13px; margin-top: -8px;">
 				00:00
 				</div>
 				<div style="text-align: center; margin-top: 14px;">

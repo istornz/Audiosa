@@ -20,10 +20,11 @@ function get_music(type) {
 		data: { argPost: type }
 	})
 	.done(function( msg ) {
+		ListeMusiques = msg;
 		
 		musicArray = msg.pistes;
 		
-		console.log(msg.artistes);
+		console.log(msg);
 
 		if(msg.status_code != 1)
 		{
@@ -37,7 +38,7 @@ function get_music(type) {
 			
 			if(type == "morceaux") {
 				for(var indicePiste=0; indicePiste < msg.pistes.length; indicePiste++) {
-					$("#into_"+type).append('<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
+					$("#into_"+type).append('<li class="no-carat-l musicplay" data-idpiste="'+msg.pistes[indicePiste].idPISTES+'" data-emplacement="0" data-title="'+escapeHtml(msg.pistes[indicePiste].title)+'" data-artist="'+escapeHtml(msg.pistes[indicePiste].artist)+'" data-cover="'+msg.pistes[indicePiste].cover+'" data-duree="'+msg.pistes[indicePiste].duree+'" ><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
 				}
 				
 				if(pseudo != null && passwordHash != null)
@@ -45,6 +46,7 @@ function get_music(type) {
 					$(".edit_music_container").css("display", "block");
 				}
 				
+				createMusicPlayerEvent()
 				morceaux_loaded = true;
 				
 				$('body').removeClass('ui-loading');
@@ -118,7 +120,51 @@ function get_artist_cover(indicePiste,type,msg,maxPiste,nbrMorceaux) {
 		});
 
 }
-			
+
+function createMusicPlayerEvent()
+{
+
+$(".musicplay").click(function() {
+	var idpiste = $(this).data("idpiste"),
+		title = $(this).data("title"),
+		artist = $(this).data("artist"),
+		cover = $(this).data("cover"),
+		duree = $(this).data("duree"),
+		emplacement = $(this).data("emplacement"),
+		emplacement_name = $(this).data("emplacement"),
+		finalTime,
+		minutes,
+		seconds;
+		
+		// Global player vars
+		emplacement 		= emplacement; //0: pistes; 1: album; 2: playlist
+		emplacement_name 	= emplacement_name; //	Nom album ou idPlaylist
+		idMusic				= idpiste;
+		volumeRate 			= 1;
+		mode_player 		= 0; //Lecture a la suite, 1 pour alea
+		
+		minutes = Math.floor(duree / 60);
+		seconds = duree - minutes * 60;
+
+
+		finalTime = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
+		
+		$("#mediaPlayerTitle").html(escapeHtml(title));
+		$("#mediaPlayerArtist").html(escapeHtml(artist));
+		$("#mediaPlayerDuree").html(finalTime);
+		$("#web-player-img").attr("src","img/covers/"+cover);
+		$("#web-player").css("background-image","url('img/covers/"+cover+"')");
+		
+		actionPlayer(wsocket, idMusic, 0, mode_player, volumeRate, emplacement, emplacement_name);
+	
+});
+
+}
+
+function str_pad_left(string,pad,length) {
+    return (new Array(length+1).join(pad)+string).slice(-length);
+}
+
 function escapeHtml(text) {
   var map = {
     '&': '&amp;',

@@ -61,7 +61,6 @@
 			<img id="web-player-img" src="img/covers/defaultCover.jpg" alt="Default cover" />
 			<div id="web-player-cmd">
 				<div style="text-align: center; margin-top: 14px;">
-					<img id="web-player-shuffle" src="img/player/shufflew.png" alt="shuffle">
 					<span id="mediaPlayerTitle">Titre musique</span>
 					<section id="soundcontainer">	
 						<img id="web-player-sound" src="img/player/soundw.png" alt="sound">
@@ -397,6 +396,7 @@
 		(function($){
 					
 			$(window).load(function(){
+			
 				$(".list_scroll").mCustomScrollbar({
 					theme:"minimal"
 				});
@@ -778,6 +778,8 @@ $.widget("mobile.slider", $.mobile.slider, {
 
             if ( !preventInputUpdate ) {
                 valueChanged = false;
+				//console.log( newval );
+				actionPlayer(wsocket, idMusic, 99, newval, "", "");
 
                 // update control"s value
                 if ( isInput ) {

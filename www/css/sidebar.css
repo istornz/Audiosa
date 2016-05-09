@@ -236,10 +236,12 @@ div.ui-slider {
 }
 
 #soundcontainer {
-	width: 100px;
-	height: 18px;
-	position: relative;
-	float: right;
+width: 100px;
+    height: 18px;
+    position: absolute;
+    float: right;
+    right: -4%;
+    margin-top: -6px;
 }
 #web-player-sound,
 #onsound {
@@ -252,6 +254,17 @@ div.ui-slider {
 	/* float: left; */
 	width: 200px;
 	/*transform: rotate(-90deg);*/
-	left: -10px;
-	top: -94px;
+	left: -11px;
+	top: -87px;
+}
+
+#mediaPlayerTitle {
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
+    margin-left: 15%;
+    height: 24px;
+    white-space: nowrap;
+    margin-right: 15%;
 }

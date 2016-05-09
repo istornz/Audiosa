@@ -68,7 +68,9 @@ if(isset($_POST['delete_playlist']))
 		}
 		else
 		{
-			print_r( $query->errorInfo());
+			//print_r( $query->errorInfo());
+			$errorInfoArray = $selectStatement->errorInfo();
+			write_error_to_log("Création playlist","TEST --> " . $errorInfoArray[2]);
 			write_error_to_log("Création playlist","Impossible de supprimer la playlist '" . $idToDelete . "'");
 			die('{"status_code":0, "error_description":"unable to delete playlist"}');
 		}

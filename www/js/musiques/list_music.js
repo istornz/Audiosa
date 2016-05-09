@@ -23,12 +23,9 @@ function get_music(type) {
 		ListeMusiques = msg;
 		
 		musicArray = msg.pistes;
-		
-<<<<<<< HEAD
-=======
+
 		console.log(msg);
 
->>>>>>> origin/master
 		if(msg.status_code != 1)
 		{
 			//console.log("UNE ERREUR EST SURVENUE");
@@ -41,11 +38,7 @@ function get_music(type) {
 			
 			if(type == "morceaux") {
 				for(var indicePiste=0; indicePiste < msg.pistes.length; indicePiste++) {
-<<<<<<< HEAD
 					$("#into_"+type).append('<li class="no-carat-l musicplay" data-idpiste="'+msg.pistes[indicePiste].idPISTES+'" data-emplacement="0" data-emplacement_name="" data-title="'+escapeHtml(msg.pistes[indicePiste].title)+'" data-artist="'+escapeHtml(msg.pistes[indicePiste].artist)+'" data-cover="'+msg.pistes[indicePiste].cover+'" data-duree="'+msg.pistes[indicePiste].duree+'" ><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
-=======
-					$("#into_"+type).append('<li class="no-carat-l musicplay" data-idpiste="'+msg.pistes[indicePiste].idPISTES+'" data-emplacement="0" data-title="'+escapeHtml(msg.pistes[indicePiste].title)+'" data-artist="'+escapeHtml(msg.pistes[indicePiste].artist)+'" data-cover="'+msg.pistes[indicePiste].cover+'" data-duree="'+msg.pistes[indicePiste].duree+'" ><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
->>>>>>> origin/master
 				}
 				
 				if(pseudo != null && passwordHash != null)
@@ -53,11 +46,8 @@ function get_music(type) {
 					$(".edit_music_container").css("display", "block");
 				}
 				
-<<<<<<< HEAD
 				createMusicPlayerEvent();
-=======
-				createMusicPlayerEvent()
->>>>>>> origin/master
+
 				morceaux_loaded = true;
 				
 				$('body').removeClass('ui-loading');
@@ -198,7 +188,7 @@ function get_artist_cover(indicePiste,type,msg,maxPiste,nbrMorceaux) {
 
 }
 
-<<<<<<< HEAD
+
 function createAlbumEvent(msg) {
 
 $(".album_tracks").click(function() {
@@ -255,7 +245,10 @@ $(".artiste_tracklist").click(function() {
 	createArtistAlbumEvent(msg, artistInddex);
 
 	artistes_loaded = false;
-=======
+});
+
+}
+
 function createMusicPlayerEvent()
 {
 
@@ -292,12 +285,10 @@ $(".musicplay").click(function() {
 		
 		actionPlayer(wsocket, idMusic, 0, mode_player, volumeRate, emplacement, emplacement_name);
 	
->>>>>>> origin/master
 });
 
 }
 
-<<<<<<< HEAD
 function createArtistAlbumEvent(msg, artistInddex) {
 
 $(".artist_album_tracks").click(function() {
@@ -330,12 +321,12 @@ $(".artist_album_tracks").click(function() {
 
 }
 			
-=======
+
 function str_pad_left(string,pad,length) {
     return (new Array(length+1).join(pad)+string).slice(-length);
 }
 
->>>>>>> origin/master
+
 function escapeHtml(text) {
   var map = {
     '&': '&amp;',

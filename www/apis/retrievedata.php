@@ -305,6 +305,7 @@ function retrievePlaylists($connexion)
 			$tracks = getTrackForPlaylist($connexion, $tableauPlaylists[$i]['idPLAYLIST']);
 			
 			echo "{";
+				echo '"idPLAYLIST": "' . $tableauPlaylists[$i]['idPLAYLIST'] . '",';
 				echo '"name": "' . $tableauPlaylists[$i]['name'] . '",';
 				echo '"items_count": "' . $tableauPlaylists[$i]['items_count'] . '",';
 				echo '"tracks": ' . json_encode($tracks);

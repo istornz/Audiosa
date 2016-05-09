@@ -63,6 +63,7 @@
 				<div style="text-align: center; margin-top: 14px;">
 					<img id="web-player-shuffle" src="img/player/shufflew.png" alt="shuffle">
 					<span id="mediaPlayerTitle">Titre musique</span>
+<<<<<<< HEAD
 					<section id="soundcontainer">	
 						<img id="web-player-sound" src="img/player/soundw.png" alt="sound">
 						<div id="onsound">
@@ -71,6 +72,9 @@
 							<input style="display: none;" type="range" name="vert" id="vert" data-height="75" step="0.05" data-vertical="true" value="0" min="0" max="1"/>
 						</div>
 					</section>
+=======
+					<img id="web-player-sound" src="img/player/soundw.png" alt="sound">
+>>>>>>> origin/master
 				</div>
 				<div id="mediaPlayerArtist" style="text-align: center; font-size: 13px;">
 				Artiste

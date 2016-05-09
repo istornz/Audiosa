@@ -779,7 +779,8 @@ $.widget("mobile.slider", $.mobile.slider, {
             if ( !preventInputUpdate ) {
                 valueChanged = false;
 				//console.log( newval );
-				actionPlayer(wsocket, idMusic, 99, newval, "", "");
+				volumeRate = newval;
+				actionPlayer(wsocket, idMusic, 99, volumeRate, 0, "");
 
                 // update control"s value
                 if ( isInput ) {

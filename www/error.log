@@ -12,3 +12,32 @@
 [09/05/2016 10:59:04]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
 [09/05/2016 10:59:04]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'db_reader_music'@'@localhost' (mot de passe: OUI)
 >>>>>>> origin/master
+[09/05/2016 14:02:53]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:02:53]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:01]	[API Édition métadonnées]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:03]	[API Édition métadonnées]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:08]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:14]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:15]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:18]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:20]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:25]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:27]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:31]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:33]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:36]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:38]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:41]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:42]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:46]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:54]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:03:58]	[API Récupération données]	Connexion à la base de données impossible : SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)
+[09/05/2016 14:07:45]   [Player]   Requete recuperation nom fichier flac impossible"
+[09/05/2016 14:07:45]   [Player]   Requete recuperation nom fichier flac impossible"
+[09/05/2016 14:07:45]   [Player]   Requete recuperation nom fichier flac impossible"
+[09/05/2016 14:16:36]   [Player]   Requete recuperation nom fichier flac impossible"
+[09/05/2016 14:16:36]   [Player]   Requete recuperation nom fichier flac impossible"
+[09/05/2016 14:16:36]   [Player]   Requete recuperation nom fichier flac impossible"
+[09/05/2016 14:16:36]   [Player]   Requete recuperation nom fichier flac impossible"
+[09/05/2016 14:17:23]	[Création playlist]	Impossible de supprimer les pistes liées à la playlist '13'
+[09/05/2016 14:59:11]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''

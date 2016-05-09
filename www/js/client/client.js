@@ -6,7 +6,8 @@ isPaused			= false;
 emplacement 		= 2; //0: pistes; 1: album; 2: playlist
 emplacement_name 	= "14"; //	Nom album ou idPlaylist
 idMusic				= 53;
-volumeRate 			= 1;
+volumeRate 			= 0.5;
+percentPiste		= 0;
 
 wsocket = new WebSocket("ws://172.16.126.170:8081");	
 wsocket.onopen = function()
@@ -28,18 +29,27 @@ wsocket.onmessage = function (evt)
 			console.log(idListeMusiques);
 		
 		var piste = ListeMusiques.pistes[idListeMusiques];
-		var percentPiste = (piste.duree * 100) / (jsonCallback.player_status.position / 100);
+		percentPiste = ((jsonCallback.player_status.position / 1000) * 100) / piste.duree ;
+		console.log("percentPiste:" + percentPiste);
 
 		$($(".ui-slider-handle")[1]).css("left",percentPiste);
+		dureeeee = piste.duree,
+			positionnnn = (jsonCallback.player_status.position / 1000);
+			
+		diffff = dureeeee - positionnnn;
+		console.log("-----RESTE:"+ diffff) ;
 		
-		var minutes = Math.floor((jsonCallback.player_status.position / 100) / 60);
-		var seconds = piste.duree - minutes * 60;
+		posiLocale = percentPiste;
+		
+		// Minutes and seconds
+		var mins = ~~(diffff / 60);
+		var secs = ~~(diffff % 60);
 
-		var finalTime = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
-		
+		//finalTime = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
+
 		$("#mediaPlayerTitle").html(escapeHtml(piste.title));
 		$("#mediaPlayerArtist").html(escapeHtml(piste.artist));
-		$("#mediaPlayerDuree").html(finalTime);
+		$("#mediaPlayerDuree").html(mins+":"+secs);
 		$("#web-player-img").attr("src","img/covers/"+piste.cover);
 		$("#web-player").css("background-image","url('img/covers/"+piste.cover+"')");
 		}
@@ -104,11 +114,14 @@ volumeRate 			= 1;
 function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplacement_name) {
 
  if(action == 0) { //Musique lancée
-	$("#web-player-play").attr("src","img/player/play.png");
- } else if (action == 1) { //Musique en pause
 	$("#web-player-play").attr("src","img/player/pause.png");
- } else if (action == 2) { //Musique relancée
+	isPlayed			= true;
+ } else if (action == 1) { //Musique en pause
 	$("#web-player-play").attr("src","img/player/play.png");
+	isPaused			= true;
+ } else if (action == 2) { //Musique relancée
+	$("#web-player-play").attr("src","img/player/pause.png");
+	isPaused			= false;
  }
  
  wsocket.send('{"id_music": '+idMusic+',"action": '+action+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');    

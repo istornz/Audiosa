@@ -234,3 +234,24 @@ div.ui-slider {
 .player_cmds {
 	cursor: pointer;
 }
+
+#soundcontainer {
+	width: 100px;
+	height: 18px;
+	position: relative;
+	float: right;
+}
+#web-player-sound,
+#onsound {
+	position: absolute;
+	top: 0;
+	margin-right: 5%;
+}
+#onsound {
+	z-index: 10;
+	/* float: left; */
+	width: 200px;
+	/*transform: rotate(-90deg);*/
+	left: -10px;
+	top: -94px;
+}

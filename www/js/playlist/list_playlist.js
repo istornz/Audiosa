@@ -18,7 +18,7 @@ function list_playlists()
 			}
 			
 			for(var indicePlaylist=0; indicePlaylist < msg.playlists.length; indicePlaylist++) {
-				$("#into_playlists").append('<a href="#" id="'+escapeHtml(msg.playlists[indicePlaylist].name)+'_'+msg.playlists[indicePlaylist].idPLAYLIST+'" data-idplaylist="'+indicePlaylist+'" class="no-margin txt-left ui-btn ui-btn-icon-right ui-icon-carat-r"><div class="cellSideBar"><img class="icon_sidebar_cell mCS_img_loaded" src="img/play_blue.png" alt="Jouer">&nbsp;&nbsp;&nbsp;&nbsp;'+escapeHtml(msg.playlists[indicePlaylist].name)+'</div></a>');
+				$("#into_playlists").append('<a href="#" id="'+escapeHtml(msg.playlists[indicePlaylist].name)+'_'+msg.playlists[indicePlaylist].idPLAYLIST+'" data-idplaylist="'+indicePlaylist+'" data-idplaylistDB="'+msg.playlists[indicePlaylist].idPLAYLIST+'" class="no-margin txt-left ui-btn ui-btn-icon-right ui-icon-carat-r"><div class="cellSideBar"><img class="icon_sidebar_cell mCS_img_loaded" src="img/play_blue.png" alt="Jouer">&nbsp;&nbsp;&nbsp;&nbsp;'+escapeHtml(msg.playlists[indicePlaylist].name)+'</div></a>');
 				
 				playlistTracks[indicePlaylist] = msg.playlists[indicePlaylist].tracks;
 				
@@ -33,7 +33,7 @@ function list_playlists()
 
 							for(var indiceTrack=0; indiceTrack < playlistTracks[$(this).data("idplaylist")].length; indiceTrack++) {
 					
-								$("#into_morceaux").append('<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+playlistTracks[$(this).data("idplaylist")][indiceTrack].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].artist)+' - '+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].album)+'</span></div></a></li>');
+								$("#into_morceaux").append('<li class="no-carat-l musicplay" data-idpiste="'+playlistTracks[$(this).data("idplaylist")][indiceTrack].idPISTES+'" data-emplacement="2" data-emplacement_name="'+$(this).data("idplaylistDB")+'" data-title="'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].title)+'" data-artist="'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].artist)+'" data-cover="'+playlistTracks[$(this).data("idplaylist")][indiceTrack].cover+'" data-duree="'+playlistTracks[$(this).data("idplaylist")][indiceTrack].duree+'"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+playlistTracks[$(this).data("idplaylist")][indiceTrack].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].artist)+' - '+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].album)+'</span></div></a></li>');
 				
 							}
 							
@@ -42,6 +42,7 @@ function list_playlists()
 								theme:"minimal"
 							});
 							
+							createMusicPlayerEvent();
 							morceaux_loaded = false;
 						}
 						else if(page_actu == 2) {
@@ -51,7 +52,7 @@ function list_playlists()
 
 							for(var indiceTrack=0; indiceTrack < playlistTracks[$(this).data("idplaylist")].length; indiceTrack++) {
 					
-								$("#into_artistes").append('<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+playlistTracks[$(this).data("idplaylist")][indiceTrack].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].artist)+' - '+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].album)+'</span></div></a></li>');
+								$("#into_artistes").append('<li class="no-carat-l musicplay"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+playlistTracks[$(this).data("idplaylist")][indiceTrack].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].artist)+' - '+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].album)+'</span></div></a></li>');
 				
 							}		
 
@@ -68,7 +69,7 @@ function list_playlists()
 
 							for(var indiceTrack=0; indiceTrack < playlistTracks[$(this).data("idplaylist")].length; indiceTrack++) {
 					
-								$("#into_albums").append('<li class="no-carat-l"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+playlistTracks[$(this).data("idplaylist")][indiceTrack].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].artist)+' - '+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].album)+'</span></div></a></li>');
+								$("#into_albums").append('<li class="no-carat-l musicplay"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+playlistTracks[$(this).data("idplaylist")][indiceTrack].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].artist)+' - '+escapeHtml(playlistTracks[$(this).data("idplaylist")][indiceTrack].album)+'</span></div></a></li>');
 				
 							}
 							

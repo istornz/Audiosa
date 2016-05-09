@@ -356,7 +356,7 @@ function get_choices(type) {
 
 	for(var indiceArtiste=0; indiceArtiste < msg.artistes.length; indiceArtiste++) {
 		
-			get_artist_cover(indiceArtiste,type,msg,msg.artistes.length);
+			get_artist_cover_choices(indiceArtiste,type,msg,msg.artistes.length);
 			
 		}
 	} else {
@@ -385,7 +385,7 @@ function get_choices(type) {
 		});
 };
 
-function get_artist_cover(indiceArtiste,type,msg,maxPiste) {
+function get_artist_cover_choices(indiceArtiste,type,msg,maxPiste) {
 
 	$.ajax({
 		type: 'GET',

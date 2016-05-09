@@ -487,6 +487,12 @@ font-size: 14px;
 	display: none;
 }
 
+.no-carat-r:after
+{
+	background-image: none;
+	display: none;
+}
+
 .fileUpload {
     position: relative;
     overflow: hidden;

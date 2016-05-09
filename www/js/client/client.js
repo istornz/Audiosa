@@ -7,7 +7,6 @@ emplacement 		= 2; //0: pistes; 1: album; 2: playlist
 emplacement_name 	= "14"; //	Nom album ou idPlaylist
 idMusic				= 53;
 volumeRate 			= 1;
-mode_player 		= 0; //Lecture a la suite, 1 pour alea
 
 wsocket = new WebSocket("ws://192.168.1.15:8081");	
 wsocket.onopen = function()
@@ -29,7 +28,11 @@ wsocket.onmessage = function (evt)
 			console.log(idListeMusiques);
 		
 		var piste = ListeMusiques.pistes[idListeMusiques];
-		var minutes = Math.floor(piste.duree / 60);
+		var percentPiste = (piste.duree * 100) / (jsonCallback.player_status.position / 100);
+
+		$($(".ui-slider-handle")[1]).css("left",percentPiste);
+		
+		var minutes = Math.floor((jsonCallback.player_status.position / 100) / 60);
 		var seconds = piste.duree - minutes * 60;
 
 		var finalTime = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
@@ -56,27 +59,14 @@ wsocket.onclose = function()
 //previous 4
 $("#web-player-previous").click(function() {
 	
-<<<<<<< HEAD
-	actionPlayer(wsocket, idMusic, 4, mode_player, volumeRate, emplacement, emplacement_name);
-=======
-	wsocket.send('{"id_music": '+idMusic+',"action": 4,"player_mode": '+mode_player+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');				  
->>>>>>> origin/master
-
+	actionPlayer(wsocket, idMusic, 4, volumeRate, emplacement, emplacement_name);
+	
 });
 
 //next 3
 $("#web-player-next").click(function() {
 
-	actionPlayer(wsocket, idMusic, 3, mode_player, volumeRate, emplacement, emplacement_name);
-
-});
-
-$("#web-player-shuffle").click(function() {
-
-	if(mode_player == 0)
-		mode_player = 1;
-	else
-		mode_player = 0;
+	actionPlayer(wsocket, idMusic, 3, volumeRate, emplacement, emplacement_name);
 
 });
 
@@ -89,30 +79,18 @@ $("#web-player-play").click(function() {
 		if(isPaused)
 		{
 			isPaused = false;
-<<<<<<< HEAD
-			actionPlayer(wsocket, idMusic, 2, mode_player, volumeRate, emplacement, emplacement_name);
-=======
-			wsocket.send('{"id_music": '+idMusic+',"action": 2,"player_mode": '+mode_player+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');					  
->>>>>>> origin/master
+			actionPlayer(wsocket, idMusic, 2, volumeRate, emplacement, emplacement_name);
 		}
 		else
 		{
 			isPaused = true;
-<<<<<<< HEAD
-			actionPlayer(wsocket, idMusic, 1, mode_player, volumeRate, emplacement, emplacement_name);
-=======
-			wsocket.send('{"id_music": '+idMusic+',"action": 1,"player_mode": '+mode_player+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');				  
->>>>>>> origin/master
+			actionPlayer(wsocket, idMusic, 1, volumeRate, emplacement, emplacement_name);
 		}
 	}
 	else
 	{
 		isPlayed = true;
-<<<<<<< HEAD
-		actionPlayer(wsocket, idMusic, 0, mode_player, volumeRate, emplacement, emplacement_name);
-=======
-		wsocket.send('{"id_music": '+idMusic+',"action": 0,"player_mode": '+mode_player+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');		  
->>>>>>> origin/master
+		actionPlayer(wsocket, idMusic, 0, volumeRate, emplacement, emplacement_name);
 	}
 		
 });
@@ -122,10 +100,9 @@ emplacement 		= 2; //0: pistes; 1: album; 2: playlist
 emplacement_name 	= "14"; //Nom album ou idPlaylist
 idMusic				= 53;
 volumeRate 			= 1;
-mode_player 		= 0; //Lecture a la suite, 1 pour alea
 */
-function actionPlayer(wsocket, idMusic, action, mode_player, volumeRate, emplacement, emplacement_name) {
-<<<<<<< HEAD
+function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplacement_name) {
+
  if(action == 0) { //Musique lancée
 	$("#web-player-play").attr("src","img/player/play.png");
  } else if (action == 1) { //Musique en pause
@@ -134,9 +111,7 @@ function actionPlayer(wsocket, idMusic, action, mode_player, volumeRate, emplace
 	$("#web-player-play").attr("src","img/player/play.png");
  }
  
-=======
->>>>>>> origin/master
- wsocket.send('{"id_music": '+idMusic+',"action": '+action+',"player_mode": '+mode_player+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');    
+ wsocket.send('{"id_music": '+idMusic+',"action": '+action+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');    
 }
 
 function checkMusic(idMusic, array){

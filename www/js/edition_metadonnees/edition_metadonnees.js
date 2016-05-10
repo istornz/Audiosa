@@ -24,14 +24,14 @@ function loadEditMetatagPopup(idArrayMusic)
 	var editionArray = [];
     for (var colonne in musicArray[idArrayMusic])
     {
-	    var colonneTitle = colonne;
-	    var colonneValue = musicArray[idArrayMusic][colonne];
+	    var titreColonne = colonne;
+	    var valeurColonne = musicArray[idArrayMusic][colonne];
 	    
-	    if(colonneTitle != "idPISTES" && colonneTitle != "cover" && colonneTitle != "idGENRES" && colonneTitle != "image" && colonneTitle != "md5")
+	    if(titreColonne != "idPISTES" && titreColonne != "cover" && titreColonne != "idGENRES" && titreColonne != "image" && titreColonne != "md5")
 		{			
 			editionArray.push({
-									colonneTitle: colonneTitle,
-									colonneValue: colonneValue
+									colonneTitle: titreColonne,
+									colonneValue: valeurColonne
             					});
 		}
     }

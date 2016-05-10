@@ -18,12 +18,12 @@
 	<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" />
 
 	<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"/>
-	<link rel="stylesheet" type="text/css" href="css/transit/default.css" />
-	<link rel="stylesheet" type="text/css" href="css/transit/multilevelmenu.css" />
-	<link rel="stylesheet" type="text/css" href="css/transit/component.css" />
-	<link rel="stylesheet" type="text/css" href="css/transit/animations.css" />
+	<link href="css/transit/default.css" rel="stylesheet" type="text/css"/>
+	<link href="css/transit/multilevelmenu.css" rel="stylesheet" type="text/css"/>
+	<link href="css/transit/component.css" rel="stylesheet" type="text/css"/>
+	<link href="css/transit/animations.css" rel="stylesheet" type="text/css"/>
 	
-	<script src="js/modernizr.custom.js"></script>
+	<script src="./js/animations/modernizr.custom.js"></script>
 	<meta name="viewport" content="maximum-scale=1">
 </head>
 <body>
@@ -350,31 +350,38 @@
 		</div>
 	</div>
 		
-	<script src="js/jquery.js"></script>
+	<script src="js/jquery/jquery.js" type="text/javascript"></script>
 	<!-- Récuperation des musiques -->
-	<script src="js/musiques/list_music.js"></script>
+	<script src="js/musiques/list_music.js" type="text/javascript"></script>
 	<!-- Socket -->
-	<script src="js/server/socket.io.js"></script>
-	<script src="./js/client/client.js"></script>
+	<script src="js/client/client.js" type="text/javascript"></script>
 	<!-- jQuery Upload Form Dependencies -->
-	<script src="js/tweenmax.js"></script>
-	<script src="js/elastic-progress.js"></script>
+	<script src="js/animations/tweenmax.js" type="text/javascript"></script>
 	<!-- jQuery Mobile -->
-	<script src="js/jquery.mobile-1.4.5.js" type="text/javascript"></script>
-	<!-- jQuery File Upload Dependencies -->
-	<script src="js/jquery.ui.widget.js"></script>
-	<script src="js/jquery.iframe-transport.js"></script>
-	<script src="js/jquery.fileupload.js"></script>
+	<script src="js/jquery/jquery.mobile-1.4.5.js" type="text/javascript"></script>
+	<!-- Connexion -->
+	<script src="js/connexion/connexion.js" type="text/javascript"></script>
+	<!-- Visualiser les logs -->
+	<script src="js/visualiser_logs/visualiser_logs.js" type="text/javascript"></script>
+	<!-- Illustrer les genres -->
+	<script src="js/illustrer_genres/illustrer_genres.js" type="text/javascript"></script>
+	<!-- Changer mot de passe -->
+	<script src="js/changer_mot_passe/changer_mot_passe.js" type="text/javascript"></script>
+	<!-- Edition metadonnees -->
+	<script src="js/edition_metadonnees/edition_metadonnees.js" type="text/javascript"></script>
+	<!-- Upload -->
+	<script src="js/upload/upload.js" type="text/javascript"></script>
+	<script src="js/upload/elastic-progress.js" type="text/javascript"></script>
 	<!-- Other scripts -->
 	<script src="js/global.js" type="text/javascript"></script>
-	<script src="js/jquery.dlmenu.js"></script>
-	<script src="js/pagetransitions.js"></script>
+	<script src="js/jquery/jquery.dlmenu.js" type="text/javascript"></script>
+	<script src="js/animations/pagetransitions.js" type="text/javascript"></script>
 	<!-- generation de playlist -->
-	<script src="js/playlist/choices.js"></script>
-	<script src="js/playlist/list_playlist.js"></script>
+	<script src="js/playlist/choices.js" type="text/javascript"></script>
+	<script src="js/playlist/list_playlist.js" type="text/javascript"></script>
 	<!-- custom scrollbar plugin -->
-	<script src="js/jquery.mCustomScrollbar.js" type="text/javascript"></script>
-	<script src="js/md5.min.js" type="text/javascript"></script>
+	<script src="js/jquery/jquery.mCustomScrollbar.js" type="text/javascript"></script>
+	<script src="js/md5/md5.min.js" type="text/javascript"></script>
 	<script>
 		
 		<?php

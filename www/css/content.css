@@ -110,10 +110,12 @@ font-size: 14px;
 }
 
 #footer_bar {
-	margin-top: -20px;
+	margin-top: -9px;
 	float: left;
 	width: 100%;
 	background-color: #484848;
+	z-index: 99999;
+	position: relative;
 }
 
 .paging {
@@ -316,6 +318,9 @@ font-size: 14px;
     font-size: 25px;
     font-family: oldsansblack;
     margin-top: 120px;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .artist_title 
@@ -329,6 +334,9 @@ font-size: 14px;
     font-size: 25px;
     font-family: oldsansblack;
     margin-top: 170px;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .album_title 
@@ -342,6 +350,9 @@ font-size: 14px;
     font-size: 25px;
     font-family: oldsansblack;
     margin-top: 153px;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #userImage

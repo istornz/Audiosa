@@ -51,8 +51,8 @@ $("#create_playlist").click(function() {
 	$("#quitPlaylistButton").css("display","none");
 	$("#backPlaylistChoice").css("display","block");
 	
-	$("#animate_playlist").css("height","240px");
-	$("#animate_playlist").css("width","350px");
+	$("#animate_playlist").css("height","350px");
+	$("#animate_playlist").css("width","366px");
 });
 
 $("#valider_playlist").click(function() {
@@ -74,7 +74,7 @@ $("#valider_playlist").click(function() {
 						albums_choisis, 
 						name, function( rep ) {
 							
-							//	console.log(rep);
+								console.log(name);
 						
 							if(rep.status_code == 0) {
 							
@@ -264,7 +264,6 @@ function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 	artists = JSON.stringify(artists);
 	annees = JSON.stringify(annees);
 	albums = JSON.stringify(albums);
-	playlist_name = JSON.stringify(playlist_name);
 	
 	$.ajax({
 	  method: "POST",

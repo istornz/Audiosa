@@ -237,19 +237,22 @@ $("#formOublieMotDePassePopup").submit(function(event) {
 				switch(JSONParsed.error_description)
                 {
 	            	case "undeclared variables":
-	                    elementMessageChangerPassLabel.text("Variable(s) non déclaré(es)");
+	                    elementMessageOublieLabel.text("Variable(s) non déclaré(es)");
 	                    break;
 					case "connection to database failed":
-	                    elementMessageChangerPassLabel.text("Connexion à la bdd impossible");
+	                    elementMessageOublieLabel.text("Connexion à la bdd impossible");
 	                    break;
 					case "mail not valid":
-	                    elementMessageChangerPassLabel.text("Mail invalide");
+	                    elementMessageOublieLabel.text("Mail invalide");
 	                    break;
 					case "failed to execute select query":
-	                    elementMessageChangerPassLabel.text("Impossible de vous identifier");
+	                    elementMessageOublieLabel.text("Impossible de vous identifier");
 	                    break;
 					case "mail not sent":
-	                    elementMessageChangerPassLabel.text("Impossible d'envoyer le mail");
+	                    elementMessageOublieLabel.text("Impossible d'envoyer le mail");
+	                    break;
+					case "no user with this email":
+	                    elementMessageOublieLabel.text("Aucune adresse mail correspondante");
 	                    break;
 					default:
 						elementMessageOublieLabel.text("Erreur");

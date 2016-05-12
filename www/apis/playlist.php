@@ -219,7 +219,6 @@ if(count($_playlist) == 0)
 for($ipiste = 0; $ipiste < count($_playlist	); $ipiste++) {
 
 	$commande_SQL	= "INSERT INTO contenu_playlists VALUES ( '', ". $playlist_id .", ". $_playlist[$ipiste] ." )";
-	write_error_to_log("Création playlist", $commande_SQL);
 	$query = $connexionWrite->prepare($commande_SQL);
 	$query->execute();
 }

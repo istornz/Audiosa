@@ -31,6 +31,7 @@ $("#visualiserLogButton").click(function()
 					}
 					
 					elementListViewLog.append(htmlContent);
+					elementListViewLog.mCustomScrollbar( "destroy" );
 					elementListViewLog.listview( "refresh" );
 					elementListViewLog.mCustomScrollbar({
 						theme:"minimal"

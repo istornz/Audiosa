@@ -209,7 +209,7 @@
 		<h1>Logs</h1>
 	</div>
 	<div id="menuPanel" role="main" style="text-align: center; display: block;" class="ui-content">
-		<ul id="listview-log" data-icon="false" data-role="listview" data-inset="true" style="height:auto; max-height:300px; overflow: hidden !important;">
+		<ul id="listview-log" data-icon="false" data-role="listview" data-inset="true" style="height:300px; overflow: hidden !important;">
 		</ul>
 	</div>
 </div>

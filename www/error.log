@@ -1,0 +1,23 @@
+[12/05/2016 08:30:04]	[Création playlist]	Impossible de supprimer les pistes liées à la playlist '5'
+[12/05/2016 08:38:48]	[Création playlist]	TEST --> La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'PLAYLIST_idPLAYLIST' de la table 'contenu_playlists'
+[12/05/2016 08:41:16]	[Création playlist]	Impossible de supprimer la playlist '5'
+[12/05/2016 08:43:45]	[Création playlist]	TEST --> La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'idPLAYLIST' de la table 'playlists'
+[12/05/2016 08:43:45]	[Création playlist]	Impossible de supprimer la playlist '5'
+[12/05/2016 08:46:38]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 6, 67 )
+[12/05/2016 08:46:38]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 6, 55 )
+[12/05/2016 08:46:38]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 6, 56 )
+[12/05/2016 08:46:38]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 6, 53 )
+[12/05/2016 08:46:38]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 6, 60 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 48 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 1 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 3 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 2 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 6 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 8 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 10 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 39 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 46 )
+[12/05/2016 08:48:30]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 7, 50 )
+[12/05/2016 08:54:25]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
+[12/05/2016 09:00:16]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 8, 46 )
+[12/05/2016 09:00:16]	[Création playlist]	INSERT INTO contenu_playlists VALUES ( '', 8, 6 )

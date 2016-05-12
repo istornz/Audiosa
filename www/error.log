@@ -3,3 +3,4 @@
 [12/05/2016 08:41:16]	[Création playlist]	Impossible de supprimer la playlist '5'
 [12/05/2016 08:43:45]	[Création playlist]	TEST --> La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'idPLAYLIST' de la table 'playlists'
 [12/05/2016 08:43:45]	[Création playlist]	Impossible de supprimer la playlist '5'
+[12/05/2016 09:48:17]	[API Importation]	Le fichier existe déjà (fichier : 'BIS1536-001-flac_16.flac')

@@ -23,7 +23,9 @@ function get_music(type) {
 	.done(function( msg ) {
 		ListeMusiques = msg;
 		
-		musicArray = msg.pistes;
+		if(type == "morceaux") {
+			musicArray = msg.pistes;
+		}
 
 		if(msg.status_code != 1)
 		{

@@ -67,7 +67,7 @@
 						<div id="onsound">
 							<!--<div id="slidersound"></div> <!-- the Slider -->
 							<!--<span class="volumesound"></span> <!-- Volume -->
-							<input style="display: none;" type="range" name="vert" id="vert" data-height="75" step="0.05" data-vertical="true" value="0" min="0" max="1"/>
+							<input style="display: none;" type="range" name="vert" id="vert" data-height="75" step="0.05" data-vertical="true" value="0.5" min="0" max="1"/>
 						</div>
 					</section>
 				</div>

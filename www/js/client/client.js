@@ -18,26 +18,26 @@ wsocket.onopen = function()
 wsocket.onmessage = function (evt) 
 {
 	var received_msg = evt.data;
-	console.log(received_msg);
+	//console.log(received_msg);
 	
 	try {
         var jsonCallback = JSON.parse(received_msg);
         idMusic = jsonCallback.id_music_played;
-		
+		console.log(jsonCallback);
 		if(checkMusic(idMusic, ListeMusiques.pistes)[0]) {
 			idListeMusiques = checkMusic(idMusic, ListeMusiques.pistes)[1];
-			console.log(idListeMusiques);
+			console.log("ID musique: " +idListeMusiques);
 		
 		var piste = ListeMusiques.pistes[idListeMusiques];
 		percentPiste = ((jsonCallback.player_status.position / 1000) * 100) / piste.duree ;
-		console.log("percentPiste:" + percentPiste);
+		//console.log("percentPiste:" + percentPiste);
 
 		$($(".ui-slider-handle")[1]).css("left",percentPiste);
 		dureeeee = piste.duree,
 			positionnnn = (jsonCallback.player_status.position / 1000);
 			
 		diffff = dureeeee - positionnnn;
-		console.log("-----RESTE:"+ diffff) ;
+	//	console.log("-----RESTE:"+ diffff) ;
 		
 		posiLocale = percentPiste;
 		
@@ -54,11 +54,11 @@ wsocket.onmessage = function (evt)
 		$("#web-player").css("background-image","url('img/covers/"+piste.cover+"')");
 		}
     } catch (e) {
-	    console.log(e);
+	  //  console.log(e);
         return false;
     }
     
-    console.log(idMusic);
+  //  console.log(idMusic);
 };
 
 wsocket.onclose = function()
@@ -124,6 +124,8 @@ function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplace
 	isPaused			= false;
  }
  
+ console.log('{"id_music": '+idMusic+',"action": '+action+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');   
+
  wsocket.send('{"id_music": '+idMusic+',"action": '+action+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');    
 }
 

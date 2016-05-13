@@ -17,8 +17,8 @@ function loadEditMetatagPopup(idArrayMusic)
 	elementTitreMusique.text(musicArray[idArrayMusic]["title"]);
 	elementArtisteMusique.text(musicArray[idArrayMusic]["artist"]);
 	elementAlbumMusique.text(musicArray[idArrayMusic]["album"]);
-	elementCoverMusique.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"]);
-	elementPreviewPochette.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"]);
+	elementCoverMusique.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"] + "?"+ddate.getTime());
+	elementPreviewPochette.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"] + "?"+ddate.getTime());
 	
 	$('#listview-editionMetadonnee li').remove();
 	var editionArray = [];
@@ -259,7 +259,8 @@ function launchRequestEditMetatag()
                 elementMessageEditMetaLabel.text("Changement reussie !");
                 window.setTimeout(function() {
                     elementMessageEditMetaDiv.css("display", "none");
-                    get_music("morceaux");
+                    
+					get_music("morceaux");
 					
 		            elementEditMetadonneePopup.popup("close");
 	                blurAction(0, fullPage);

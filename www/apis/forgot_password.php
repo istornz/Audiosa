@@ -50,7 +50,7 @@ if($selectStatement->execute())
 	if(!isset($_GET['hashpass']))
 	{
 		//Envoyer mail
-		$resetLinkURL 	= "http://172.16.126.70/apis/forgot_password.php?hashpass=" . $passwordHash . "&mail=" . $_GET['mail'];
+		$resetLinkURL 	= "http://172.16.126.170/apis/forgot_password.php?hashpass=" . $passwordHash . "&mail=" . $_GET['mail'];
 		
 		$to  			= $_GET['mail'];
 		

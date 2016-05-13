@@ -7,6 +7,8 @@ customMetatag			= 0;
 currentMetatag			= 0;
 idPisteEdit				= null;
 md5PisteEdit			= null;
+ddate = new Date();
+
 
 function blurAction(state, div) {
     if (state == 1) div.className = "fullPageBlurred";

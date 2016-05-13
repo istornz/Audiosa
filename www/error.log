@@ -4,3 +4,13 @@
 [12/05/2016 08:43:45]	[Création playlist]	TEST --> La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'idPLAYLIST' de la table 'playlists'
 [12/05/2016 08:43:45]	[Création playlist]	Impossible de supprimer la playlist '5'
 [12/05/2016 09:48:17]	[API Importation]	Le fichier existe déjà (fichier : 'BIS1536-001-flac_16.flac')
+[12/05/2016 11:21:37]	[API Importation]	Extension non autorisée ('jpg')
+[12/05/2016 13:17:20]   [Extracteur]   script doublons, doublon present dans la base : "06 America.flac"
+[12/05/2016 14:16:23]   [Extracteur]   script doublons, doublon present dans la base : "01 Aero Opening.flac"
+[12/05/2016 14:44:11]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'bluesGenre.jpeg' WHERE idGENRES=7;
+[13/05/2016 10:18:44]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
+[13/05/2016 10:24:12]	[API Illustration Genres]	UPDATE `genres` SET `image` = '20150519_555b9fe11bb7f.jpg' WHERE idGENRES=13;
+[13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
+[13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
+[13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
+[13/05/2016 10:40:49]	[API Importation]	Extension non autorisée ('mp3')

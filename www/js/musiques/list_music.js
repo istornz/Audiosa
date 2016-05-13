@@ -6,7 +6,7 @@ musicArray = [];
 //type : artistes / morceaux / albums
 
 function get_music(type) {
-	
+		
 	if(type != "artistes" && type != "morceaux" && type != "albums") {
 		console.log(type);
 		return false;
@@ -17,6 +17,7 @@ function get_music(type) {
 	$.ajax({
 		method: "POST",
 		url: "apis/retrievedata.php",
+		cache: false,
 		data: { argPost: type }
 	})
 	.done(function( msg ) {
@@ -32,11 +33,14 @@ function get_music(type) {
 			return false;
 		}
 		$("#into_"+type).mCustomScrollbar('destroy');
-		$("#into_"+type).html("");	
+		$("#into_"+type).empty();
+	//	$("#into_"+type).html("");	
+			
+			
 			
 			if(type == "morceaux") {
 				for(var indicePiste=0; indicePiste < msg.pistes.length; indicePiste++) {
-					$("#into_"+type).append('<li class="no-carat-l musicplay" data-idpiste="'+msg.pistes[indicePiste].idPISTES+'" data-emplacement="0" data-emplacement_name="" data-title="'+escapeHtml(msg.pistes[indicePiste].title)+'" data-artist="'+escapeHtml(msg.pistes[indicePiste].artist)+'" data-cover="'+msg.pistes[indicePiste].cover+'" data-duree="'+msg.pistes[indicePiste].duree+'" ><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
+					$("#into_"+type).append('<li class="no-carat-l musicplay" data-idpiste="'+msg.pistes[indicePiste].idPISTES+'" data-emplacement="0" data-emplacement_name="" data-title="'+escapeHtml(msg.pistes[indicePiste].title)+'" data-artist="'+escapeHtml(msg.pistes[indicePiste].artist)+'" data-cover="'+msg.pistes[indicePiste].cover+'?'+ddate.getTime()+'" data-duree="'+msg.pistes[indicePiste].duree+'" ><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'?'+ddate.getTime()+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
 				}
 				
 			$( ".edit_music" ).click(function( event ) {
@@ -51,7 +55,7 @@ function get_music(type) {
 				
 				createMusicPlayerEvent();
 				morceaux_loaded = true;
-				
+				$("#into_"+type).listview("refresh");
 				$('body').removeClass('ui-loading');
 			}
 			else if(type == "artistes")
@@ -151,6 +155,8 @@ function str_pad_left(string,pad,length) {
 
 function get_artist_cover(indicePiste,type,msg,maxPiste,nbrMorceaux) {
 
+	var medium_picture;
+
 	$.ajax({
 		type: 'GET',
 		url: "https://api.deezer.com/search?q="+msg.artistes[indicePiste].artist_name+"&limit=1&output=jsonp",
@@ -158,13 +164,23 @@ function get_artist_cover(indicePiste,type,msg,maxPiste,nbrMorceaux) {
 		cache: true,
 		contentType: "application/json; charset=utf-8"
 		}).done(function(data) {
-
-			$("#into_"+type).append('<li class="artiste_tracklist" data-artistindex="'+indicePiste+'"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="'+data.data[0].artist.picture_medium+'" alt="Default cover"></div><div class="morceaux-artist">'+msg.artistes[indicePiste].artist_name+'<br><span class="morceaux-artist-album">'+msg.artistes[indicePiste].items_count+' Albums - '+nbrMorceaux+' Morceaux</span></div></a></li>');
+			
+			if(typeof data.data == 'undefined' || typeof data.data[0] == 'undefined' || typeof data.data[0].artist == 'undefined' || typeof data.data[0].artist.picture_medium == 'undefined') {
+				medium_picture = "https://cdns-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg"
+			}
+			else
+			{
+				medium_picture = data.data[0].artist.picture_medium;
+			}
+			
+				
+			$("#into_"+type).append('<li class="artiste_tracklist" data-artistindex="'+indicePiste+'"><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="'+medium_picture+'" alt="Default cover"></div><div class="morceaux-artist">'+msg.artistes[indicePiste].artist_name+'<br><span class="morceaux-artist-album">'+msg.artistes[indicePiste].items_count+' Albums - '+nbrMorceaux+' Morceaux</span></div></a></li>');
 			
 			indicePiste++;
 			
 			if(indicePiste < (maxPiste-1)) {
-				console.log(indicePiste);
+				nbrMorceaux = 0;
+
 				for(var indicenbrMorceaux=0; indicenbrMorceaux < msg.artistes[indicePiste].albums.length; indicenbrMorceaux++) {	
 					nbrMorceaux += msg.artistes[indicePiste].albums[indicenbrMorceaux].items_count;
 				}
@@ -196,7 +212,7 @@ $(".album_tracks").click(function() {
 
 	var albumInddex = $(this).data("albumindex");
 	console.log(albumInddex);
-		
+	ListeMusiques.pistes = ListeMusiques.albums[albumInddex].tracks;
 	$("#into_albums").mCustomScrollbar('destroy');
 	$("#into_albums").html("");
 
@@ -227,7 +243,7 @@ function createArtistEvent(msg) {
 $(".artiste_tracklist").click(function() {
 
 	var artistInddex = $(this).data("artistindex");
-	console.log(artistInddex);
+	console.log(msg.artistes[artistInddex].albums);
 		
 	$("#into_artistes").mCustomScrollbar('destroy');
 	$("#into_artistes").html("");
@@ -260,7 +276,7 @@ $(".musicplay").click(function() {
 		cover = $(this).data("cover"),
 		duree = $(this).data("duree"),
 		emplacement = $(this).data("emplacement"),
-		emplacement_name = $(this).data("emplacement"),
+		emplacement_name = $(this).data("emplacement_name"),
 		finalTime,
 		minutes,
 		seconds;
@@ -288,7 +304,6 @@ $(".musicplay").click(function() {
 		setInterval(function() {
 			if(!isPaused) {
 				posiLocale += 0.1;
-				console.log(posiLocale);
 
 				$($(".ui-slider-handle")[1]).css("left",posiLocale+"%");
 			}
@@ -304,6 +319,7 @@ function createArtistAlbumEvent(msg, artistInddex) {
 $(".artist_album_tracks").click(function() {
 
 	var albumInddex = $(this).data("albumindex");
+	ListeMusiques.pistes = msg.artistes[artistInddex].albums[albumInddex].tracks;
 	console.log(albumInddex);
 		
 	$("#into_artistes").mCustomScrollbar('destroy');

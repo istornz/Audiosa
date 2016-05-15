@@ -2,18 +2,20 @@ $(document).ready(function() {
     var fileInput = document.querySelector("#uploadForm");
     var fileData = $('#fileUpload').prop('files');
     var elementUploadLabel = document.getElementById("uploadLabel");
-    elementProgress = new ElasticProgress(document.querySelectorAll(
-        '.uploadAnimation')[0], {
-        align: "center",
-        fontFamily: "roboto",
-        colorFg: "#FFFFFF",
-        colorBg: "#27ae60",
-        bleedTop: 110,
-        bleedBottom: 40,
-        buttonSize: 100,
-        labelTilt: 70,
-        arrowDirection: "up"
-    });
+    
+	elementProgress = new ElasticProgress(
+		document.querySelectorAll('.uploadAnimation')[0], {
+			align: "center", //On centre le texte
+			fontFamily: "roboto", //Police du texte
+			colorFg: "#FFFFFF", //Couleur du texte
+			colorBg: "#27ae60", //Couleur du fond
+			bleedTop: 110, //Dimension de la division (haut)
+			bleedBottom: 40, //Dimension de la division (bas)
+			buttonSize: 100, //Taille du bouton
+			labelTilt: 70, //Vibration du titre
+			arrowDirection: "up" //Orientation de la flèche
+		}
+	);
 	
     elementProgress.onClick(function() {
         elementUploadLabel.style.display = 'none';
@@ -21,10 +23,13 @@ $(document).ready(function() {
     })
 	
     elementProgress.onOpen(function() {
+		
         var formData = new FormData();
         formData.append('pseudoPost', pseudo);
         formData.append('passwordPost', passwordHash);
         formData.append('file', $('#fileUpload')[0].files[0]);
+		
+		
         $.ajax({
             type: 'POST',
             url: './apis/upload.php',
@@ -33,7 +38,7 @@ $(document).ready(function() {
                 var myXhr = $.ajaxSettings.xhr();
                 if (myXhr.upload) {
                     myXhr.upload.addEventListener(
-                        'progress', progress,
+                        'progress', updateProgressBar,
                         false);
                 }
                 return myXhr;
@@ -110,10 +115,10 @@ $(document).ready(function() {
     }) 
 });
 
-function progress(e) {
-    if (e.lengthComputable && elementProgress) {
-        var max = e.total;
-        var current = e.loaded;
+function updateProgressBar(data) {
+    if (data.lengthComputable && elementProgress) {
+        var max = data.total;
+        var current = data.loaded;
         var Percentage = current / max;
         elementProgress.setValue(Percentage);
         if (Percentage >= 1) {

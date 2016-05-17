@@ -63,8 +63,8 @@
 				<div style="text-align: center; margin-top: 14px;">
 					<span id="mediaPlayerTitle">Titre musique</span>
 					<section id="soundcontainer">	
-						<img id="web-player-sound" src="img/player/soundw.png" alt="sound">
-						<div id="onsound">
+						<img id="web-player-sound" style="cursor: pointer" src="img/player/soundw.png" alt="sound">
+						<div id="onsound" style="display: none;">
 							<!--<div id="slidersound"></div> <!-- the Slider -->
 							<!--<span class="volumesound"></span> <!-- Volume -->
 							<input style="display: none;" type="range" name="vert" id="vert" data-height="75" step="0.05" data-vertical="true" value="0.5" min="0" max="1"/>
@@ -403,6 +403,15 @@
 		(function($){
 					
 			$(window).load(function(){
+				$("#web-player-sound").click(function(){
+					if(soundDisplayed === false) {
+						$("#onsound").css("display","block");
+						soundDisplayed = true;
+					} else {
+						$("#onsound").css("display","none");
+						soundDisplayed = false;
+					}
+				});
 			
 				$(".list_scroll").mCustomScrollbar({
 					theme:"minimal"

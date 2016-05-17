@@ -8,6 +8,12 @@ emplacement_name 	= "14"; //	Nom album ou idPlaylist
 idMusic				= 53;
 volumeRate 			= 0.5;
 percentPiste		= 0;
+posiLocale			= 0;
+PosiEntiere 		= 0;
+posiactuelle		= 0;
+posisarce			= 0;
+posiactuellels		= 0;
+PosiEntiereSecondeChange	=0;
 
 wsocket = new WebSocket("ws://172.16.126.170:8081");	
 wsocket.onopen = function()
@@ -18,34 +24,30 @@ wsocket.onopen = function()
 wsocket.onmessage = function (evt) 
 {
 	var received_msg = evt.data;
-	//console.log(received_msg);
 	
 	try {
         var jsonCallback = JSON.parse(received_msg);
         idMusic = jsonCallback.id_music_played;
-		console.log(jsonCallback);
+
 		if(checkMusic(idMusic, ListeMusiques.pistes)[0]) {
 			idListeMusiques = checkMusic(idMusic, ListeMusiques.pistes)[1];
-			console.log("ID musique: " +idListeMusiques);
 		
+		posiLocale = jsonCallback.player_status.position;
+
 		var piste = ListeMusiques.pistes[idListeMusiques];
 		percentPiste = ((jsonCallback.player_status.position / 1000) * 100) / piste.duree ;
-		//console.log("percentPiste:" + percentPiste);
-
-		$($(".ui-slider-handle")[1]).css("left",percentPiste);
+		posiactuelle = percentPiste;
+		console.log("------  ----Synchro : " + percentPiste);
+		//$($(".ui-slider-handle")[1]).css("left",percentPiste); //Synchro media player
+		
 		dureeeee = piste.duree,
-			positionnnn = (jsonCallback.player_status.position / 1000);
+		positionnnn = (jsonCallback.player_status.position / 1000);
 			
 		diffff = dureeeee - positionnnn;
-	//	console.log("-----RESTE:"+ diffff) ;
-		
-		posiLocale = percentPiste;
-		
+				
 		// Minutes and seconds
 		var mins = ~~(diffff / 60);
 		var secs = ~~(diffff % 60);
-
-		//finalTime = str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2);
 
 		$("#mediaPlayerTitle").html(escapeHtml(piste.title));
 		$("#mediaPlayerArtist").html(escapeHtml(piste.artist));
@@ -139,3 +141,39 @@ function checkMusic(idMusic, array){
     }
     return result;
 }
+
+var synchroClient = setInterval(function() {
+	if(isPaused === false && isPlayed === true)	{
+		
+		if(posiactuelle > 100)
+				posiactuelle = 100;
+		
+		posiactuelle += ((500/PosiEntiere)*100);
+		//console.log("Posi actuelle: "+posiactuelle);
+		
+		$($(".ui-slider-handle")[1]).css("left",posiactuelle+"%");
+	}
+}, 500);
+
+var synchroClientTime = setInterval(function() {
+	if(isPaused === false && isPlayed === true)	{
+		
+		PosiEntiereSecondeChange -= 1;
+		console.log(PosiEntiereSecondeChange);
+		
+		diffffls = (PosiEntiere/1000) - PosiEntiereSecondeChange;
+		
+		//console.log(diffffls);
+
+		// Minutes and seconds
+		var mins = ~~(PosiEntiereSecondeChange / 60);
+		var secs = ~~(PosiEntiereSecondeChange % 60);
+		
+		console.log(mins+":"+secs);
+		
+		if(secs < 10) {
+			secs = "0"+secs;
+		}
+		$("#mediaPlayerDuree").html(mins+":"+secs);
+	}
+}, 1000);

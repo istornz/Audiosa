@@ -43,6 +43,28 @@ function get_music(type) {
 			if(type == "morceaux") {
 				for(var indicePiste=0; indicePiste < msg.pistes.length; indicePiste++) {
 					$("#into_"+type).append('<li class="no-carat-l musicplay" data-idpiste="'+msg.pistes[indicePiste].idPISTES+'" data-emplacement="0" data-emplacement_name="" data-title="'+escapeHtml(msg.pistes[indicePiste].title)+'" data-artist="'+escapeHtml(msg.pistes[indicePiste].artist)+'" data-cover="'+msg.pistes[indicePiste].cover+'?'+ddate.getTime()+'" data-duree="'+msg.pistes[indicePiste].duree+'" ><a class="no-margin txt-left list-central-morceaux ui-btn ui-btn-icon-right ui-icon-carat-r" href="#"><div class="cover"><img class="default-cover-morceaux" src="./img/covers/'+msg.pistes[indicePiste].cover+'?'+ddate.getTime()+'" alt="Default cover" /></div><div class="morceaux-artist">'+escapeHtml(msg.pistes[indicePiste].title)+'<br><span class="morceaux-artist-album">'+escapeHtml(msg.pistes[indicePiste].artist)+' - '+escapeHtml(msg.pistes[indicePiste].album)+'</span></div><div class="edit_music_container"><img onclick="loadEditMetatagPopup('+indicePiste+');" class="edit_music" src="img/edit_music.png"></div></a></li>');
+				
+					if(indicePiste == 0) {
+						
+						var duree = msg.pistes[indicePiste].duree,
+						
+						// Global player vars
+						emplacement 		= 0; //0: pistes; 1: album; 2: playlist
+						emplacement_name 	= ""; //	Nom album ou idPlaylist
+						idMusic				= msg.pistes[indicePiste].idPISTES;
+								
+						PosiEntiereSecondeChange = duree;
+						PosiEntiere = duree*1000;
+						
+						var mins = ~~(duree / 60);
+						var secs = ~~(duree % 60);
+						
+						$("#mediaPlayerTitle").html(escapeHtml(msg.pistes[indicePiste].title));
+						$("#mediaPlayerArtist").html(escapeHtml(msg.pistes[indicePiste].artist));
+						$("#mediaPlayerDuree").html(mins+":"+secs);
+						$("#web-player-img").attr("src","img/covers/"+msg.pistes[indicePiste].cover+'?'+ddate.getTime());
+						$("#web-player").css("background-image","url('img/covers/"+msg.pistes[indicePiste].cover+'?'+ddate.getTime()+"')");
+					}
 				}
 				
 			$( ".edit_music" ).click(function( event ) {
@@ -278,15 +300,17 @@ $(".musicplay").click(function() {
 		cover = $(this).data("cover"),
 		duree = $(this).data("duree"),
 		emplacement = $(this).data("emplacement"),
-		emplacement_name = $(this).data("emplacement_name"),
-		finalTime,
-		minutes,
-		seconds;
+		emplacement_name = $(this).data("emplacement_name");
 		
 		// Global player vars
 		emplacement 		= emplacement; //0: pistes; 1: album; 2: playlist
 		emplacement_name 	= emplacement_name; //	Nom album ou idPlaylist
 		idMusic				= idpiste;
+				
+		PosiEntiereSecondeChange = duree;
+		PosiEntiere = duree*1000;
+		
+
 		
 		var mins = ~~(duree / 60);
 		var secs = ~~(duree % 60);
@@ -298,19 +322,7 @@ $(".musicplay").click(function() {
 		$("#web-player").css("background-image","url('img/covers/"+cover+"')");
 		
 		actionPlayer(wsocket, idMusic, 0, volumeRate, emplacement, emplacement_name);
-		isPlayed = true;
-		
-		posiLocale = 0;
-		
-		
-		setInterval(function() {
-			if(!isPaused) {
-				posiLocale += 0.1;
-
-				$($(".ui-slider-handle")[1]).css("left",posiLocale+"%");
-			}
-		
-		}, 100);
+		isPlayed = true;		
 
 });
 

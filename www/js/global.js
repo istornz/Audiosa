@@ -7,7 +7,8 @@ customMetatag			= 0;
 currentMetatag			= 0;
 idPisteEdit				= null;
 md5PisteEdit			= null;
-ddate = new Date();
+soundDisplayed			= false;
+ddate					= new Date();
 
 
 function blurAction(state, div) {

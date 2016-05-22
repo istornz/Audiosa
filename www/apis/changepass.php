@@ -68,7 +68,7 @@ catch(PDOException $e)
 /****************************/
 
 // On génére la commande SQL nous permettant de vérifier si l'utilisateur est 
-// bien authentifié
+// bien authentifié (le mot de passe et le nom d'utilisateur doivent correspondre)
 $selectStatement = $connexion->prepare('SELECT COUNT(*) FROM utilisateur WHERE utilisateur.username = :username AND utilisateur.password = :password LIMIT 1');
 $selectStatement->bindValue(':username', $_POST['pseudoPost'], PDO::PARAM_STR);
 $selectStatement->bindValue(':password', $_POST['actualPasswordPost'], PDO::PARAM_STR);

@@ -1,5 +1,14 @@
 <?php
 
+/*
+    Dimitri DESSUS et Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: conf.php
+	Description: Fichier PHP contenant les variables globales
+*/
+
 $DB_HOST	 	= "localhost";
 $DB_NAME	 	= "audio_db";
 

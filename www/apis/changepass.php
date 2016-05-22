@@ -77,7 +77,6 @@ $selectStatement->bindValue(':password', $_POST['actualPasswordPost'], PDO::PARA
 
 if($selectStatement->execute())
 {
-	$_SESSION['pseudo'] 	= $_POST['pseudoPost'];
 	$_SESSION['password'] 	= $newPassword;
 	die ('{"status_code":1}');
 }

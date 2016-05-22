@@ -25,7 +25,7 @@ $MAX_FILESIZE_COVER 		= 3145728; // Taille de l'image : 3Mb maximum
 // Vérification des arguments
 if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']) || !isset($_POST['imageGenrePost']))
 {
-	// Au moins un des arguments n'est pas définie
+	// Au moins un des arguments n'est pas défini
 	write_error_to_log("API Illustration Genres","Paramètres manquants, 'pseudoPost', 'passwordPost' et/ou 'imageGenrePost' ne sont pas renseignés");
 	die('{"status_code":0,"error_description":"undeclared variables"}');
 }

@@ -25,7 +25,7 @@ $MAX_FILESIZE_COVER 		= 3145728; // Taille de l'image : 3Mb maximum
 // Vérification des arguments
 if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']) || !isset($_POST['idPISTES']) || !isset($_POST['updateData']) || !isset($_POST['alterData']))
 {
-	// Au moins un des arguments n'est pas définie
+	// Au moins un des arguments n'est pas défini
 	write_error_to_log("API Édition métadonnées","Paramètres manquants, 'pseudoPost', 'passwordPost', 'idPISTES', 'updateData' et/ou 'alterData' ne sont pas renseignés");
 	die('{"status_code":0,"error_description":"undeclared variables"}');
 }

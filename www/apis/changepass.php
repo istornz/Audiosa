@@ -81,7 +81,7 @@ if($selectStatement->execute())
 	
 	// Si aucune colonne n'est retournée, le mot de passe et/ou
 	// le nom d'utilisateur ne correspondent pas
-	if($nbr_ligne <= 0)
+	if($nbr_ligne == 0)
 	{
 		die('{"status_code":0,"error_description":"username and/or password does not match"}');
 	}

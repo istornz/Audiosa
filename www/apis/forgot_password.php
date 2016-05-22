@@ -38,9 +38,9 @@ $selectStatement->bindValue(':mail', $_GET['mail'], PDO::PARAM_STR);
 if($selectStatement->execute())
 {
 	$ligne = $selectStatement->fetch(PDO::FETCH_ASSOC);
-	$nbr_ligne = count($ligne);
+	$nbr_ligne = count(array_filter($ligne));
 	
-	if($nbr_ligne == 1)
+	if($nbr_ligne == 0)
 	{
 		die('{"status_code":0,"error_description":"no user with this email"}');
 	}

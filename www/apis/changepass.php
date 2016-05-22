@@ -9,6 +9,8 @@
 	Description: API permettant de changer le mot de passe du compte administrateur
 */
 
+// Démarrage de la session
+session_start();
 // Spécification de l'en-tête HTTP en JSON
 header('Content-Type: application/json');
 // Importation des variables et fonctions globales

@@ -1,32 +1,48 @@
+/*
+    Dimitri DESSUS
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: edition_metadonnees.js
+	Description: Fonctions permettant de modifier les métadonnées d'une musique
+*/
+
+// Fonction executée lors du chargement du popup d'édition
 function loadEditMetatagPopup(idArrayMusic)
 {
-	var elementListview = $("#listview-editionMetadonnee");
-	var elementTitreMusique = $("#titreMusiqueEdition");
-	var elementArtisteMusique = $("#nomArtisteEdition");
-	var elementAlbumMusique = $("#nomAlbumEdition");
-	var elementCoverMusique = $("#imgCoverEditionMetadonnee");
-	var elementPreviewPochette = $("#coverPreview");
-	var popEditionMetadonnee = $('#popupEditionMetadonnee');
+	// Récupération des éléments relatifs au popup d'édition
+	var elementListview 		= $("#listview-editionMetadonnee");
+	var elementTitreMusique 	= $("#titreMusiqueEdition");
+	var elementArtisteMusique 	= $("#nomArtisteEdition");
+	var elementAlbumMusique 	= $("#nomAlbumEdition");
+	var elementCoverMusique 	= $("#imgCoverEditionMetadonnee");
+	var elementPreviewPochette 	= $("#coverPreview");
+	var popEditionMetadonnee 	= $('#popupEditionMetadonnee');
 	
-	updateDataArray	= [];
-	alterDataArray 	= [];
-	currentMetatag 	= 0;
-	idPisteEdit		= musicArray[idArrayMusic]["idPISTES"];
-	md5PisteEdit	= musicArray[idArrayMusic]["md5"];
+	var editionArray 	= []; 	// Déclaration tableau temporaire
+	updateDataArray		= [];	// Tableau permettant de stocker les métadonnée à mettre à jour
+	alterDataArray 		= [];	// Tableau permettant de stocker les métadonnée à mettre à jour et à ajouter dans la bdd
+	currentMetatag 		= 0;	// Permet de placer les identifiants de chaque élement du formulaire
+	idPisteEdit			= musicArray[idArrayMusic]["idPISTES"]; // Récupération de l'id de la musique à éditer
+	md5PisteEdit		= musicArray[idArrayMusic]["md5"];		// Récupération du hash MD5 de la musique 
 	
+	// Génération de l'en-tête du popup
 	elementTitreMusique.text(musicArray[idArrayMusic]["title"]);
 	elementArtisteMusique.text(musicArray[idArrayMusic]["artist"]);
 	elementAlbumMusique.text(musicArray[idArrayMusic]["album"]);
 	elementCoverMusique.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"] + "?"+ddate.getTime());
 	elementPreviewPochette.attr("src", "./img/covers/" + musicArray[idArrayMusic]["cover"] + "?"+ddate.getTime());
 	
+	// On supprime les cellules présentes dans la listview
 	$('#listview-editionMetadonnee li').remove();
-	var editionArray = [];
-    for (var colonne in musicArray[idArrayMusic])
+	
+	// On parcours les métadonnées de la piste
+	for (var colonne in musicArray[idArrayMusic])
     {
-	    var titreColonne = colonne;
-	    var valeurColonne = musicArray[idArrayMusic][colonne];
+	    var titreColonne = colonne; // Assignation du titre de la métadonnée
+	    var valeurColonne = musicArray[idArrayMusic][colonne]; // Assignation de la valeur de la métadonnée
 	    
+		// Si le titre est différent des valeurs ci-dessous, on ajoute la métadonnée dans le tableau temporaire
 	    if(titreColonne != "idPISTES" && titreColonne != "cover" && titreColonne != "idGENRES" && titreColonne != "image" && titreColonne != "md5")
 		{			
 			editionArray.push({
@@ -37,8 +53,8 @@ function loadEditMetatagPopup(idArrayMusic)
     }
     
     // Récupération des métadonnées à modifier dans le tableau
-    //indexIDGenre = editionArray.findIndex(x => x.colonneTitle=="genre"); Ne marche pas sous Safari
-    //indexNomGenre = editionArray.findIndex(x => x.colonneTitle=="nom"); Ne marche pas sous Safari
+    // indexIDGenre = editionArray.findIndex(x => x.colonneTitle=="genre"); Ne marche pas sous Safari
+    // indexNomGenre = editionArray.findIndex(x => x.colonneTitle=="nom"); Ne marche pas sous Safari
     indexIDGenre = editionArray.findIndex(function (x) {
 		return x.colonneTitle == "genre";
 	});
@@ -46,11 +62,11 @@ function loadEditMetatagPopup(idArrayMusic)
 		return x.colonneTitle == "nom";
 	});
 	
-    //Changement nom metatag 'nom' par 'genre'
+    // Changement titre metatag : 'nom' par 'genre'
     editionArray[indexNomGenre]['colonneTitle'] = "genre";
-    //Swap de l'ID du genre par son nom
+    // Echange de l'ID du genre par son nom
     editionArray[indexIDGenre] = editionArray[indexNomGenre];
-    //Suppression du nom du genre, actuellement en doublon
+    // Suppression du nom du genre, actuellement en doublon
     editionArray.splice(indexNomGenre, 1);
     
     //Application du tableau modifié
@@ -66,25 +82,30 @@ function loadEditMetatagPopup(idArrayMusic)
 	elementListview.listview( "refresh" );
 	elementListview.append();
 	
+	// Affichage du popup
 	popEditionMetadonnee.popup('open', { transition: 'pop' }); 
 }
 
+// Fonction permettant d'ajouter une nouvelle métadonnée non standard
 function addCustomMetatag()
 {
 	var elementListview = $("#listview-editionMetadonnee");
-	var elementPLS = elementListview.parents(".mCustomScrollbar");
+	var elementMScroll	= elementListview.parents(".mCustomScrollbar");
 	
+	// Génération de la cellule en HTML
 	var htmlContent = '<li class="cellMetadonnee"><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_left metadonnee_field ui-shadow-inset"><input style="text-align:right;" data-theme="s" data-wrapper-class="metadonnee_left metadonnee_left" type="text" data-mini="true" name="custom_metatag_title_meta'+ customMetatag +'" id="custom_metatag_title_meta'+ customMetatag +'" oninput="metatagCheckArray(' + customMetatag + ', 1);"></div><div class="ui-input-text ui-body-s ui-corner-all ui-mini metadonnee_right ui-shadow-inset"><input data-theme="s" data-wrapper-class="metadonnee_right" type="text" data-mini="true" name="custom_metatag_content_meta'+ customMetatag +'" id="custom_metatag_content_meta'+ customMetatag +'" oninput="metatagCheckArray(' + customMetatag + ', 1);"></div></li>';
 	
+	// Ajout de la cellule au sein de la listview
 	elementListview.append(htmlContent);
 	elementListview.listview( "refresh" );
-	elementPLS.mCustomScrollbar("scrollTo", "bottom");
+	elementMScroll.mCustomScrollbar("scrollTo", "bottom");
 	customMetatag++;
 }
 
+// Fonction permettant d'ajouter les métadonnées dans un tableau spécifique
 function metatagCheckArray(idMetatag, metatagStyle)
 {
-	//Déclarations des variables
+	// Déclarations des variables
 	var elementTitleEdit	= $("#titreMusiqueEdition");
 	var elementArtistEdit	= $("#nomArtisteEdition");
 	var elementAlbumEdit	= $("#nomAlbumEdition");
@@ -94,29 +115,30 @@ function metatagCheckArray(idMetatag, metatagStyle)
 	var colonneValue		= '';
 	var tempArray 			= [];
 	
-	//Si metatagStyle est égale à 0 alors la métadonnée est dejà présente dans la base de donnée
+	//Si 'metatagStyle' est égale à 0 alors la métadonnée est dejà présente dans la base de donnée
 	if(metatagStyle == 0)
 	{
-		//On copie le contenu du tableau des métadonnées dejà présentes dans le tableau temporaire
+		// On copie le contenu du tableau des métadonnées dejà présentes dans le tableau temporaire
 		tempArray = updateDataArray;
 		elementMetatagTitle = $("#metatag_title_meta" + idMetatag);
 		elementMetatagValue = $("#metatag_content_meta" + idMetatag);
-		//On récupère le titre de la métatonnée depuis la balise span, on le met en minuscule
+		// On récupère le titre de la métatonnée depuis la balise <span>, on le met en minuscule
 		colonneTitle = elementMetatagTitle.text().toLowerCase();
 	}
 	else
 	{
-		//On copie le contenu du tableau des métadonnées non présentes dans le tableau temporaire
+		// On copie le contenu du tableau des métadonnées non présentes dans le tableau temporaire
 		tempArray = alterDataArray;
 		elementMetatagTitle = $("#custom_metatag_title_meta" + idMetatag);
 		elementMetatagValue = $("#custom_metatag_content_meta" + idMetatag);
-		//On récupère le titre de la métatonnée depuis la balise input
+		// On récupère le titre de la métatonnée depuis la balise input
 		colonneTitle = elementMetatagTitle[0].value;
 	}
 	
-	//On récupère la valeur de la métadonnée depuis la balise input
+	// On récupère la valeur de la métadonnée depuis la balise input
 	colonneValue = elementMetatagValue[0].value;
 	
+	// On test le titre de la métadonnée pour modifier, en conséquence, l'en-tête
 	switch (colonneTitle) {
 	    case "title":
 	        elementTitleEdit.html(colonneValue);
@@ -129,15 +151,14 @@ function metatagCheckArray(idMetatag, metatagStyle)
 	        break;
 	}
 	
-	//On vérifie si l'id de la metadonnée existe deja dans le tableau ou non ou x est une variable inconnue
-	//indexColumn = tempArray.findIndex(x => x.idMetatag==idMetatag); Ne marche pas sous Safari
+	// On vérifie si l'id de la metadonnée existe deja dans le tableau ou non; X étant une variable inconnue
 	indexColumn = tempArray.findIndex(function (x) {
 		return x.idMetatag == idMetatag;
 	});
 	
 	if(indexColumn == -1)
 	{
-		//La clé idMetatag est introuvable on va la créer
+		//La clé 'idMetatag' est introuvable on va la créer
 		tempArray.push({
 							idMetatag: idMetatag,
 							column: colonneTitle,
@@ -146,7 +167,7 @@ function metatagCheckArray(idMetatag, metatagStyle)
 	}
 	else
 	{
-		//La clé existe, on va donc mettre à jour les valeurs de l'objet présent dans le tableau
+		// La clé existe, on va donc mettre à jour les valeurs de l'objet présent dans le tableau
 		tempArray[indexColumn]['column'] = colonneTitle;
 		tempArray[indexColumn]['value'] = colonneValue;
 	}
@@ -158,13 +179,14 @@ function metatagCheckArray(idMetatag, metatagStyle)
 		alterDataArray = tempArray;
 }
 
+// Changement 
 $("#radio_choice_detail_edition").on('change', function ()
 {
-	var elementDivDetail = $("#divlist-editionMetadonnee");
-	var elementDivPochette = $("#divlist-editionPochette");
-	var buttonEditLabel = $("#titleEditButton");
-	var inputFormUpload = $("#uploadPochetteInput");
-	var editButtonUpload =  $("#editButtonMeta");
+	var elementDivDetail 	= $("#divlist-editionMetadonnee");
+	var elementDivPochette 	= $("#divlist-editionPochette");
+	var buttonEditLabel 	= $("#titleEditButton");
+	var inputFormUpload 	= $("#uploadPochetteInput");
+	var editButtonUpload 	= $("#editButtonMeta");
 	
 	elementDivDetail.css("display", "block");
 	elementDivPochette.css("display", "none");
@@ -173,13 +195,14 @@ $("#radio_choice_detail_edition").on('change', function ()
 	editButtonUpload.attr("onclick", "addCustomMetatag();");
 });
 
+// 
 $("#radio_choice_pochette_edition").on('change', function ()
 {
-	var elementDivDetail = $("#divlist-editionMetadonnee");
-	var elementDivPochette = $("#divlist-editionPochette");
-	var buttonEditLabel = $("#titleEditButton");
-	var inputFormUpload = $("#uploadPochetteInput");
-	var editButtonUpload =  $("#editButtonMeta");
+	var elementDivDetail 	= $("#divlist-editionMetadonnee");
+	var elementDivPochette 	= $("#divlist-editionPochette");
+	var buttonEditLabel 	= $("#titleEditButton");
+	var inputFormUpload 	= $("#uploadPochetteInput");
+	var editButtonUpload 	= $("#editButtonMeta");
 	
 	elementDivDetail.css("display", "none");
 	elementDivPochette.css("display", "block");

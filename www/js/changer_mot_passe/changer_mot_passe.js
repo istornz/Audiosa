@@ -175,8 +175,7 @@ $("#formChangerMotDePassePopup").submit(function(event) {
             url = $form.attr("action");									// Script PHP
         
 		// Animation de chargement
-		elementChangerPassButton.html(
-            "<i class=\"fa fa-refresh fa-spin\"></i>");
+		elementChangerPassButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
         
 		// Envoi de la requête POST asynchrone
         var posting = $.post(url, {
@@ -187,7 +186,7 @@ $("#formChangerMotDePassePopup").submit(function(event) {
         });
         
 		// Fonction executée quand la requête POST asynchrone
-		// s'est soldé par un succès
+		// s'est achevée avec succès
         posting.done(function(data) {
             var JSONParsed = data; // Parse du JSON
             

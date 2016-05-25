@@ -208,7 +208,8 @@ $("#formChangerMotDePassePopup").submit(function(event) {
 					// Mise en place d'un timer de 1s permettant de faire
 					// disparaître le popup une fois le temps écoulé
 					window.setTimeout(function() {
-						passwordHash = md5(newPasswordValue); // Assignation du nouveau mot de passe
+						// Assignation du nouveau mot de passe
+						passwordHash = md5(elementNouveauMotDePasseField.val());
 						
 						// Disparition de la bannière
 						elementMessageChangerPassDiv.css("display", "none");

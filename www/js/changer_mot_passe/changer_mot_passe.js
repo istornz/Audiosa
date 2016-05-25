@@ -173,8 +173,8 @@ $("#formChangerMotDePassePopup").submit(function(event) {
 		var formData = new FormData;
 		formData.append('pseudoPost', elementPseudoNameField.val());
 		formData.append('actualPasswordPost', md5(elementMotDePasseActuelField.val()));
-		formData.append('newPasswordPost', md5(elementNouveauMotDePasseField.val());
-		formData.append('confirmPasswordPost', md5(elementMotDePasseConfirmField.val());
+		formData.append('newPasswordPost', md5(elementNouveauMotDePasseField.val()));
+		formData.append('confirmPasswordPost', md5(elementMotDePasseConfirmField.val()));
 		
 		// Envoi de la requête POST asynchrone
 		$.ajax({

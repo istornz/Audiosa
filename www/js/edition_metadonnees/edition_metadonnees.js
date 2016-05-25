@@ -179,15 +179,17 @@ function metatagCheckArray(idMetatag, metatagStyle)
 		alterDataArray = tempArray;
 }
 
-// Changement 
+// Affichage de la section d'édition des métadonnées 
 $("#radio_choice_detail_edition").on('change', function ()
 {
+	// Récupération des éléments relatifs au popup d'édition
 	var elementDivDetail 	= $("#divlist-editionMetadonnee");
 	var elementDivPochette 	= $("#divlist-editionPochette");
 	var buttonEditLabel 	= $("#titleEditButton");
 	var inputFormUpload 	= $("#uploadPochetteInput");
 	var editButtonUpload 	= $("#editButtonMeta");
 	
+	// Modification de l'affichage
 	elementDivDetail.css("display", "block");
 	elementDivPochette.css("display", "none");
 	buttonEditLabel.text("Ajouter une métadonnée");
@@ -195,15 +197,17 @@ $("#radio_choice_detail_edition").on('change', function ()
 	editButtonUpload.attr("onclick", "addCustomMetatag();");
 });
 
-// 
+// Affichage de la section changement de la pochette 
 $("#radio_choice_pochette_edition").on('change', function ()
 {
+	// Récupération des éléments relatifs au popup d'édition
 	var elementDivDetail 	= $("#divlist-editionMetadonnee");
 	var elementDivPochette 	= $("#divlist-editionPochette");
 	var buttonEditLabel 	= $("#titleEditButton");
 	var inputFormUpload 	= $("#uploadPochetteInput");
 	var editButtonUpload 	= $("#editButtonMeta");
 	
+	// Modification de l'affichage
 	elementDivDetail.css("display", "none");
 	elementDivPochette.css("display", "block");
 	buttonEditLabel.text("Modifier");
@@ -211,63 +215,69 @@ $("#radio_choice_pochette_edition").on('change', function ()
 	editButtonUpload.attr("onclick", "");
 });
 
+// Fonction executée lors de la selection d'une image
 $("#uploadPochetteInput").on('change', function ()
 {
 	var elementCoverPreview 		= $("#coverPreview");
 	var elementCoverPreviewHeader 	= $("#imgCoverEditionMetadonnee");
-	var cover 						= this.files[0];
-	var blobURLCover 				= window.URL.createObjectURL(this.files[0]);
 	
+	// Récupération de l'image
+	var cover			= this.files[0]; // Premier fichier de l'element 'input'
+	var blobURLCover	= window.URL.createObjectURL(this.files[0]); // Création objet URL
+	
+	// Affichage de l'image
 	elementCoverPreview.attr("src", blobURLCover);
 	elementCoverPreviewHeader.attr("src", blobURLCover);
-	
-	console.log("Changement pochette");
 });
 
+// Fonction permettant d'envoyer la requête POST asynchrone
 function launchRequestEditMetatag()
 {
-	/*
-	console.log("-- MISE EN FORME JSON DES CHAMPS A MODIFIER (UPDATE) --");
-    console.log(JSON.stringify(updateDataArray));
-    
-    console.log("-- MISE EN FORME JSON DES CHAMPS A CREER (ALTER) --");
-    console.log(JSON.stringify(alterDataArray));
-    */
-    
+	// Conversion tableaux JavaScript en chaîne JSON
     var JSONStringUpdate 			= JSON.stringify(updateDataArray);
     var JSONStringAlter 			= JSON.stringify(alterDataArray);
+	
+	// Récupération des elements relatifs au formulaire
     var elementEditMetadonneePopup 	= $("#popupEditionMetadonnee");
     var elementMessageEditMetaDiv 	= $("#messageInfoDivEditionMetadonnees");
     var elementMessageEditMetaLabel = $("#messageInfoEditionMetadonneesLabel");
     var elementValiderButton		= $("#validerMetadonneesButton");
     
+	// Création et génération du formulaire
     var formData = new FormData;
-    formData.append('pseudoPost', pseudo);
-    formData.append('passwordPost', passwordHash);
-    formData.append('idPISTES', idPisteEdit);
-    formData.append('updateData', JSONStringUpdate);
-    formData.append('alterData', JSONStringAlter);
+    formData.append('pseudoPost', pseudo); 			 // Pseudo de l'utilisateur
+    formData.append('passwordPost', passwordHash);	 // Hash MD5 du mot de passe
+    formData.append('idPISTES', idPisteEdit);		 // Identifiant de la musique éditée
+    formData.append('updateData', JSONStringUpdate); // Les metadonnées à mettre à jour
+    formData.append('alterData', JSONStringAlter);	 // Les metadonnées à ajouter/mettre à jour
     
+	// On vérifie si la pochette a été modifiée
     if($( '#uploadPochetteInput' )[0].files[0] != null)
     {
+		// La pochette a subie une modification
+		// On ajoute la pochette et le hash MD5 du fichier dans le formulaire
 	    formData.append('cover', $( '#uploadPochetteInput' )[0].files[0] );
 	    formData.append('md5',  md5PisteEdit);
     }
     
+	// Mise en place de l'animation de chargement
     elementValiderButton.removeClass( "ui-icon-check ui-btn-icon-notext" );
     elementValiderButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
     
+	// Envoi de la requête POST asynchrone
     $.ajax({
         url: './apis/edit_metatag.php',
         type: 'POST',
         data: formData,
         async: true,
         success: function (data) {
-            var JSONParsed = data;
+            var JSONParsed = data; // Parse du JSON
             
+			// Suppression de l'animation de chargement sur le bouton
             elementValiderButton.addClass( "ui-icon-check ui-btn-icon-notext" );
 			elementValiderButton.html("");
             
+			// Afichage bannière
             elementMessageEditMetaDiv.css("display", "block");
             elementMessageEditMetaDiv.addClass("animated bounceIn");
 			window.setTimeout(function() {
@@ -275,14 +285,21 @@ function launchRequestEditMetatag()
                     "animated bounceIn");
             }, 500);
             
+			// Test de la valeur "status_code" présente dans la réponse JSON
             if (JSONParsed.status_code == 1)
             {
+				// On change l'affichage de la bannière en vert car 
+				// le changement à bien été effectué
                 elementMessageEditMetaDiv.css("background-color",
                     "#16a085");
                 elementMessageEditMetaLabel.text("Changement reussie !");
-                window.setTimeout(function() {
+                
+				// Mise en place d'un timer de 1s permettant de faire
+				// disparaître le popup une fois le temps écoulé
+				window.setTimeout(function() {
                     elementMessageEditMetaDiv.css("display", "none");
                     
+					// On recharge les morceaux
 					get_music("morceaux");
 					
 		            elementEditMetadonneePopup.popup("close");
@@ -291,9 +308,12 @@ function launchRequestEditMetatag()
 	        }
 	        else
 	        {
-		        elementMessageEditMetaDiv.css("background-color",
-                    "#e74c3c");
-                    
+				// On change l'affichage de la bannière en rouge car 
+				// une erreur est survenue lors du changement
+		        elementMessageEditMetaDiv.css("background-color", "#e74c3c");
+                
+				// On test l'erreur retournée par le serveur
+				// Puis on l'affiche aux yeux de l'utilisateur
                 switch(JSONParsed.error_description)
                 {
 	            	case "undeclared variables":
@@ -347,7 +367,6 @@ function launchRequestEditMetatag()
         error: function(data) {
                 elementValiderButton.addClass( "ui-icon-check ui-btn-icon-notext" );
 				elementValiderButton.html("");
-                console.log(data);
             }
     });
 }

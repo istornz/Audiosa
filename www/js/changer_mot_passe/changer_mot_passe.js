@@ -166,100 +166,102 @@ $("#formChangerMotDePassePopup").submit(function(event) {
 		// Les valeurs saisies sont valides,
 		// On peut procéder à la soumission du formulaire
 		
-		// Constitution du formulaire à soumettre
-        var $form = $(this),
-        	pseudoValue = elementPseudoNameField.val(), 				// Nom d'utilisateur
-            actualPasswordValue = elementMotDePasseActuelField.val(), 	// Mot de passe actuel
-            newPasswordValue = elementNouveauMotDePasseField.val(), 	// Nouveau mot de passe
-            confirmPasswordValue = elementMotDePasseConfirmField.val(), // Confirmation
-            url = $form.attr("action");									// Script PHP
-        
 		// Animation de chargement
 		elementChangerPassButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
         
+		// Constitution du formulaire à soumettre
+		var formData = new FormData;
+		formData.append('pseudoPost', elementPseudoNameField.val());
+		formData.append('actualPasswordPost', md5(elementMotDePasseActuelField.val()));
+		formData.append('newPasswordPost', md5(elementNouveauMotDePasseField.val());
+		formData.append('confirmPasswordPost', md5(elementMotDePasseConfirmField.val());
+		
 		// Envoi de la requête POST asynchrone
-        var posting = $.post(url, {
-	        pseudoPost: pseudoValue,
-            actualPasswordPost: md5(actualPasswordValue),   // Hashage MD5 du mot de passe actuel
-            newPasswordPost: md5(newPasswordValue),			// Hashage MD5 du nouveau mot de passe
-            confirmPasswordPost: md5(confirmPasswordValue)  // Hashage MD5 de la confirmation
-        });
-        
-		// Fonction executée quand la requête POST asynchrone
-		// s'est achevée avec succès
-        posting.done(function(data) {
-            var JSONParsed = data; // Parse du JSON
+		$.ajax({
+			url: './apis/changepass.php',
+			type: 'POST',
+			data: formData,
+			async: true,
+			success: function (data) {
+				var JSONParsed = data; // Parse du JSON
             
-			// Suppression de l'animation de chargement sur le bouton
-            elementChangerPassButton.html("Changer mot de passe");
-			
-			// Afichage bannière
-            elementMessageChangerPassDiv.addClass("animated bounceIn");
-            window.setTimeout(function() {
-                elementMessageChangerPassDiv.removeClass(
-                    "animated bounceIn");
-            }, 500);
-            
-			// Test de la valeur "status_code" présente dans la réponse JSON
-            if (JSONParsed.status_code == 1) 
-			{
-				// On change l'affichage de la bannière en vert car 
-				// le changement à bien été effectué
-                elementMessageChangerPassDiv.css("display", "block");
-                elementMessageChangerPassDiv.css("background-color",
-                    "#16a085");
-                elementMessageChangerPassLabel.text("Changement reussie !");
+				// Suppression de l'animation de chargement sur le bouton
+				elementChangerPassButton.html("Changer mot de passe");
 				
-				// Mise en place d'un timer de 1s permettant de faire
-				// disparaître le popup une fois le temps écoulé
-                window.setTimeout(function() {
-                    passwordHash = md5(newPasswordValue); // Assignation du nouveau mot de passe
-					
-					// Disparition de la bannière
-                    elementMessageChangerPassDiv.css("display", "none");
-					
-					// Remise à zéro des champs textuels
-                    elementMotDePasseActuelField.val("");
-                    elementNouveauMotDePasseField.val("");
-                    elementMotDePasseConfirmField.val("");
-                }, 1000);
-            } 
-			else 
-			{
-				// On change l'affichage de la bannière en rouge car 
-				// une erreur est survenue lors du changement
-                elementMessageChangerPassDiv.css("background-color",
-                    "#e74c3c");
-                elementMessageChangerPassDiv.css("display", "block");
+				// Afichage bannière
+				elementMessageChangerPassDiv.addClass("animated bounceIn");
+				window.setTimeout(function() {
+					elementMessageChangerPassDiv.removeClass(
+						"animated bounceIn");
+				}, 500);
 				
-				// On test l'erreur retournée par le serveur
-				// Puis on l'affiche aux yeux de l'utilisateur
-				switch(JSONParsed.error_description)
-                {
-	            	case "undeclared variables":
-	                    elementMessageChangerPassLabel.text("Variable(s) non déclaré(es)");
-	                    break;
-					case "connection to database failed":
-	                    elementMessageChangerPassLabel.text("Connexion à la bdd impossible");
-	                    break;
-					case "username and/or password does not match":
-	                    elementMessageChangerPassLabel.text("Mot de passe incorrect");
-	                    break; 
-					case "passwords don\'t match":
-	                    elementMessageChangerPassLabel.text("Les mots de passes sont différents");
-	                    break;
-					case "failed to execute select query":
-	                    elementMessageChangerPassLabel.text("Impossible de vous identifier");
-	                    break;
-					case "failed to execute update query":
-	                    elementMessageChangerPassLabel.text("Impossible de mettre à jour le mot de passe");
-	                    break;
-					default:
-						elementMessageChangerPassLabel.text("Erreur");
-						break;
+				// Test de la valeur "status_code" présente dans la réponse JSON
+				if (JSONParsed.status_code == 1) 
+				{
+					// On change l'affichage de la bannière en vert car 
+					// le changement à bien été effectué
+					elementMessageChangerPassDiv.css("display", "block");
+					elementMessageChangerPassDiv.css("background-color",
+						"#16a085");
+					elementMessageChangerPassLabel.text("Changement reussie !");
+					
+					// Mise en place d'un timer de 1s permettant de faire
+					// disparaître le popup une fois le temps écoulé
+					window.setTimeout(function() {
+						passwordHash = md5(newPasswordValue); // Assignation du nouveau mot de passe
+						
+						// Disparition de la bannière
+						elementMessageChangerPassDiv.css("display", "none");
+						
+						// Remise à zéro des champs textuels
+						elementMotDePasseActuelField.val("");
+						elementNouveauMotDePasseField.val("");
+						elementMotDePasseConfirmField.val("");
+					}, 1000);
+				} 
+				else 
+				{
+					// On change l'affichage de la bannière en rouge car 
+					// une erreur est survenue lors du changement
+					elementMessageChangerPassDiv.css("background-color",
+						"#e74c3c");
+					elementMessageChangerPassDiv.css("display", "block");
+					
+					// On test l'erreur retournée par le serveur
+					// Puis on l'affiche aux yeux de l'utilisateur
+					switch(JSONParsed.error_description)
+					{
+						case "undeclared variables":
+							elementMessageChangerPassLabel.text("Variable(s) non déclaré(es)");
+							break;
+						case "connection to database failed":
+							elementMessageChangerPassLabel.text("Connexion à la bdd impossible");
+							break;
+						case "username and/or password does not match":
+							elementMessageChangerPassLabel.text("Mot de passe incorrect");
+							break; 
+						case "passwords don\'t match":
+							elementMessageChangerPassLabel.text("Les mots de passes sont différents");
+							break;
+						case "failed to execute select query":
+							elementMessageChangerPassLabel.text("Impossible de vous identifier");
+							break;
+						case "failed to execute update query":
+							elementMessageChangerPassLabel.text("Impossible de mettre à jour le mot de passe");
+							break;
+						default:
+							elementMessageChangerPassLabel.text("Erreur");
+							break;
+					}
 				}
-            }
-        });
+			},
+			cache: false,
+			contentType: false,
+			processData: false,
+			error: function(data) {
+				console.log(data);
+			}
+		});
     }
 });
 

@@ -23,6 +23,9 @@ $("#illustrerGenresButton").click(function() {
     }
 	else
 	{
+		// Mise en place de l'animation de chargement
+	    elementIllustrerGenresButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
+		
 		// Tableau permettant de stocker les genres modifiées
 		tableauModificationCoverGenres = []; 
 		
@@ -30,30 +33,44 @@ $("#illustrerGenresButton").click(function() {
 		elementListViewIllustrerGenres.mCustomScrollbar('destroy');
 		elementListViewIllustrerGenres.html('<br /><div id="messageInfoDivIllustrerGenres" class="ui-bar ui-bar-a" style="background-color: #e74c3c;display: none;margin-bottom: 18px;margin-left: 20px;margin-right: 20px;"><span id="messageInfoIllustrerGenresLabel" class="messageInfoLabel">Mot de passe incorrect !</span></div>');		
 		
+		// Constitution du formulaire à soumettre
+		var formData = new FormData;
+		formData.append('type', 'genres');
+		
 		// Envoi de la requête POST asynchrone
 		$.ajax({
-		method: "POST",
-		url: "apis/load_playlist_choices.php",
-		data: { type: "genres"}
-		})
-		.done(function( msg ) {
-			// Chargement terminé
-			stateIllustrerLoading = true;
-			
-			// Test de la valeur "status_code" présente dans la réponse JSON
-			if(msg.status_code == 1)
-			{
-				// Pour chaque genre présent dans la bdd on génere une nouvelle division
-				for(var indiceGenre=0; indiceGenre < msg.genres.length; indiceGenre++) {
-					elementListViewIllustrerGenres.append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" style="background-image: url(\'img/covers_genres/'+ escapeHtml(msg.genres[indiceGenre].image) +'\') !important; background-position: 50% !important; background-size: cover !important; cursor: pointer !important;" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres upload"><input id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_inputGenres" type="file" name="upload" onchange="changeIllustrationGenres(\''+escapeHtml(msg.genres[indiceGenre].idGENRES)+'\');"/><div class="genre_title" style="margin-top: -39px !important;">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
+			method: "POST",
+			url: "apis/load_playlist_choices.php",
+			async : true,
+			data: formData,
+			success: function (msg) {
+				// Chargement terminé
+				stateIllustrerLoading = true;
+				
+				// Suppression de l'animation de chargement sur le bouton
+	            elementIllustrerGenresButton.html("Illustrer les genres");
+				
+				// Test de la valeur "status_code" présente dans la réponse JSON
+				if(msg.status_code == 1)
+				{
+					// Pour chaque genre présent dans la bdd on génere une nouvelle division
+					for(var indiceGenre = 0; indiceGenre < msg.genres.length; indiceGenre++) {
+						elementListViewIllustrerGenres.append('<div id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_genrec" style="background-image: url(\'img/covers_genres/'+ escapeHtml(msg.genres[indiceGenre].image) +'\') !important; background-position: 50% !important; background-size: cover !important; cursor: pointer !important;" data-title="'+escapeHtml(msg.genres[indiceGenre].nom)+'" class="categories categories_genres cat_genres upload"><input id="'+escapeHtml(msg.genres[indiceGenre].idGENRES)+'_inputGenres" type="file" name="upload" onchange="changeIllustrationGenres(\''+escapeHtml(msg.genres[indiceGenre].idGENRES)+'\');"/><div class="genre_title" style="margin-top: -39px !important;">'+escapeHtml(msg.genres[indiceGenre].nom)+'</div></div>');
+					}
 				}
+				
+				elementListViewIllustrerGenres.mCustomScrollbar({
+					theme:"minimal"
+				});
+				
+				elementIllustrerGenresButton.get(0).click();
+			},
+			cache: false,
+			contentType: false,
+			processData: false,
+			error: function(data) {
+				console.log(data);
 			}
-			
-			elementListViewIllustrerGenres.mCustomScrollbar({
-				theme:"minimal"
-			});
-			
-			elementIllustrerGenresButton.get(0).click();
 		});
 	}
 });
@@ -122,7 +139,8 @@ function valider_genres_illustration()
         data: formData,
         async: true,
         success: function (data) {
-            var JSONParsed = data; // Parse du JSON
+	        // Parse du JSON
+            var JSONParsed = data;
 			
 			// Suppression de l'animation de chargement sur le bouton
 			elementValiderGenres.html("");
@@ -175,6 +193,9 @@ function valider_genres_illustration()
 	                    break;
 	                case "unable to login":
 	                    elementMessageIllustrerGenresLabel.text("Impossible de se connecter");
+	                    break;
+	                case "unable to move file":
+	                    elementMessageIllustrerGenresLabel.text("Impossible de déplacer le fichier");
 	                    break;
                 }
 	        }

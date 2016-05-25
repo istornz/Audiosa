@@ -28,11 +28,11 @@ $("#visualiserLogButton").click(function()
 		// Mise en place de l'animation de chargement
 	    elementVisualiserLogButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
 	    
-		// Envoi de la requête GET synchrone
+		// Envoi de la requête GET asynchrone
 		$.ajax({
 				url : 'error.log',
 				type : 'GET',
-				async : false,
+				async : true,
 				cache: false,
 				dataType : 'text',
 				success : function(log_file_content, statut) {

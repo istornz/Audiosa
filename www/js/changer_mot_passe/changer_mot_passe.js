@@ -183,7 +183,8 @@ $("#formChangerMotDePassePopup").submit(function(event) {
 			data: formData,
 			async: true,
 			success: function (data) {
-				var JSONParsed = data; // Parse du JSON
+				// Parse du JSON
+				var JSONParsed = data;
             
 				// Suppression de l'animation de chargement sur le bouton
 				elementChangerPassButton.html("Changer mot de passe");

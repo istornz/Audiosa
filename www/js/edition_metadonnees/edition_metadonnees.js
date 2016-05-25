@@ -271,7 +271,8 @@ function launchRequestEditMetatag()
         data: formData,
         async: true,
         success: function (data) {
-            var JSONParsed = data; // Parse du JSON
+	        // Parse du JSON
+            var JSONParsed = data;
             
 			// Suppression de l'animation de chargement sur le bouton
             elementValiderButton.addClass( "ui-icon-check ui-btn-icon-notext" );

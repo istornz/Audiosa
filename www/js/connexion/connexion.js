@@ -78,95 +78,102 @@ $("#formConnexionPopup").submit(function(event) {
 		// Les valeurs saisies sont valides,
 		// On peut procéder à la soumission du formulaire
 		
-		// Constitution du formulaire à soumettre
-        var $form = $(this),
-            pseudoValue = elementPseudoField.val(),
-            passwordValue = elementPaswordField.val(),
-            url = $form.attr("action");
+		// Mise en place de l'animation de chargement
+	    elementConnexionButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
 		
-		// Animation de chargement
-        elementConnexionButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
+		// Constitution du formulaire à soumettre
+		var formData = new FormData;
+		formData.append('pseudoPost', elementPseudoField.val());
+		formData.append('passwordPost', elementPaswordField.val());
 		
 		// Envoi de la requête POST asynchrone
-        var posting = $.post(url, {
-            pseudoPost: pseudoValue,		// Nom d'utilisateur
-            passwordPost: passwordValue		// Mot de passe
-        });
-		
-		// Fonction executée quand la requête POST asynchrone
-		// s'est achevée avec succès
-        posting.done(function(data) {
-            var JSONParsed = data; // Parse du JSON
-			
-			// Suppression de l'animation de chargement sur le bouton
-            elementConnexionButton.html("Se connecter");
-			
-			// Afichage bannière
-            elementMessageDiv.addClass("animated bounceIn");
-            window.setTimeout(function() {
-                elementMessageDiv.removeClass("animated bounceIn");
-            }, 500);
-			
-			// Test de la valeur "status_code" présente dans la réponse JSON
-            if (JSONParsed.status_code == 1) 
-			{
-				// On change l'affichage de la bannière en vert car 
-				// le changement à bien été effectué
-                elementMessageDiv.css("display", "block");
-                elementMessageDiv.css("background-color","#16a085");
-                elementMessageLabel.text("Connexion reussie !");
-                
-				// Mise en place d'un timer de 1s permettant de faire
-				// disparaître le popup une fois le temps écoulé
-				window.setTimeout(function() {
-                    pseudo = pseudoValue;						// Assignation pseudo
-                    passwordHash = md5(passwordValue);			// Assignation mot de passe
-                    elementPseudoForm.attr("value", pseudo);	// On place le pseudo dans un input caché
-                    
-					// Disparition de la bannière
-					elementMessageDiv.css("display", "none");	
-                    
-					// Remise à zéro des champs textuels
-					elementPseudoField.val("");
-                    elementPaswordField.val("");
-					
-					// Modification de l'affichage du site
-                    userConnected();
-					
-					// Disparition du popup
-                    elementConnexionPopup.popup("close");
-                    blurAction(0, fullPage);
-                }, 1000);
-            } 
-			else 
-			{
-				// On change l'affichage de la bannière en rouge car 
-				// une erreur est survenue lors du changement
-                elementMessageDiv.css("background-color", "#e74c3c");
-                elementMessageDiv.css("display", "block");
+		$.ajax({
+			url: './apis/connexion.php',
+			type: 'POST',
+			data: formData,
+			async: true,
+			success: function (data) {
 				
-				// On test l'erreur retournée par le serveur
-				// Puis on l'affiche aux yeux de l'utilisateur
-				switch(JSONParsed.error_description)
-                {
-	            	case "undeclared variables":
-	                    elementMessageLabel.text("Variable(s) non déclaré(es)");
-	                    break;
-					case "connection to database failed":
-	                    elementMessageLabel.text("Connexion à la bdd impossible");
-	                    break;
-					case "username and/or password does not match":
-	                    elementMessageLabel.text("Identifiant(s) incorrect(s)");
-	                    break;
-					case "failed to execute query":
-	                    elementMessageLabel.text("Impossible d'executer la requête");
-	                    break;
-					default :
-	                    elementMessageLabel.text("Erreur");
-	                    break;
-				}
-            }
-        });
+				// Parse du JSON
+				var JSONParsed = data;
+			
+				// Suppression de l'animation de chargement sur le bouton
+	            elementConnexionButton.html("Se connecter");
+				
+				// Afichage bannière
+	            elementMessageDiv.addClass("animated bounceIn");
+	            window.setTimeout(function() {
+	                elementMessageDiv.removeClass("animated bounceIn");
+	            }, 500);
+				
+				// Test de la valeur "status_code" présente dans la réponse JSON
+	            if (JSONParsed.status_code == 1) 
+				{
+					// On change l'affichage de la bannière en vert car 
+					// le changement à bien été effectué
+	                elementMessageDiv.css("display", "block");
+	                elementMessageDiv.css("background-color","#16a085");
+	                elementMessageLabel.text("Connexion reussie !");
+	                
+					// Mise en place d'un timer de 1s permettant de faire
+					// disparaître le popup une fois le temps écoulé
+					window.setTimeout(function() {
+	                    pseudo 		 = elementPseudoField.val();		// Assignation pseudo
+		                passwordHash = md5(elementPaswordField.val());	// Assignation mot de passe
+	                    elementPseudoForm.attr("value", pseudo);		// On place le pseudo dans un input caché
+	                    
+						// Disparition de la bannière
+						elementMessageDiv.css("display", "none");	
+	                    
+						// Remise à zéro des champs textuels
+						elementPseudoField.val("");
+	                    elementPaswordField.val("");
+						
+						// Modification de l'affichage du site
+	                    userConnected();
+						
+						// Disparition du popup
+	                    elementConnexionPopup.popup("close");
+	                    blurAction(0, fullPage);
+	                }, 1000);
+	            } 
+				else 
+				{
+					// On change l'affichage de la bannière en rouge car 
+					// une erreur est survenue lors du changement
+	                elementMessageDiv.css("background-color", "#e74c3c");
+	                elementMessageDiv.css("display", "block");
+					
+					// On test l'erreur retournée par le serveur
+					// Puis on l'affiche aux yeux de l'utilisateur
+					switch(JSONParsed.error_description)
+	                {
+		            	case "undeclared variables":
+		                    elementMessageLabel.text("Variable(s) non déclaré(es)");
+		                    break;
+						case "connection to database failed":
+		                    elementMessageLabel.text("Connexion à la bdd impossible");
+		                    break;
+						case "username and/or password does not match":
+		                    elementMessageLabel.text("Identifiant(s) incorrect(s)");
+		                    break;
+						case "failed to execute query":
+		                    elementMessageLabel.text("Impossible d'executer la requête");
+		                    break;
+						default :
+		                    elementMessageLabel.text("Erreur");
+		                    break;
+					}
+	            }
+				
+			},
+			cache: false,
+			contentType: false,
+			processData: false,
+			error: function(data) {
+				console.log(data);
+			}
+		});		
     }
 });
 
@@ -200,20 +207,31 @@ function userDisconnected() {
 
 // Fonction permettant à l'utilisateur de se déconnecter du site
 function disconnect() {
-    var elementMenuPopup = $("#popupMenu");
+    var elementMenuPopup 		= $("#popupMenu");
+	var elementDisconnectButton = $("#deconnexionButton");
+	
+	// Mise en place de l'animation de chargement
+	elementDisconnectButton.html("<i class=\"fa fa-refresh fa-spin\"></i>");
 	
 	// Envoi requête asynchrone GET vers le script de déconnexion
     $.ajax({
-        url: "apis/logout.php"
-    });
+        url: 'apis/logout.php',
+		type: 'GET',
+		async: true,
+		success: function (data) {
+			// Suppression de l'animation de chargement sur le bouton
+	        elementDisconnectButton.html("Déconnexion");
 	
-	// Mise en place d'un timer de 500ms
-    window.setTimeout(function() {
-		
-		// On modifie l'affichage du site
-        userDisconnected();
-		
-        elementMenuPopup.popup("close");
-        blurAction(0, fullPage);
-    }, 500);
+			// Mise en place d'un timer de 500ms
+		    window.setTimeout(function() {
+				
+				// On modifie l'affichage du site
+		        userDisconnected();
+				
+		        elementMenuPopup.popup("close");
+		        blurAction(0, fullPage);
+		    }, 500);
+		}
+    });
+    
 }

@@ -1,4 +1,13 @@
 ﻿<?php
+/*
+    Dimitri DESSUS et Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: index.php
+	Description: Page d'accueil du site internet
+*/
+
 	session_start();
 	
 	if(isset($_SESSION['pseudo']))

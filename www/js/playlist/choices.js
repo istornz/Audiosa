@@ -1,3 +1,12 @@
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+
+	Fichier: choices.js
+	Description: Gestion des choix de l'utilisateur sur l'interface création de playlist
+*/
+
 genres_choisis 		= [];
 artistes_choisis 	= [];
 albums_choisis 		= [];

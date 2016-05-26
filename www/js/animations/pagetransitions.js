@@ -1,3 +1,12 @@
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: pagetransition.js
+	Description: Gestion de la transition des pages Morceaux / Artistes / Albums
+*/
+
 page_actu = 1;
 page_actu_playlist = false;
 morceaux_loaded = false;

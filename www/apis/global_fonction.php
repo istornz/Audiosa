@@ -1,4 +1,12 @@
-<?php
+﻿<?php
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: global_function.php
+	Description: Contient les fonctions globales
+*/
 
 require("conf.php");
 

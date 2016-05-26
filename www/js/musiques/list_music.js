@@ -1,7 +1,14 @@
-musicArray = [];
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
 
-//get_music("artistes");
-//get_music("albums");
+	Fichier: list_music.js
+	Description: Chargement des listes de musiques Morceaux / Artistes / Albums
+				 et création des evenements.
+*/
+
+musicArray = [];
 
 //type : artistes / morceaux / albums
 

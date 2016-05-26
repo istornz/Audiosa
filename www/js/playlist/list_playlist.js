@@ -1,3 +1,12 @@
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+
+	Fichier: list_playlist.js
+	Description: Liste les playlists sur l'interface et enregistre le contenu de ces playlists
+*/
+
 playlistTracks = [];
 		
 function list_playlists()

@@ -13,11 +13,6 @@ Une application iOS native sera elle aussi disponible.
 - Une Tablette sous iOS, Android ou Windows
 - Un appareil sous iOS (optionnel)
 
-## Installation
-
-
-## Tests
-
 
 ## License et auteurs
 - Dessus Dimitri

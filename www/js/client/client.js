@@ -1,4 +1,12 @@
-﻿// Connexion à socket.io
+﻿/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: client.js
+	Description: Client JS permettant la communication avec le serveur
+*/
+
 console.log("CLIENT socket lancé:");
 
 isPlayed			= false;
@@ -37,17 +45,17 @@ wsocket.onmessage = function (evt)
 		var piste = ListeMusiques.pistes[idListeMusiques];
 		percentPiste = ((jsonCallback.player_status.position / 1000) * 100) / piste.duree ;
 		posiactuelle = percentPiste;
-		console.log("------  ----Synchro : " + percentPiste);
+
 		//$($(".ui-slider-handle")[1]).css("left",percentPiste); //Synchro media player
 		
-		dureeeee = piste.duree,
-		positionnnn = (jsonCallback.player_status.position / 1000);
+		duree = piste.duree,
+		positionRecu = (jsonCallback.player_status.position / 1000);
 			
-		diffff = dureeeee - positionnnn;
+		difference = duree - positionRecu;
 				
 		// Minutes and seconds
-		var mins = ~~(diffff / 60);
-		var secs = ~~(diffff % 60);
+		var mins = ~~(difference / 60);
+		var secs = ~~(difference % 60);
 
 		$("#mediaPlayerTitle").html(escapeHtml(piste.title));
 		$("#mediaPlayerArtist").html(escapeHtml(piste.artist));
@@ -83,7 +91,7 @@ $("#web-player-next").click(function() {
 });
 
 
-// emarrer 0; pause 1 //sortir pause 2
+// Demarrer 0; pause 1 //sortir pause 2
 $("#web-player-play").click(function() {
 	
 	if(isPlayed)
@@ -149,7 +157,7 @@ var synchroClient = setInterval(function() {
 				posiactuelle = 100;
 		
 		posiactuelle += ((500/PosiEntiere)*100);
-		//console.log("Posi actuelle: "+posiactuelle);
+		//console.log("Position actuelle: "+posiactuelle);
 		
 		$($(".ui-slider-handle")[1]).css("left",posiactuelle+"%");
 	}
@@ -159,21 +167,17 @@ var synchroClientTime = setInterval(function() {
 	if(isPaused === false && isPlayed === true)	{
 		
 		PosiEntiereSecondeChange -= 1;
-		console.log(PosiEntiereSecondeChange);
 		
-		diffffls = (PosiEntiere/1000) - PosiEntiereSecondeChange;
-		
-		//console.log(diffffls);
-
 		// Minutes and seconds
 		var mins = ~~(PosiEntiereSecondeChange / 60);
 		var secs = ~~(PosiEntiereSecondeChange % 60);
 		
-		console.log(mins+":"+secs);
+	//	console.log(mins+":"+secs);
 		
 		if(secs < 10) {
 			secs = "0"+secs;
 		}
+		
 		$("#mediaPlayerDuree").html(mins+":"+secs);
 	}
 }, 1000);

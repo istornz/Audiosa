@@ -14,3 +14,4 @@
 [13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
 [13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
 [13/05/2016 10:40:49]	[API Importation]	Extension non autorisée ('mp3')
+[26/05/2016 12:56:50]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')

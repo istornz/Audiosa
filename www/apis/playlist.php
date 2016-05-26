@@ -1,4 +1,13 @@
-<?php
+﻿<?php
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: playlist.php
+	Description: Reception des choix de l'utilisateur et  creation de la playlist
+*/
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 header('Content-Type: application/json');
@@ -80,7 +89,7 @@ if(isset($_POST['delete_playlist']))
 }
 
 /************************/
-//	   Verifications 	//
+//	Verifications	//
 /************************/
 try {
 

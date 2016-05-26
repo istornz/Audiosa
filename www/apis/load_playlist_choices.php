@@ -1,4 +1,13 @@
 <?php
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: load_playlist_choices.php
+	Description: Chargement de la liste des choix que pourra faire l'audiophile
+*/
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 header('Content-Type: application/json');

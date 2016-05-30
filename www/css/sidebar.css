@@ -1,0 +1,279 @@
+/*
+    Rayane MOHAMED BEN-ALI
+    BTS SN2 LYCEE DU GRESIVAUDAN DE MEYLAN
+    Projet Audio Windows 2016 - Audiosa
+    
+	Fichier: sidebar.css
+	Description: Style de la partie "menu & player" se situant à gauche de l'interface
+*/
+
+@font-face {
+    font-family: audiosa;
+    src: url("../fonts/big_noodle_titling.ttf");
+}
+
+@font-face {
+    font-family: OSB;
+    src: url("../fonts/OldSansBlack.ttf");
+}
+
+@font-face {
+    font-family: oswald;
+    src: url("../fonts/Oswald-Regular.ttf");
+}
+
+@font-face {
+    font-family: roboto;
+    src: url("../fonts/Roboto-Thin.ttf");
+}
+
+html {
+	margin: 0;
+	border: 0;
+	padding:0;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	border: 0;
+	padding:0;
+	width: 100%;
+	height: 100%;
+	background: url("../img/fond/background.jpg") no-repeat center fixed;
+	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
+	background-size: cover; /* version standardisée */
+}
+
+h3  {
+	font-family: audiosa;
+	font-size: 32px;
+    margin: 0;
+    padding-top: 11px;
+    letter-spacing: 3px;
+	color: white;
+}
+
+#menu {
+	float: left;
+	height: 100%;
+	width: 22%;
+	background: #34495e;
+}
+
+#menu_content {
+    height: 35%;
+}
+
+#menu_scroll {
+	overflow: hidden !important;
+}
+
+#audiosa_title {
+    width: 100%;
+	height: 60px;
+    /*text-align: center;*/
+    color: white;
+    background-color: #e74c3c;
+}
+
+#utilisateur {
+    width: 30%;
+    text-align: center;
+	background-color: transparent;
+    float: right;
+	min-height: 8%;
+}
+
+.icon_navbar{
+	vertical-align: middle;
+	margin-right: 3%;
+	float: right;
+    width: 33px;
+}
+
+#image_utilisateur
+{
+	width:33px;
+	margin-top: 3px;
+}
+
+#icon_logo {
+	vertical-align: middle;
+    width: 33px;
+}
+
+.first_icon_sidebar_cell {
+    width: 33px;
+	margin-top: 0px;
+}
+
+.icon_sidebar_cell {
+    width: 33px;
+	margin-top: 4px;
+    float: left;
+}
+
+.cellSideBar
+{
+	font-family: oswald;
+	font-size: 23px;
+	height: 43px;
+	line-height: 43px;
+}
+
+.cellSideBar a
+{
+	color: white;
+	text-decoration: none;
+}
+
+.ui-page-theme-b a:visited,
+html .ui-bar-b a:visited,
+html .ui-body-b a:visited,
+html body .ui-group-theme-b a:visited {
+    color: white/*{b-link-visited}*/;
+}
+
+
+#view_more {
+    text-align: center;
+    background: #E74C3C;
+    height: 3%;
+}
+
+#web-player {
+	position: relative;
+    width: 100%;
+    height: 46%;
+    overflow: hidden;
+    background-image: url("../img/covers/defaultCover.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+	background-size: 174%;
+	-webkit-filter: blur(13px);
+	-moz-filter: blur(13px);
+	-o-filter: blur(13px);
+	-ms-filter: blur(13px);
+	filter: blur(13px);
+	background-color: #ccc;
+}
+
+#web-player-img {
+	width: 43%;
+    margin-left: 28.5%;
+    margin-top: 14%;
+    margin-bottom: 14%;
+}
+
+#web-player-onblur {
+	position: absolute;
+    width: 22%;
+	height: 54%;
+    overflow: visible;
+}
+
+#web-player-shuffle {
+	float: left;
+    width: 23px;
+    margin-top: 5px;
+    margin-left: 5%;
+}
+
+#web-player-sound {
+	float: right;
+    width: 23px;
+    margin-top: 5px;
+    margin-right: 5%;
+}
+
+#web-player-previous {
+	float: left;
+    width: 29px;
+    margin-top: 5px;
+    margin-left: 5%;
+}
+
+#web-player-play {
+    width: 29px;
+    margin-top: 5px;
+}
+
+#web-player-next {
+	float: right;
+    width: 29px;
+    margin-top: 5px;
+    margin-right: 5%;
+}
+
+#web-player-cmd {
+	height: 54%;
+	background-color: #484848;
+	border-top: 1px solid white;
+}
+
+/* Hide the number input */
+.full-width-slider input {
+	display: none;
+}
+.full-width-slider .ui-slider-track {
+	margin-left: 15px;
+}
+
+.ui-slider-track .ui-btn.ui-slider-handle
+{
+	border-color: transparent;
+	width: 1px;
+	margin: -9px 0 0 0px;
+	height: 15px;
+	background-color: white;
+}
+
+.ui-slider-track {
+	height: 0px;
+    background-color: white !important;
+    border-color: white !important;
+}
+
+div.ui-slider {
+	margin: 0 !important;
+}
+
+.player_cmds {
+	cursor: pointer;
+}
+
+#soundcontainer {
+width: 100px;
+    height: 18px;
+    position: absolute;
+    float: right;
+    right: -4%;
+    margin-top: -6px;
+}
+#web-player-sound,
+#onsound {
+	position: absolute;
+	top: 0;
+	margin-right: 5%;
+}
+#onsound {
+	z-index: 10;
+	/* float: left; */
+	width: 200px;
+	/*transform: rotate(-90deg);*/
+	left: -11px;
+	top: -87px;
+}
+
+#mediaPlayerTitle {
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
+    margin-left: 15%;
+    height: 24px;
+    white-space: nowrap;
+    margin-right: 15%;
+}

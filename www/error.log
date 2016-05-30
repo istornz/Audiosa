@@ -1,7 +1,3 @@
-[12/05/2016 08:30:04]	[Création playlist]	Impossible de supprimer les pistes liées à la playlist '5'
-[12/05/2016 08:38:48]	[Création playlist]	TEST --> La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'PLAYLIST_idPLAYLIST' de la table 'contenu_playlists'
-[12/05/2016 08:41:16]	[Création playlist]	Impossible de supprimer la playlist '5'
-[12/05/2016 08:43:45]	[Création playlist]	TEST --> La commande 'SELECT' est interdite � l'utilisateur: 'db_writer_music'@'@localhost' sur la colonne 'idPLAYLIST' de la table 'playlists'
 [12/05/2016 08:43:45]	[Création playlist]	Impossible de supprimer la playlist '5'
 [12/05/2016 09:48:17]	[API Importation]	Le fichier existe déjà (fichier : 'BIS1536-001-flac_16.flac')
 [12/05/2016 11:21:37]	[API Importation]	Extension non autorisée ('jpg')
@@ -15,3 +11,8 @@
 [13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
 [13/05/2016 10:40:49]	[API Importation]	Extension non autorisée ('mp3')
 [26/05/2016 12:56:50]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
+[30/05/2016 08:14:38]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 08:14:38]   [Player]   Requete recuperation id musics impossible"
+[30/05/2016 08:14:38]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 08:20:29]   [Player]   Requete recuperation nom fichier flac impossible"
+

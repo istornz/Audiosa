@@ -144,8 +144,9 @@ function createMusicPlayerEvent()
 {
 
 $(".musicplay").click(function() {
-
-	console.log("perdu");
+	posiactuelle = 0;
+	
+//	console.log("perdu");
 	var idpiste = $(this).data("idpiste"),
 		title = $(this).data("title"),
 		artist = $(this).data("artist"),

@@ -110,6 +110,7 @@ $("#web-player-play").click(function() {
 	else
 	{
 		isPlayed = true;
+		isPaused = false;
 		actionPlayer(wsocket, idMusic, 0, volumeRate, emplacement, emplacement_name);
 	}
 		
@@ -126,6 +127,7 @@ function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplace
  if(action == 0) { //Musique lancée
 	$("#web-player-play").attr("src","img/player/pause.png");
 	isPlayed			= true;
+	isPaused 			= false;
  } else if (action == 1) { //Musique en pause
 	$("#web-player-play").attr("src","img/player/play.png");
 	isPaused			= true;

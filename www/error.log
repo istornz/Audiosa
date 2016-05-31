@@ -16,3 +16,20 @@
 [30/05/2016 08:14:38]   [Player]   Requete recuperation nom fichier flac impossible"
 [30/05/2016 08:20:29]   [Player]   Requete recuperation nom fichier flac impossible"
 
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
+[30/05/2016 10:58:02]   [Extracteur]   script doublons, doublon present dans la base : "05 Theessink, Hans - Power of love.flac"
+[30/05/2016 14:24:58]	[API Importation]	Paramètres manquants, 'pseudoPost' et/ou 'passwordPost' ne sont pas renseignés
+[30/05/2016 14:29:41]   [Extracteur]   script doublons, doublon present dans la base : "BIS1536-001-flac_16.flac"
+[30/05/2016 14:30:32]	[API Importation]	Paramètres manquants, 'pseudoPost' et/ou 'passwordPost' ne sont pas renseignés
+[30/05/2016 14:36:29]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
+[30/05/2016 14:39:29]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
+[30/05/2016 14:43:36]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
+[30/05/2016 14:58:16]	[API Importation]	Extension non autorisée ('wav')
+[30/05/2016 15:29:50]   [Extracteur]   script doublons, doublon present dans la base : "01-10-Allemande_24bits_96kHz-SMR.flac"

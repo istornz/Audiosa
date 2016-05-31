@@ -116,7 +116,7 @@ if(isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 	}
 	
 	// Vérification de la nature du fichier
-	if(!($mimetypeFichier == "audio/flac") && !($mimetypeFichier == "audio/x-flac"))
+	if(!($mimetypeFichier == "audio/flac") && !($mimetypeFichier == "audio/x-flac") && !($mimetypeFichier == "application/octet-stream"))
 	{
 		// Le fichier mis en ligne n'est pas un fichier flac
 		write_error_to_log("API Importation","Le mimetype du fichier est invalide (mimetype du fichier : '" . $mimetypeFichier . "')");

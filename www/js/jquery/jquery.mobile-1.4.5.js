@@ -732,7 +732,7 @@ $.ui.plugin = {
 		//enable cross-domain page support
 		allowCrossDomainPages: false,
 
-		dialogHashKey: ""
+		dialogHashKey: "&ui-state=dialog"
 	});
 })( jQuery, this );
 
@@ -1821,19 +1821,19 @@ $.mobile.widget = $.Widget;
     // if location.hash has changed, and triggers the 'hashchange' event on
     // window when necessary.
     function poll() {
-    //  var hash = get_fragment(),
-    //    history_hash = history_get( last_hash );
+      var hash = get_fragment(),
+        history_hash = history_get( last_hash );
       
-    //  if ( hash !== last_hash ) {
-        //history_set( last_hash = hash, history_hash );
+      if ( hash !== last_hash ) {
+        history_set( last_hash = hash, history_hash );
         
-      //  $(window).trigger( str_hashchange );
+        $(window).trigger( str_hashchange );
         
-   //   } else if ( history_hash !== last_hash ) {
-       // location.href = location.href.replace( /#.*/, '' ) + history_hash;
-    //  }
+      } else if ( history_hash !== last_hash ) {
+        location.href = location.href.replace( /#.*/, '' ) + history_hash;
+      }
       
-    //  timeout_id = setTimeout( poll, $.fn[ str_hashchange ].delay );
+      timeout_id = setTimeout( poll, $.fn[ str_hashchange ].delay );
     };
     
     // vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -2351,10 +2351,10 @@ if ( !$.support.boxShadow ) {
 
 
 (function( $, undefined ) {
-		var path, $base, dialogHashKey = "";
+		var path, $base, dialogHashKey = "&ui-state=dialog";
 
 		$.mobile.path = path = {
-			uiStateKey: "",
+			uiStateKey: "&ui-state",
 
 			// This scary looking regular expression parses an absolute URL or its relative
 			// variants (protocol, site, document, query, and hash), into the various
@@ -6013,7 +6013,7 @@ $.widget( "mobile.page", {
 			}
 
 			if ( $btn.length > 0 &&
-				!( $btn.hasClass( "" ||
+				!( $btn.hasClass( "ui-state-disabled" ||
 
 					// DEPRECATED as of 1.4.0 - remove after 1.4.0 release
 					// only ui-state-disabled should be present thereafter
@@ -7427,7 +7427,7 @@ $.widget( "mobile.navbar", {
 		$navbar.delegate( "a", "vclick", function( /* event */ ) {
 			var activeBtn = $( this );
 
-			if ( !( activeBtn.hasClass( "" ) ||
+			if ( !( activeBtn.hasClass( "ui-state-disabled" ) ||
 
 				// DEPRECATED as of 1.4.0 - remove after 1.4.0 release
 				// only ui-state-disabled should be present thereafter

@@ -22,7 +22,7 @@
 	<title>Audiosa</title>
 	<link href="./css/jquery.mobile-1.4.5.css" rel="stylesheet"/>
 	<link href="./css/content.css" rel="stylesheet"/>
-	<link href="http://172.16.126.170/css/sidebar.css" rel="stylesheet"/>
+	<link href="./css/sidebar.css" rel="stylesheet"/>
 	<link href="./css/animate.css" rel="stylesheet"/>
 	<link href="./css/font-awesome.min.css" type="text/css" rel="stylesheet" />
 

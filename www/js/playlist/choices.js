@@ -131,16 +131,16 @@ $("#valider_playlist").click(function() {
 							{
 							
 								elementMessageDiv.css("background-color", "#16a085");
-										
+								elementMessageDiv.css("margin-bottom", "17px");
+
 								elementMessageDiv.css("display", "block");
 									
 								elementMessageLabel.text("Playlist "+name+" créee avec succès");
 																	
 								window.setTimeout(function() {
 									elementMessageDiv.css("display", "none");
-									$("#popupPlaylist").popup("close");
-									reset_choices();
-									blurAction(0, document.getElementById('fullPage'));
+									window.location.href = "http://172.16.126.170/";
+
 								}, 2500);
 							}
 						});
@@ -149,11 +149,8 @@ $("#valider_playlist").click(function() {
 		{
 			
 			elementMessageDiv.css("background-color", "#e74c3c");
-					
 			elementMessageDiv.css("display", "block");
-				
-			//elementMessageLabel.text("Entrez un nom de playlist valide");
-				
+								
 			elementMessageDiv.addClass("animated shake");
 				
 			window.setTimeout(function() {
@@ -255,7 +252,6 @@ $(".categories_annees").click(function() {
 
 };
 
-
 function in_array(string, array){
     var result = [false,""];
     for(i=0; i<array.length; i++){
@@ -275,12 +271,17 @@ function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 	albums = JSON.stringify(albums);
 	
 	$.ajax({
+	statusCode: {
+		200: function( msg ) {
+			callback( msg );
+		}
+	  },
 	  method: "POST",
 	  url: "apis/playlist.php",
 	  data: { playlist_name : playlist_name, genres: genres, artists: artists, annees: annees, albums: albums, pseudoPost: pseudo, passwordPost: passwordHash}
 	})
 	  .done(function( msg ) {
-		callback( msg );
+
 	  });
 };
 
@@ -406,17 +407,13 @@ function get_artist_cover_choices(indiceArtiste,type,msg,maxPiste) {
 
 			
 			if(indiceArtiste == --maxPiste) {
-
-			$("#list_"+type).mCustomScrollbar({
-				theme:"minimal"
-			});
-			
-			createChoiceEvent();
-
-				//$("#into_"+type).css("display","block");
-
-			//	$('body').removeClass('ui-loading');
-			//	artistes_loaded = true;
+				setTimeout(function() {
+					$("#list_"+type).mCustomScrollbar({
+						theme:"minimal"
+					});
+					
+					createChoiceEvent();
+				}, 1500);
 			}
 		});
 

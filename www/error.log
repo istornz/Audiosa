@@ -1,35 +1,7 @@
-[12/05/2016 08:43:45]	[Création playlist]	Impossible de supprimer la playlist '5'
-[12/05/2016 09:48:17]	[API Importation]	Le fichier existe déjà (fichier : 'BIS1536-001-flac_16.flac')
-[12/05/2016 11:21:37]	[API Importation]	Extension non autorisée ('jpg')
-[12/05/2016 13:17:20]   [Extracteur]   script doublons, doublon present dans la base : "06 America.flac"
-[12/05/2016 14:16:23]   [Extracteur]   script doublons, doublon present dans la base : "01 Aero Opening.flac"
-[12/05/2016 14:44:11]	[API Illustration Genres]	UPDATE `genres` SET `image` = 'bluesGenre.jpeg' WHERE idGENRES=7;
-[13/05/2016 10:18:44]	[API Importation]	Une erreur est survenue lors de l'upload du fichier : ''
-[13/05/2016 10:24:12]	[API Illustration Genres]	UPDATE `genres` SET `image` = '20150519_555b9fe11bb7f.jpg' WHERE idGENRES=13;
-[13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
-[13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
-[13/05/2016 10:30:41]   [Player]   Requete recuperation nom fichier flac impossible"
-[13/05/2016 10:40:49]	[API Importation]	Extension non autorisée ('mp3')
-[26/05/2016 12:56:50]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
-[30/05/2016 08:14:38]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 08:14:38]   [Player]   Requete recuperation id musics impossible"
-[30/05/2016 08:14:38]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 08:20:29]   [Player]   Requete recuperation nom fichier flac impossible"
-
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:31:26]   [Player]   Requete recuperation nom fichier flac impossible"
-[30/05/2016 10:58:02]   [Extracteur]   script doublons, doublon present dans la base : "05 Theessink, Hans - Power of love.flac"
-[30/05/2016 14:24:58]	[API Importation]	Paramètres manquants, 'pseudoPost' et/ou 'passwordPost' ne sont pas renseignés
-[30/05/2016 14:29:41]   [Extracteur]   script doublons, doublon present dans la base : "BIS1536-001-flac_16.flac"
-[30/05/2016 14:30:32]	[API Importation]	Paramètres manquants, 'pseudoPost' et/ou 'passwordPost' ne sont pas renseignés
-[30/05/2016 14:36:29]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
-[30/05/2016 14:39:29]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
-[30/05/2016 14:43:36]	[API Importation]	Le mimetype du fichier est invalide (mimetype du fichier : 'application/octet-stream')
-[30/05/2016 14:58:16]	[API Importation]	Extension non autorisée ('wav')
-[30/05/2016 15:29:50]   [Extracteur]   script doublons, doublon present dans la base : "01-10-Allemande_24bits_96kHz-SMR.flac"
+[02/06/2016 10:29:41]   [Extracteur]   script doublons, doublon present dans la base : "07 Aerology.flac"
+[02/06/2016 11:18:59]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
+[02/06/2016 11:19:14]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
+[02/06/2016 11:25:50]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
+[02/06/2016 11:26:05]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
+[02/06/2016 11:40:52]   [Player]   Requete recuperation nom fichier flac impossible"
+[02/06/2016 11:40:52]   [Player]   Requete recuperation nom fichier flac impossible"

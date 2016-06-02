@@ -827,6 +827,9 @@ $.widget("mobile.slider", $.mobile.slider, {
 	
 });
 
+document.ontouchmove = function(event){
+    event.preventDefault();
+}
 	</script>
 </body>
 </html>

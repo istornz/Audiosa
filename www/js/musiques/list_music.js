@@ -315,7 +315,7 @@ $(".musicplay").click(function() {
 		emplacement_name 	= emplacement_name; //	Nom album ou idPlaylist
 		idMusic				= idpiste;
 				
-		PosiEntiereSecondeChange = duree;
+		PosiEntiereSecondeChange = $(this).data("duree");
 		PosiEntiere = duree*1000;
 		
 

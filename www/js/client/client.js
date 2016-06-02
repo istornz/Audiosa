@@ -9,6 +9,8 @@
 
 console.log("CLIENT socket lancé:");
 
+synchroClient		= 0;
+synchroClientTime	= 0;
 isPlayed			= false;
 isPaused			= false;
 emplacement 		= 2; //0: pistes; 1: album; 2: playlist
@@ -59,7 +61,7 @@ wsocket.onmessage = function (evt)
 
 		$("#mediaPlayerTitle").html(escapeHtml(piste.title));
 		$("#mediaPlayerArtist").html(escapeHtml(piste.artist));
-		$("#mediaPlayerDuree").html(mins+":"+secs);
+	//	$("#mediaPlayerDuree").html(mins+":"+secs);
 		$("#web-player-img").attr("src","img/covers/"+piste.cover);
 		$("#web-player").css("background-image","url('img/covers/"+piste.cover+"')");
 		}
@@ -125,6 +127,9 @@ volumeRate 			= 1;
 function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplacement_name) {
 
  if(action == 0) { //Musique lancée
+	clearInterval(synchroClient);
+	clearInterval(synchroClientTime);
+	sync();
 	$("#web-player-play").attr("src","img/player/pause.png");
 	isPlayed			= true;
 	isPaused 			= false;
@@ -152,34 +157,37 @@ function checkMusic(idMusic, array){
     return result;
 }
 
-var synchroClient = setInterval(function() {
-	if(isPaused === false && isPlayed === true)	{
-		
-		if(posiactuelle > 100)
-				posiactuelle = 100;
-		
-		posiactuelle += ((500/PosiEntiere)*100);
-		//console.log("Position actuelle: "+posiactuelle);
-		
-		$($(".ui-slider-handle")[1]).css("left",posiactuelle+"%");
-	}
-}, 500);
-
-var synchroClientTime = setInterval(function() {
-	if(isPaused === false && isPlayed === true)	{
-		
-		PosiEntiereSecondeChange -= 1;
-		
-		// Minutes and seconds
-		var mins = ~~(PosiEntiereSecondeChange / 60);
-		var secs = ~~(PosiEntiereSecondeChange % 60);
-		
-	//	console.log(mins+":"+secs);
-		
-		if(secs < 10) {
-			secs = "0"+secs;
+function sync()
+{
+	synchroClient = setInterval(function() {
+		if(isPaused === false && isPlayed === true)	{
+			
+			if(posiactuelle > 100)
+					posiactuelle = 100;
+			
+			posiactuelle += ((500/PosiEntiere)*100);
+			//console.log("Position actuelle: "+posiactuelle);
+			
+			$($(".ui-slider-handle")[1]).css("left",posiactuelle+"%");
 		}
-		
-		$("#mediaPlayerDuree").html(mins+":"+secs);
+	}, 500);
+
+	synchroClientTime = setInterval(function() {
+		if(isPaused === false && isPlayed === true)	{
+			
+			PosiEntiereSecondeChange -= 1;
+			
+			// Minutes and seconds
+			var mins = ~~(PosiEntiereSecondeChange / 60);
+			var secs = ~~(PosiEntiereSecondeChange % 60);
+			
+		//	console.log(mins+":"+secs);
+			
+			if(secs < 10) {
+				secs = "0"+secs;
+			}
+			
+			$("#mediaPlayerDuree").html(mins+":"+secs);
 	}
-}, 1000);
+	}, 1000);
+}

@@ -164,92 +164,101 @@ $("#valider_playlist").click(function() {
 
 });
 
-function createChoiceEvent() {
-
-$(".categories_genres").click(function() {
-
-	var is_in_array = in_array($(this).data("title"),genres_choisis)
-	console.log(is_in_array);
+function createChoiceEvent(type) {
 	
-	if(!is_in_array[0] == true)
-	{
-		genres_choisis.push($(this).data("title"));
-		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_genres '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+if(type == "genres") {
+
+	$(".categories_genres").click(function() {
+
+		var is_in_array = in_array($(this).data("title"),genres_choisis)
+		console.log(is_in_array);
 		
-		console.log(genres_choisis);
-	}
-	else
-	{
-		$('.'+$(this).attr("id")+'_checked').remove();
-		genres_choisis.splice(is_in_array[1], 1);
-	}
-	
-	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
-});
-
-$(".categories_artistes").click(function() {
-
-	var is_in_array = in_array($(this).data("title"),artistes_choisis)
-	console.log(is_in_array);
-	
-	if(!is_in_array[0] == true)
-	{
-		artistes_choisis.push($(this).data("title"));
-		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_artistes '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+		if(!is_in_array[0] == true)
+		{
+			genres_choisis.push($(this).data("title"));
+			$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_genres '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+			
+			console.log(genres_choisis);
+		}
+		else
+		{
+			$('.'+$(this).attr("id")+'_checked').remove();
+			genres_choisis.splice(is_in_array[1], 1);
+		}
 		
-		console.log(artistes_choisis);
-	}
-	else
-	{
-		$('.'+$(this).attr("id")+'_checked').remove();
-		artistes_choisis.splice(is_in_array[1], 1);
-	}
-	
-	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
-});
+		afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
+	});
+}
+else if(type == "artistes")
+{
 
-$(".categories_albums").click(function() {
+	$(".categories_artistes").click(function() {
 
-	var is_in_array = in_array($(this).data("title"),albums_choisis)
-	console.log(is_in_array);
-	
-	if(!is_in_array[0] == true)
-	{
-		albums_choisis.push($(this).data("title"));
-		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_albums '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+		var is_in_array = in_array($(this).data("title"),artistes_choisis)
+		console.log(is_in_array);
 		
-		console.log(albums_choisis);
-	}
-	else
-	{
-		$('.'+$(this).attr("id")+'_checked').remove();
-		albums_choisis.splice(is_in_array[1], 1);
-	}
-	
-	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
-});
-
-$(".categories_annees").click(function() {
-
-	var is_in_array = in_array($(this).data("title"),annees_choisis)
-	console.log(is_in_array);
-	
-	if(!is_in_array[0] == true)
-	{
-		annees_choisis.push($(this).data("title"));
-		$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_annees '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+		if(!is_in_array[0] == true)
+		{
+			artistes_choisis.push($(this).data("title"));
+			$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_artistes '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+			
+			console.log(artistes_choisis);
+		}
+		else
+		{
+			$('.'+$(this).attr("id")+'_checked').remove();
+			artistes_choisis.splice(is_in_array[1], 1);
+		}
 		
-		console.log(annees_choisis);
-	}
-	else
-	{
-		$('.'+$(this).attr("id")+'_checked').remove();
-		annees_choisis.splice(is_in_array[1], 1);
-	}
-	
-	afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
-});
+		afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
+	});
+}
+else if(type == "albums")
+{
+	$(".categories_albums").click(function() {
 
+		var is_in_array = in_array($(this).data("title"),albums_choisis)
+		console.log(is_in_array);
+		
+		if(!is_in_array[0] == true)
+		{
+			albums_choisis.push($(this).data("title"));
+			$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_albums '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+			
+			console.log(albums_choisis);
+		}
+		else
+		{
+			$('.'+$(this).attr("id")+'_checked').remove();
+			albums_choisis.splice(is_in_array[1], 1);
+		}
+		
+		afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
+	});
+}
+else
+{
+	$(".categories_annees").click(function() {
+
+		var is_in_array = in_array($(this).data("title"),annees_choisis)
+		console.log(is_in_array);
+		
+		if(!is_in_array[0] == true)
+		{
+			annees_choisis.push($(this).data("title"));
+			$('#'+$(this).attr("id")+' div:last').before( $('<img class="checked_cat_annees '+$(this).attr("id")+'_checked" src="img/categories/valide.png">') );
+			
+			console.log(annees_choisis);
+		}
+		else
+		{
+			$('.'+$(this).attr("id")+'_checked').remove();
+			annees_choisis.splice(is_in_array[1], 1);
+		}
+		
+		afficher_bouton_creer(genres_choisis, artistes_choisis, albums_choisis, annees_choisis);
+	});
+}
 };
 
 function in_array(string, array){
@@ -383,7 +392,7 @@ function get_choices(type) {
 				theme:"minimal"
 			});
 			
-			createChoiceEvent();
+			createChoiceEvent(type);
 	}
 				
 			if(type == "albums") { albumsLoaded = true; }
@@ -412,7 +421,7 @@ function get_artist_cover_choices(indiceArtiste,type,msg,maxPiste) {
 						theme:"minimal"
 					});
 					
-					createChoiceEvent();
+					createChoiceEvent("artistes");
 				}, 1500);
 			}
 		});

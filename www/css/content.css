@@ -554,3 +554,18 @@ div.upload input {
     opacity: 0 !important;
     overflow: hidden !important;
 }
+
+#into_morceaux
+{
+   height: 100%;
+}
+
+#into_artistes
+{
+   height: 100%;
+}
+
+#into_albums
+{
+   height: 100%;
+}

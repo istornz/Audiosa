@@ -121,7 +121,7 @@ function get_music(type) {
 				
 				$('body').removeClass('ui-loading');
 				
-				albums_loaded = true;
+				albums_loaded = false;
 			}
 			
 			if(type != "artistes") {

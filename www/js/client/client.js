@@ -53,11 +53,11 @@ wsocket.onmessage = function (evt)
 		duree = piste.duree,
 		positionRecu = (jsonCallback.player_status.position / 1000);
 			
-		difference = duree - positionRecu;
+	//	difference = duree - positionRecu;
 				
 		// Minutes and seconds
-		var mins = ~~(difference / 60);
-		var secs = ~~(difference % 60);
+	//	var mins = ~~(difference / 60);
+	//	var secs = ~~(difference % 60);
 
 		$("#mediaPlayerTitle").html(escapeHtml(piste.title));
 		$("#mediaPlayerArtist").html(escapeHtml(piste.artist));
@@ -80,14 +80,14 @@ wsocket.onclose = function()
 
 //previous 4
 $("#web-player-previous").click(function() {
-	
+	setPistePosition();
 	actionPlayer(wsocket, idMusic, 4, volumeRate, emplacement, emplacement_name);
 	
 });
 
 //next 3
 $("#web-player-next").click(function() {
-
+	setPistePosition();
 	actionPlayer(wsocket, idMusic, 3, volumeRate, emplacement, emplacement_name);
 
 });
@@ -127,8 +127,7 @@ volumeRate 			= 1;
 function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplacement_name) {
 
  if(action == 0) { //Musique lancée
-	clearInterval(synchroClient);
-	clearInterval(synchroClientTime);
+	setPistePosition();
 	sync();
 	$("#web-player-play").attr("src","img/player/pause.png");
 	isPlayed			= true;
@@ -141,7 +140,7 @@ function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplace
 	isPaused			= false;
  }
  
- console.log('{"id_music": '+idMusic+',"action": '+action+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');   
+ //console.log('{"id_music": '+idMusic+',"action": '+action+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');   
 
  wsocket.send('{"id_music": '+idMusic+',"action": '+action+',"volume_rate": '+ volumeRate +',"emplacement_mode": '+emplacement+',"emplacement_name": "'+emplacement_name+'"}');    
 }
@@ -180,9 +179,9 @@ function sync()
 			// Minutes and seconds
 			var mins = ~~(PosiEntiereSecondeChange / 60);
 			var secs = ~~(PosiEntiereSecondeChange % 60);
-			
+
 		//	console.log(mins+":"+secs);
-			
+
 			if(secs < 10) {
 				secs = "0"+secs;
 			}
@@ -190,4 +189,15 @@ function sync()
 			$("#mediaPlayerDuree").html(mins+":"+secs);
 	}
 	}, 1000);
+}
+
+function setPistePosition()
+{
+	 if(checkMusic(idMusic, ListeMusiques.pistes)[0]) {
+			var idListeMusiques = checkMusic(idMusic, ListeMusiques.pistes)[1];
+			
+			var piste = ListeMusiques.pistes[idListeMusiques];
+ 			PosiEntiereSecondeChange = piste.duree;
+			console.log("ok");
+ }
 }

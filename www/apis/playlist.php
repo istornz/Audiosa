@@ -24,6 +24,7 @@ $genres 		= json_decode($_POST['genres']);
 $annees 		= json_decode($_POST['annees']);
 $artists 		= json_decode($_POST['artists']);
 $albums 		= json_decode($_POST['albums']);
+
 $playlist_name 	= $_POST['playlist_name'];
 
 $_genres 		= array();
@@ -40,8 +41,8 @@ if(!isset($_POST['pseudoPost']) || !isset($_POST['passwordPost']))
 
 try 
 {
-    $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_READER_USER_LOGIN, $DB_READER_USER_PSW);
-	
+    $connexion = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_READER_USER_LOGIN, $DB_READER_USER_PSW, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
 	$pseudoQuoted	= $connexion->quote($_POST['pseudoPost']);
 	$passwordQuoted	= $connexion->quote($_POST['passwordPost']);
 }
@@ -53,7 +54,7 @@ catch(PDOException $e)
 
 try 
 {
-    $connexionWrite = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_WRITER_LOGIN, $DB_WRITER_PSW);
+    $connexionWrite = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_WRITER_LOGIN, $DB_WRITER_PSW, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 }
 catch(PDOException $e)
 {

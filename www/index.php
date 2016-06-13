@@ -268,6 +268,19 @@
 	</div>
 </div>
 
+<div data-role="popup" id="supprPlaylist" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:360px;">
+	<div data-role="header" data-theme="a">
+		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-btn-right ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+		<h1 id="popupPlaylistName"></h1>
+	</div>
+	<div role="main" style="text-align: center;" class="ui-content">
+		<h4>Voulez vous supprimer la playlist ?</h4>
+		<div style="height: 50px;">
+			<button onclick="delete_playlist();" class="ui-btn" style="float: right; width: 70px; background-color: #2980b9">Oui</button> <button onclick="$('#supprPlaylist').popup('close'); blurAction(0, document.getElementById('fullPage'));" class="ui-btn" style="float: right; width: 70px; margin-right: 10px; background-color: #c0392b">Non</button> 
+		</div>
+	</div>
+</div>
+
 <div data-role="popup" id="popupEditionMetadonnee" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="width:500px;">
 	<div data-role="header" data-theme="a" style="height:150px;">
 		<a href="#" onclick="blurAction(0, document.getElementById('fullPage'));" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
@@ -275,9 +288,9 @@
 		<a id="validerMetadonneesButton" href="#" onclick='launchRequestEditMetatag();' class="ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all">No text</a>
 		<img id="imgCoverEditionMetadonnee" src="img/covers/defaultCover.jpg" alt="albumCover"></a>
 		<div class="divHeaderEdition">
-			<span id="titreMusiqueEdition">Validé</span><br />
-			<span id="nomArtisteEdition">Booba ft. Benash</span><br />
-			<span id="nomAlbumEdition">Nero némesis</span>
+			<span id="titreMusiqueEdition"></span><br />
+			<span id="nomArtisteEdition"></span><br />
+			<span id="nomAlbumEdition"></span>
 		</div>
 	</div>
 	<div role="main" style="text-align: center;" class="ui-content">
@@ -360,6 +373,7 @@
 	</div>
 		
 	<script src="/js/jquery/jquery.js" type="text/javascript"></script>
+	<script src="/js/playlist/delete_playlist.js" type="text/javascript"></script>
 	<!-- Récuperation des musiques -->
 	<script src="/js/musiques/list_music.js" type="text/javascript"></script>
 	<!-- Socket -->

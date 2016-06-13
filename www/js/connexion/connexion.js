@@ -183,12 +183,14 @@ function userConnected() {
     var elementImportButton 		= $("#import_button");
 	var elementNewPlaylistButton 	= $("#button_new_playlist");
 	var classEditMusic 				= $(".edit_music_container");
+	var elementDelPlaylist 			= $("#btnDelPlaylist");
 	
     elementConnectButton.attr("src", "img/menuIcon.png");
     elementConnectButton.parent().attr("href", "#popupMenu");
     elementImportButton.css("display", "block");
 	elementNewPlaylistButton.css("display", "block");
 	classEditMusic.css("display", "block");
+	elementDelPlaylist.css("display", "block");
 }
 
 // Fonction permettant de modifier l'apparence du site quand l'utilisateur est déconnecté
@@ -197,12 +199,16 @@ function userDisconnected() {
     var elementImportButton 		= $("#import_button");
 	var elementNewPlaylistButton 	= $("#button_new_playlist");
 	var classEditMusic 				= $(".edit_music_container");
-	
+	var elementDelPlaylist 			= $("#btnDelPlaylist");
+
+	pseudo = null;
+	passwordHash = null;
     elementConnectButton.attr("src", "img/user.png");
     elementConnectButton.parent().attr("href", "#popupConnexion");
     elementImportButton.css("display", "none");
 	elementNewPlaylistButton.css("display", "none");
 	classEditMusic.css("display", "none");
+	elementDelPlaylist.css("display", "none");
 }
 
 // Fonction permettant à l'utilisateur de se déconnecter du site

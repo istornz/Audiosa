@@ -34,7 +34,7 @@ wsocket.onopen = function()
 wsocket.onmessage = function (evt) 
 {
 	var received_msg = evt.data;
-	
+	console.log(received_msg);
 	try {
         var jsonCallback = JSON.parse(received_msg);
         idMusic = jsonCallback.id_music_played;

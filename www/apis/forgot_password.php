@@ -58,7 +58,9 @@ if($selectStatement->execute())
 	
 	// Calcul du nombre de ligne retournée
 	// array_filter() permet de supprimer les élements vides du tableau "$ligne"
-	$nbr_ligne = count(array_filter($ligne));
+	$nbr_ligne = 0;
+	if(is_array ( $ligne ))
+		$nbr_ligne = count(array_filter($ligne));
 	
 	if($nbr_ligne == 0)
 	{

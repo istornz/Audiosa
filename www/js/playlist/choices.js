@@ -278,8 +278,7 @@ function sendChoices(genres, artists, annees, albums, playlist_name, callback) {
 	artists = JSON.stringify(artists);
 	annees = JSON.stringify(annees);
 	albums = JSON.stringify(albums);
-	console.log(annees);
-	console.log(albums);
+	
 	$.ajax({
 	statusCode: {
 		200: function( msg ) {

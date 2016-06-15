@@ -162,6 +162,7 @@ for($iartist = 0; $iartist < count($artists); $iartist++) {
 for($ialbum = 0; $ialbum < count($albums); $ialbum++) {
 	$piste_limite = rand(2,4);
 	$commande_SQL	= "SELECT idPISTES FROM pistes WHERE pistes.album=". $connexion->quote($albums[$ialbum]) ." ORDER BY RAND() LIMIT ".$piste_limite;
+	
 	$query = $connexion->prepare($commande_SQL);
 	$query->execute();
 	

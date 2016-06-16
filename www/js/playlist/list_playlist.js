@@ -20,7 +20,7 @@ function list_playlists()
 		
 			if(msg.status_code != 1)
 			{
-				console.log("UNE ERREUR EST SURVENUE");
+				console.log("Aucune playlist");
 				//GESTION DES ERREURS
 
 				return false;

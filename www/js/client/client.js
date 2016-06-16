@@ -13,9 +13,9 @@ synchroClient		= 0;
 synchroClientTime	= 0;
 isPlayed			= false;
 isPaused			= false;
-emplacement 		= 2; //0: pistes; 1: album; 2: playlist
-emplacement_name 	= "14"; //	Nom album ou idPlaylist
-idMusic				= 53;
+emplacement 		= 0; //0: pistes; 1: album; 2: playlist
+emplacement_name 	= ""; //	Nom album ou idPlaylist
+idMusic				= 0;
 volumeRate 			= 0.5;
 percentPiste		= 0;
 posiLocale			= 0;
@@ -24,6 +24,7 @@ posiactuelle		= 0;
 posisarce			= 0;
 posiactuellels		= 0;
 PosiEntiereSecondeChange	=0;
+strt				= true;
 
 wsocket = new WebSocket("ws://172.16.126.170:8081");	
 wsocket.onopen = function()
@@ -35,9 +36,11 @@ wsocket.onmessage = function (evt)
 {
 	var received_msg = evt.data;
 	console.log(received_msg);
+	
 	try {
         var jsonCallback = JSON.parse(received_msg);
         idMusic = jsonCallback.id_music_played;
+		console.log("cc");
 
 		if(checkMusic(idMusic, ListeMusiques.pistes)[0]) {
 			idListeMusiques = checkMusic(idMusic, ListeMusiques.pistes)[1];
@@ -45,8 +48,16 @@ wsocket.onmessage = function (evt)
 		posiLocale = jsonCallback.player_status.position;
 
 		var piste = ListeMusiques.pistes[idListeMusiques];
+		if(strt)
+		{
+			PosiEntiereSecondeChange = piste.duree;
+			strt				= false;
+		}
+		
+		console.log(jsonCallback.player_status.position);
 		percentPiste = ((jsonCallback.player_status.position / 1000) * 100) / piste.duree ;
 		posiactuelle = percentPiste;
+		sync();
 
 		//$($(".ui-slider-handle")[1]).css("left",percentPiste); //Synchro media player
 		
@@ -80,6 +91,7 @@ wsocket.onclose = function()
 
 //previous 4
 $("#web-player-previous").click(function() {
+	strt				= true;
 	setPistePosition();
 	actionPlayer(wsocket, idMusic, 4, volumeRate, emplacement, emplacement_name);
 	
@@ -87,15 +99,15 @@ $("#web-player-previous").click(function() {
 
 //next 3
 $("#web-player-next").click(function() {
+	strt				= true;
 	setPistePosition();
 	actionPlayer(wsocket, idMusic, 3, volumeRate, emplacement, emplacement_name);
-
 });
 
 
 // Demarrer 0; pause 1 //sortir pause 2
 $("#web-player-play").click(function() {
-	
+
 	if(isPlayed)
 	{
 		if(isPaused)
@@ -111,6 +123,7 @@ $("#web-player-play").click(function() {
 	}
 	else
 	{
+		strt				= true;
 		isPlayed = true;
 		isPaused = false;
 		actionPlayer(wsocket, idMusic, 0, volumeRate, emplacement, emplacement_name);
@@ -128,7 +141,6 @@ function actionPlayer(wsocket, idMusic, action, volumeRate, emplacement, emplace
 
  if(action == 0) { //Musique lancée
 	setPistePosition();
-	sync();
 	$("#web-player-play").attr("src","img/player/pause.png");
 	isPlayed			= true;
 	isPaused 			= false;
@@ -158,6 +170,9 @@ function checkMusic(idMusic, array){
 
 function sync()
 {
+	clearInterval(synchroClient);
+	clearInterval(synchroClientTime);
+	
 	synchroClient = setInterval(function() {
 		if(isPaused === false && isPlayed === true)	{
 			
@@ -182,7 +197,7 @@ function sync()
 
 		//	console.log(mins+":"+secs);
 
-			if(secs < 10) {
+			if(secs < 10 && secs > 0) {
 				secs = "0"+secs;
 			}
 			
@@ -193,11 +208,12 @@ function sync()
 
 function setPistePosition()
 {
+	console.log(idMusic);
 	 if(checkMusic(idMusic, ListeMusiques.pistes)[0]) {
 			var idListeMusiques = checkMusic(idMusic, ListeMusiques.pistes)[1];
+			console.log(idListeMusiques);
 			
 			var piste = ListeMusiques.pistes[idListeMusiques];
  			PosiEntiereSecondeChange = piste.duree;
-			console.log("ok");
  }
 }

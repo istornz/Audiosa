@@ -85,7 +85,7 @@
 				</div>
 				<form class="full-width-slider" style="margin-top: -12px; margin-bottom: 0 !important">
 				    <label for="slider-12" class="ui-hidden-accessible">Slider:</label>
-				    <input type="range" name="slider-12" id="slider-12" min="0" max="100" value="0">
+				    <input type="range" disabled name="slider-12" id="slider-12" min="0" max="100" value="0">
 				</form>
 				<div id="mediaPlayerDuree" style="text-align: center; font-size: 13px; margin-top: -8px;">
 				00:00
@@ -529,8 +529,6 @@ $.widget("mobile.slider", $.mobile.slider, {
                 j, length,
                 i, optionsCount, origTabIndex,
                 side, activeClass, sliderImg;
-
-				console.log(max);
 				
             $label.attr( "id", labelID );
             this.isToggleSwitch = isToggleSwitch;

@@ -1,8 +1,8 @@
 ﻿[02/06/2016 10:29:41]   [Extracteur]   script doublons, doublon present dans la base : "07 Aerology.flac"
 [02/06/2016 11:18:59]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
-[02/06/2016 11:19:14]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
-[02/06/2016 11:25:50]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
-[02/06/2016 11:26:05]   [Extracteur]   script doublons, doublon present dans la base : "11 Dein Eingesicht.flac"
 [15/06/2016 10:55:13]	[API Importation]	Le fichier existe déjà (fichier : '01 Three Of A Kind - Panacea.flac')
 [15/06/2016 10:55:30]	[API Importation]	Extension non autorisée ('wav')
 [15/06/2016 10:55:47]	[API Importation]	Le fichier existe déjà (fichier : '05 Herzlich Lieb Hab Ich Dich, O Herr - BuxWV 15.flac')
+[16/06/2016 12:53:06]	[API Importation]	Extension non autorisée ('png')
+[16/06/2016 12:53:23]	[API Importation]	Extension non autorisée ('wav')
+[16/06/2016 12:53:44]   [Extracteur]   script doublons, doublon present dans la base : "02 Cocoon.flac"
